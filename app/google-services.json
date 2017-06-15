@@ -1,0 +1,71 @@
+{
+  "project_info": {
+    "project_number": "497631305741",
+    "firebase_url": "https://appestacionamento-ed59e.firebaseio.com",
+    "project_id": "appestacionamento-ed59e",
+    "storage_bucket": "appestacionamento-ed59e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:497631305741:android:35a518b2cecc581d",
+        "android_client_info": {
+          "package_name": "com.appestacionamento.cursoandroid.admin.appestacionamento"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "497631305741-va95343eenbqg6i3mt3qlr6bi0g1ntju.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.appestacionamento.cursoandroid.admin.appestacionamento",
+            "certificate_hash": "f239adb3ee56471f3ed6c3a948b38056c9613058"
+          }
+        },
+        {
+          "client_id": "497631305741-kis6e5ovhh97t3jgqu50akrvdfqp86j4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.appestacionamento.cursoandroid.admin.appestacionamento",
+            "certificate_hash": "08d615e2752c39458ec811ae6f6edda6cb4e5b2e"
+          }
+        },
+        {
+          "client_id": "497631305741-22j3j1fhdebl5kh5d6nh3gtu7vjfnho8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.appestacionamento.cursoandroid.admin.appestacionamento",
+            "certificate_hash": "1175c8e016fccac0a31f1512fd1fea435e5cd96d"
+          }
+        },
+        {
+          "client_id": "497631305741-dioelo1mbpib1hhujm73vmjib9ties8u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPCzTkWNFsgT7-4qB5hcCc-RBJfOHfp2M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "497631305741-dioelo1mbpib1hhujm73vmjib9ties8u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
