@@ -1,7 +1,9 @@
-package com.appestacionamento.cursoandroid.admin.appestacionamento;
+package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 
 public class MainActivity extends AppCompatActivity {
 
