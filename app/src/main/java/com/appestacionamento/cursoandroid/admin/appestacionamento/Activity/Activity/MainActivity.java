@@ -1,12 +1,17 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Usuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
        // startActivity(intent);
 
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
-        toolbar.setTitle("");
+        toolbar.setTitle("BM");
         setSupportActionBar(toolbar);
 
 
@@ -39,6 +44,25 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu_admin,menu);
         return true;
 
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_sair : sair();break;
+            
+
+        }
+
+        return true;
+    }
+
+    private void sair(){
+        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+        startActivity(intent);
+        FirebaseAuth auth = configuracaoFirebase.getFirebaseAutenticacao();
+        auth.signOut();
 
     }
 }

@@ -11,13 +11,17 @@
         android:orderInCategory="200"
         app:showAsAction="never"
         android:icon="@android:drawable/ic_menu_search"
-        android:title="Procurar" />
+        android:title="Procurar Usuário" />
 
-    <item android:id="menu_addVaga"
+    <item android:id="@+id/menu_cadastra_vaga"
         android:orderInCategory="100"
-        app:showAsAction="ifRoom"
-        android:icon="@android:drawable/ic_menu_add"
+        app:showAsAction="never"
         android:title="Cadastrar Vaga"
+        />
+    <item android:id="@+id/menu_cadastra_usuario"
+        android:orderInCategory="200"
+        app:showAsAction="never"
+        android:title="Cadastrar Usuário"
         />
 
 
