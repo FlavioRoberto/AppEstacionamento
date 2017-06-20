@@ -1,7 +1,10 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.ColorRes;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
         toolbar.setTitle("BM");
+
         setSupportActionBar(toolbar);
 
 
@@ -51,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_sair : sair();break;
-            
+
 
         }
 
