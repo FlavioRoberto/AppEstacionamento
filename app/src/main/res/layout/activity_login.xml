@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:padding="35dp"
+
+    tools:context="com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.MainActivity">
+
+    <ImageView
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/logoId"
+        android:layout_width="171dp"
+        android:layout_height="157dp"
+        android:background="@drawable/hotel"
+        android:contentDescription="Logo APP"
+        tools:ignore="ContentDescription,HardcodedText"
+        tools:layout_editor_absoluteX="107dp"
+        tools:layout_editor_absoluteY="114dp" />
+
+
+    <EditText
+        android:id="@+id/emailId"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/ovaltext"
+        android:hint="@string/Email"
+        android:inputType="textEmailAddress"
+        android:textAlignment="center"
+        />
+
+    <EditText
+        android:id="@+id/senhaId"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ovaltext"
+        android:hint="@string/senha"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        />
+
+
+    <Button
+
+        android:id="@+id/logarId"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/ovalbutton"
+        android:text="@string/logar"
+        android:textColor="#fff"
+
+        tools:layout_editor_absoluteY="446dp" />
+
+    <TextView
+        android:id="@+id/eSenhaId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="@string/eSenha"
+
+        android:textColor="#FFF"
+        tools:layout_editor_absoluteX="136dp"
+        tools:layout_editor_absoluteY="508dp" />
+
+</android.widget.LinearLayout>
