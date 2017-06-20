@@ -1,4 +1,4 @@
-package layout;
+package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments;
 
 
 import android.os.Bundle;
@@ -23,8 +23,9 @@ public class consultaUsuarioFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_consulta_usuario, container, false);
+        // Inflate the layout for this fragment]
+        View view =  inflater.inflate(R.layout.fragment_consulta_usuario, container, false);
+        return view;
     }
 
 }

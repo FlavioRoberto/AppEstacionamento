@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:padding="35dp"
     android:background="#fff"
-    tools:context="layout.consultaUsuarioFragment">
+    tools:context=".Activity.Fragments.consultaUsuarioFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -41,24 +41,25 @@
             android:background="@color/colorCinza" />
 
         <TextView
-            android:id="@+id/tvNome"
+            android:id="@+id/textNome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/SplitLine_hor1"
             android:layout_marginTop="53dp"
             android:text="Nome: "
-            android:layout_below="@+id/SplitLine_hor1"
-            android:layout_alignParentStart="true" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/nomeId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignTop="@+id/tvNome"
-            android:layout_marginStart="28dp"
-            android:layout_toEndOf="@+id/tvNome" />
+            android:layout_alignTop="@+id/textNome"
+            android:layout_marginStart="@dimen/marginTopTextView"
+            android:layout_toEndOf="@+id/textNome" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textTitulo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/SplitLine_hor1"
@@ -66,8 +67,94 @@
             android:layout_marginTop="14dp"
             android:text="Dados do Usuário"
             android:textAllCaps="true"
+            android:textStyle="bold"
 
             />
+
+        <TextView
+            android:id="@+id/textTelefone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textNome"
+            android:layout_marginTop="@dimen/marginTopTextView"
+            android:text="Telefone: "
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/telefoneId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textTelefone"
+            android:layout_toEndOf="@+id/nomeId" />
+
+        <TextView
+            android:id="@+id/textEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textTelefone"
+            android:layout_marginTop="@dimen/marginTopTextView"
+            android:text="Email: "
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/emailId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/telefoneId"
+            android:layout_alignTop="@+id/textEmail" />
+
+        <TextView
+            android:id="@+id/textTipo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textEmail"
+            android:layout_marginTop="@dimen/marginTopTextView"
+            android:text="Tipo:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tipoId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textTipo"
+            android:layout_toEndOf="@+id/emailId" />
+
+        <TextView
+            android:id="@+id/textStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textTipo"
+            android:layout_marginTop="24dp"
+            android:text="Situação:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/statusId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textStatus"
+            android:layout_toEndOf="@+id/tipoId" />
+
+        <TextView
+            android:id="@+id/textPlaca"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textStatus"
+            android:layout_below="@+id/textStatus"
+            android:layout_marginTop="@dimen/marginTopTextView"
+            android:text="Placa do Veículo:"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/placaId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/textPlaca"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 </FrameLayout>
