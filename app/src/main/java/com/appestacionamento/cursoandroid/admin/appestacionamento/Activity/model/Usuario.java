@@ -17,7 +17,7 @@ public class Usuario extends Pessoa{
     }
 
     public void create(){
-        firebaseReferences.child("usuarios").child(getUid()).setValue(this);
+        firebaseReferences.child("users").child(getUid()).setValue(this);
     }
 
     public String getTipo() {
