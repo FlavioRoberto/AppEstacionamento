@@ -43,11 +43,13 @@
         <TextView
             android:id="@+id/textNome"
             android:layout_width="wrap_content"
+            android:textAlignment="viewStart"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/SplitLine_hor1"
             android:layout_marginTop="53dp"
             android:text="Nome: "
+            android:textSize="@dimen/texxtViewSize"
             android:textStyle="bold" />
 
         <TextView
@@ -66,6 +68,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="14dp"
             android:text="Dados do Usuário"
+            android:textSize="@dimen/tituloSize"
             android:textAllCaps="true"
             android:textStyle="bold"
 
@@ -75,11 +78,13 @@
             android:id="@+id/textTelefone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textNome"
-            android:layout_marginTop="@dimen/marginTopTextView"
+            android:layout_marginTop="23dp"
             android:text="Telefone: "
-            android:textStyle="bold" />
+            android:textSize="@dimen/texxtViewSize"
+            android:textStyle="bold"
+            android:layout_below="@+id/textNome"
+            android:textAlignment="viewStart"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:id="@+id/telefoneId"
@@ -92,11 +97,13 @@
             android:id="@+id/textEmail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/textTelefone"
-            android:layout_marginTop="@dimen/marginTopTextView"
+            android:layout_marginTop="23dp"
             android:text="Email: "
-            android:textStyle="bold" />
+            android:textAlignment="viewStart"
+            android:textSize="@dimen/texxtViewSize"
+            android:textStyle="bold"
+            android:layout_below="@+id/textTelefone"
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:id="@+id/emailId"
@@ -107,8 +114,10 @@
 
         <TextView
             android:id="@+id/textTipo"
+            android:textAlignment="viewStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/texxtViewSize"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textEmail"
             android:layout_marginTop="@dimen/marginTopTextView"
@@ -119,14 +128,17 @@
             android:id="@+id/tipoId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/texxtViewSize"
             android:layout_alignBottom="@+id/textTipo"
             android:layout_toEndOf="@+id/emailId" />
 
         <TextView
             android:id="@+id/textStatus"
+            android:textAlignment="viewStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
+            android:textSize="@dimen/texxtViewSize"
             android:layout_below="@+id/textTipo"
             android:layout_marginTop="24dp"
             android:text="Situação:"
@@ -137,16 +149,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/textStatus"
-            android:layout_toEndOf="@+id/tipoId" />
+            android:layout_toEndOf="@+id/tipoId"
+
+            />
 
         <TextView
             android:id="@+id/textPlaca"
+            android:textAlignment="viewStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textStatus"
             android:layout_below="@+id/textStatus"
             android:layout_marginTop="@dimen/marginTopTextView"
             android:text="Placa do Veículo:"
+            android:textSize="@dimen/texxtViewSize"
             android:textStyle="bold" />
 
         <TextView

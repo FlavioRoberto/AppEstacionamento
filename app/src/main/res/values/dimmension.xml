@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="marginTopTextView">23dp</dimen>
+    <dimen name="texxtViewSize">18sp</dimen>
+    <dimen name="tituloSize">20sp</dimen>
 </resources>
