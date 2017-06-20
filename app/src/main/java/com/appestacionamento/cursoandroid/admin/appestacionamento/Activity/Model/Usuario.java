@@ -1,6 +1,8 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model;
 
 
+import android.content.Intent;
+
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -31,6 +33,9 @@ public class Usuario {
         firebaseReferences.child("users").child(getUid()).setValue(this);
     }
 
+    public void desloga(){
+        autenticacao.signOut();
+    }
 
     public String getNome() {
         return nome;
