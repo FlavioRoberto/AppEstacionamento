@@ -2,24 +2,33 @@ package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Mode
 
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
 
 public class Usuario {
-    private String nome, uid, telefone, email, tipo;
+    private String nome;
+    private String uid;
+    private String telefone;
+    private String email;
+
+
+    private String tipo;
     private  String senha ;
     private boolean status;
     private int cpf;
     private DatabaseReference firebaseReferences;
+    private FirebaseAuth autenticacao;
 
 
     public Usuario() {
         firebaseReferences = configuracaoFirebase.getFirebase();
+        autenticacao = configuracaoFirebase.getFirebaseAutenticacao();
     }
 
     public void Create() {
-        firebaseReferences.child("Usuarios").child(getUid()).setValue(this);
+        firebaseReferences.child("users").child(getUid()).setValue(this);
     }
 
 
@@ -39,9 +48,6 @@ public class Usuario {
     }
 
 
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
 
     @Exclude
     public String getSenha() {
@@ -57,6 +63,17 @@ public class Usuario {
         return telefone;
     }
 
+    public String getCurrentUid(){
+        return getAutenticacao().getCurrentUser().getUid();
+    }
+
+    public FirebaseAuth getAutenticacao() {
+        return autenticacao;
+    }
+
+    public DatabaseReference getFirebaseReferences() {
+        return firebaseReferences;
+    }
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
@@ -91,5 +108,8 @@ public class Usuario {
         this.cpf = cpf;
     }
 
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 }
 
