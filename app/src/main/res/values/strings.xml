@@ -4,11 +4,14 @@
     <string name="eSenha">Esqueceu a senha?</string>
     <string name="Email">Email</string>
     <string name="senha">Senha</string>
-    <string name="buscar">Buscar usuario (cpf)</string>
+    <string name="buscarCpf">infrome o cpf ex: 111.111.111.11</string>
     <string name="nome">Nome</string>
     <string name="cpf">cpf</string>
     <string name="telefone">Telefone</string>
     <string name="veiculo">Veiculo</string>
     <string name="vaga">Vaga</string>
     <string name="Buscar">Buscar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
