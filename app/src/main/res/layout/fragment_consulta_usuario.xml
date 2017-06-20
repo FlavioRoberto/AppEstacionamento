@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="35dp"
+    android:background="#fff"
     tools:context="layout.consultaUsuarioFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -13,44 +14,40 @@
 
         <EditText
             android:id="@+id/consultaId"
-            style="@style/editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="27dp"
-            android:ems="10"
-            android:hint="@string/buscarCpf"
-            android:inputType="number"
-            android:textAlignment="center" />
+            android:gravity="center"
+            android:hint="@string/buscarCpf" />
 
         <Button
             android:id="@+id/btnconsulta"
             style="@style/btnConsulta"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_alignParentStart="true"
+            android:layout_height="45dp"
             android:layout_below="@+id/consultaId"
-            android:layout_marginBottom="15dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="25dp"
             android:layout_marginTop="14dp"
-            android:text="@string/Buscar" />
+            android:gravity="center"
+            android:text="@string/Buscar"
+            android:textSize="20sp" />
 
         <View
             android:id="@+id/SplitLine_hor1"
-            android:layout_width="250dp"
+            android:layout_width="200dp"
             android:layout_height="1dp"
             android:layout_below="@+id/btnconsulta"
             android:layout_centerHorizontal="true"
-            android:background="@android:color/black" />
+            android:background="@color/colorCinza" />
 
         <TextView
             android:id="@+id/tvNome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
+            android:layout_marginTop="53dp"
+            android:text="Nome: "
             android:layout_below="@+id/SplitLine_hor1"
-            android:layout_marginTop="55dp"
-            android:text="Nome: " />
+            android:layout_alignParentStart="true" />
 
         <TextView
             android:id="@+id/nomeId"
@@ -59,6 +56,18 @@
             android:layout_alignTop="@+id/tvNome"
             android:layout_marginStart="28dp"
             android:layout_toEndOf="@+id/tvNome" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/SplitLine_hor1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="14dp"
+            android:text="Dados do Usuário"
+            android:textAllCaps="true"
+
+            />
 
     </RelativeLayout>
 </FrameLayout>
