@@ -69,6 +69,7 @@
             android:layout_marginTop="14dp"
             android:text="Dados do Usuário"
             android:textSize="@dimen/tituloSize"
+            android:gravity="center"
             android:textAllCaps="true"
             android:textStyle="bold"
 
