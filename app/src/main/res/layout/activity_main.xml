@@ -1,26 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.MainActivity">
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:padding="35dp"
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TESTE"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context="com.example.mateu.myapplication.MainActivity">
+
+    <ImageView
+        android:layout_gravity="center_horizontal"
+
+        android:id="@+id/logoId"
+        android:layout_width="171dp"
+        android:layout_height="157dp"
+        android:background="@drawable/hotel"
+        android:contentDescription="Logo APP"
+        tools:ignore="ContentDescription,HardcodedText"
+        tools:layout_editor_absoluteX="107dp"
+        tools:layout_editor_absoluteY="114dp" />
+
+
+    <EditText
+        android:id="@+id/emailId"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/ovaltext"
+        android:hint="@string/Email"
+        android:inputType="textEmailAddress"
+        android:textAlignment="center"
+        />
+
+    <EditText
+        android:id="@+id/senhaId"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ovaltext"
+        android:hint="@string/senha"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        />
+
 
     <Button
-        android:id="@+id/button2"
+
+        android:id="@+id/logarId"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/ovalButton"
+        android:text="@string/logar"
+        android:textColor="#fff"
+
+        tools:layout_editor_absoluteY="446dp" />
+
+    <TextView
+        android:id="@+id/eSenhaId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Teste"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="59dp" />
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="@string/eSenha"
 
-</android.support.constraint.ConstraintLayout>
+        android:textColor="#FFF"
+        tools:layout_editor_absoluteX="136dp"
+        tools:layout_editor_absoluteY="508dp" />
+
+</android.widget.LinearLayout>

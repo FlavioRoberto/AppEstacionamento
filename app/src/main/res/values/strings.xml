@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AppEstacionamento</string>
+    <string name="logar">Logar</string>
+    <string name="eSenha">Esqueceu a senha?</string>
+    <string name="Email">Email</string>
+    <string name="senha">Senha</string>
 </resources>
