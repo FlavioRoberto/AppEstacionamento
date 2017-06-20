@@ -1,9 +1,4 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application;
-
-/**
- * Created by admin on 15/06/2017.
- */
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.pm.PackageManager;
@@ -13,10 +8,6 @@ import android.support.v4.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
-
-/**
- * Created by Flavio on 08/06/2017.
- */
 
 public class Permissoes {
 

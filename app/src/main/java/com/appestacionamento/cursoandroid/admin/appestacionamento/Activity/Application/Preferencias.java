@@ -1,8 +1,5 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application;
 
-/**
- * Created by admin on 15/06/2017.
- */
 import android.content.Context;
 import android.content.SharedPreferences;
 
