@@ -22,7 +22,7 @@
     </EditText>
 
     <Button
-        android:text="Buscar"
+        android:text="@string/Buscar"
         android:layout_width="100dp"
         android:layout_height="35dp"
         android:id="@+id/botaoBuscarId_consultaUsuario"
@@ -32,9 +32,53 @@
         android:textColor="#fff"/>
 
     <TextView
-        android:text="TextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView" />
+        android:text="@string/nome"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:id="@+id/nomeId_consultaUsuario"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/ovaltext_busca"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:text="@string/cpf"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:id="@+id/cpfId_consultaUsuario"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/ovaltext_busca"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:text="@string/telefone"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:id="@+id/telefoneId_consultaUsuario"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/ovaltext_busca"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:text="@string/veiculo"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:id="@+id/veiculoId_consultaUsuario"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/ovaltext_busca"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:text="@string/vaga"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:id="@+id/vagaID_consultaUsuario"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/ovaltext_busca"
+        android:textAlignment="center"/>
 
 </LinearLayout>
