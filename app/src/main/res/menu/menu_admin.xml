@@ -3,11 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/menu_sair"
-        android:orderInCategory="100"
+        android:orderInCategory="300"
         app:showAsAction="never"
         android:title="Sair"
-
-
         />
+    <item android:id="@+id/menu_procurar"
+        android:orderInCategory="200"
+        app:showAsAction="never"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Procurar" />
+
+    <item android:id="menu_addVaga"
+        android:orderInCategory="100"
+        app:showAsAction="ifRoom"
+        android:icon="@android:drawable/ic_menu_add"
+        android:title="Cadastrar Vaga"
+        />
+
 
 </menu>
