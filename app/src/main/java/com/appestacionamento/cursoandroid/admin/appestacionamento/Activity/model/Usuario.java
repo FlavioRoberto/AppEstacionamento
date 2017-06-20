@@ -1,8 +1,9 @@
-package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.model;
+package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model;
 
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
 import com.google.firebase.database.DatabaseReference;
+<<<<<<< Updated upstream
 
 public class Usuario {
     private String nome, uid, telefone, email, tipo;
@@ -26,31 +27,106 @@ public class Usuario {
         firebaseReferences.child("users").child(getUid()).setValue(this);
     }
 
+=======
+import com.google.firebase.database.Exclude;
+
+public class Usuario {
+    private String nome, uid,senha,telefone,email,tipo;
+    private boolean status;
+    private int cpf;
+
+    private DatabaseReference firebaseReference;
+
+
+    public Usuario(){
+        firebaseReference = configuracaoFirebase.getFirebase();
+    }
+
+
+    public void Create(){
+        firebaseReference.child("Usuarios").child(getUid()).setValue(this);
+    }
+
+
+
+>>>>>>> Stashed changes
     public String getNome() {
         return nome;
     }
 
+<<<<<<< Updated upstream
+=======
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    //@Exclude nao upa pro banco o campo
+    @Exclude
+>>>>>>> Stashed changes
     public String getUid() {
         return uid;
     }
 
+<<<<<<< Updated upstream
+=======
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    @Exclude
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+>>>>>>> Stashed changes
     public String getTelefone() {
         return telefone;
     }
 
+<<<<<<< Updated upstream
+=======
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    @Exclude
+>>>>>>> Stashed changes
     public String getEmail() {
         return email;
     }
 
+<<<<<<< Updated upstream
     public String getSenha() {
         return senha;
+=======
+    public void setEmail(String email) {
+        this.email = email;
+>>>>>>> Stashed changes
     }
 
     public boolean isStatus() {
         return status;
     }
 
+<<<<<<< Updated upstream
     public int getCpf() {
         return cpf;
     }
+=======
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public int getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(int cpf) {
+        this.cpf = cpf;
+    }
+>>>>>>> Stashed changes
 }
