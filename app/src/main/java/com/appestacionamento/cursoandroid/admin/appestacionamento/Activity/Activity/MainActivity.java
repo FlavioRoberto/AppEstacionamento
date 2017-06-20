@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
         slidingTabLayout = (SlidingTabLayout)findViewById(R.id.stlayout);
         viewPager = (ViewPager)findViewById(R.id.vpLayout);
 
+        //distribui as tabas proporcionalmente na tela
+        slidingTabLayout.setDistributeEvenly(true);
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
         toolbar.setTitle("BM");
 
