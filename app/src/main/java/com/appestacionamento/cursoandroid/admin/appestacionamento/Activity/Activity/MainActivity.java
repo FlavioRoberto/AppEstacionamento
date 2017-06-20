@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_sair : sair();break;
+            case R.id.menu_cadastra_usuario:chamaCadastra();break;
 
 
         }
@@ -68,5 +69,11 @@ public class MainActivity extends AppCompatActivity {
         FirebaseAuth auth = configuracaoFirebase.getFirebaseAutenticacao();
         auth.signOut();
 
+    }
+
+    public void chamaCadastra(){
+        Intent intent = new Intent(getApplication(),consultaUsuarioActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
