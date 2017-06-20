@@ -4,4 +4,11 @@
     <string name="eSenha">Esqueceu a senha?</string>
     <string name="Email">Email</string>
     <string name="senha">Senha</string>
+    <string name="buscar">Buscar usuario (cpf)</string>
+    <string name="nome">Nome</string>
+    <string name="cpf">cpf</string>
+    <string name="telefone">Telefone</string>
+    <string name="veiculo">Veiculo</string>
+    <string name="vaga">Vaga</string>
+    <string name="Buscar">Buscar</string>
 </resources>
