@@ -12,7 +12,6 @@
 
     <ImageView
         android:layout_gravity="center_horizontal"
-
         android:id="@+id/logoId"
         android:layout_width="171dp"
         android:layout_height="157dp"
@@ -55,7 +54,7 @@
         android:layout_height="50dp"
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
-        android:background="@drawable/ovalButton"
+        android:background="@drawable/ovalbutton"
         android:text="@string/logar"
         android:textColor="#fff"
 
