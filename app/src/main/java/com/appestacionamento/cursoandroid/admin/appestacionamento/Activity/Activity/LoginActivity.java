@@ -15,8 +15,13 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -97,10 +102,13 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
+
     @Override
     protected void onStart() {
-        super.onStart();
         autenticacao.addAuthStateListener(mAuthListener);
+        super.onStart();
+
     }
 
     private void logar() {
@@ -113,7 +121,22 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (!task.isSuccessful()) {
-                        Toast.makeText(LoginActivity.this, "Erro ao logar", Toast.LENGTH_LONG).show();
+                        try {
+                            throw task.getException();
+                        }catch (FirebaseAuthInvalidUserException e) {
+                            Toast.makeText(LoginActivity.this, "Usuário inválido", Toast.LENGTH_LONG).show();
+                        }
+                        catch (FirebaseNetworkException e){
+                            Toast.makeText(LoginActivity.this, "Sem conexão", Toast.LENGTH_LONG).show();
+                        }
+                        catch (FirebaseAuthInvalidCredentialsException e){
+                            Toast.makeText(LoginActivity.this, "Email ou senha Inválido", Toast.LENGTH_LONG).show();
+                        }
+
+                        catch (Exception e) {
+                            Toast.makeText(LoginActivity.this,e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+
                     }
                 }
             });
