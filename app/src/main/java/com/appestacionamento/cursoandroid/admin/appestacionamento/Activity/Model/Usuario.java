@@ -22,6 +22,7 @@ public class Usuario {
     private int cpf;
     private DatabaseReference firebaseReferences;
     private FirebaseAuth autenticacao;
+    private Boolean possuiNecessidadeEsp;
 
 
     public Usuario() {
@@ -52,7 +53,13 @@ public class Usuario {
         return uid;
     }
 
+    public Boolean getPossuiNecessidadeEsp() {
+        return possuiNecessidadeEsp;
+    }
 
+    public void setPossuiNecessidadeEsp(Boolean possuiNecessidadeEsp) {
+        this.possuiNecessidadeEsp = possuiNecessidadeEsp;
+    }
 
     @Exclude
     public String getSenha() {
