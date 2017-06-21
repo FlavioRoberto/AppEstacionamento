@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_sair : sair();break;
-            case R.id.menu_procurar:chamaConsulta();break;
+            case R.id.menu_meusdados:chamaConsulta();break;
 
 
         }
