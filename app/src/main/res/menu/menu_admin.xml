@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    
+
     >
 
     <item android:id="@+id/menu_sair"
@@ -10,21 +10,11 @@
         android:title="Sair"
 
         />
-    <item android:id="@+id/menu_procurar"
-        android:orderInCategory="200"
-        app:showAsAction="never"
-        android:icon="@android:drawable/ic_menu_search"
-        android:title="Procurar Usuário" />
 
-    <item android:id="@+id/menu_cadastra_vaga"
-        android:orderInCategory="100"
-        app:showAsAction="never"
-        android:title="Cadastrar Vaga"
-        />
-    <item android:id="@+id/menu_cadastra_usuario"
+    <item android:id="@+id/menu_meusdados"
         android:orderInCategory="200"
         app:showAsAction="never"
-        android:title="Cadastrar Usuário"
+        android:title="Meus dados"
         />
 
 
