@@ -28,9 +28,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_admin);
+        setContentView(R.layout.activity_login);
 
-        slidingTabLayout = (SlidingTabLayout)findViewById(R.id.stlayout);
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
+        finish();
+
+
+        /*slidingTabLayout = (SlidingTabLayout)findViewById(R.id.stlayout);
         viewPager = (ViewPager)findViewById(R.id.vpLayout);
 
         //distribui as tabas proporcionalmente na tela
@@ -44,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
         TabAdapter tabAdapter = new TabAdapter(getSupportFragmentManager());
         viewPager.setAdapter(tabAdapter);
 
-        slidingTabLayout.setViewPager(viewPager);
+        slidingTabLayout.setViewPager(viewPager);*/
     }
 
-    @Override
+    /*@Override
     protected void onDestroy() {
         super.onDestroy();
         finish();
@@ -73,9 +78,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return true;
-    }
+    }*/
 
-    private void sair(){
+    /*private void sair(){
         Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
         startActivity(intent);
         FirebaseAuth auth = configuracaoFirebase.getFirebaseAutenticacao();
@@ -86,6 +91,6 @@ public class MainActivity extends AppCompatActivity {
     public void chamaConsulta(){
         Intent intent = new Intent(getApplication(),consultaUsuarioActivity.class);
         startActivity(intent);
-        finish();
-    }
+        //finish();
+    }*/
 }

@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Usuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -48,8 +49,13 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if(firebaseAuth.getCurrentUser() != null){
-                    uid = user.getCurrentUid();
-                    databaseReference = FirebaseDatabase.getInstance().getReference("users").child(uid);
+                    //uid = user.getCurrentUid();
+                    String email = user.getEmailCurrentUser();
+                    Toast.makeText(getApplicationContext(), "Email: "+email, Toast.LENGTH_LONG).show();
+
+                    String codificaEmail = Base64Custom.codificarBase64(email);
+                    //databaseReference = FirebaseDatabase.getInstance().getReference("users").child(uid);
+                    databaseReference = FirebaseDatabase.getInstance().getReference("users").child(codificaEmail);
                     databaseReference.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -60,9 +66,9 @@ public class LoginActivity extends AppCompatActivity {
                                 String tipo = map.get("tipo");
                                 if(tipo.equals("ADM")){
                                     Toast.makeText(getApplicationContext(), "Logado como ADM", Toast.LENGTH_LONG).show();
-                                    //Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                    //startActivity(intent);
-
+                                    Intent intent = new Intent(getApplicationContext(), TelaAdm.class);
+                                    startActivity(intent);
+                                    finish();
                                 }else if(tipo.equals("USER")){
                                     //Intent intent = new Intent(getApplicationContext(), Usuario.class);
                                     //startActivity(intent);

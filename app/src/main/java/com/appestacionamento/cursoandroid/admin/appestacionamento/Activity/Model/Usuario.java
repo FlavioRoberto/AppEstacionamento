@@ -72,6 +72,10 @@ public class Usuario {
         return getAutenticacao().getCurrentUser().getUid();
     }
 
+    public  String getEmailCurrentUser(){
+        return getAutenticacao().getCurrentUser().getEmail();
+    }
+
     public FirebaseAuth getAutenticacao() {
         return autenticacao;
     }
