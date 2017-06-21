@@ -22,7 +22,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:hint="@string/buscarCpf" />
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:hint="Digite o CPF" />
 
         <Button
             android:id="@+id/btnconsulta"
@@ -37,8 +39,7 @@
             android:text="@string/Buscar"
             android:textSize="20sp" />
 
-
-                <View
+            <View
             android:id="@+id/SplitLine_hor1"
             android:layout_width="200dp"
             android:layout_height="1dp"
@@ -54,6 +55,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/SplitLine_hor1"
             android:layout_marginTop="53dp"
+            android:textColor="@color/colorPrimary"
             android:text="Nome: "
             android:textSize="@dimen/texxtViewSize"
             android:textStyle="bold" />
@@ -74,6 +76,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="14dp"
             android:text="Dados do Usuário"
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/tituloSize"
             android:gravity="center"
             android:textAllCaps="true"
@@ -87,6 +90,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="23dp"
             android:text="Telefone: "
+            android:textColor="@color/colorPrimary"
             android:textSize="@dimen/texxtViewSize"
             android:textStyle="bold"
             android:layout_below="@+id/textNome"
@@ -106,6 +110,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="23dp"
             android:text="Email: "
+            android:textColor="@color/colorPrimary"
             android:textAlignment="viewStart"
             android:textSize="@dimen/texxtViewSize"
             android:textStyle="bold"
@@ -125,6 +130,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/texxtViewSize"
+            android:textColor="@color/colorPrimary"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/textEmail"
             android:layout_marginTop="@dimen/marginTopTextView"
@@ -146,6 +152,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:textSize="@dimen/texxtViewSize"
+            android:textColor="@color/colorPrimary"
             android:layout_below="@+id/textTipo"
             android:layout_marginTop="24dp"
             android:text="Situação:"
@@ -164,6 +171,7 @@
             android:id="@+id/textPlaca"
             android:textAlignment="viewStart"
             android:layout_width="wrap_content"
+            android:textColor="@color/colorPrimary"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/textStatus"
             android:layout_below="@+id/textStatus"

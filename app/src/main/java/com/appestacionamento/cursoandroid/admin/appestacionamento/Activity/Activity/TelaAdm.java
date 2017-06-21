@@ -3,6 +3,7 @@ package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Acti
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.graphics.ColorUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -40,6 +41,7 @@ public class TelaAdm extends AppCompatActivity {
         TabAdapter tabAdapter = new TabAdapter(getSupportFragmentManager());
         viewPager.setAdapter(tabAdapter);
 
+
         slidingTabLayout.setViewPager(viewPager);
     }
     @Override
@@ -50,6 +52,7 @@ public class TelaAdm extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_admin,menu);
