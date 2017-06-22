@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Usuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
@@ -25,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
@@ -40,15 +42,12 @@ public class LoginActivity extends AppCompatActivity {
     private DatabaseReference databaseReference = user.getFirebaseReferences();
     private FirebaseAuth.AuthStateListener mAuthListener;
     private String uid;
+    private Preferencias preferencias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        editTextEmail = (EditText) findViewById(R.id.emailId);
-        editTextSenha = (EditText) findViewById(R.id.senhaId);
-        buttonLogin = (Button) findViewById(R.id.logarId);
 
         mAuthListener = new FirebaseAuth.AuthStateListener(){
             @Override
@@ -56,12 +55,12 @@ public class LoginActivity extends AppCompatActivity {
                 if(firebaseAuth.getCurrentUser() != null){
                     //uid = user.getCurrentUid();
                     String email = user.getEmailCurrentUser();
-                    Toast.makeText(getApplicationContext(), "Email: "+email, Toast.LENGTH_LONG).show();
-
+                  //  Toast.makeText(getApplicationContext(), "Email: "+email, Toast.LENGTH_LONG).show();
                     String codificaEmail = Base64Custom.codificarBase64(email);
                     //databaseReference = FirebaseDatabase.getInstance().getReference("users").child(uid);
                     databaseReference = FirebaseDatabase.getInstance().getReference("users").child(codificaEmail);
                     databaseReference.addValueEventListener(new ValueEventListener() {
+
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             try{
@@ -70,16 +69,12 @@ public class LoginActivity extends AppCompatActivity {
                                 Map<String, String> map = dataSnapshot.getValue(genericTypeIndicator );
                                 String tipo = map.get("tipo");
                                 if(tipo.equals("ADM")){
-                                    Toast.makeText(getApplicationContext(), "Logado como ADM", Toast.LENGTH_LONG).show();
-                                    Intent intent = new Intent(getApplicationContext(), TelaAdm.class);
-                                    startActivity(intent);
-                                    finish();
-                                }else if(tipo.equals("USER")){
-                                    //Intent intent = new Intent(getApplicationContext(), Usuario.class);
-                                    //startActivity(intent);
-                                    Toast.makeText(getApplicationContext(), "Logado como USER", Toast.LENGTH_LONG).show();
+                                    chamaActivityPrincipal("ADM");
 
+                                }else if(tipo.equals("USER")){
+                                   chamaActivityPrincipal("USER");
                                 }
+
                             }catch(Exception e){
                                 Toast.makeText(getApplicationContext(), "Erro: " + e, Toast.LENGTH_LONG).show();
                             }
@@ -94,6 +89,13 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         };
+
+
+
+        editTextEmail = (EditText) findViewById(R.id.emailId);
+        editTextSenha = (EditText) findViewById(R.id.senhaId);
+        buttonLogin = (Button) findViewById(R.id.logarId);
+
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,11 +139,32 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this,e.getMessage(), Toast.LENGTH_LONG).show();
                         }
 
+                    }else {
+
+
                     }
                 }
             });
         }
     }
+
+    public void chamaActivityPrincipal(String tipo){
+        if(tipo=="ADM"){
+            // Toast.makeText(getApplicationContext(), "Logado como ADM", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(), TelaAdm.class);
+            startActivity(intent);
+            finish();
+
+        }else if(tipo == "USER"){
+            //Intent intent = new Intent(getApplicationContext(), Usuario.class);
+            //startActivity(intent);
+           //Toast.makeText(getApplicationContext(), "Logado como USER", Toast.LENGTH_LONG).show();
+            //finish();
+        }
+    }
+
+
+
 
     @Override
     protected void onDestroy() {
