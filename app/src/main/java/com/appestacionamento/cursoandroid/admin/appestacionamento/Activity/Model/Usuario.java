@@ -70,6 +70,9 @@ public class Usuario {
         this.senha = senha;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
 
     public String getTelefone() {
         return telefone;
