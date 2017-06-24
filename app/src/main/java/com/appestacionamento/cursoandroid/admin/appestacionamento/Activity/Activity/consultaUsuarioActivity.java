@@ -7,10 +7,15 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 
 public class consultaUsuarioActivity extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_consulta_usuario);
     }
+
+
+
 }

@@ -22,9 +22,10 @@ public class Preferencias {
         editor = preferences.edit();
     }
 
-    public void salvarusuarioPreferences(String nome, String telefone, String token){
-        editor.putString(CHAVE_NOME,nome);
-        editor.putString(CHAVE_TELEFONE,telefone);
+    public void salvarusuarioPreferences(String email, String senha, String token){
+        editor.clear();
+        editor.putString(CHAVE_NOME,email);
+        editor.putString(CHAVE_TELEFONE,senha);
         editor.putString(CHAVE_TOKEN,token);
         editor.commit();
 

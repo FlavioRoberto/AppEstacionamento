@@ -9,31 +9,30 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
 
+
 public class Usuario {
     private String nome;
-    private String uid;
+    private String uid;//chave do usuario
     private String telefone;
     private String email;
-
-
-    private String tipo;
-    private  String senha ;
-    private boolean status;
-    private int cpf;
+    private String tipo;//(USER, ADM, GARAGISTA, SECRETARIA)
+    private  String senha ;//Possui valor padrao (200200)
+    private String status;//(ATIVO, INATIVO) -> Começa ativo como padrao
+    private String cpf;//campo unico
+    private String possuiNecessidadeEsp;
     private DatabaseReference firebaseReferences;
     private FirebaseAuth autenticacao;
-    private Boolean possuiNecessidadeEsp;
-
 
     public Usuario() {
         firebaseReferences = configuracaoFirebase.getFirebase();
         autenticacao = configuracaoFirebase.getFirebaseAutenticacao();
     }
 
-    public void Create() {
+     public void Create() {
         firebaseReferences.child("users").child(getUid()).setValue(this);
     }
 
+    @Exclude
     public void desloga(){
         autenticacao.signOut();
     }
@@ -47,21 +46,22 @@ public class Usuario {
         this.nome = nome;
     }
 
-    //@Exclude nao upa pro banco o campo
-    @Exclude
     public String getUid() {
         return uid;
     }
 
-    public Boolean getPossuiNecessidadeEsp() {
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getPossuiNecessidadeEsp() {
         return possuiNecessidadeEsp;
     }
 
-    public void setPossuiNecessidadeEsp(Boolean possuiNecessidadeEsp) {
+    public void setPossuiNecessidadeEsp(String possuiNecessidadeEsp) {
         this.possuiNecessidadeEsp = possuiNecessidadeEsp;
     }
 
-    @Exclude
     public String getSenha() {
         return senha;
     }
@@ -75,18 +75,22 @@ public class Usuario {
         return telefone;
     }
 
+    @Exclude
     public String getCurrentUid(){
         return getAutenticacao().getCurrentUser().getUid();
     }
 
+    @Exclude
     public  String getEmailCurrentUser(){
         return getAutenticacao().getCurrentUser().getEmail();
     }
 
+    @Exclude
     public FirebaseAuth getAutenticacao() {
         return autenticacao;
     }
 
+    @Exclude
     public DatabaseReference getFirebaseReferences() {
         return firebaseReferences;
     }
@@ -95,7 +99,7 @@ public class Usuario {
         this.telefone = telefone;
     }
 
-    @Exclude
+
     public String getEmail() {
         return email;
     }
@@ -106,21 +110,21 @@ public class Usuario {
 
     }
 
-    public boolean isStatus() {
+    public String status() {
         return status;
     }
 
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

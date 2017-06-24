@@ -17,14 +17,14 @@
                 android:layout_height="match_parent">
 
 
-        <EditText
-            android:id="@+id/consultaId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary"
-            android:hint="Digite o CPF" />
+                <EditText
+                    android:id="@+id/consultaId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="Digite o Email"
+                    android:textColor="@color/colorPrimary"
+                    android:textColorHint="@color/colorPrimary" />
 
         <Button
             android:id="@+id/btnconsulta"
@@ -66,7 +66,8 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/textNome"
             android:layout_marginStart="@dimen/marginTopTextView"
-            android:layout_toEndOf="@+id/textNome" />
+            android:layout_toEndOf="@+id/textNome"
+            android:textColor="#000000"/>
 
         <TextView
             android:id="@+id/textTitulo"
@@ -102,7 +103,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textTelefone"
-            android:layout_toEndOf="@+id/nomeId" />
+            android:layout_toEndOf="@+id/nomeId"
+            android:textColor="#000000"/>
 
         <TextView
             android:id="@+id/textEmail"
@@ -122,7 +124,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/telefoneId"
-            android:layout_alignTop="@+id/textEmail" />
+            android:layout_alignTop="@+id/textEmail"
+            android:textColor="#000000"/>
 
         <TextView
             android:id="@+id/textTipo"
@@ -143,7 +146,8 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/texxtViewSize"
             android:layout_alignBottom="@+id/textTipo"
-            android:layout_toEndOf="@+id/emailId" />
+            android:layout_toEndOf="@+id/emailId"
+            android:textColor="#000000"/>
 
         <TextView
             android:id="@+id/textStatus"
@@ -164,6 +168,7 @@
             android:layout_height="wrap_content"
             android:layout_alignTop="@+id/textStatus"
             android:layout_toEndOf="@+id/tipoId"
+            android:textColor="#000000"
 
             />
 
@@ -187,6 +192,7 @@
             android:layout_alignTop="@+id/textPlaca"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="@dimen/marginTopTextView"
+            android:textColor="#000000"
             />
 
 

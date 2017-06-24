@@ -11,6 +11,12 @@
     <string name="veiculo">Veiculo</string>
     <string name="vaga">Vaga</string>
     <string name="Buscar">Buscar</string>
+    <string name="Tipo">Tipo</string>
+    <string name="Cpf">Cpf</string>
+    <string name="Status">Status</string>
+    <string name="Inativar">Inativar</string>
+    <string name="InativarP">Deseja inativar usuario?</string>
+    <string name="Atualizar">Atualizar</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

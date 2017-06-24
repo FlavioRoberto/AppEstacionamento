@@ -21,10 +21,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
-    private SlidingTabLayout slidingTabLayout;
-    private ViewPager viewPager;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,62 +31,11 @@ public class MainActivity extends AppCompatActivity {
         finish();
 
 
-        /*slidingTabLayout = (SlidingTabLayout)findViewById(R.id.stlayout);
-        viewPager = (ViewPager)findViewById(R.id.vpLayout);
-
-        //distribui as tabas proporcionalmente na tela
-        slidingTabLayout.setDistributeEvenly(true);
-        toolbar = (Toolbar)findViewById(R.id.toolbarId);
-        toolbar.setTitle("BM");
-
-        setSupportActionBar(toolbar);
-
-        //configurando Adapter
-        TabAdapter tabAdapter = new TabAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(tabAdapter);
-
-        slidingTabLayout.setViewPager(viewPager);*/
     }
 
-    /*@Override
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         finish();
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_admin,menu);
-        return true;
-
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.menu_sair : sair();break;
-            case R.id.menu_meusdados:chamaConsulta();break;
-
-
-        }
-
-        return true;
-    }*/
-
-    /*private void sair(){
-        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
-        startActivity(intent);
-        FirebaseAuth auth = configuracaoFirebase.getFirebaseAutenticacao();
-        auth.signOut();
-
-    }
-
-    public void chamaConsulta(){
-        Intent intent = new Intent(getApplication(),consultaUsuarioActivity.class);
-        startActivity(intent);
-        //finish();
-    }*/
 }
