@@ -17,11 +17,11 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Nome"
         android:inputType="textPersonName"
         android:background="@drawable/ovaltext"
         android:layout_marginTop="5dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/telefoneId_cadastro"
@@ -35,12 +35,12 @@
         android:id="@+id/edittelefoneid_cadastro"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Telefone"
-        android:inputType="number"
-        android:background="@drawable/ovaltext"
+        android:layout_gravity="center"
         android:layout_marginTop="5dp"
-        android:layout_gravity="center"/>
+        android:background="@drawable/ovaltext"
+        android:ems="10"
+        android:inputType="number"
+        android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/emailId_cadastro"
@@ -58,8 +58,8 @@
         android:layout_marginTop="5dp"
         android:background="@drawable/ovaltext"
         android:ems="10"
-        android:hint="Email"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:textColor="#000000"/>
 
     <TextView
         android:id="@+id/TipoId_cadastro"
@@ -74,11 +74,11 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Tipo"
         android:inputType="textPersonName"
         android:background="@drawable/ovaltext"
         android:layout_marginTop="5dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:textColor="#000000"/>
     <TextView
         android:id="@+id/cpfId_cadastro"
         android:layout_width="match_parent"
@@ -92,11 +92,11 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="CPF"
         android:inputType="number"
         android:background="@drawable/ovaltext"
         android:layout_marginTop="5dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:textColor="#000000"/>
 
     <CheckBox
         android:id="@+id/checkBox_cadastro"
