@@ -22,20 +22,12 @@ public class Preferencias {
         editor = preferences.edit();
     }
 
-<<<<<<< HEAD
-    public void salvarusuarioPreferences(String email, String senha, String token){
-        editor.clear();
-        editor.putString(CHAVE_NOME,email);
-        editor.putString(CHAVE_TELEFONE,senha);
-        editor.putString(CHAVE_TOKEN,token);
-=======
-    public void salvarusuarioPreferences(String nome, String telefone, String token){
-        editor.putString(CHAVE_NOME,nome);
-        editor.putString(CHAVE_TELEFONE,telefone);
-        editor.putString(CHAVE_TIPO,token);
->>>>>>> 7156278f22af47a1bee892cdd7efa1716659229b
-        editor.commit();
 
+    public void salvarusuarioPreferences(String email, String senha){//, String token) {
+        editor.clear();
+        editor.putString(CHAVE_NOME, email);
+        editor.putString(CHAVE_TELEFONE, senha);
+        //editor.putString(CHAVE_TOKEN, token);
     }
 
     //Hasgmap retorna uma `lista` com dois indices do tipo string

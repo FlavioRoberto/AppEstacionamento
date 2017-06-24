@@ -38,7 +38,7 @@ public class consultaUsuarioFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_consulta_usuario, container, false);
 
         buttonCadastrarUsuario = (Button) view.findViewById(R.id.btnCadastrar);
-        buttonBuscar = (Button) view.findViewById(R.id.btnCadastrar);
+        buttonBuscar = (Button) view.findViewById(R.id.btnconsulta);
         textViewNome = (TextView) view.findViewById(R.id.nomeId);
         textViewTelefone = (TextView) view.findViewById(R.id.telefoneId);
         textViewEmail = (TextView) view.findViewById(R.id.emailId);

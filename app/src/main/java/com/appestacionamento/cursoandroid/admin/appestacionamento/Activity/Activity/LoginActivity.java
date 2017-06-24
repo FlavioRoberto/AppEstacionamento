@@ -46,22 +46,22 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth autenticacao = user.getAutenticacao();
     private DatabaseReference databaseReference = user.getFirebaseReferences();
     private FirebaseAuth.AuthStateListener mAuthListener;
-<<<<<<< HEAD
+
     private ProgressDialog progressDialog;
     private String codificaEmail, email, senha;
     private Boolean authFlag = false;
     public  static final String SENHA_ADM = "senhaadm";
-=======
+
     private String uid;
     private Preferencias preferencias;
->>>>>>> 7156278f22af47a1bee892cdd7efa1716659229b
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-<<<<<<< HEAD
+
         verificarUsuarioLogado();
 
 
@@ -69,57 +69,10 @@ public class LoginActivity extends AppCompatActivity {
         editTextSenha = (EditText) findViewById(R.id.senhaId);
         buttonLogin = (Button) findViewById(R.id.logarId);
         progressDialog = new ProgressDialog(LoginActivity.this);
-
-
-=======
-        mAuthListener = new FirebaseAuth.AuthStateListener(){
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(firebaseAuth.getCurrentUser() != null){
-                    //uid = user.getCurrentUid();
-                    String email = user.getEmailCurrentUser();
-                  //  Toast.makeText(getApplicationContext(), "Email: "+email, Toast.LENGTH_LONG).show();
-                    String codificaEmail = Base64Custom.codificarBase64(email);
-                    //databaseReference = FirebaseDatabase.getInstance().getReference("users").child(uid);
-                    databaseReference = FirebaseDatabase.getInstance().getReference("users").child(codificaEmail);
-                    databaseReference.addValueEventListener(new ValueEventListener() {
-
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            try{
-                                //Primeiro valor: child, Segundo valor: key
-                                GenericTypeIndicator<Map<String, String>> genericTypeIndicator = new GenericTypeIndicator<Map<String, String>>() {};
-                                Map<String, String> map = dataSnapshot.getValue(genericTypeIndicator );
-                                String tipo = map.get("tipo");
-                                if(tipo.equals("ADM")){
-                                    chamaActivityPrincipal("ADM");
-
-                                }else if(tipo.equals("USER")){
-                                   chamaActivityPrincipal("USER");
-                                }
-
-                            }catch(Exception e){
-                                Toast.makeText(getApplicationContext(), "Erro: " + e, Toast.LENGTH_LONG).show();
-                            }
-
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-                }
-            }
-        };
-
-
-
         editTextEmail = (EditText) findViewById(R.id.emailId);
         editTextSenha = (EditText) findViewById(R.id.senhaId);
         buttonLogin = (Button) findViewById(R.id.logarId);
 
->>>>>>> 7156278f22af47a1bee892cdd7efa1716659229b
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -170,27 +123,27 @@ public class LoginActivity extends AppCompatActivity {
                         catch (Exception e) {
                             //Toast.makeText(LoginActivity.this,e.getMessage(), Toast.LENGTH_LONG).show();
                         }
-<<<<<<< HEAD
+
                         email = null;
                         senha = null;
-=======
+
 
                     }else {
 
 
->>>>>>> 7156278f22af47a1bee892cdd7efa1716659229b
+
                     }
                 }
             });
         }
     }
 
-<<<<<<< HEAD
-    private void redirecionarUsuario(){
-        mAuthListener = new FirebaseAuth.AuthStateListener(){
+
+    private void redirecionarUsuario() {
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(firebaseAuth.getCurrentUser() != null) {
+                if (firebaseAuth.getCurrentUser() != null) {
                     if (authFlag == false) {
 
                         if (!(LoginActivity.this).isFinishing()) {
@@ -232,43 +185,18 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                                 progressDialog.dismiss();
                             }
-
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
-
                             }
-
                         });
-                        authFlag=true;
+                        authFlag = true;
                     }
                 }
             }
 
         };
-
-=======
-    public void chamaActivityPrincipal(String tipo){
-        if(tipo=="ADM"){
-            // Toast.makeText(getApplicationContext(), "Logado como ADM", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(getApplicationContext(), TelaAdm.class);
-            startActivity(intent);
-            finish();
-
-        }else if(tipo == "USER"){
-            //Intent intent = new Intent(getApplicationContext(), Usuario.class);
-            //startActivity(intent);
-           //Toast.makeText(getApplicationContext(), "Logado como USER", Toast.LENGTH_LONG).show();
-            //finish();
-        }
->>>>>>> 7156278f22af47a1bee892cdd7efa1716659229b
     }
 
-
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 7156278f22af47a1bee892cdd7efa1716659229b
     @Override
     protected void onDestroy() {
         super.onDestroy();

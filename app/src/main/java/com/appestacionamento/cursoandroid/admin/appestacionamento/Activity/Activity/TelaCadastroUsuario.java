@@ -37,20 +37,20 @@ public class TelaCadastroUsuario extends AppCompatActivity {
     private String nome, telefone, email, tipo, cpf, senha, emailCurrentUser, senhaCurrentUser, codificarEmail;
     private String possuiNecessidade;
     private ProgressDialog progressDialog;
-    FirebaseUser user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_usuario_cadastro);
 
-        editTextNomeUsuario = (EditText) findViewById(R.id.editTextNomeUsuario);
-        editTextTelefoneUsuario = (EditText) findViewById(R.id.editTextTelefoneUsuario);
-        editTextEmailUsuario = (EditText) findViewById(R.id.editTextEmailUsuario);
-        editTextTipoUsuario = (EditText) findViewById(R.id.editTextTipoUsuario);
-        editTextCpfUsuario = (EditText) findViewById(R.id.editTextCpfUsuario);
-        checkBoxPossuiNecessidade = (CheckBox) findViewById(R.id.checkBoxNescUsuario);
-        buttonInserirUsuario = (Button) findViewById(R.id.buttonInserirUsuario);
+        editTextNomeUsuario = (EditText) findViewById(R.id.editnomeid_cadastro);
+        editTextTelefoneUsuario = (EditText) findViewById(R.id.edittelefoneid_cadastro);
+        editTextEmailUsuario = (EditText) findViewById(R.id.editemailid_cadastro);
+        editTextTipoUsuario = (EditText) findViewById(R.id.editTipoid_cadastro);
+        editTextCpfUsuario = (EditText) findViewById(R.id.editCpfId_cadastro);
+        checkBoxPossuiNecessidade = (CheckBox) findViewById(R.id.checkBox_cadastro);
+        buttonInserirUsuario = (Button) findViewById(R.id.button_cadastro);
         progressDialog = new ProgressDialog(this);
 
         Intent intent = getIntent();

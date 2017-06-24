@@ -54,12 +54,12 @@
         android:id="@+id/editemailid_cadastro"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/ovaltext"
         android:ems="10"
         android:hint="Email"
-        android:inputType="textPersonName"
-        android:background="@drawable/ovaltext"
-        android:layout_marginTop="5dp"
-        android:layout_gravity="center"/>
+        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/TipoId_cadastro"
