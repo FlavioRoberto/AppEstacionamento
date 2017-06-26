@@ -2,6 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@android:color/white"
     android:layout_height="match_parent"
     tools:context="com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments.usuarioAdmin">
 
@@ -13,11 +14,13 @@
 
         <ImageView
             android:id="@+id/cadastroId"
-            android:layout_width="100dp"
+            android:layout_width="150dp"
             android:layout_height="100dp"
-            android:layout_marginStart="67dp"
+            android:layout_marginStart="36dp"
             android:layout_marginTop="83dp"
+            android:padding="5dp"
             app:srcCompat="@drawable/ic_person_add"
+            android:background="@color/colorPrimary"
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true" />
 
@@ -26,6 +29,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
+            android:background="@color/colorPrimary"
+            android:textColor="@android:color/white"
             android:textAlignment="center"
             android:text="@string/adicionarUsuario"
             android:layout_below="@+id/cadastroId"
