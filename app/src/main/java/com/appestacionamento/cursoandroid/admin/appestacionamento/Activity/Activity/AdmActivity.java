@@ -3,8 +3,6 @@ package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Acti
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.graphics.ColorUtils;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -18,13 +16,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Adapter.TabAdapter;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.SlidingTabLayout;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Usuario;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ConsultaUsuarioActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments.consultaUsuarioFragment;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,13 +29,18 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class TelaAdm extends AppCompatActivity {
+public class AdmActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private SlidingTabLayout slidingTabLayout;
     private ViewPager viewPager;
     private Button buttonCadastrar;
     private Button buttonBuscar;
+    private Button buttonEditar;
     private String senha, emailBusca, emailDatabase, emailCodificado;
+    private String editNome , editTelefone, editTipo, editCpf, editUid, editEmail, editSenha, editNesc, editStatus;
+    public static final String EDITNOME = "nome", EDITTELEFONE = "telefone", EDITTIPO = "tipo", EDITCPF = "cpf",
+    EDITEMAIL = "email", EDITUID = "uid", EDITSENHA = "senha", EDITNESC = "nesc", EDITSTATUS = "status";
+    private Boolean ativaEdicao = false;
     private TextView textViewNome, textViewTelefone, textViewEmail, textViewTipo, textViewSituacao;
     private EditText editTextBusca;
     private DatabaseReference databaseReference;
@@ -72,20 +74,27 @@ public class TelaAdm extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
     }
 
+   public void onFragmentViewCreated(View view){
+
+    }
+
+    /**
     public void onFragmentViewCreated(View view) {
         // Iniciar os campos buscando no layout do Fragment
         buttonCadastrar = (Button) view.findViewById(R.id.btnCadastrar);
         buttonBuscar = (Button) view.findViewById(R.id.btnconsulta);
+        buttonEditar = (Button) view.findViewById(R.id.btnEditar);
         textViewNome = (TextView) view.findViewById(R.id.nomeId);
         textViewTelefone = (TextView) view.findViewById(R.id.telefoneId);
         textViewEmail = (TextView) view.findViewById(R.id.emailId);
         textViewTipo = (TextView) view.findViewById(R.id.tipoId);
         textViewSituacao = (TextView) view.findViewById(R.id.statusId);
         editTextBusca = (EditText) view.findViewById(R.id.consultaId);
+
         buttonCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), TelaCadastroUsuario.class);
+                Intent intent = new Intent(getApplicationContext(), CadastroUsuarioActivity.class);
                 intent.putExtra(SENHA_ADM, senha);
                 startActivity(intent);
                 finish();
@@ -112,8 +121,22 @@ public class TelaAdm extends AppCompatActivity {
                                 if(emailDatabase.equals(emailCodificado)){
 
                                     textViewNome.setText(postSnapshot.child("nome").getValue(String.class));
-                                    //textViewIdade.setText(postSnapshot.child("idade").getValue(Integer.class).toString());
-                                    //textViewSexo.setText(postSnapshot.child("sexo").getValue(String.class));
+                                    textViewTelefone.setText(postSnapshot.child("telefone").getValue(String.class));
+                                    textViewEmail.setText(postSnapshot.child("email").getValue(String.class));
+                                    textViewTipo.setText(postSnapshot.child("tipo").getValue(String.class));
+                                    textViewSituacao.setText(postSnapshot.child("status").getValue(String.class));
+
+
+                                    editNome = postSnapshot.child("nome").getValue(String.class);
+                                    editCpf = postSnapshot.child("cpf").getValue(String.class);
+                                    editTelefone = postSnapshot.child("telefone").getValue(String.class);
+                                    editTipo = postSnapshot.child("tipo").getValue(String.class);
+                                    editUid = postSnapshot.child("uid").getValue(String.class);
+                                    editEmail = postSnapshot.child("email").getValue(String.class);
+                                    editSenha = postSnapshot.child("senha").getValue(String.class);
+                                    editNesc = postSnapshot.child("possuiNecessidadeEsp").getValue(String.class);
+                                    editStatus = postSnapshot.child("status").getValue(String.class);
+
                                     Toast.makeText(getApplicationContext(), "Nome: "+postSnapshot.child("nome").getValue(String.class)+"\n" +
                                             "Email: "+postSnapshot.child("email").getValue(String.class), Toast.LENGTH_LONG).show();
                                     //Toast.makeText(getApplicationContext(), "Usuario encontrado", Toast.LENGTH_LONG).show();
@@ -121,7 +144,7 @@ public class TelaAdm extends AppCompatActivity {
 
                                     emailCodificado = null;
                                     emailBusca = "";
-
+                                    ativaEdicao = true;
                                 }
                             }catch(Exception e){
 
@@ -138,6 +161,44 @@ public class TelaAdm extends AppCompatActivity {
                 //buttonBuscar.setEnabled(false);
             }
         });
+
+        buttonEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(ativaEdicao == true){
+
+                    textViewNome.setText(null);
+                    textViewTelefone.setText(null);
+                    textViewEmail.setText(null);
+                    textViewTipo.setText(null);
+                    textViewSituacao.setText(null);
+
+                    editaUsuario();
+
+                    ativaEdicao = false;
+                }else if(ativaEdicao == false){
+                    Toast.makeText(getApplicationContext(), "Pesquise um usuário para relizar sua edição!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+            }
+        });
+     }     */
+
+
+
+    private void editaUsuario(){
+        Intent intent = new Intent(getApplicationContext(), EditaDadosActivity.class);
+        intent.putExtra(EDITNOME, editNome);
+        intent.putExtra(EDITTELEFONE, editTelefone);
+        intent.putExtra(EDITTIPO, editTipo);
+        intent.putExtra(EDITCPF, editCpf);
+        intent.putExtra(EDITUID, editUid);
+        intent.putExtra(EDITEMAIL, editEmail);
+        intent.putExtra(EDITSENHA, editSenha);
+        intent.putExtra(EDITNESC, editNesc);
+        intent.putExtra(EDITSTATUS, editStatus);
+
+        startActivity(intent);
     }
 
     @Override
@@ -154,7 +215,9 @@ public class TelaAdm extends AppCompatActivity {
                 sair();
                 //finish();
                 break;
-            case R.id.menu_meusdados:chamaConsulta();break;
+            case R.id.menu_meusdados:
+                chamaConsulta();
+                break;
         }
         return true;
     }
@@ -168,7 +231,7 @@ public class TelaAdm extends AppCompatActivity {
     }
 
     public void chamaConsulta(){
-        Intent intent = new Intent(getApplication(),consultaUsuarioActivity.class);
+        Intent intent = new Intent(getApplication(),ConsultaUsuarioActivity.class);
         startActivity(intent);
     }
 

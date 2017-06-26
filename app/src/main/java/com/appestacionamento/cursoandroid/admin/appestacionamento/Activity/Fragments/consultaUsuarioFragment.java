@@ -1,7 +1,6 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,8 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.consultaUsuarioActivity;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.TelaAdm;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.AdmActivity;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 
@@ -21,7 +19,7 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
  */
 public class consultaUsuarioFragment extends Fragment {
 
-    private Button buttonCadastrarUsuario, buttonBuscar;
+    private Button buttonCadastrarUsuario, buttonBuscar, buttonEditar;
     private TextView textViewNome, textViewTelefone, textViewEmail, textViewTipo, textViewSituacao;
     private EditText editTextBusca;
 
@@ -34,11 +32,12 @@ public class consultaUsuarioFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment]
+        // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_consulta_usuario, container, false);
 
         buttonCadastrarUsuario = (Button) view.findViewById(R.id.btnCadastrar);
         buttonBuscar = (Button) view.findViewById(R.id.btnconsulta);
+        buttonEditar = (Button) view.findViewById(R.id.btnEditar);
         textViewNome = (TextView) view.findViewById(R.id.nomeId);
         textViewTelefone = (TextView) view.findViewById(R.id.telefoneId);
         textViewEmail = (TextView) view.findViewById(R.id.emailId);
@@ -49,11 +48,11 @@ public class consultaUsuarioFragment extends Fragment {
 
         return view;
     }
-
+/*
     @Override
     public void onViewCreated (View view, Bundle savedInstanceState) {
-        ((TelaAdm) getActivity()).onFragmentViewCreated(view);
+        ((AdmActivity) getActivity()).onFragmentViewCreated(view);
 
     }
-
+*/
 }

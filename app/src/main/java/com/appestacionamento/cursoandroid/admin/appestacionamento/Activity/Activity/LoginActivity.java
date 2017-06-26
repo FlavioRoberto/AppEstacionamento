@@ -2,12 +2,12 @@ package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Acti
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -21,22 +21,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Exclude;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Map;
-
-import static com.appestacionamento.cursoandroid.admin.appestacionamento.R.id.emailId;
-import static com.appestacionamento.cursoandroid.admin.appestacionamento.R.id.senhaId;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -62,9 +56,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
 
-        verificarUsuarioLogado();
-
-
         editTextEmail = (EditText) findViewById(R.id.emailId);
         editTextSenha = (EditText) findViewById(R.id.senhaId);
         buttonLogin = (Button) findViewById(R.id.logarId);
@@ -81,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
+        verificarUsuarioLogado();
         redirecionarUsuario();
 
     }
@@ -123,15 +114,8 @@ public class LoginActivity extends AppCompatActivity {
                         catch (Exception e) {
                             //Toast.makeText(LoginActivity.this,e.getMessage(), Toast.LENGTH_LONG).show();
                         }
-
                         email = null;
                         senha = null;
-
-
-                    }else {
-
-
-
                     }
                 }
             });
@@ -147,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
                     if (authFlag == false) {
 
                         if (!(LoginActivity.this).isFinishing()) {
+                            progressDialog.setCanceledOnTouchOutside(false);
                             progressDialog.setMessage("Acessando Perfil...");
                             progressDialog.show();
                         }
@@ -166,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
                                     String senha = map.get("senha");
                                     if (tipo.equals("ADM")) {
                                         //Toast.makeText(getApplicationContext(), "Logado como ADM", Toast.LENGTH_LONG).show();
-                                        Intent intent = new Intent(LoginActivity.this, TelaAdm.class);
+                                        Intent intent = new Intent(LoginActivity.this, AdmActivity.class);
                                         intent.putExtra(SENHA_ADM, senha);
                                         startActivity(intent);
                                         progressDialog.dismiss();
@@ -175,15 +160,14 @@ public class LoginActivity extends AppCompatActivity {
                                         //Intent intent = new Intent(getApplicationContext(), Usuario.class);
                                         //startActivity(intent);
                                         Toast.makeText(getApplicationContext(), "Logado como USER", Toast.LENGTH_LONG).show();
+                                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                                         progressDialog.dismiss();
                                         finish();
-                                    } else if (tipo.equals("")) {
-                                        progressDialog.dismiss();
                                     }
                                 } catch (Exception e) {
                                     //Toast.makeText(getApplicationContext(), "Erro: " + e, Toast.LENGTH_LONG).show();
+                                    progressDialog.dismiss();
                                 }
-                                progressDialog.dismiss();
                             }
                             @Override
                             public void onCancelled(DatabaseError databaseError) {

@@ -13,7 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Usuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
@@ -21,10 +23,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 
-public class TelaCadastroUsuario extends AppCompatActivity {
+public class CadastroUsuarioActivity extends AppCompatActivity {
 
     private EditText editTextNomeUsuario, editTextTelefoneUsuario, editTextEmailUsuario, editTextTipoUsuario,
                      editTextCpfUsuario;
@@ -33,10 +34,10 @@ public class TelaCadastroUsuario extends AppCompatActivity {
     private Usuario usuario = new Usuario();
     private DatabaseReference databaseReference = usuario.getFirebaseReferences();
     private FirebaseAuth autenticacao = usuario.getAutenticacao();
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private String nome, telefone, email, tipo, cpf, senha, emailCurrentUser, senhaCurrentUser, codificarEmail;
     private String possuiNecessidade;
     private ProgressDialog progressDialog;
+
 
 
     @Override
@@ -54,7 +55,7 @@ public class TelaCadastroUsuario extends AppCompatActivity {
         progressDialog = new ProgressDialog(this);
 
         Intent intent = getIntent();
-        senhaCurrentUser = intent.getStringExtra(TelaAdm.SENHA_ADM);
+        senhaCurrentUser = intent.getStringExtra(AdmActivity.SENHA_ADM);
 
         buttonInserirUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +66,7 @@ public class TelaCadastroUsuario extends AppCompatActivity {
 
     }
 
-    private void inserirUsuario(){
+    public void inserirUsuario(){
         nome = editTextNomeUsuario.getText().toString().trim().toUpperCase();
         telefone = editTextTelefoneUsuario.getText().toString().trim();
         email = editTextEmailUsuario.getText().toString().trim().toLowerCase();
@@ -80,6 +81,7 @@ public class TelaCadastroUsuario extends AppCompatActivity {
 
         if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(senha) && !TextUtils.isEmpty(nome) && !TextUtils.isEmpty(telefone) &&
         !TextUtils.isEmpty(tipo) && !TextUtils.isEmpty(cpf)){
+            progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.setMessage("Inserindo...");
             progressDialog.show();
             emailCurrentUser = usuario.getEmailCurrentUser();
@@ -110,11 +112,20 @@ public class TelaCadastroUsuario extends AppCompatActivity {
 
 
                                     usuario.Create();
+
+                                    editTextNomeUsuario.setText(null);
+                                    editTextTelefoneUsuario.setText(null);
+                                    editTextEmailUsuario.setText(null);
+                                    editTextTipoUsuario.setText(null);
+                                    editTextCpfUsuario.setText(null);
+
+                                    Toast.makeText(getApplicationContext(), "Novo usuário Registrado com sucesso!", Toast.LENGTH_LONG).show();
+
                                     SharedPreferences userDetails = getApplicationContext().getSharedPreferences("userdetails", MODE_PRIVATE);
                                     String emailAdm = userDetails.getString("email", "");
                                     String senhaAdm = userDetails.getString("senha", "");
                                     autenticacao.signInWithEmailAndPassword(emailAdm, senhaAdm)
-                                            .addOnCompleteListener(TelaCadastroUsuario.this, new OnCompleteListener<AuthResult>() {
+                                            .addOnCompleteListener(CadastroUsuarioActivity.this, new OnCompleteListener<AuthResult>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                                     if (!task.isSuccessful()) {
@@ -126,6 +137,7 @@ public class TelaCadastroUsuario extends AppCompatActivity {
                                             });
                                 }
                             }catch(Exception e){
+
                                 Log.v("E_VALUE", "Erro: "+ e);
                             }
                             progressDialog.dismiss();
@@ -137,7 +149,7 @@ public class TelaCadastroUsuario extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        Intent intent = new Intent(getApplicationContext(), TelaAdm.class);
+        Intent intent = new Intent(getApplicationContext(), AdmActivity.class);
         startActivity(intent);
         finish();
     }

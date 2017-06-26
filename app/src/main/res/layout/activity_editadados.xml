@@ -17,10 +17,10 @@
         android:id="@+id/editNomeid_editadado"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/ovaltext"
         android:ems="10"
         android:inputType="textPersonName"
-        android:background="@drawable/ovaltext"
-        android:layout_gravity="center"
         android:textColor="#000000"
 
         />
@@ -75,14 +75,14 @@
         android:textSize="15sp"/>
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/editTextCpfEditaUsuario"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/ovaltext"
         android:ems="10"
         android:inputType="number"
-        android:background="@drawable/ovaltext"
-        android:layout_gravity="center"
-        android:textColor="#000000"/>
+        android:textColor="#000000" />
 
     <TextView
         android:id="@+id/Statusid_editadados"
@@ -103,21 +103,21 @@
         android:textSize="15sp"/>
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/checkBoxInativar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Inativar"
         android:layout_marginLeft="50dp"
         android:layout_marginTop="10dp"
-        android:textSize="15sp"/>
+        android:text="@string/Inativar"
+        android:textSize="15sp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonAtualizarUsuario"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:text="@string/Atualizar"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:background="@drawable/ovalbutton"/>
+        android:background="@drawable/ovalbutton"
+        android:text="@string/Atualizar" />
 
 </LinearLayout>

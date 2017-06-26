@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 
-public class consultaUsuarioActivity extends AppCompatActivity {
+public class ConsultaUsuarioActivity extends AppCompatActivity {
 
 
 

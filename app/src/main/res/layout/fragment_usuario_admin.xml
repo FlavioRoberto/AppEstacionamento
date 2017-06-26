@@ -1,0 +1,142 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@android:color/white"
+    android:layout_height="match_parent"
+    android:padding="25dp"
+
+    tools:context="com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments.usuarioAdmin">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/cadastroId"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="40dp"
+            app:srcCompat="@drawable/ic_person_add"
+            android:background="@drawable/ovaltext_busca"
+           />
+
+
+
+        <TextView
+            android:id="@+id/textView8"
+            android:padding="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:textAlignment="center"
+            android:text="@string/adicionarUsuario"
+
+            />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            />
+
+
+        <ImageView
+            android:id="@+id/excluirId"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            app:srcCompat="@drawable/ic_person_outline"
+            android:background="@drawable/ovaltext_busca"
+            />
+
+
+
+        <TextView
+            android:id="@+id/textRemover"
+            android:padding="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:textAlignment="center"
+            android:text="@string/removerUsuario"
+
+            />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            />
+
+        <ImageView
+            android:id="@+id/consultaId"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:background="@drawable/ovaltext_busca"
+            app:srcCompat="@drawable/ic_search"
+            />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:padding="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:textAlignment="center"
+            android:text="@string/consultaUsuario"
+             />
+
+        <TableRow
+            android:layout_marginTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/inativaId"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:background="@drawable/ovaltext_busca"
+            app:srcCompat="@drawable/ic_remove_circle_outline"
+            />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:padding="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimary"
+            android:textAlignment="center"
+            android:text="@string/inativaUsuario"
+            />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </TableLayout>
+
+    </ScrollView>
+
+
+
+</FrameLayout>
