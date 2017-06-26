@@ -18,8 +18,11 @@
     <string name="Ativo">Ativo</string>
     <string name="InativarP">Deseja Inativar o Usuário?</string>
     <string name="Atualizar">Atualizar</string>
+    <string name="removerUsuario">REMOVER USUÁRIO</string>
+    <string name="consultaUsuario">CONSULTAR USUÁRIO</string>
+    <string name="inativaUsuario">INATIVAR USUÁRIO</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="adicionarUsuario">Adicionar usuário</string>
+    <string name="adicionarUsuario">ADICIONAR USUÁRIO</string>
 </resources>
