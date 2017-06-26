@@ -4,18 +4,27 @@
     android:layout_width="match_parent"
     android:background="@android:color/white"
     android:layout_height="match_parent"
-    android:padding="35dp"
+    android:padding="25dp"
 
     tools:context="com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments.usuarioAdmin">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center"
-        >
 
+
+
+
+
+
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
         <ImageView
             android:id="@+id/cadastroId"
@@ -27,27 +36,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentStart="true" />
 
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimary"
-            android:textAlignment="center"
-            android:text="@string/adicionarUsuario"
-            android:layout_alignBaseline="@+id/textView8"
-            android:layout_alignBottom="@+id/textView8"
-            android:layout_alignParentStart="true"
-            android:layout_alignEnd="@+id/cadastroId" />
 
-        <ImageView
-            android:id="@+id/removeId"
-            android:layout_width="150dp"
-            android:layout_height="100dp"
-            android:background="@drawable/ovaltext_busca"
-            app:srcCompat="@drawable/ic_person_outline"
-            android:layout_alignTop="@+id/cadastroId"
-            android:layout_alignStart="@+id/inativaId" />
 
         <TextView
             android:id="@+id/textView8"
@@ -62,13 +51,16 @@
             android:layout_alignStart="@+id/removeId"
             android:layout_alignParentEnd="true" />
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
         <ImageView
             android:id="@+id/consultaId"
             android:layout_width="150dp"
             android:layout_height="100dp"
             android:background="@drawable/ovaltext_busca"
             app:srcCompat="@drawable/ic_search"
-            android:layout_marginTop="60dp"
             android:layout_below="@+id/textView8"
             android:layout_alignParentStart="true" />
 
@@ -85,6 +77,9 @@
             android:layout_alignParentStart="true"
             android:layout_alignEnd="@+id/consultaId" />
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
         <ImageView
             android:id="@+id/inativaId"
             android:layout_width="150dp"
@@ -106,5 +101,10 @@
             android:layout_below="@+id/inativaId"
             android:layout_alignStart="@+id/inativaId"
             android:layout_alignParentEnd="true" />
-    </RelativeLayout>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
+
 </FrameLayout>
