@@ -48,11 +48,11 @@ public class consultaUsuarioFragment extends Fragment {
 
         return view;
     }
-
+/*
     @Override
     public void onViewCreated (View view, Bundle savedInstanceState) {
         ((AdmActivity) getActivity()).onFragmentViewCreated(view);
 
     }
-
+*/
 }

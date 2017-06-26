@@ -74,6 +74,11 @@ public class AdmActivity extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
     }
 
+   public void onFragmentViewCreated(View view){
+
+    }
+
+    /**
     public void onFragmentViewCreated(View view) {
         // Iniciar os campos buscando no layout do Fragment
         buttonCadastrar = (Button) view.findViewById(R.id.btnCadastrar);
@@ -177,7 +182,9 @@ public class AdmActivity extends AppCompatActivity {
                 }
             }
         });
-    }
+     }     */
+
+
 
     private void editaUsuario(){
         Intent intent = new Intent(getApplicationContext(), EditaDadosActivity.class);

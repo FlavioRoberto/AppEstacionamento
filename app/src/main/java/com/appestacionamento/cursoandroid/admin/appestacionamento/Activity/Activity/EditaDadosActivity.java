@@ -72,6 +72,7 @@ public class EditaDadosActivity extends AppCompatActivity {
         novoTipo = editTextTipo.getText().toString().trim();
         novoCpf = editTextCpf.getText().toString().trim();
         if(!novoNome.equals(nome) || !novoTelefone.equals(telefone) || !novoTipo.equals(tipo) || !novoCpf.equals(cpf)){
+
             if(!novoNome.equals("")){
                 usuario.setNome(novoNome);
             }

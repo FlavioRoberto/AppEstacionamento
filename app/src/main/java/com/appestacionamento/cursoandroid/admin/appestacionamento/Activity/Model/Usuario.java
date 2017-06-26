@@ -28,6 +28,10 @@ public class Usuario {
         autenticacao = configuracaoFirebase.getFirebaseAutenticacao();
     }
 
+
+
+
+
      public void Create() {
         firebaseReferences.child("users").child(getUid()).setValue(this);
     }
