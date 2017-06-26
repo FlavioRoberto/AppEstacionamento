@@ -15,7 +15,8 @@
     <string name="Cpf">Cpf</string>
     <string name="Status">Status</string>
     <string name="Inativar">Inativar</string>
-    <string name="InativarP">Deseja inativar usuario?</string>
+    <string name="Ativo">Ativo</string>
+    <string name="InativarP">Deseja Inativar o Usuário?</string>
     <string name="Atualizar">Atualizar</string>
 
     <!-- TODO: Remove or change this placeholder text -->

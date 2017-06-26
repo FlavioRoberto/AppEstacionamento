@@ -16,7 +16,7 @@ public class Usuario {
     private String telefone;
     private String email;
     private String tipo;//(USER, ADM, GARAGISTA, SECRETARIA)
-    private  String senha ;//Possui valor padrao (200200)
+    private String senha ;//Possui valor padrao (200200)
     private String status;//(ATIVO, INATIVO) -> Começa ativo como padrao
     private String cpf;//campo unico
     private String possuiNecessidadeEsp;
@@ -41,6 +41,9 @@ public class Usuario {
         return nome;
     }
 
+    public String getStatus() {
+        return status;
+    }
 
     public void setNome(String nome) {
         this.nome = nome;

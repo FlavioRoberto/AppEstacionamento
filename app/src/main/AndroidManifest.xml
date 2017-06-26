@@ -18,9 +18,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.Activity.LoginActivity" />
-        <activity android:name=".Activity.Activity.consultaUsuarioActivity"></activity>
-        <activity android:name=".Activity.Activity.TelaAdm"></activity>
-        <activity android:name=".Activity.Activity.TelaCadastroUsuario"></activity>
+        <activity android:name=".Activity.Activity.ConsultaUsuarioActivity"></activity>
+        <activity android:name=".Activity.Activity.AdmActivity"></activity>
+        <activity android:name=".Activity.Activity.CadastroUsuarioActivity"></activity>
+        <activity android:name=".Activity.Activity.EditaDadosActivity"></activity>
     </application>
 
 </manifest>

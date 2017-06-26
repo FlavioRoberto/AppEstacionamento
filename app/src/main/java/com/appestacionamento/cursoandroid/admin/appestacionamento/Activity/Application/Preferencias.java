@@ -12,33 +12,28 @@ public class Preferencias {
     private final String NOME_ARQUIVO = "preferenciawhatsapp";
     private final int MODE = 0;
     private SharedPreferences.Editor editor;
-    private final String CHAVE_NOME="nome";
-    private final String CHAVE_TELEFONE="telefone";
-    private final String CHAVE_TIPO="tipo";
+    private final String CHAVE_EMAIL="email";
+    private final String CHAVE_SENHA="telefone";
 
     public  Preferencias(Context contextoParametro){
         context = contextoParametro;
-        preferences = context.getSharedPreferences(NOME_ARQUIVO,MODE);
+        preferences = context.getSharedPreferences(NOME_ARQUIVO, MODE);
         editor = preferences.edit();
     }
 
 
-    public void salvarusuarioPreferences(String email, String senha){//, String token) {
+    public void salvarusuarioPreferences(String email, String senha){
         editor.clear();
-        editor.putString(CHAVE_NOME, email);
-        editor.putString(CHAVE_TELEFONE, senha);
-        //editor.putString(CHAVE_TOKEN, token);
+        editor.putString(CHAVE_EMAIL, email);
+        editor.putString(CHAVE_SENHA, senha);
+        editor.commit();
     }
 
-    //Hasgmap retorna uma `lista` com dois indices do tipo string
-    public HashMap<String,String> retornaDadosusuario(){
+    public String recuperaEmail(){
+        return preferences.getString(CHAVE_EMAIL, "");
+    }
 
-        HashMap<String,String> dados = new HashMap<>();
-        dados.put(CHAVE_NOME,preferences.getString(CHAVE_NOME,null));
-        dados.put(CHAVE_TIPO,preferences.getString(CHAVE_TIPO,null));
-        dados.put(CHAVE_TELEFONE,preferences.getString(CHAVE_TELEFONE,null));
-
-        return dados;
-
+    public String recuperaSenha(){
+        return preferences.getString(CHAVE_SENHA, "");
     }
 }
