@@ -20,6 +20,8 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helpe
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Usuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Veiculo;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
+import com.github.rtoshiro.util.format.SimpleMaskFormatter;
+import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -56,6 +58,9 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
         editTextMarca = (EditText) findViewById(R.id.marcaVeiculoId);
         editTextModelo = (EditText) findViewById(R.id.modeloVeiculoId);
         editTextCor = (EditText) findViewById(R.id.corVeiculoId);
+
+
+
         spinner = (Spinner)findViewById(R.id.spinnerTipoVeiculo);
         buttonCadastrarVeiculo = (Button) findViewById(R.id.button_cadastroVeiculo);
 
@@ -76,6 +81,8 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
             }
         });
 
+        //adiciona mascara na placa
+        adicionaMascara();
         buttonCadastrarVeiculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -163,6 +170,13 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
     }
 
 
+    //metodo para adicionar mascara na placa
+    public void adicionaMascara(){
+        SimpleMaskFormatter smf = new SimpleMaskFormatter("LLL-NNNN");
+        MaskTextWatcher mtw = new MaskTextWatcher(editTextPlaca,smf);
+        editTextPlaca.addTextChangedListener(mtw);
+
+    }
 
     //desloga usuario e vai pra tela de login
     public void sair(){

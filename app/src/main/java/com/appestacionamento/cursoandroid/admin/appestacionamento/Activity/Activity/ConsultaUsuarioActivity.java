@@ -91,6 +91,11 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         finish();
     }
 
+    @Override
+    public void adicionaMascara() {
+
+    }
+
     //retorna para a página inicial
     public  void voltar(){
         Intent intent = new Intent(getApplicationContext(),AdmActivity.class);

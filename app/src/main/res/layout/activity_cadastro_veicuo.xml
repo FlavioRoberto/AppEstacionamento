@@ -38,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
+                android:textAllCaps="true"
                 android:background="@drawable/ovaltext"
                 android:ems="10"
                 android:inputType="textPersonName"
