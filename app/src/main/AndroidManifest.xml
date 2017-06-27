@@ -6,10 +6,13 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:largeHeap="true"
         android:theme="@style/AppTheme">
+
+        <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+
         <activity android:name=".Activity.Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,10 +21,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.Activity.LoginActivity" />
-        <activity android:name=".Activity.Activity.ConsultaUsuarioActivity"></activity>
-        <activity android:name=".Activity.Activity.AdmActivity"></activity>
-        <activity android:name=".Activity.Activity.CadastroUsuarioActivity"></activity>
-        <activity android:name=".Activity.Activity.EditaDadosActivity"></activity>
+        <activity android:name=".Activity.Activity.ConsultaUsuarioActivity" />
+        <activity android:name=".Activity.Activity.AdmActivity" />
+        <activity android:name=".Activity.Activity.CadastroUsuarioActivity" />
+        <activity android:name=".Activity.Activity.EditaDadosActivity" />
+        <activity android:name=".Activity.Activity.CadastroVeicuoActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@android:color/white"
+    android:layout_height="match_parent"
+    android:padding="25dp"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+            <ImageView
+                android:id="@+id/adicionarVagaId"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/ovaltext_busca"
+                app:srcCompat="@drawable/ic_add_circle_outline" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/adicionarVaga"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/texxtViewSize"
+                android:textStyle="bold" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                />
+
+            <ImageView
+                android:id="@+id/removerVaga"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/ovaltext_busca"
+                app:srcCompat="@drawable/ic_remove_circle_outline" />
+
+            <TextView
+                android:id="@+id/textremoverVaga"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/removerVaga"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/texxtViewSize"
+                android:textStyle="bold" />
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                />
+
+            <ImageView
+                android:id="@+id/consultaId"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@drawable/ovaltext_busca"
+                app:srcCompat="@drawable/ic_search" />
+
+            <TextView
+                android:id="@+id/textconsultaVaga"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/consultaVaga"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/texxtViewSize"
+                android:textStyle="bold" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </TableLayout>
+
+
+        </ScrollView>
+
+
+    </LinearLayout>
+</FrameLayout>

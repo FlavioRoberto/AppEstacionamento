@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#00193F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorCinza">#cfcfcf</color>
+    <color name="backgroundView">#1b354c</color>
 </resources>

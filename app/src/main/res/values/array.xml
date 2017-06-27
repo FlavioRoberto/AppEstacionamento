@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="spinnerTipo">
+        <item>Administrador</item>
+        <item>Usuário</item>
+        <item>Secretaria</item>
+        <item>Garagista</item>
+    </string-array>
+
+    <string-array name="spinnerTipoVeiculo">
+        <item>Automovel</item>
+        <item>Motocicleta</item>
+        <item>Necessidade Especial</item>
+    </string-array>
+</resources>

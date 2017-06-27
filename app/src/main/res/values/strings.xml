@@ -22,7 +22,20 @@
     <string name="consultaUsuario">CONSULTAR USUÁRIO</string>
     <string name="inativaUsuario">INATIVAR USUÁRIO</string>
 
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="adicionarUsuario">ADICIONAR USUÁRIO</string>
+    <string name="adicionarVaga">Adicionar Vaga</string>
+    <string name="removerVaga">Remover vaga</string>
+    <string name="consultaVaga">Consultar vaga</string>
+    <string name="placaVeiculo">Placa do Veículo</string>
+    <string name="emailUsuarioDono">Email do dono do veículo</string>
+    <string name="marcaVeiculo">Marca do veículo</string>
+    <string name="modeloVaiculo">Modelo do veículo</string>
+    <string name="corVeiculo">Cor do veiculo</string>
+    <string name="adicionarVeiculo">Adicionar Veículo</string>
+    <string name="removerVeiculo">Remover veículo</string>
+    <string name="consultaVeiculo">Consulta Veículo</string>
+    <string name="celular">Celular</string>
 </resources>

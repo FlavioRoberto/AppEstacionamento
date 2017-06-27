@@ -12,18 +12,19 @@ import android.widget.ImageView;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.AdmActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.CadastroUsuarioActivity;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ConsultaUsuarioActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.CadastroVeicuoActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class usuarioAdmin extends Fragment {
+public class veiculoFragment extends Fragment {
 
-    private ImageView cadastrarUsuario;
-    private ImageView consultaUsuario;
+    private ImageView btnCadastraVeiculo;
 
-    public usuarioAdmin() {
+
+
+    public veiculoFragment() {
         // Required empty public constructor
     }
 
@@ -31,39 +32,29 @@ public class usuarioAdmin extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        final View view = inflater.inflate(R.layout.fragment_usuario_admin, container, false);
-        cadastrarUsuario = (ImageView) view.findViewById(R.id.cadastroId);
-        consultaUsuario = (ImageView)view.findViewById(R.id.consultaId);
+       final View view = inflater.inflate(R.layout.fragment_veiculo, container, false);
 
-        //ao clicar no botao consulta chama tela de consulta
-        consultaUsuario.setOnClickListener(new View.OnClickListener() {
-
+        btnCadastraVeiculo = (ImageView)view.findViewById(R.id.btncadastroVeiculoId);
+        btnCadastraVeiculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ConsultaUsuarioActivity.class);
+                Intent intent = new Intent(getContext(), CadastroVeicuoActivity.class);
                 startActivity(intent);
-                getActivity().finish();
-            }
-        });
-
-        //ao clicar no botao adicionar chama tela adicionar
-        cadastrarUsuario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), CadastroUsuarioActivity.class);
-                startActivity(intent);
-               getActivity().finish();
-
+                //getActivity().finish();
             }
         });
 
         return view;
     }
 
+
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         ((AdmActivity)getActivity()).onFragmentViewCreated(view);
+
     }
 
     @Override
