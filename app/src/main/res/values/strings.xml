@@ -20,6 +20,7 @@
     <string name="Atualizar">Atualizar</string>
     <string name="removerUsuario">REMOVER USUÁRIO</string>
     <string name="consultaUsuario">CONSULTAR USUÁRIO</string>
+    <string name="bucarexcluir" > Digite numero da placa ou email</string>
     <string name="inativaUsuario">INATIVAR USUÁRIO</string>
 
 
