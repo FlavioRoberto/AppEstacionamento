@@ -29,7 +29,6 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
 
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
         toolbar.setTitle("Consulta de Usuário");
-
         setSupportActionBar(toolbar);
 
 
