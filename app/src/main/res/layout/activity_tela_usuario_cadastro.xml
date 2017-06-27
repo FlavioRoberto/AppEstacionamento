@@ -87,7 +87,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/ovaltext"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:textColor="#000000"/>
 
 

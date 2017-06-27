@@ -30,14 +30,14 @@ public class usuarioAdmin extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_usuario_admin, container, false);
+        final View view = inflater.inflate(R.layout.fragment_usuario_admin, container, false);
         cadastrarUsuario = (ImageView) view.findViewById(R.id.cadastroId);
         cadastrarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), CadastroUsuarioActivity.class);
                 startActivity(intent);
-
+               getActivity().finish();
 
             }
         });
@@ -48,5 +48,11 @@ public class usuarioAdmin extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         ((AdmActivity)getActivity()).onFragmentViewCreated(view);
+    }
+
+    @Override
+    public void onDestroy() {
+        getActivity().finish();
+        super.onDestroy();
     }
 }

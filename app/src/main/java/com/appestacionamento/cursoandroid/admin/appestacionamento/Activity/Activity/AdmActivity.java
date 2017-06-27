@@ -233,6 +233,7 @@ public class AdmActivity extends AppCompatActivity {
     public void chamaConsulta(){
         Intent intent = new Intent(getApplication(),ConsultaUsuarioActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override

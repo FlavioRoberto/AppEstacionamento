@@ -60,7 +60,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
 
         //toolbar
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
-        toolbar.setTitle("cadastro de usuário");
+        toolbar.setTitle("Cadastro de usuário");
         setSupportActionBar(toolbar);
 
 
