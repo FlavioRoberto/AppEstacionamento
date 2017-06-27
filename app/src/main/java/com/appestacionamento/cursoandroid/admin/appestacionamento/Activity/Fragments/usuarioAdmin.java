@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.AdmActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.CadastroUsuarioActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ConsultaUsuarioActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 
 /**
@@ -20,6 +21,7 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 public class usuarioAdmin extends Fragment {
 
     private ImageView cadastrarUsuario;
+    private ImageView consultaUsuario;
 
     public usuarioAdmin() {
         // Required empty public constructor
@@ -32,6 +34,17 @@ public class usuarioAdmin extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_usuario_admin, container, false);
         cadastrarUsuario = (ImageView) view.findViewById(R.id.cadastroId);
+       consultaUsuario = (ImageView)view.findViewById(R.id.consultaId);
+
+        consultaUsuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ConsultaUsuarioActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+
         cadastrarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
