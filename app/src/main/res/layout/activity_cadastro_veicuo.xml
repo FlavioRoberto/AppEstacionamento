@@ -38,9 +38,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="5dp"
+                android:textAllCaps="true"
                 android:background="@drawable/ovaltext"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="text"
                 android:padding="@dimen/paddingEditText"
                 android:textAlignment="center"
                 android:textColor="#000000"
@@ -62,7 +63,7 @@
                 android:layout_marginTop="5dp"
                 android:background="@drawable/ovaltext"
                 android:ems="10"
-                android:inputType="number"
+                android:inputType="textEmailAddress"
                 android:padding="@dimen/paddingEditText"
                 android:textAlignment="center"
                 android:textColor="#000000"
@@ -147,24 +148,22 @@
 
 
             <Spinner
-                android:id="@+id/spinnerTipo"
+                android:id="@+id/spinnerTipoVeiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:dropDownWidth="match_parent"
-                android:entries="@array/spinnerTipoVeiculo"
-                />
-
+                android:entries="@array/spinnerTipoVeiculo" />
 
 
             <Button
-                android:id="@+id/button_cadastro"
+                android:id="@+id/button_cadastroVeiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cadastrar"
-                android:layout_marginTop="25dp"
                 android:layout_gravity="center"
-                android:textSize="@dimen/texxtViewSize"
-                android:background="@drawable/ovalbutton"/>
+                android:layout_marginTop="25dp"
+                android:background="@drawable/ovalbutton"
+                android:text="Cadastrar"
+                android:textSize="@dimen/texxtViewSize" />
 
         </LinearLayout>
 

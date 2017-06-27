@@ -4,28 +4,36 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Appli
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
-/**
- * Created by admin on 20/06/2017.
- */
 
 public class Veiculo {
 
-    private String placa, marca, modelo, cor, tipo;
-    private Usuario usuario;
-    private int idVeiculo;
+    private String placa, marca, modelo, cor, tipo, uid;
+    //private Usuario usuario;
+    //private int idVeiculo;
     private static DatabaseReference firebaseReferencia;
 
     public Veiculo(){
         firebaseReferencia = configuracaoFirebase.getFirebase();
     }
 
-
+    @Exclude
     public void create(){
-        firebaseReferencia.child("Veiculo").child(usuario.getUid()).setValue(this);
+        firebaseReferencia.child("veiculo").child(uid).setValue(this);
     }
 
 
+    public String getUid() {
+        return uid;
+    }
 
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    @Exclude
+    public DatabaseReference getFirebaseReferencia() {
+        return firebaseReferencia;
+    }
 
     public String getPlaca() {
         return placa;
@@ -67,20 +75,20 @@ public class Veiculo {
         this.tipo = tipo;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
-    }
+    //public Usuario getUsuario() {
+        //return usuario;
+    //}
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
+    //public void setUsuario(Usuario usuario) {
+        //this.usuario = usuario;
+    //}
 
-    @Exclude
-    public int getIdVeiculo() {
-        return idVeiculo;
-    }
+    //@Exclude
+    //public int getIdVeiculo() {
+        //return idVeiculo;
+    //}
 
-    public void setIdVeiculo(int idUser) {
-        this.idVeiculo = idUser;
-    }
+    //public void setIdVeiculo(int idUser) {
+        //this.idVeiculo = idUser;
+    //}
 }

@@ -17,7 +17,7 @@ public interface IActivity {
 
     public boolean onCreateOptionsMenu(Menu menu);
 
-
+    public void adicionaMascara();
     public boolean onOptionsItemSelected(MenuItem item) ;
 
     //desloga usuario e vai pra tela de login

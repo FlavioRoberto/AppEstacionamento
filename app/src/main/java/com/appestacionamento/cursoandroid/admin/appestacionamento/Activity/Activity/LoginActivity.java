@@ -5,6 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
 import android.support.v4.media.MediaBrowserCompat;
 import android.support.v4.media.RatingCompat;
@@ -57,7 +59,10 @@ public class LoginActivity extends AppCompatActivity {
     private Boolean authFlag = false;
     public static final String SENHA_ADM = "senhaadm";
     private String uid;
-    private Preferencias preferencias;
+    private boolean isConnected;
+    private ConnectivityManager cm;
+    private NetworkInfo activeNetwork;
+
 
 
     @Override
@@ -73,35 +78,46 @@ public class LoginActivity extends AppCompatActivity {
         editTextSenha = (EditText) findViewById(R.id.senhaId);
         buttonLogin = (Button) findViewById(R.id.logarId);
 
+        cm = (ConnectivityManager)getApplicationContext().getSystemService(getApplicationContext().CONNECTIVITY_SERVICE);
+
+        activeNetwork = cm.getActiveNetworkInfo();
+        isConnected =  activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();//activeNetwork.isAvailable();
+
+        if(isConnected == true){
+            verificarUsuarioLogado();
+            redirecionarUsuario();
+        }
+
+
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                logar();
-
+                    if(isConnected == true){
+                        logar();
+                    }else if(isConnected == false){
+                        Toast.makeText(getApplicationContext(), "Sem conexão", Toast.LENGTH_LONG).show();
+                        return;
+                    }
             }
         });
-
-        verificarUsuarioLogado();
-        redirecionarUsuario();
 
     }
 
 
     //Verifica conexao
     private void verificarUsuarioLogado() {
-
         if (autenticacao.getCurrentUser() != null) {
             redirecionarUsuario();
-
         }
-
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
-        autenticacao.addAuthStateListener(mAuthListener);
+        if(isConnected == true)
+            autenticacao.addAuthStateListener(mAuthListener);
     }
 
     private void logar() {
@@ -126,8 +142,6 @@ public class LoginActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             //Toast.makeText(LoginActivity.this,e.getMessage(), Toast.LENGTH_LONG).show();
                         }
-                        email = null;
-                        senha = null;
                     }
                 }
             });
