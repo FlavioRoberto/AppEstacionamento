@@ -103,6 +103,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
 
         Intent intent = getIntent();
         senhaCurrentUser = intent.getStringExtra(AdmActivity.SENHA_ADM);
+
         // metodo para adicionar mascara aos campos
         adicionaMascara();
 
@@ -234,7 +235,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         MaskTextWatcher mtw = new MaskTextWatcher(editTextTelefoneUsuario,smf);
         editTextTelefoneUsuario.addTextChangedListener(mtw);
 
-        smf = new SimpleMaskFormatter("NNN.NNN.NNN.NN");
+        smf = new SimpleMaskFormatter("NNN.NNN.NNN-NN");
         mtw = new MaskTextWatcher(editTextCpfUsuario,smf);
         editTextCpfUsuario.addTextChangedListener(mtw);
 
