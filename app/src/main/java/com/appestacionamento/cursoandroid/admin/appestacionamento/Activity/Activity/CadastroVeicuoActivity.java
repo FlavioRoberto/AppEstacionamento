@@ -24,6 +24,8 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
 
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
         toolbar.setTitle("Cadastro de veículo");
+
+
         setSupportActionBar(toolbar);
 
     }

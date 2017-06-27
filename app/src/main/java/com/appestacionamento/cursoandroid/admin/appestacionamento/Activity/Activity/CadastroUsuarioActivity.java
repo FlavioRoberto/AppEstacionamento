@@ -26,8 +26,10 @@ import android.widget.Toast;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Usuario;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Presenter.UsuarioCrud;
+//import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Presenter.UsuarioCrud;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
+import com.github.rtoshiro.util.format.SimpleMaskFormatter;
+import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -101,13 +103,16 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
 
         Intent intent = getIntent();
         senhaCurrentUser = intent.getStringExtra(AdmActivity.SENHA_ADM);
-
         buttonInserirUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 inserirUsuario();
         }
         });
+
+
+        adicionaMascara();
+
         }
 
     public void inserirUsuario(){
@@ -222,6 +227,16 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         finish();
     }
 
+    public void adicionaMascara(){
+        SimpleMaskFormatter smf = new SimpleMaskFormatter("(NN)NNNNN-NNNN");
+        MaskTextWatcher mtw = new MaskTextWatcher(editTextTelefoneUsuario,smf);
+        editTextTelefoneUsuario.addTextChangedListener(mtw);
+
+        smf = new SimpleMaskFormatter("NNN.NNN.NNN.NN");
+        mtw = new MaskTextWatcher(editTextCpfUsuario,smf);
+        editTextCpfUsuario.addTextChangedListener(mtw);
+
+    }
 
     @Override
     public void onBackPressed()
