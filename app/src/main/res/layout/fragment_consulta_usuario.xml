@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="35dp"
+
     android:background="#fff"
     tools:context=".Activity.Fragments.consultaUsuarioFragment">
 
@@ -16,7 +16,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="35dp"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -25,6 +27,7 @@
 
             <EditText
                 android:id="@+id/consultaId"
+                android:layout_marginTop="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -33,6 +36,7 @@
                 android:textColorHint="@color/colorPrimary" />
 
             <Button
+
                 android:id="@+id/btnconsulta"
                 style="@style/btnConsulta"
                 android:layout_width="match_parent"
@@ -40,7 +44,7 @@
                 android:layout_below="@+id/consultaId"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="25dp"
-                android:layout_marginTop="14dp"
+                android:layout_marginTop="25dp"
                 android:gravity="center"
                 android:text="@string/Buscar"
                 android:textSize="20sp" />
