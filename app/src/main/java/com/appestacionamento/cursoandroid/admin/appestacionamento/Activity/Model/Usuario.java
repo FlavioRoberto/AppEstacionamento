@@ -2,6 +2,7 @@ package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Mode
 
 
 import android.content.Intent;
+import android.text.TextUtils;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.LoginActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
@@ -29,9 +30,28 @@ public class Usuario {
         autenticacao = configuracaoFirebase.getFirebaseAutenticacao();
     }
 
+    public Usuario(String nome, String uid, String telefone, String email,
+                   String tipo, String senha, String status, String cpf, String possuiNecessidadeEsp) {
+        this.nome = nome;
+        this.uid = uid;
+        this.telefone = telefone;
+        this.email = email;
+        this.tipo = tipo;
+        this.senha = senha;
+        this.status = status;
+        this.cpf = cpf;
+        this.possuiNecessidadeEsp = possuiNecessidadeEsp;
+    }
+
 
 
     public void Create() {
+
+
+
+
+
+
         firebaseReferences.child("users").child(getUid()).setValue(this);
     }
 
@@ -140,5 +160,8 @@ public class Usuario {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+
+
+
 }
 

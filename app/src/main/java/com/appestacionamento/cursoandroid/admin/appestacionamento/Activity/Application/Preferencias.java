@@ -29,11 +29,15 @@ public class Preferencias {
         editor.commit();
     }
 
-    public String recuperaEmail(){
+    public String recuperaEmail(Context context){
+        preferences = context.getSharedPreferences(NOME_ARQUIVO, MODE);
         return preferences.getString(CHAVE_EMAIL, "");
     }
 
-    public String recuperaSenha(){
+    public String recuperaSenha(Context context){
+        preferences = context.getSharedPreferences(NOME_ARQUIVO, MODE);
         return preferences.getString(CHAVE_SENHA, "");
     }
+
+
 }

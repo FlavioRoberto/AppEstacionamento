@@ -126,8 +126,6 @@ public class LoginActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             //Toast.makeText(LoginActivity.this,e.getMessage(), Toast.LENGTH_LONG).show();
                         }
-                        email = null;
-                        senha = null;
                     }
                 }
             });

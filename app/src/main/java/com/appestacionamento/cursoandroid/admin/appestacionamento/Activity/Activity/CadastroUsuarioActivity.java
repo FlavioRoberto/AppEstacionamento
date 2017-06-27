@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Usuario;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Presenter.UsuarioCrud;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -37,20 +38,19 @@ import java.util.zip.Inflater;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {
 
-    private EditText editTextNomeUsuario, editTextTelefoneUsuario, editTextEmailUsuario, editTextTipoUsuario,
-                     editTextCpfUsuario;
+    private EditText editTextNomeUsuario, editTextTelefoneUsuario, editTextEmailUsuario, editTextCpfUsuario;
     private CheckBox checkBoxPossuiNecessidade;
     private Button buttonInserirUsuario;
     private Usuario usuario = new Usuario();
     private DatabaseReference databaseReference = usuario.getFirebaseReferences();
     private FirebaseAuth autenticacao = usuario.getAutenticacao();
-    private String nome, telefone, email, tipo, cpf, senha, emailCurrentUser, senhaCurrentUser, codificarEmail;
+    private String nome, telefone, email, tipo, cpf, senha = "200200", emailCurrentUser, senhaCurrentUser, uid, itemSelect,
+                    status = "ATIVO", codificarEmail;
     private String possuiNecessidade;
     private ProgressDialog progressDialog;
     private Toolbar toolbar;
     private Spinner spinner;
     private ViewPager viewPager;
-
 
 
     @Override
@@ -78,16 +78,21 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         SpinnerAdapter adapter = spinner.getAdapter();
          //inicializa o spinner
         spinner.setAdapter(adapter);
-
-        //pega valor do spinner
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                nome = parent.getItemAtPosition(position).toString();
-                Toast.makeText(getApplicationContext(),nome,Toast.LENGTH_LONG).show();
+                itemSelect = parent.getItemAtPosition(position).toString();
+                if(itemSelect.equals("Administrador")){
+                    tipo = "ADM";
+                }else if(itemSelect.equals("Usuário")){
+                    tipo = "USER";
+                }else if(itemSelect.equals("Secretaria")){
+                    tipo = "SECRETARIA";
+                }else if(itemSelect.equals("Garagista")){
+                    tipo = "GARAGISTA";
+                }
+                //Toast.makeText(getApplicationContext(),itemSelect,Toast.LENGTH_LONG).show();
             }
-
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
@@ -96,31 +101,27 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         senhaCurrentUser = intent.getStringExtra(AdmActivity.SENHA_ADM);
+
         buttonInserirUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 inserirUsuario();
-            }
+        }
         });
-
         }
 
-        public void inserirUsuario(){
+    public void inserirUsuario(){
 
-
-            nome = editTextNomeUsuario.getText().toString().trim().toUpperCase();
-            telefone = editTextTelefoneUsuario.getText().toString().trim();
-            email = editTextEmailUsuario.getText().toString().trim().toLowerCase();
-            cpf = editTextCpfUsuario.getText().toString().trim();
-
-
+        nome = editTextNomeUsuario.getText().toString().trim().toUpperCase();
+        telefone = editTextTelefoneUsuario.getText().toString().trim();
+        email = editTextEmailUsuario.getText().toString().trim().toLowerCase();
+        cpf = editTextCpfUsuario.getText().toString().trim();
 
         if(checkBoxPossuiNecessidade.isChecked()){
             possuiNecessidade = "SIM";
         }else{
             possuiNecessidade = "NAO";
         }
-        senha = "200200";
 
         if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(senha) && !TextUtils.isEmpty(nome) && !TextUtils.isEmpty(telefone) &&
         !TextUtils.isEmpty(tipo) && !TextUtils.isEmpty(cpf)){
@@ -128,12 +129,8 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
             progressDialog.setMessage("Inserindo...");
             progressDialog.show();
             emailCurrentUser = usuario.getEmailCurrentUser();
-            SharedPreferences userDetails = this.getSharedPreferences("userdetails", MODE_PRIVATE);
-            SharedPreferences.Editor edit = userDetails.edit();
-            edit.clear();
-            edit.putString("email", emailCurrentUser);
-            edit.putString("senha", senhaCurrentUser);
-            edit.commit();
+            final Preferencias preferencias = new Preferencias(CadastroUsuarioActivity.this);
+            preferencias.salvarusuarioPreferences(emailCurrentUser, senhaCurrentUser);
             autenticacao.createUserWithEmailAndPassword(email, senha)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -159,14 +156,12 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                                     editTextNomeUsuario.setText(null);
                                     editTextTelefoneUsuario.setText(null);
                                     editTextEmailUsuario.setText(null);
-                                    editTextTipoUsuario.setText(null);
                                     editTextCpfUsuario.setText(null);
 
                                     Toast.makeText(getApplicationContext(), "Novo usuário Registrado com sucesso!", Toast.LENGTH_LONG).show();
 
-                                    SharedPreferences userDetails = getApplicationContext().getSharedPreferences("userdetails", MODE_PRIVATE);
-                                    String emailAdm = userDetails.getString("email", "");
-                                    String senhaAdm = userDetails.getString("senha", "");
+                                    String emailAdm = preferencias.recuperaEmail(getApplicationContext()); //userDetails.getString("email", "");
+                                    String senhaAdm = preferencias.recuperaSenha(getApplicationContext()); //userDetails.getString("senha", "");
                                     autenticacao.signInWithEmailAndPassword(emailAdm, senhaAdm)
                                             .addOnCompleteListener(CadastroUsuarioActivity.this, new OnCompleteListener<AuthResult>() {
                                                 @Override
@@ -186,6 +181,8 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                             progressDialog.dismiss();
                         }
                     });
+        }else{
+            Toast.makeText(getApplicationContext(), "Há campos vazios", Toast.LENGTH_LONG).show();
         }
     }
 
