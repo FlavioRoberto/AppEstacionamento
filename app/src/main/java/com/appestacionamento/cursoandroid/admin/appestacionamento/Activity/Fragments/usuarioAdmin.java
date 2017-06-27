@@ -36,7 +36,9 @@ public class usuarioAdmin extends Fragment {
         cadastrarUsuario = (ImageView) view.findViewById(R.id.cadastroId);
        consultaUsuario = (ImageView)view.findViewById(R.id.consultaId);
 
+        //ao clicar no botao consulta chama tela de consulta
         consultaUsuario.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), ConsultaUsuarioActivity.class);
@@ -45,6 +47,7 @@ public class usuarioAdmin extends Fragment {
             }
         });
 
+        //ao clicar no botao adicionar chama tela adicionar
         cadastrarUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
