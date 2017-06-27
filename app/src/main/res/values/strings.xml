@@ -34,4 +34,7 @@
     <string name="marcaVeiculo">Marca do veículo</string>
     <string name="modeloVaiculo">Modelo do veículo</string>
     <string name="corVeiculo">Cor do veiculo</string>
+    <string name="adicionarVeiculo">Adicionar Veículo</string>
+    <string name="removerVeiculo">Remover veículo</string>
+    <string name="consultaVeiculo">Consulta Veículo</string>
 </resources>

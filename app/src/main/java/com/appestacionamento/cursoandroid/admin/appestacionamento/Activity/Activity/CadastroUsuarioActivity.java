@@ -35,7 +35,7 @@ import com.google.firebase.database.DatabaseReference;
 
 import java.util.zip.Inflater;
 
-public class CadastroUsuarioActivity extends AppCompatActivity {
+public class CadastroUsuarioActivity extends AppCompatActivity implements IActivity {
 
     private EditText editTextNomeUsuario, editTextTelefoneUsuario, editTextEmailUsuario, editTextTipoUsuario,
                      editTextCpfUsuario;
@@ -189,7 +189,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         }
     }
 
-    //chama menu toolbar
+    //invoca os itens no menu toolbar
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
@@ -210,7 +210,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     }
 
     //desloga usuario e vai pra tela de login
-    private void sair(){
+    public void sair(){
         Usuario usuario = new Usuario();
         usuario.desloga();
         Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
