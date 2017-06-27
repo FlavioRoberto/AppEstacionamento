@@ -3,6 +3,7 @@ package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Mode
 
 import android.content.Intent;
 
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.LoginActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -30,9 +31,7 @@ public class Usuario {
 
 
 
-
-
-     public void Create() {
+    public void Create() {
         firebaseReferences.child("users").child(getUid()).setValue(this);
     }
 

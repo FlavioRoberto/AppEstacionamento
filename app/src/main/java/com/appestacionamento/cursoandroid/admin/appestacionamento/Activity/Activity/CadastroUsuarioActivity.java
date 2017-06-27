@@ -6,13 +6,21 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
@@ -24,6 +32,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
+
+import java.util.zip.Inflater;
 
 public class CadastroUsuarioActivity extends AppCompatActivity {
 
@@ -37,6 +47,9 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     private String nome, telefone, email, tipo, cpf, senha, emailCurrentUser, senhaCurrentUser, codificarEmail;
     private String possuiNecessidade;
     private ProgressDialog progressDialog;
+    private Toolbar toolbar;
+    private Spinner spinner;
+    private ViewPager viewPager;
 
 
 
@@ -45,18 +58,44 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_usuario_cadastro);
 
+        //toolbar
+        toolbar = (Toolbar)findViewById(R.id.toolbarId);
+        toolbar.setTitle("cadastro de usuário");
+        setSupportActionBar(toolbar);
+
+
+
         editTextNomeUsuario = (EditText) findViewById(R.id.editnomeid_cadastro);
         editTextTelefoneUsuario = (EditText) findViewById(R.id.edittelefoneid_cadastro);
         editTextEmailUsuario = (EditText) findViewById(R.id.editemailid_cadastro);
-        editTextTipoUsuario = (EditText) findViewById(R.id.editTipoid_cadastro);
-        editTextCpfUsuario = (EditText) findViewById(R.id.editCpfId_cadastro);
+        spinner = (Spinner)findViewById(R.id.spinnerTipo);
+        editTextCpfUsuario = (EditText) findViewById(R.id.editTextCpfEditaUsuario);
         checkBoxPossuiNecessidade = (CheckBox) findViewById(R.id.checkBox_cadastro);
         buttonInserirUsuario = (Button) findViewById(R.id.button_cadastro);
         progressDialog = new ProgressDialog(this);
 
+        //Spiner Adapter
+        SpinnerAdapter adapter = spinner.getAdapter();
+         //inicializa o spinner
+        spinner.setAdapter(adapter);
+
+        //pega valor do spinner
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                nome = parent.getItemAtPosition(position).toString();
+                Toast.makeText(getApplicationContext(),nome,Toast.LENGTH_LONG).show();
+            }
+
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         Intent intent = getIntent();
         senhaCurrentUser = intent.getStringExtra(AdmActivity.SENHA_ADM);
-
         buttonInserirUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,14 +103,18 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
             }
         });
 
-    }
+        }
 
-    public void inserirUsuario(){
-        nome = editTextNomeUsuario.getText().toString().trim().toUpperCase();
-        telefone = editTextTelefoneUsuario.getText().toString().trim();
-        email = editTextEmailUsuario.getText().toString().trim().toLowerCase();
-        tipo = editTextTipoUsuario.getText().toString().toUpperCase().trim();
-        cpf = editTextCpfUsuario.getText().toString().trim();
+        public void inserirUsuario(){
+
+
+            nome = editTextNomeUsuario.getText().toString().trim().toUpperCase();
+            telefone = editTextTelefoneUsuario.getText().toString().trim();
+            email = editTextEmailUsuario.getText().toString().trim().toLowerCase();
+            cpf = editTextCpfUsuario.getText().toString().trim();
+
+
+
         if(checkBoxPossuiNecessidade.isChecked()){
             possuiNecessidade = "SIM";
         }else{
@@ -146,6 +189,43 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
         }
     }
 
+    //chama menu toolbar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_admin,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    //opcoes do item do menu
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_anterior: voltar();break;
+            case R.id.menu_meusdados: break;
+            case R.id.menu_sair: sair();break;
+            default:break;
+        }
+        return true;
+    }
+
+    //desloga usuario e vai pra tela de login
+    private void sair(){
+        Usuario usuario = new Usuario();
+        usuario.desloga();
+        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    //retorna para a página inicial
+    public  void voltar(){
+        Intent intent = new Intent(getApplicationContext(),AdmActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+
     @Override
     public void onBackPressed()
     {
@@ -156,7 +236,8 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         finish();
+        super.onDestroy();
+
     }
 }

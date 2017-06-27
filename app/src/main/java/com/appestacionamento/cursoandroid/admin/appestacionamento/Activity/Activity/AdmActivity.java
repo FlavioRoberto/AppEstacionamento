@@ -51,16 +51,14 @@ public class AdmActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin);
-
         slidingTabLayout = (SlidingTabLayout)findViewById(R.id.stlayout);
         viewPager = (ViewPager)findViewById(R.id.vpLayout);
+        toolbar = (Toolbar)findViewById(R.id.toolbarId);
+        toolbar.setTitle("Administrador");
+        setSupportActionBar(toolbar);
 
         //distribui as tabas proporcionalmente na tela
         slidingTabLayout.setDistributeEvenly(true);
-        toolbar = (Toolbar)findViewById(R.id.toolbarId);
-        toolbar.setTitle("ADM");
-
-        setSupportActionBar(toolbar);
 
         //configurando Adapter
         TabAdapter tabAdapter = new TabAdapter(getSupportFragmentManager());
@@ -73,6 +71,8 @@ public class AdmActivity extends AppCompatActivity {
 
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
     }
+
+
 
    public void onFragmentViewCreated(View view){
 
@@ -241,6 +241,8 @@ public class AdmActivity extends AppCompatActivity {
         finish();
     }
 
+
+
     @Override
     public void onBackPressed()
     {
@@ -248,3 +250,5 @@ public class AdmActivity extends AppCompatActivity {
     }
 
 }
+
+

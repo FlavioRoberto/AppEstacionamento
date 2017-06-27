@@ -1,6 +1,7 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.AdmActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.CadastroUsuarioActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 
 /**
@@ -29,8 +31,16 @@ public class usuarioAdmin extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_usuario_admin, container, false);
-
         cadastrarUsuario = (ImageView) view.findViewById(R.id.cadastroId);
+        cadastrarUsuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), CadastroUsuarioActivity.class);
+                startActivity(intent);
+
+
+            }
+        });
 
         return view;
     }

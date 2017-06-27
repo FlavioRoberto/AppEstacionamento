@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="alturaRadioButton">30dp</dimen>
+    <dimen name="TextSize">22sp</dimen>
+    <dimen name="paddingEditText">5dp</dimen>
+</resources>

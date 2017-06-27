@@ -1,21 +1,31 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.v4.media.MediaBrowserCompat;
+import android.support.v4.media.RatingCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Permissoes;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Usuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseNetworkException;
@@ -30,6 +40,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
+import java.net.ConnectException;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
@@ -44,8 +55,7 @@ public class LoginActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private String codificaEmail, email, senha;
     private Boolean authFlag = false;
-    public  static final String SENHA_ADM = "senhaadm";
-
+    public static final String SENHA_ADM = "senhaadm";
     private String uid;
     private Preferencias preferencias;
 
@@ -54,7 +64,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
 
         editTextEmail = (EditText) findViewById(R.id.emailId);
         editTextSenha = (EditText) findViewById(R.id.senhaId);
@@ -77,11 +86,17 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void verificarUsuarioLogado(){
-        if(autenticacao.getCurrentUser() != null){
+
+    //Verifica conexao
+    private void verificarUsuarioLogado() {
+
+        if (autenticacao.getCurrentUser() != null) {
             redirecionarUsuario();
+
         }
+
     }
+
 
     @Override
     protected void onStart() {
@@ -101,17 +116,14 @@ public class LoginActivity extends AppCompatActivity {
                     if (!task.isSuccessful()) {
                         try {
                             throw task.getException();
-                        }catch (FirebaseAuthInvalidUserException e) {
+                        } catch (FirebaseAuthInvalidUserException e) {
                             Toast.makeText(LoginActivity.this, "Usuário inválido", Toast.LENGTH_LONG).show();
-                        }
-                        catch (FirebaseNetworkException e){
+                        } catch (FirebaseNetworkException e) {
                             Toast.makeText(LoginActivity.this, "Sem conexão", Toast.LENGTH_LONG).show();
-                        }
-                        catch (FirebaseAuthInvalidCredentialsException e){
+                            progressDialog.dismiss();
+                        } catch (FirebaseAuthInvalidCredentialsException e) {
                             Toast.makeText(LoginActivity.this, "Email ou senha Inválido", Toast.LENGTH_LONG).show();
-                        }
-
-                        catch (Exception e) {
+                        } catch (Exception e) {
                             //Toast.makeText(LoginActivity.this,e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                         email = null;
@@ -127,7 +139,11 @@ public class LoginActivity extends AppCompatActivity {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
+
                 if (firebaseAuth.getCurrentUser() != null) {
+
+
                     if (authFlag == false) {
 
                         if (!(LoginActivity.this).isFinishing()) {
@@ -169,6 +185,7 @@ public class LoginActivity extends AppCompatActivity {
                                     progressDialog.dismiss();
                                 }
                             }
+
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
                             }
@@ -178,8 +195,10 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
 
+
         };
     }
+
 
     @Override
     protected void onDestroy() {
