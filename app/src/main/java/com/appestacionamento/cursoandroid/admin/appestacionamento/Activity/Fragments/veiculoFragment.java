@@ -42,12 +42,14 @@ public class veiculoFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), CadastroVeicuoActivity.class);
                 startActivity(intent);
-                getActivity().finish();
+                //getActivity().finish();
             }
         });
 
         return view;
     }
+
+
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {

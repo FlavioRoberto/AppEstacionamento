@@ -44,13 +44,15 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
     private Usuario usuario = new Usuario();
     private DatabaseReference databaseReference = usuario.getFirebaseReferences();
     private FirebaseAuth autenticacao = usuario.getAutenticacao();
-    private String nome, telefone, email, tipo, cpf, senha = "200200", emailCurrentUser, senhaCurrentUser, uid, itemSelect,
+    private String nome, telefone, email, tipo, cpf, senha = "200200", emailCurrentUser, senhaCurrentUser, itemSelect,
                     status = "ATIVO", codificarEmail;
     private String possuiNecessidade;
     private ProgressDialog progressDialog;
     private Toolbar toolbar;
     private Spinner spinner;
     private ViewPager viewPager;
+
+    public  static final String UID = "uid";
 
 
     @Override
@@ -100,6 +102,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         });
 
         Intent intent = getIntent();
+
         senhaCurrentUser = intent.getStringExtra(AdmActivity.SENHA_ADM);
 
         buttonInserirUsuario.setOnClickListener(new View.OnClickListener() {
@@ -173,6 +176,10 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
                                                     }
                                                 }
                                             });
+                                    //Intent intent = new Intent(getApplicationContext(), CadastroVeicuoActivity.class);
+                                    //intent.putExtra(UID, codificarEmail);
+                                    //startActivity(intent);
+                                    //finish();
                                 }
                             }catch(Exception e){
 
