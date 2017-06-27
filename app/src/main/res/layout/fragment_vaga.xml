@@ -4,13 +4,19 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@android:color/white"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="25dp"
+    >
 
 
     <LinearLayout
-        android:padding="25dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
         <TableLayout
@@ -92,6 +98,8 @@
                 android:layout_height="match_parent" />
         </TableLayout>
 
+
+        </ScrollView>
 
 
     </LinearLayout>
