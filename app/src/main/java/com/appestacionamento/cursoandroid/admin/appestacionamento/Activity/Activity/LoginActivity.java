@@ -122,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(LoginActivity.this, "Sem conexão", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         } catch (FirebaseAuthInvalidCredentialsException e) {
-                            Toast.makeText(LoginActivity.this, "Email ou senha Inválido", Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this, "Senha Inválido", Toast.LENGTH_LONG).show();
                         } catch (Exception e) {
                             //Toast.makeText(LoginActivity.this,e.getMessage(), Toast.LENGTH_LONG).show();
                         }
