@@ -41,7 +41,7 @@
                 android:textAllCaps="true"
                 android:background="@drawable/ovaltext"
                 android:ems="10"
-                android:inputType="textPersonName"
+                android:inputType="text"
                 android:padding="@dimen/paddingEditText"
                 android:textAlignment="center"
                 android:textColor="#000000"
