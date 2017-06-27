@@ -3,10 +3,17 @@ package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Acti
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Usuario;
@@ -17,22 +24,29 @@ import  com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Acti
 
 public class EditaDadosActivity extends AppCompatActivity {
 
-    private EditText editTextNome, editTextTelefone, editTextTipo, editTextCpf;
+    private EditText editTextNome, editTextTelefone, editTextCpf;
+    private Spinner  spinner;
     private CheckBox checkBoxInativa;
     private Button buttonAtualizar;
-    private String nome, telefone, cpf, tipo, uid, email, senha, nesc, status;
+    private String nome, telefone, cpf, tipo, uid, email, senha, nesc, status, itemSelectedSpinner;
     private String novoNome, novoTelefone, novoCpf, novoTipo, novoStatus;
     private DatabaseReference databaseReference;
     private Usuario usuario = new Usuario();
+    private Toolbar toolbar;
 
     @Override
     public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editadados);
 
+        //invocando toolbar
+        toolbar = (Toolbar)findViewById(R.id.toolbarId);
+        toolbar.setTitle("Editar usuário");
+        setSupportActionBar(toolbar);
+
         editTextNome = (EditText) findViewById(R.id.editNomeid_editadado);
         editTextTelefone = (EditText) findViewById(R.id.editTelefoneid_editadado);
-        editTextTipo = (EditText) findViewById(R.id.editTipo_editadados);
+        spinner = (Spinner) findViewById(R.id.editTipo_editadados);
         editTextCpf = (EditText) findViewById(R.id.editTextCpfEditaUsuario);
         checkBoxInativa = (CheckBox) findViewById(R.id.checkBoxInativar);
         buttonAtualizar = (Button) findViewById(R.id.buttonAtualizarUsuario);
@@ -59,17 +73,45 @@ public class EditaDadosActivity extends AppCompatActivity {
         });
     }
 
+
+
+
     private void apresentaDados(){
+
         editTextNome.setText(nome);
         editTextTelefone.setText(telefone);
-        editTextTipo.setText(tipo);
         editTextCpf.setText(cpf);
     }
 
     private void atualizaDados(){
+        //inicializa o spinner
+        SpinnerAdapter adapter = spinner.getAdapter();
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String itemSelect = parent.getItemAtPosition(position).toString();
+                if(itemSelect.equals("Administrador")){
+                    tipo = "ADM";
+                }else if(itemSelect.equals("Usuário")){
+                    tipo = "USER";
+                }else if(itemSelect.equals("Secretaria")){
+                    tipo = "SECRETARIA";
+                }else if(itemSelect.equals("Garagista")){
+                    tipo = "GARAGISTA";
+                }
+                novoTipo = itemSelect;
+                //Toast.makeText(getApplicationContext(),itemSelect,Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        //FINALIZA SPINNER
+
         novoNome = editTextNome.getText().toString().toUpperCase().trim();
         novoTelefone = editTextTelefone.getText().toString().trim();
-        novoTipo = editTextTipo.getText().toString().trim();
         novoCpf = editTextCpf.getText().toString().trim();
         if(!novoNome.equals(nome) || !novoTelefone.equals(telefone) || !novoTipo.equals(tipo) || !novoCpf.equals(cpf)){
 
@@ -108,5 +150,44 @@ public class EditaDadosActivity extends AppCompatActivity {
         }
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_anterior: voltar();break;
+            case R.id.menu_meusdados: break;
+            case R.id.menu_sair: sair();break;
+            default:break;
+        }
+        return true;
+    }
+
+
+    //invoca os itens no menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_admin,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+
+    //desloga usuario e vai pra tela de login
+    public void sair(){
+        Usuario usuario = new Usuario();
+        usuario.desloga();
+        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    //retorna para a página inicial
+    public  void voltar(){
+        Intent intent = new Intent(getApplicationContext(),AdmActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 
 }

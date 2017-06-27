@@ -1,123 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/Nomeid_editadado"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:text="@string/nome"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="25dp"
-        android:textSize="15sp"
-        />
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/backgroundView"
+    >
 
-    <EditText
-        android:id="@+id/editNomeid_editadado"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/ovaltext"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:textColor="#000000"
+    <include android:id="@+id/toolbarId"
+        layout="@layout/toolbar"
 
         />
 
-    <TextView
-        android:id="@+id/Telefoneid_editadado"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/telefone"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="25dp"
-        android:textSize="15sp"/>
+        android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editTelefoneid_editadado"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="phone"
-        android:background="@drawable/ovaltext"
-        android:layout_gravity="center"
-        android:textColor="#000000"
-        />
+        <LinearLayout
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:padding="25dp">
 
-    <TextView
-        android:id="@+id/Tipoid_editadados"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Tipo"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="25dp"
-        android:textSize="15sp"
-        />
+            <TextView
+                android:id="@+id/nomeid_cadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/nome"
+                android:textSize="@dimen/TextSize"
 
-    <EditText
-        android:id="@+id/editTipo_editadados"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:background="@drawable/ovaltext"
-        android:layout_gravity="center"
-        android:textColor="#000000"/>
+                />
 
-    <TextView
-        android:id="@+id/cpf_editadados"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Cpf"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="25dp"
-        android:textSize="15sp"/>
+            <EditText
+                android:id="@+id/editNomeid_editadado"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:padding="@dimen/paddingEditText"
+                android:textSize="@dimen/TextSize"
+                android:inputType="textPersonName"
+                android:background="@drawable/ovaltext"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:textColor="#000000"/>
 
-    <EditText
-        android:id="@+id/editTextCpfEditaUsuario"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/ovaltext"
-        android:ems="10"
-        android:inputType="number"
-        android:textColor="#000000" />
+            <TextView
+                android:id="@+id/telefoneId_cadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="@string/celular"
+                android:textSize="@dimen/TextSize" />
 
-    <TextView
-        android:id="@+id/Statusid_editadados"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Status"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="25dp"
-        android:textSize="15sp"/>
+            <EditText
+                android:id="@+id/editTelefoneid_editadado"
+                android:layout_width="match_parent"
+                android:padding="@dimen/paddingEditText"
+                android:textSize="@dimen/TextSize"
+                android:textAlignment="center"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ovaltext"
+                android:ems="10"
+                android:inputType="number"
+                android:textColor="#000000"/>
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/InativarP"
-        android:layout_marginLeft="42dp"
-        android:layout_marginTop="10dp"
-        android:textSize="15sp"/>
+            <TextView
+                android:id="@+id/emailId_cadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/TextSize"
+                android:layout_marginTop="25dp"
+                android:text="@string/Email" />
 
-    <CheckBox
-        android:id="@+id/checkBoxInativar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/Inativar"
-        android:textSize="15sp" />
+            <EditText
+                android:id="@+id/editemailid_cadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/paddingEditText"
+                android:textSize="@dimen/TextSize"
+                android:textAlignment="center"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ovaltext"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:textColor="#000000"/>
 
-    <Button
-        android:id="@+id/buttonAtualizarUsuario"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="50dp"
-        android:background="@drawable/ovalbutton"
-        android:text="@string/Atualizar" />
+
+            <TextView
+                android:id="@+id/cpfText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/TextSize"
+                android:layout_marginTop="25dp"
+                android:text="@string/Cpf" />
+
+            <EditText
+                android:id="@+id/editTextCpfEditaUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ovaltext"
+                android:ems="10"
+                android:inputType="numberSigned"
+                android:padding="@dimen/paddingEditText"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="@dimen/TextSize" />
+
+
+            <TextView
+                android:id="@+id/TipoId_cadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/TextSize"
+                android:layout_marginTop="25dp"
+                android:text="@string/Tipo" />
+
+
+            <Spinner
+                android:id="@+id/editTipo_editadados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:dropDownWidth="match_parent"
+                android:entries="@array/spinnerTipo"
+                />
+
+            <CheckBox
+                android:id="@+id/checkBoxInativar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/texxtViewSize"
+                android:text="Possui Necessidade Especial?"
+                android:layout_marginTop="25dp"
+                android:textAllCaps="true"
+                android:layout_gravity="center"/>
+
+            <Button
+                android:id="@+id/buttonAtualizarUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Atualizar"
+                android:layout_marginTop="25dp"
+                android:layout_gravity="center"
+                android:textSize="@dimen/texxtViewSize"
+                android:background="@drawable/ovalbutton"/>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

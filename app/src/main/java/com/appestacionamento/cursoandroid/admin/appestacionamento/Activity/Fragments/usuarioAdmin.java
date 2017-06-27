@@ -34,7 +34,7 @@ public class usuarioAdmin extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_usuario_admin, container, false);
         cadastrarUsuario = (ImageView) view.findViewById(R.id.cadastroId);
-       consultaUsuario = (ImageView)view.findViewById(R.id.consultaId);
+        consultaUsuario = (ImageView)view.findViewById(R.id.consultaId);
 
         //ao clicar no botao consulta chama tela de consulta
         consultaUsuario.setOnClickListener(new View.OnClickListener() {

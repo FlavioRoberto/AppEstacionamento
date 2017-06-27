@@ -15,8 +15,9 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 
 public class ConsultaUsuarioActivity extends AppCompatActivity implements IActivity{
 
-        private Button btnCadastrar;
+        private Button btnCadastrar, btnEditar;
         private Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,19 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
 
 
         btnCadastrar = (Button)findViewById(R.id.btnCadastrar);
+        btnEditar = (Button)findViewById(R.id.btnEditar);
+
+
+        //ao clicar chama tela editar daddos de usuario
+        btnEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),EditaDadosActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
         //ao clicar no btnCadastrar chama tela cadastrar
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
