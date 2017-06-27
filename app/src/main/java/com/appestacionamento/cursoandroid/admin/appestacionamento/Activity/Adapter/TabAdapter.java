@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments.usuarioAdmin;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments.vagaFragment;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments.consultaUsuarioFragment;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments.veiculoFragment;
 
 /**
  * Created by admin on 20/06/2017.
@@ -15,7 +16,7 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragm
 public class TabAdapter extends FragmentPagerAdapter {
 
 
-    private String[] abas  = {"USUARIO","VAGAS"};
+    private String[] abas  = {"USUARIO","VAGAS","VEÍCULO"};
 
     public TabAdapter(FragmentManager fm) {
         super(fm);
@@ -27,6 +28,7 @@ public class TabAdapter extends FragmentPagerAdapter {
         switch (position){
             case 0: fragment = new usuarioAdmin();return fragment;
             case 1:fragment = new vagaFragment();return fragment;
+            case 2:fragment = new veiculoFragment();return fragment;
         }
 
         return fragment;

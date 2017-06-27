@@ -29,4 +29,9 @@
     <string name="adicionarVaga">Adicionar Vaga</string>
     <string name="removerVaga">Remover vaga</string>
     <string name="consultaVaga">Consultar vaga</string>
+    <string name="placaVeiculo">Placa do Veículo</string>
+    <string name="emailUsuarioDono">Email do dono do veículo</string>
+    <string name="marcaVeiculo">Marca do veículo</string>
+    <string name="modeloVaiculo">Modelo do veículo</string>
+    <string name="corVeiculo">Cor do veiculo</string>
 </resources>

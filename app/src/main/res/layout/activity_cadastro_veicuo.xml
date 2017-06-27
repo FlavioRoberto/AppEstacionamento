@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/backgroundView"
+    >
+
+    <include android:id="@+id/toolbarId"
+        layout="@layout/toolbar"
+
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical" android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:padding="25dp">
+
+            <TextView
+                android:id="@+id/text_PlacaVeiculo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/placaVeiculo"
+                android:textSize="@dimen/TextSize"
+
+                />
+
+            <EditText
+                android:id="@+id/placaVeiculoId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ovaltext"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:padding="@dimen/paddingEditText"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="@dimen/TextSize" />
+
+            <TextView
+                android:id="@+id/telefoneId_cadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="@string/emailUsuarioDono"
+                android:textSize="@dimen/TextSize" />
+
+            <EditText
+                android:id="@+id/emailDonoId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ovaltext"
+                android:ems="10"
+                android:inputType="number"
+                android:padding="@dimen/paddingEditText"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="@dimen/TextSize" />
+
+            <TextView
+                android:id="@+id/textMarcaVeiculo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="@string/marcaVeiculo"
+                android:textSize="@dimen/TextSize" />
+
+            <EditText
+                android:id="@+id/marcaVeiculoId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ovaltext"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/paddingEditText"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="@dimen/TextSize" />
+
+
+            <TextView
+                android:id="@+id/textModeloveiculo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="@string/modeloVaiculo"
+                android:textSize="@dimen/TextSize" />
+
+            <EditText
+                android:id="@+id/modeloVeiculoId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ovaltext"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:padding="@dimen/paddingEditText"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="@dimen/TextSize" />
+
+
+            <TextView
+                android:id="@+id/textCor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="@string/corVeiculo"
+                android:textSize="@dimen/TextSize" />
+
+            <EditText
+                android:id="@+id/corVeiculoId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ovaltext"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:padding="@dimen/paddingEditText"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="@dimen/TextSize" />
+
+
+            <TextView
+                android:id="@+id/TipoId_cadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/TextSize"
+                android:layout_marginTop="25dp"
+                android:text="@string/Tipo" />
+
+
+            <Spinner
+                android:id="@+id/spinnerTipo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:dropDownWidth="match_parent"
+                android:entries="@array/spinnerTipoVeiculo"
+                />
+
+
+
+            <Button
+                android:id="@+id/button_cadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cadastrar"
+                android:layout_marginTop="25dp"
+                android:layout_gravity="center"
+                android:textSize="@dimen/texxtViewSize"
+                android:background="@drawable/ovalbutton"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

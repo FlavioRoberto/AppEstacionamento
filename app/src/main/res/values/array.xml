@@ -6,4 +6,10 @@
         <item>Secretaria</item>
         <item>Garagista</item>
     </string-array>
+
+    <string-array name="spinnerTipoVeiculo">
+        <item>Automovel</item>
+        <item>Motocicleta</item>
+        <item>Necessidade Especial</item>
+    </string-array>
 </resources>
