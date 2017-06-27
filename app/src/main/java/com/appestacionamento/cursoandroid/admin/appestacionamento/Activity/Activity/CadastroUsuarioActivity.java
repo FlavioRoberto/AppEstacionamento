@@ -103,6 +103,9 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
 
         Intent intent = getIntent();
         senhaCurrentUser = intent.getStringExtra(AdmActivity.SENHA_ADM);
+        // metodo para adicionar mascara aos campos
+        adicionaMascara();
+
         buttonInserirUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,7 +114,6 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         });
 
 
-        adicionaMascara();
 
         }
 
