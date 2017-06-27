@@ -63,10 +63,9 @@
 
             <TextView
                 android:id="@+id/nomeId"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/textNome"
-                android:layout_marginStart="@dimen/marginTopTextView"
                 android:layout_toEndOf="@+id/textNome"
                 android:textColor="#000000" />
 
@@ -101,11 +100,12 @@
 
             <TextView
                 android:id="@+id/telefoneId"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/textTelefone"
-                android:layout_toEndOf="@+id/nomeId"
-                android:textColor="#000000" />
+                android:layout_toEndOf="@+id/textTelefone"
+                android:textColor="#000000"
+                android:layout_alignTop="@+id/textTelefone" />
 
             <TextView
                 android:id="@+id/textEmail"
@@ -122,11 +122,12 @@
 
             <TextView
                 android:id="@+id/emailId"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/telefoneId"
+                android:layout_below="@+id/textEmail"
                 android:layout_alignTop="@+id/textEmail"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:layout_toEndOf="@+id/textNome" />
 
             <TextView
                 android:id="@+id/textTipo"
@@ -143,12 +144,14 @@
 
             <TextView
                 android:id="@+id/tipoId"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@+id/textTipo"
-                android:layout_toEndOf="@+id/emailId"
+                android:layout_toEndOf="@+id/textStatus"
                 android:textColor="#000000"
-                android:textSize="@dimen/texxtViewSize" />
+                android:textSize="@dimen/texxtViewSize"
+                android:layout_alignTop="@+id/textTipo"
+                android:layout_alignStart="@+id/SplitLine_hor1" />
 
             <TextView
                 android:id="@+id/textStatus"
@@ -165,10 +168,11 @@
 
             <TextView
                 android:id="@+id/statusId"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/textStatus"
                 android:layout_alignTop="@+id/textStatus"
-                android:layout_toEndOf="@+id/tipoId"
+                android:layout_toEndOf="@+id/textTelefone"
                 android:textColor="#000000"
 
                 />
@@ -188,12 +192,13 @@
 
             <TextView
                 android:id="@+id/placaId"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignTop="@+id/textPlaca"
-                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/textPlaca"
                 android:layout_marginBottom="@dimen/marginTopTextView"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:layout_toEndOf="@+id/textPlaca" />
 
 
             <Button
