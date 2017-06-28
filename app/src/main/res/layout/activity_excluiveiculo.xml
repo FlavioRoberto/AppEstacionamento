@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:padding="20dp"
+    android:padding="40dp"
     android:weightSum="1">
 
 
@@ -13,17 +13,17 @@
         android:id="@+id/editText3"
         android:layout_width="wrap_content"
         android:layout_height="45dp"
-        android:layout_marginTop="43dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:gravity="center"
         android:background="@drawable/ovaltext"
         android:inputType="textPersonName"
         android:hint="Informe email"
         android:textColorHint="@color/colorPrimary"
-        android:layout_marginStart="52dp"
 
+        android:layout_marginStart="13dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignStart="@+id/viewbarra" />
 
     <ImageView
         android:id="@+id/btnbuscar"
@@ -35,15 +35,6 @@
         android:layout_toEndOf="@+id/editText3" />
 
 
-    <view
-
-        android:layout_marginTop="5dp"
-        android:layout_width="290dp"
-        android:layout_height="1dp"
-        android:background="@drawable/ovalbarra"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/textdados"
-        android:id="@+id/view" />
 
     <TextView
         android:layout_marginTop="30dp"
@@ -54,5 +45,120 @@
         android:text="DADOS"
         android:layout_below="@+id/btnbuscar"
         android:layout_centerHorizontal="true" />
+
+    <view
+
+        android:layout_marginTop="5dp"
+        android:layout_width="290dp"
+        android:layout_height="1dp"
+        android:background="@colors/barra"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textdados"
+        android:id="@+id/viewbarra"
+        android:layout_marginBottom="20dp"/>
+
+    <ScrollView
+        android:padding="7dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/viewbarra"
+        android:layout_alignParentStart="true">
+
+    <LinearLayout
+        android:id="@+id/linearid"
+        android:layout_width="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical">
+
+
+        <TextView
+            android:textSize="@dimen/texxtViewSize"
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:text="@string/placaVeiculo" />
+
+        <TextView
+            android:layout_marginTop="3dp"
+            android:textSize="@dimen/texxtViewSize"
+            android:id="@+id/valorplacaId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:text="" />
+
+
+        <TextView
+            android:id="@+id/textmodeloid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/modeloVeiculo"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/texxtViewSize" />
+
+        <TextView
+            android:layout_marginTop="3dp"
+            android:textSize="@dimen/texxtViewSize"
+            android:id="@+id/valormodeloid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:text="" />
+
+        <TextView
+            android:layout_marginTop="15dp"
+            android:textSize="@dimen/texxtViewSize"
+            android:id="@+id/textmarcaid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:text="@string/marcaVeiculo" />
+
+        <TextView
+            android:layout_marginTop="3dp"
+            android:textSize="@dimen/texxtViewSize"
+            android:id="@+id/valormarcaid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:text="" />
+        <TextView
+            android:layout_marginTop="15dp"
+            android:textSize="@dimen/texxtViewSize"
+            android:id="@+id/textcorid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:text="@string/corVeiculo" />
+
+        <TextView
+            android:layout_marginTop="3dp"
+            android:textSize="@dimen/texxtViewSize"
+            android:id="@+id/valorcorid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:text="" />
+    </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/ovalbutton"
+        android:layout_marginBottom="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/viewbarra" />
+
+
+
 
 </RelativeLayout>

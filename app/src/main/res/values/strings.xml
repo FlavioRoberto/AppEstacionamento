@@ -40,5 +40,6 @@
     <string name="removerVeiculo">Remover veículo</string>
     <string name="consultaVeiculo">Consulta Veículo</string>
     <string name="celular">Celular</string>
+    <string name="modeloVeiculo">Modelo do Veiculo:</string>
 
 </resources>
