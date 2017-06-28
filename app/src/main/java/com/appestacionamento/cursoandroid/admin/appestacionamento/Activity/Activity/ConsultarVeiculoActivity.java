@@ -7,23 +7,81 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Usuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class ConsultarVeiculoActivity extends AppCompatActivity implements IActivity {
 
     private Toolbar toolbar;
+    private EditText editTextEmailDonoVeiculo;
+    private ImageView imageViewBuscarVeiculo;
+    private TextView textViewPlaca;
+    private DatabaseReference databaseReference;
+    private String emailDatabase, codificaEmail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultarveiculo);
 
+        databaseReference = FirebaseDatabase.getInstance().getReference("veiculo");
+
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
-        toolbar.setTitle("Consulta veículo");
+        toolbar.setTitle("Excluir veículo");
         setSupportActionBar(toolbar);
 
+        imageViewBuscarVeiculo = (ImageView) findViewById(R.id.btnbuscar);
+        textViewPlaca = (TextView) findViewById(R.id.valorplacaId);
+        editTextEmailDonoVeiculo = (EditText) findViewById(R.id.editConsultaId);
+
+        //Botao para Buscar veiculo
+        imageViewBuscarVeiculo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buscaVeiculo();
+                Toast.makeText(getApplicationContext(), "Clicado", Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
+    public void buscaVeiculo(){
+        String emailVeiculo = editTextEmailDonoVeiculo.getText().toString().toLowerCase().trim();
+        codificaEmail = Base64Custom.codificarBase64(emailVeiculo);
+        Query query = databaseReference;
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    emailDatabase = postSnapshot.child("uid").getValue(String.class);
+                    try{
+                        if(emailDatabase.equals(codificaEmail)){
+                            textViewPlaca.setText(postSnapshot.child("placa").getValue(String.class));
+                        }
+                    }catch (Exception e){
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 
 

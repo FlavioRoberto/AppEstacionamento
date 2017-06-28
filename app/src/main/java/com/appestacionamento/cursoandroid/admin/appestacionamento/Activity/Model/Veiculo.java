@@ -7,7 +7,7 @@ import com.google.firebase.database.Exclude;
 
 public class Veiculo {
 
-    private String placa, marca, modelo, cor, tipo, uid;
+    private String placa, marca, modelo, cor, tipo, uid, email;
     //private Usuario usuario;
     //private int idVeiculo;
     private static DatabaseReference firebaseReferencia;
@@ -73,6 +73,14 @@ public class Veiculo {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     //public Usuario getUsuario() {

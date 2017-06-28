@@ -141,6 +141,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
                 veiculo.setModelo(modelo);
                 veiculo.setPlaca(placa);
                 veiculo.setTipo(tipo);
+                veiculo.setEmail(emailDono);
                 veiculo.create();
                 Toast.makeText(getApplicationContext(), "Inserido", Toast.LENGTH_LONG).show();
 
@@ -148,34 +149,6 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
 
     }//FIM METODO Inserir Veiculo
 
-    /*public void verificaEmail(){
-        emailBusca = editTextEmailDono.getText().toString().toLowerCase().trim();
-        emailCodificado = Base64Custom.codificarBase64(emailBusca);
-        //Toast.makeText(getApplicationContext(), emailBusca , Toast.LENGTH_LONG).show();
-
-        Query usersQuery = databaseReference;
-        usersQuery.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    String emailDatabase = postSnapshot.child("uid").getValue(String.class);
-                    try{
-                        if(emailDatabase.equals(emailCodificado)){
-                            emailDono = postSnapshot.child("email").getValue(String.class);
-                            emailaValido = true;
-                            break;
-                        }
-                    }catch(Exception e){
-
-                    }
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }*/
 
 
     //sobrescreve metodo da interface IActivity para ativar os icones no menu
