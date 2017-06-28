@@ -11,14 +11,15 @@
         layout="@layout/toolbar" />
 
     <ScrollView
+        android:padding="30dp"
         android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="30dp"
+            android:layout_height="0dp"
+
             android:orientation="vertical"
             >
 
@@ -30,11 +31,10 @@
 
             <EditText
                 android:id="@+id/editText3"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="45dp"
-                android:layout_alignParentTop="true"
                 android:layout_alignStart="@+id/viewbarra"
-                android:layout_marginTop="10dp"
+
                 android:layout_toStartOf="@+id/btnbuscar"
                 android:background="@drawable/ovaltext"
                 android:ems="10"
@@ -48,10 +48,10 @@
                 android:id="@+id/btnbuscar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/editText3"
-                android:layout_alignEnd="@+id/viewbarra"
                 android:background="@drawable/ovalbutton"
-                app:srcCompat="@drawable/ic_search" />
+                app:srcCompat="@drawable/ic_search"
+                android:layout_alignTop="@+id/editText3"
+                android:layout_alignEnd="@+id/viewbarra" />
 
 
             <TextView
@@ -81,16 +81,12 @@
                 android:id="@+id/scrollView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/viewbarra"
                 android:padding="7dp">
 
                 <LinearLayout
                     android:id="@+id/linearid"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-
                     android:orientation="vertical">
 
 
@@ -174,8 +170,6 @@
                 android:layout_width="match_parent"
                 android:layout_marginTop="30dp"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/scrollView2"
-                android:layout_centerHorizontal="true"
                 android:background="@drawable/ovalbutton"
                 android:gravity="center"
                 android:text="Excluir" />
