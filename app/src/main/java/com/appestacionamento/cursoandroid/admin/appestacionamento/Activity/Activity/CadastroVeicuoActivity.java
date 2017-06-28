@@ -88,7 +88,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
            @Override
            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                marca = parent.getItemAtPosition(position).toString();
-               Toast.makeText(getApplicationContext(),marca,Toast.LENGTH_LONG).show();
+            //   Toast.makeText(getApplicationContext(),marca,Toast.LENGTH_LONG).show();
            }
 
            @Override
@@ -106,7 +106,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 cor = parent.getItemAtPosition(position).toString();
-                Toast.makeText(getApplicationContext(),cor,Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getApplicationContext(),cor,Toast.LENGTH_SHORT).show();
             }
 
             @Override
