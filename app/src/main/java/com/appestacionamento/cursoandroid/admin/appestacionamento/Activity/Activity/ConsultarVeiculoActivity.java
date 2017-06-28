@@ -28,7 +28,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     private Toolbar toolbar;
     private EditText editTextEmailDonoVeiculo;
     private ImageView imageViewBuscarVeiculo;
-    private TextView textViewPlaca;
+    private TextView textViewPlaca, textViewModeloVeiculo, textViewMarcaVeiculo, textViewCorVeiculo;
     private DatabaseReference databaseReference;
     private String emailDatabase, codificaEmail;
 
@@ -46,13 +46,15 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         imageViewBuscarVeiculo = (ImageView) findViewById(R.id.btnbuscar);
         textViewPlaca = (TextView) findViewById(R.id.valorplacaId);
         editTextEmailDonoVeiculo = (EditText) findViewById(R.id.editConsultaId);
+        textViewModeloVeiculo = (TextView) findViewById(R.id.valormodeloid);
+        textViewMarcaVeiculo = (TextView) findViewById(R.id.valormarcaid);
+        textViewCorVeiculo = (TextView) findViewById(R.id.valorcorid);
 
         //Botao para Buscar veiculo
         imageViewBuscarVeiculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 buscaVeiculo();
-                Toast.makeText(getApplicationContext(), "Clicado", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -70,6 +72,9 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                     try{
                         if(emailDatabase.equals(codificaEmail)){
                             textViewPlaca.setText(postSnapshot.child("placa").getValue(String.class));
+                            textViewModeloVeiculo.setText(postSnapshot.child("modelo").getValue(String.class));
+                            textViewMarcaVeiculo.setText(postSnapshot.child("marca").getValue(String.class));
+                            textViewCorVeiculo.setText(postSnapshot.child("cor").getValue(String.class));
                         }
                     }catch (Exception e){
 
