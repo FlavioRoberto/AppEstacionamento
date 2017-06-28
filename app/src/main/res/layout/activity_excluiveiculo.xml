@@ -151,7 +151,7 @@
         android:id="@+id/button5"
         android:layout_width="290dp"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:text="Excluir"
         android:layout_centerHorizontal="true"
         android:background="@drawable/ovalbutton"
         android:layout_marginBottom="20dp"
