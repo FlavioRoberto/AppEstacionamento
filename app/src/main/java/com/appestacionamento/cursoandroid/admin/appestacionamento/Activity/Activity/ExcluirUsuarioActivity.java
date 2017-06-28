@@ -26,7 +26,7 @@ public class ExcluirUsuarioActivity extends AppCompatActivity implements IActivi
 
 
 
-    //ao clicar nas opções do menu seleciona uma ação
+    //ao clicar nas opções do menu seleciona uma açãoo
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
