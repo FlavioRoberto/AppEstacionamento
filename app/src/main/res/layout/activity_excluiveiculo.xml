@@ -21,9 +21,9 @@
         android:hint="Informe email"
         android:textColorHint="@color/colorPrimary"
 
-        android:layout_marginStart="13dp"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/viewbarra" />
+        android:layout_alignStart="@+id/viewbarra"
+        android:layout_toStartOf="@+id/btnbuscar" />
 
     <ImageView
         android:id="@+id/btnbuscar"
@@ -32,7 +32,7 @@
         android:background="@drawable/ovalbutton"
         app:srcCompat="@drawable/ic_search"
         android:layout_alignBottom="@+id/editText3"
-        android:layout_toEndOf="@+id/editText3" />
+        android:layout_alignEnd="@+id/viewbarra" />
 
 
 
@@ -49,7 +49,7 @@
     <view
 
         android:layout_marginTop="5dp"
-        android:layout_width="290dp"
+        android:layout_width="270dp"
         android:layout_height="1dp"
         android:background="@colors/barra"
         android:layout_centerHorizontal="true"
