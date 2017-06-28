@@ -61,7 +61,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
         editTextPlaca = (EditText) findViewById(R.id.placaVeiculoId);
         editTextEmailDono = (EditText) findViewById(R.id.emailDonoId);
         editTextModelo = (EditText) findViewById(R.id.modeloVeiculoId);
-        spinnerMarcaVeiculo = (Spinner)findViewById(R.id.spinnerTipoVeiculo);
+        spinnerMarcaVeiculo = (Spinner)findViewById(R.id.spinnerMarcaVeiculo);
         spinner = (Spinner)findViewById(R.id.spinnerTipoVeiculo);
         spinnerCorVeicullo = (Spinner)findViewById(R.id.spinnerCorVeiculoId);
         buttonCadastrarVeiculo = (Button) findViewById(R.id.button_cadastroVeiculo);
@@ -88,7 +88,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
            @Override
            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                marca = parent.getItemAtPosition(position).toString();
-               Toast.makeText(getApplicationContext(),marca,Toast.LENGTH_LONG).show();
+            //   Toast.makeText(getApplicationContext(),marca,Toast.LENGTH_LONG).show();
            }
 
            @Override
@@ -106,7 +106,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 cor = parent.getItemAtPosition(position).toString();
-                Toast.makeText(getApplicationContext(),cor,Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(getApplicationContext(),cor,Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -130,21 +130,24 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
 
     //Inicio metodo INserir veiculo
     public void inserirVeiculo(){
-        emailDono = editTextEmailDono.getText().toString().toLowerCase().trim();
-        placa = editTextPlaca.getText().toString().toUpperCase().trim();
-        modelo = editTextModelo.getText().toString().toUpperCase().trim();
+      try {
+          emailDono = editTextEmailDono.getText().toString().toLowerCase().trim();
+          placa = editTextPlaca.getText().toString().toUpperCase().trim();
+          modelo = editTextModelo.getText().toString().toUpperCase().trim();
 
-                uid = Base64Custom.codificarBase64(emailDono);
-                veiculo.setUid(uid);
-                veiculo.setCor(cor);
-                veiculo.setMarca(marca);
-                veiculo.setModelo(modelo);
-                veiculo.setPlaca(placa);
-                veiculo.setTipo(tipo);
-                veiculo.setEmail(emailDono);
-                veiculo.create();
-                Toast.makeText(getApplicationContext(), "Inserido", Toast.LENGTH_LONG).show();
-
+          uid = Base64Custom.codificarBase64(emailDono);
+          veiculo.setUid(uid);
+          veiculo.setCor(cor);
+          veiculo.setMarca(marca);
+          veiculo.setModelo(modelo);
+          veiculo.setPlaca(placa);
+          veiculo.setTipo(tipo);
+          veiculo.setEmail(emailDono);
+          veiculo.create();
+          Toast.makeText(getApplicationContext(), "Veículo inserido com sucesso!", Toast.LENGTH_LONG).show();
+      }catch (Exception e){
+          Toast.makeText(getApplicationContext(), "Proble ao inserir veículo",Toast.LENGTH_LONG).show();
+      }
 
 
     }//FIM METODO Inserir Veiculo

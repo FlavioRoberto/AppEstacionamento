@@ -79,7 +79,7 @@
 
             <Spinner
                 android:layout_marginTop="5dp"
-                android:id="@+id/spinner"
+                android:id="@+id/spinnerMarcaVeiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:entries="@array/marcaVeiculo"
@@ -150,7 +150,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="25dp"
                 android:background="@drawable/ovalbutton"
-                android:text="Cadastrar"
+                android:text="@string/cadastrar"
                 android:textSize="@dimen/texxtViewSize" />
 
         </LinearLayout>

@@ -161,6 +161,8 @@
                         android:text=""
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/texxtViewSize" />
+
+
                 </LinearLayout>
 
             </ScrollView>
@@ -172,7 +174,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/ovalbutton"
                 android:gravity="center"
-                android:text="Editar" />
+                android:text="@string/editar" />
 
             <Button
                 android:id="@+id/btnExcluir"
@@ -181,7 +183,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/ovalbutton"
                 android:gravity="center"
-                android:text="Excluir" />
+                android:text="@string/excluir" />
 
         </LinearLayout>
     </ScrollView>

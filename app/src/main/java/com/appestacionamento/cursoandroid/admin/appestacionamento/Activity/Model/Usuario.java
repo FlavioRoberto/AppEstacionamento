@@ -48,7 +48,7 @@ public class Usuario {
         this.possuiNecessidadeEsp = possuiNecessidadeEsp;
     }
 
-    public boolean inativarUsuario(FirebaseUser user){
+    public boolean excluirUsuario(FirebaseUser user){
 
         user = configuracaoFirebase.getFirebaseAutenticacao().getCurrentUser();
         return user.delete().isSuccessful();

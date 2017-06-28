@@ -43,7 +43,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         databaseReference = FirebaseDatabase.getInstance().getReference("veiculo");
 
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
-        toolbar.setTitle("Excluir veículo");
+        toolbar.setTitle("Consultar veículo");
         setSupportActionBar(toolbar);
 
         imageViewBuscarVeiculo = (ImageView) findViewById(R.id.btnbuscar);

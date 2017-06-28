@@ -22,8 +22,8 @@
     <string name="consultaUsuario">CONSULTAR USUÁRIO</string>
     <string name="buscarexcluir"> Digite numero da placa</string>
     <string name="inativaUsuario">INATIVAR USUÁRIO</string>
-
-
+    <string name="cadastrar">Cadastrar</string>
+    <string name="excluir">Excluir</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="adicionarUsuario">ADICIONAR USUÁRIO</string>
@@ -40,5 +40,6 @@
     <string name="consultaVeiculo">Consulta Veículo</string>
     <string name="celular">Celular</string>
     <string name="modeloVeiculo">Modelo do Veiculo:</string>
+    <string name="editar">Editar</string>
 
 </resources>
