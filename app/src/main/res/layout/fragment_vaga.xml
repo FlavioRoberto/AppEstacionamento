@@ -52,23 +52,6 @@
                 android:layout_marginTop="20dp"
                 />
 
-            <ImageView
-                android:id="@+id/removerVaga"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="@drawable/ovaltext_busca"
-                app:srcCompat="@drawable/ic_remove_circle_outline" />
-
-            <TextView
-                android:id="@+id/textremoverVaga"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:text="@string/removerVaga"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texxtViewSize"
-                android:textStyle="bold" />
-
 
             <TableRow
                 android:layout_width="match_parent"
