@@ -1,5 +1,6 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,9 +39,10 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
     private Spinner spinner,spinnerMarcaVeiculo,spinnerCorVeicullo;
     private Button buttonCadastrarVeiculo;
     private Veiculo veiculo = new Veiculo();
-    private DatabaseReference databaseReference;
-    private String emailCodificado, emailBusca;
-    private Boolean emailaValido = false;
+    private DatabaseReference databaseReferenceUsers, databaseReferenceVeiculo;
+    private String emailCodificado, emailDatabase, placaDatabase;
+    private Boolean emailaValido = false, placaValida = false;
+    private ProgressDialog progressDialog;
     //Fim declaração de variáveis
 
     //Inicio Oncreate
@@ -49,7 +51,8 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_veicuo);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        databaseReferenceUsers = FirebaseDatabase.getInstance().getReference("users");
+        databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo");
 
         //inicializando Toolbar
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
@@ -65,6 +68,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
         spinner = (Spinner)findViewById(R.id.spinnerTipoVeiculo);
         spinnerCorVeicullo = (Spinner)findViewById(R.id.spinnerCorVeiculoId);
         buttonCadastrarVeiculo = (Button) findViewById(R.id.button_cadastroVeiculo);
+        progressDialog = new ProgressDialog(CadastroVeicuoActivity.this);
 
         //Spiner Adapter
         SpinnerAdapter adapter = spinner.getAdapter();
@@ -130,29 +134,110 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
 
     //Inicio metodo INserir veiculo
     public void inserirVeiculo(){
+        if (!(CadastroVeicuoActivity.this).isFinishing()) {
+            progressDialog.setCanceledOnTouchOutside(false);
+            progressDialog.setMessage("Cadastrando Veículo...");
+            progressDialog.show();
+        }
+        placa = editTextPlaca.getText().toString().toUpperCase().trim();
+        emailDono = editTextEmailDono.getText().toString().toLowerCase().trim();
+        modelo = editTextModelo.getText().toString().toUpperCase().trim();
+        emailCodificado = Base64Custom.codificarBase64(emailDono);
       try {
-          emailDono = editTextEmailDono.getText().toString().toLowerCase().trim();
-          placa = editTextPlaca.getText().toString().toUpperCase().trim();
-          modelo = editTextModelo.getText().toString().toUpperCase().trim();
+          Query query = databaseReferenceUsers;
+          query.addValueEventListener(new ValueEventListener() {
+              @Override
+              public void onDataChange(DataSnapshot dataSnapshot) {
+                  for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                      emailDatabase = postSnapshot.child("uid").getValue(String.class);
+                      try{
+                          if(emailDatabase.equals(emailCodificado)){
+                              if(!TextUtils.isEmpty(emailCodificado) && !TextUtils.isEmpty(cor) && !TextUtils.isEmpty(marca) &&
+                                      !TextUtils.isEmpty(modelo) && !TextUtils.isEmpty(placa) && !TextUtils.isEmpty(tipo) &&
+                                      !TextUtils.isEmpty(emailDono)) {
+                                  veiculo.setUid(emailCodificado);
+                                  veiculo.setCor(cor);
+                                  veiculo.setMarca(marca);
+                                  veiculo.setModelo(modelo);
+                                  veiculo.setPlaca(placa);
+                                  veiculo.setTipo(tipo);
+                                  veiculo.setEmail(emailDono);
+                                  veiculo.create();
+                                  emailaValido = true;
+                                  progressDialog.dismiss();
+                                  Toast.makeText(getApplicationContext(), "Veículo inserido com sucesso!", Toast.LENGTH_LONG).show();
+                                  finish();
+                                  break;
+                              }
 
-          uid = Base64Custom.codificarBase64(emailDono);
-          veiculo.setUid(uid);
-          veiculo.setCor(cor);
-          veiculo.setMarca(marca);
-          veiculo.setModelo(modelo);
-          veiculo.setPlaca(placa);
-          veiculo.setTipo(tipo);
-          veiculo.setEmail(emailDono);
-          veiculo.create();
-          Toast.makeText(getApplicationContext(), "Veículo inserido com sucesso!", Toast.LENGTH_LONG).show();
+                          }
+                      }catch (Exception e){
+                      }
+                  }
+                  if(emailaValido == false){
+                      Toast.makeText(getApplicationContext(), "Email Inválido",Toast.LENGTH_LONG).show();
+                      progressDialog.dismiss();
+                      finish();
+                      return;
+                  }
+              }
+              @Override
+              public void onCancelled(DatabaseError databaseError) {
+              }
+          });
       }catch (Exception e){
-          Toast.makeText(getApplicationContext(), "Proble ao inserir veículo",Toast.LENGTH_LONG).show();
       }
+      /*if(emailaValido == true){
+          //try{
+              //query = null;
+
+              Query query = databaseReferenceVeiculo;
+              query.addValueEventListener(new ValueEventListener() {
+                  @Override
+                  public void onDataChange(DataSnapshot dataSnapshot) {
+                      for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                          placaDatabase = postSnapshot.child("placa").getValue(String.class);
+                          try{
+                              if(placaDatabase.equals(placa)){
+                                  if(!TextUtils.isEmpty(emailCodificado) && !TextUtils.isEmpty(cor) && !TextUtils.isEmpty(marca) &&
+                                          !TextUtils.isEmpty(modelo) && !TextUtils.isEmpty(placa) && !TextUtils.isEmpty(tipo) &&
+                                          !TextUtils.isEmpty(emailDono)) {
+                                      veiculo.setUid(emailCodificado);
+                                      veiculo.setCor(cor);
+                                      veiculo.setMarca(marca);
+                                      veiculo.setModelo(modelo);
+                                      veiculo.setPlaca(placa);
+                                      veiculo.setTipo(tipo);
+                                      veiculo.setEmail(emailDono);
+                                      veiculo.create();
+                                      placaValida = true;
+                                      progressDialog.dismiss();
+                                      Toast.makeText(getApplicationContext(), "Veículo inserido com sucesso!", Toast.LENGTH_LONG).show();
+                                      break;
+                                  }
+                              }
+                          }catch (Exception e){
+                          }
+                        if(placaValida == false){
+                            Toast.makeText(getApplicationContext(), "Placa inválida", Toast.LENGTH_LONG).show();
+                            finish();
+                            progressDialog.dismiss();
+                            return;
+                        }
+                      }
+                  }
+
+                  @Override
+                  public void onCancelled(DatabaseError databaseError) {
+
+                  }
+              });
+          //}catch (Exception e){
+          //}
+      }*/
 
 
     }//FIM METODO Inserir Veiculo
-
-
 
     //sobrescreve metodo da interface IActivity para ativar os icones no menu
     @Override

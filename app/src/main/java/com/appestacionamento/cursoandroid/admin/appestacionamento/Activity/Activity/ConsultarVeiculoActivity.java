@@ -31,7 +31,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     private ImageView imageViewBuscarVeiculo;
     private TextView textViewPlaca, textViewModeloVeiculo, textViewMarcaVeiculo, textViewCorVeiculo;
     private Button buttonEditar;
-    private DatabaseReference databaseReference;
+    private DatabaseReference databaseReferenceVeiculo;
     private String emailDatabase, codificaEmail;
     private Boolean flag = false, emailEncontrado = false;
 
@@ -40,7 +40,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultarveiculo);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("veiculo");
+        databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo");
 
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
         toolbar.setTitle("Consultar veículo");
@@ -81,7 +81,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     public void buscaVeiculo(){
         String emailVeiculo = editTextEmailDonoVeiculo.getText().toString().toLowerCase().trim();
         codificaEmail = Base64Custom.codificarBase64(emailVeiculo);
-        Query query = databaseReference;
+        Query query = databaseReferenceVeiculo;
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -98,17 +98,15 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                             break;
                         }
                     }catch (Exception e){
-
                     }
                 }
                 if(emailEncontrado == false){
                     Toast.makeText(getApplicationContext(), "Email nao encontrado", Toast.LENGTH_LONG).show();
+                    finish();
                 }
             }
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
             }
         });
     }
