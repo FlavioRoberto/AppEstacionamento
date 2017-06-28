@@ -174,7 +174,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/ovalbutton"
                 android:gravity="center"
-                android:text="Editar" />
+                android:text="@string/editar" />
 
             <Button
                 android:id="@+id/btnEditar"
@@ -183,7 +183,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/ovalbutton"
                 android:gravity="center"
-                android:text="Excluir" />
+                android:text="@string/excluir" />
 
         </LinearLayout>
     </ScrollView>

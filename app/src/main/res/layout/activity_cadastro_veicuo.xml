@@ -150,7 +150,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="25dp"
                 android:background="@drawable/ovalbutton"
-                android:text="Cadastrar"
+                android:text="@string/cadastrar"
                 android:textSize="@dimen/texxtViewSize" />
 
         </LinearLayout>
