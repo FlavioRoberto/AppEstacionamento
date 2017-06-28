@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.AdmActivity;
@@ -19,8 +20,9 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
  */
 public class consultaUsuarioFragment extends Fragment {
 
-    private Button buttonCadastrarUsuario, buttonBuscar, buttonEditar;
-    private TextView textViewNome, textViewTelefone, textViewEmail, textViewTipo, textViewSituacao;
+    private ImageView buttonBuscar;
+    private Button  buttonEditar;
+    private TextView textViewNome, textViewTelefone, textViewEmail, textViewTipo, textViewCpf;
     private EditText editTextBusca;
 
 
@@ -33,26 +35,21 @@ public class consultaUsuarioFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_consulta_usuario, container, false);
+        View view = inflater.inflate(R.layout.fragment_consulta_usuario, container, false);
 
-        buttonCadastrarUsuario = (Button) view.findViewById(R.id.btnCadastrar);
-        buttonBuscar = (Button) view.findViewById(R.id.btnconsulta);
+
+        buttonBuscar = (ImageView) view.findViewById(R.id.btnbuscar);
         buttonEditar = (Button) view.findViewById(R.id.btnEditar);
-        textViewNome = (TextView) view.findViewById(R.id.nomeId);
-        textViewTelefone = (TextView) view.findViewById(R.id.telefoneId);
+        textViewNome = (TextView) view.findViewById(R.id.valorNomeId);
+        textViewTelefone = (TextView) view.findViewById(R.id.valorCelularid);
         textViewEmail = (TextView) view.findViewById(R.id.emailId);
-        textViewTipo = (TextView) view.findViewById(R.id.tipoId);
-        textViewSituacao = (TextView) view.findViewById(R.id.statusId);
-        editTextBusca = (EditText) view.findViewById(R.id.consultaId);
+        textViewTipo = (TextView) view.findViewById(R.id.valorTipoid);
+        textViewCpf = (TextView) view.findViewById(R.id.valorCpfid);
+        editTextBusca = (EditText) view.findViewById(R.id.editConsultaId);
 
 
         return view;
-    }
-/*
-    @Override
-    public void onViewCreated (View view, Bundle savedInstanceState) {
-        ((AdmActivity) getActivity()).onFragmentViewCreated(view);
 
     }
-*/
+    
 }

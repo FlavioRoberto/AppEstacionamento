@@ -1,247 +1,187 @@
-    <!-- TODO: Update blank fragment layout -->
-
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#fff"
-        tools:context=".Activity.Fragments.consultaUsuarioFragment">
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    >
 
     <include android:id="@+id/toolbarId"
-        layout="@layout/toolbar"
-
-        />
-
+        layout="@layout/toolbar" />
 
     <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="30dp">
 
-        >
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="35dp"
-            >
+            android:layout_height="0dp"
+
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
 
-            <EditText
-                android:id="@+id/consultaId"
-                android:layout_marginTop="25dp"
+                <EditText
+                    android:id="@+id/editConsultaId"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_alignStart="@+id/viewbarra"
+
+                    android:layout_toStartOf="@+id/btnbuscar"
+                    android:background="@drawable/ovaltext"
+                    android:ems="10"
+                    android:gravity="center"
+
+                    android:hint="Informe email"
+                    android:inputType="textPersonName"
+                    android:textColorHint="@color/colorPrimary" />
+
+                <ImageView
+                    android:id="@+id/btnbuscar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignEnd="@+id/viewbarra"
+                    android:layout_alignTop="@+id/editConsultaId"
+                    android:background="@drawable/ovalbutton"
+                    app:srcCompat="@drawable/ic_search" />
+
+
+                <TextView
+                    android:id="@+id/textdados"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btnbuscar"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp"
+                    android:text="DADOS"
+                    android:textColor="#ccc" />
+
+                <View
+
+                    android:id="@+id/viewbarra"
+                    android:layout_width="270dp"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/textdados"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#ccc" />
+
+            </RelativeLayout>
+
+            <ScrollView
+                android:id="@+id/scrollView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:hint="Digite o Email"
-                android:textColor="@color/colorPrimary"
-                android:textColorHint="@color/colorPrimary" />
+                android:padding="7dp">
 
-            <Button
+                <LinearLayout
+                    android:id="@+id/linearid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-                android:id="@+id/btnconsulta"
-                style="@style/btnConsulta"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_below="@+id/consultaId"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="25dp"
-                android:layout_marginTop="25dp"
-                android:gravity="center"
-                android:text="@string/Buscar"
-                android:textSize="20sp" />
 
-            <View
-                android:id="@+id/SplitLine_hor1"
-                android:layout_width="200dp"
-                android:layout_height="1dp"
-                android:layout_below="@+id/btnconsulta"
-                android:layout_centerHorizontal="true"
-                android:background="@color/colorCinza" />
+                    <TextView
+                        android:id="@+id/textNomeID"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/nome"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
 
-            <TextView
-                android:id="@+id/textNome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/SplitLine_hor1"
-                android:layout_marginTop="53dp"
-                android:text="Nome: "
-                android:textAlignment="viewStart"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texxtViewSize"
-                android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/valorNomeId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text=""
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
 
-            <TextView
-                android:id="@+id/nomeId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/textNome"
-                android:layout_toEndOf="@+id/textNome"
-                android:textColor="#000000" />
 
-            <TextView
-                android:id="@+id/textTitulo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/SplitLine_hor1"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="14dp"
-                android:gravity="center"
-                android:text="Dados do Usuário"
-                android:textAllCaps="true"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/tituloSize"
-                android:textStyle="bold"
+                    <TextView
+                        android:id="@+id/textCelularid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/celular"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
 
-                />
+                    <TextView
+                        android:id="@+id/valorCelularid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text=""
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
 
-            <TextView
-                android:id="@+id/textTelefone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/textNome"
-                android:layout_marginTop="23dp"
-                android:text="Telefone: "
-                android:textAlignment="viewStart"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texxtViewSize"
-                android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/textCpfid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/Cpf"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
 
-            <TextView
-                android:id="@+id/telefoneId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/textTelefone"
-                android:layout_toEndOf="@+id/textTelefone"
-                android:textColor="#000000"
-                android:layout_alignTop="@+id/textTelefone" />
+                    <TextView
+                        android:id="@+id/valorCpfid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text=""
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
 
-            <TextView
-                android:id="@+id/textEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/textTelefone"
-                android:layout_marginTop="23dp"
-                android:text="Email: "
-                android:textAlignment="viewStart"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texxtViewSize"
-                android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/textTipoid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/Tipo"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
 
-            <TextView
-                android:id="@+id/emailId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textEmail"
-                android:layout_alignTop="@+id/textEmail"
-                android:textColor="#000000"
-                android:layout_toEndOf="@+id/textNome" />
+                    <TextView
+                        android:id="@+id/valorTipoid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text=""
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
 
-            <TextView
-                android:id="@+id/textTipo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/textEmail"
-                android:layout_marginTop="@dimen/marginTopTextView"
-                android:text="Tipo:"
-                android:textAlignment="viewStart"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texxtViewSize"
-                android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tipoId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/textTipo"
-                android:layout_toEndOf="@+id/textStatus"
-                android:textColor="#000000"
-                android:textSize="@dimen/texxtViewSize"
-                android:layout_alignTop="@+id/textTipo"
-                android:layout_alignStart="@+id/SplitLine_hor1" />
+                </LinearLayout>
 
-            <TextView
-                android:id="@+id/textStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/textTipo"
-                android:layout_marginTop="24dp"
-                android:text="Situação:"
-                android:textAlignment="viewStart"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texxtViewSize"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/statusId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/textStatus"
-                android:layout_alignTop="@+id/textStatus"
-                android:layout_toEndOf="@+id/textTelefone"
-                android:textColor="#000000"
-
-                />
-
-            <TextView
-                android:id="@+id/textPlaca"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignStart="@+id/textStatus"
-                android:layout_below="@+id/textStatus"
-                android:layout_marginTop="@dimen/marginTopTextView"
-                android:text="Placa do Veículo:"
-                android:textAlignment="viewStart"
-                android:textColor="@color/colorPrimary"
-                android:textSize="@dimen/texxtViewSize"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/placaId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/textPlaca"
-                android:layout_below="@+id/textPlaca"
-                android:layout_marginBottom="@dimen/marginTopTextView"
-                android:textColor="#000000"
-                android:layout_toEndOf="@+id/textPlaca" />
-
+            </ScrollView>
 
             <Button
                 android:id="@+id/btnEditar"
-                style="@style/btnConsulta"
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_below="@+id/placaId"
-                android:layout_centerHorizontal="true"
-
-                android:layout_marginTop="14dp"
-                android:gravity="center"
-                android:text="Editar dados"
-                android:textSize="20sp" />
-
-            <Button
-                android:id="@+id/btnCadastrar"
-                style="@style/btnConsulta"
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_below="@+id/btnEditar"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="25dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:background="@drawable/ovalbutton"
                 android:gravity="center"
-                android:text="Cadastrar novo"
-                android:textSize="20sp" />
+                android:text="Editar" />
+            <Button
+                android:id="@+id/btnExcluir"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ovalbutton"
+                android:gravity="center"
+                android:text="Excluir" />
 
-        </RelativeLayout>
-
+        </LinearLayout>
     </ScrollView>
-
-    </LinearLayout>
-
+</LinearLayout>

@@ -30,7 +30,7 @@
 
 
             <EditText
-                android:id="@+id/editText3"
+                android:id="@+id/editConsultaId"
                 android:layout_width="match_parent"
                 android:layout_height="45dp"
                 android:layout_alignStart="@+id/viewbarra"
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/ovalbutton"
                 app:srcCompat="@drawable/ic_search"
-                android:layout_alignTop="@+id/editText3"
+                android:layout_alignTop="@+id/editConsultaId"
                 android:layout_alignEnd="@+id/viewbarra" />
 
 

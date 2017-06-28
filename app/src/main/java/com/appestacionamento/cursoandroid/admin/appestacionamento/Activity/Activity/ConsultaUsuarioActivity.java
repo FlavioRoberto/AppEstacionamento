@@ -15,7 +15,7 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 
 public class ConsultaUsuarioActivity extends AppCompatActivity implements IActivity{
 
-        private Button btnCadastrar, btnEditar;
+        private Button btnExcluir, btnEditar;
         private Toolbar toolbar;
 
 
@@ -27,38 +27,29 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
 
         //invocacao do toolbar
 
-        toolbar = (Toolbar)findViewById(R.id.toolbarId);
+        toolbar = (Toolbar) findViewById(R.id.toolbarId);
         toolbar.setTitle("Consulta de Usuário");
         setSupportActionBar(toolbar);
 
 
-
-        btnCadastrar = (Button)findViewById(R.id.btnCadastrar);
-        btnEditar = (Button)findViewById(R.id.btnEditar);
+        btnExcluir = (Button) findViewById(R.id.btnExcluir);
+        btnEditar = (Button) findViewById(R.id.btnEditar);
 
 
         //ao clicar chama tela editar daddos de usuario
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),EditaDadosActivity.class);
+                Intent intent = new Intent(getApplicationContext(), EditaDadosActivity.class);
                 startActivity(intent);
                 finish();
             }
         });
 
-
-        //ao clicar no btnCadastrar chama tela cadastrar
-        btnCadastrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),CadastroUsuarioActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
 
     }
+
+    //seleciona o metodo de acordo com o click nas opções do menu
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
