@@ -32,7 +32,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_alignStart="@+id/viewbarra"
-
+                    android:textColor="@color/colorPrimary"
                     android:layout_toStartOf="@+id/btnbuscar"
                     android:background="@drawable/ovaltext"
                     android:ems="10"
