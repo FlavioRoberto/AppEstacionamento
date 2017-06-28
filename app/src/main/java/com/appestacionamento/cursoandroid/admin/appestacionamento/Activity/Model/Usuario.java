@@ -2,11 +2,16 @@ package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Mode
 
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.widget.Toast;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.LoginActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
@@ -43,15 +48,20 @@ public class Usuario {
         this.possuiNecessidadeEsp = possuiNecessidadeEsp;
     }
 
+    public boolean inativarUsuario(FirebaseUser user){
+
+        user = configuracaoFirebase.getFirebaseAutenticacao().getCurrentUser();
+        return user.delete().isSuccessful();
+    }
+
+    public boolean redefinirSenha(String email){
+
+       return autenticacao.sendPasswordResetEmail(email).isComplete();
+
+    }
 
 
     public void Create() {
-
-
-
-
-
-
         firebaseReferences.child("users").child(getUid()).setValue(this);
     }
 
