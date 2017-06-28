@@ -101,67 +101,6 @@ public class AdmActivity extends AppCompatActivity {
             }
         });
 
-        buttonBuscar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //Toast.makeText(getApplicationContext(), "Usuario encontrado", Toast.LENGTH_LONG).show();
-
-                emailBusca = editTextBusca.getText().toString();
-                emailCodificado = Base64Custom.codificarBase64(emailBusca);
-                Query usersQuery = databaseReference;//orderByKey();//.startAt(input).endAt(input + "\uf8ff");
-                usersQuery.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                            emailDatabase = postSnapshot.child("uid").getValue(String.class);
-                            //Toast.makeText(getApplicationContext(), "Usuario encontrado", Toast.LENGTH_LONG).show();
-                            //idDatabse.toString();
-                            try{
-                                if(emailDatabase.equals(emailCodificado)){
-
-                                    textViewNome.setText(postSnapshot.child("nome").getValue(String.class));
-                                    textViewTelefone.setText(postSnapshot.child("telefone").getValue(String.class));
-                                    textViewEmail.setText(postSnapshot.child("email").getValue(String.class));
-                                    textViewTipo.setText(postSnapshot.child("tipo").getValue(String.class));
-                                    textViewSituacao.setText(postSnapshot.child("status").getValue(String.class));
-
-
-                                    editNome = postSnapshot.child("nome").getValue(String.class);
-                                    editCpf = postSnapshot.child("cpf").getValue(String.class);
-                                    editTelefone = postSnapshot.child("telefone").getValue(String.class);
-                                    editTipo = postSnapshot.child("tipo").getValue(String.class);
-                                    editUid = postSnapshot.child("uid").getValue(String.class);
-                                    editEmail = postSnapshot.child("email").getValue(String.class);
-                                    editSenha = postSnapshot.child("senha").getValue(String.class);
-                                    editNesc = postSnapshot.child("possuiNecessidadeEsp").getValue(String.class);
-                                    editStatus = postSnapshot.child("status").getValue(String.class);
-
-                                    Toast.makeText(getApplicationContext(), "Nome: "+postSnapshot.child("nome").getValue(String.class)+"\n" +
-                                            "Email: "+postSnapshot.child("email").getValue(String.class), Toast.LENGTH_LONG).show();
-                                    //Toast.makeText(getApplicationContext(), "Usuario encontrado", Toast.LENGTH_LONG).show();
-                                    //return;
-
-                                    emailCodificado = null;
-                                    emailBusca = "";
-                                    ativaEdicao = true;
-                                }
-                            }catch(Exception e){
-
-                            }
-
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-                //buttonBuscar.setEnabled(false);
-            }
-        });
-
         buttonEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

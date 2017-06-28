@@ -34,7 +34,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.zip.Inflater;
 
@@ -46,14 +51,14 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
     private Usuario usuario = new Usuario();
     private DatabaseReference databaseReference = usuario.getFirebaseReferences();
     private FirebaseAuth autenticacao = usuario.getAutenticacao();
-    private String nome, telefone, email, tipo, cpf, senha = "200200", emailCurrentUser, senhaCurrentUser, itemSelect, status = "ATIVO", codificarEmail;
+    private String nome, telefone, email, tipo, cpf, senha = "200200", emailCurrentUser, senhaCurrentUser, itemSelect, status = "ATIVO", codificarEmail, cpfDatabase;
     private String possuiNecessidade;
     private ProgressDialog progressDialog;
     private Toolbar toolbar;
     private Spinner spinner;
     private ViewPager viewPager;
+    private Boolean validaCpf = false;
 
-    public  static final String UID = "uid";
 
 
     @Override
@@ -76,6 +81,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         //checkBoxPossuiNecessidade = (CheckBox) findViewById(R.id.checkBox_cadastro);
         buttonInserirUsuario = (Button) findViewById(R.id.button_cadastro);
         progressDialog = new ProgressDialog(this);
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
         //Spiner Adapter
         SpinnerAdapter adapter = spinner.getAdapter();
@@ -126,11 +132,11 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         email = editTextEmailUsuario.getText().toString().trim().toLowerCase();
         cpf = editTextCpfUsuario.getText().toString().trim();
 
-        if(checkBoxPossuiNecessidade.isChecked()){
+        /*if(checkBoxPossuiNecessidade.isChecked()){
             possuiNecessidade = "SIM";
         }else{
             possuiNecessidade = "NAO";
-        }
+        }*/
 
         if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(senha) && !TextUtils.isEmpty(nome) && !TextUtils.isEmpty(telefone) &&
         !TextUtils.isEmpty(tipo) && !TextUtils.isEmpty(cpf)){
@@ -140,60 +146,56 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
             emailCurrentUser = usuario.getEmailCurrentUser();
             final Preferencias preferencias = new Preferencias(CadastroUsuarioActivity.this);
             preferencias.salvarusuarioPreferences(emailCurrentUser, senhaCurrentUser);
-            autenticacao.createUserWithEmailAndPassword(email, senha)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            try{
-                                if(task.isSuccessful()){
+                    autenticacao.createUserWithEmailAndPassword(email, senha)
+                            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    try{
+                                        if(task.isSuccessful()){
 
 
-                                    codificarEmail = Base64Custom.codificarBase64(email);
-                                    usuario.setEmail(email);
-                                    usuario.setNome(nome);
-                                    usuario.setTelefone(telefone);
-                                    usuario.setTipo(tipo);
-                                    usuario.setCpf(cpf);
-                                    usuario.setPossuiNecessidadeEsp(possuiNecessidade);
-                                    usuario.setSenha(senha);
-                                    usuario.setStatus("ATIVO");
-                                    usuario.setUid(codificarEmail);
+                                            codificarEmail = Base64Custom.codificarBase64(email);
+                                            usuario.setEmail(email);
+                                            usuario.setNome(nome);
+                                            usuario.setTelefone(telefone);
+                                            usuario.setTipo(tipo);
+                                            usuario.setCpf(cpf);
+                                            //usuario.setPossuiNecessidadeEsp(possuiNecessidade);
+                                            usuario.setSenha(senha);
+                                            usuario.setStatus("ATIVO");
+                                            usuario.setUid(codificarEmail);
 
 
-                                    usuario.Create();
+                                            usuario.Create();
 
-                                    editTextNomeUsuario.setText(null);
-                                    editTextTelefoneUsuario.setText(null);
-                                    editTextEmailUsuario.setText(null);
-                                    editTextCpfUsuario.setText(null);
+                                            editTextNomeUsuario.setText(null);
+                                            editTextTelefoneUsuario.setText(null);
+                                            editTextEmailUsuario.setText(null);
+                                            editTextCpfUsuario.setText(null);
 
-                                    Toast.makeText(getApplicationContext(), "Novo usuário Registrado com sucesso!", Toast.LENGTH_LONG).show();
+                                            Toast.makeText(getApplicationContext(), "Novo usuário Registrado com sucesso!", Toast.LENGTH_LONG).show();
 
-                                    String emailAdm = preferencias.recuperaEmail(getApplicationContext()); //userDetails.getString("email", "");
-                                    String senhaAdm = preferencias.recuperaSenha(getApplicationContext()); //userDetails.getString("senha", "");
-                                    autenticacao.signInWithEmailAndPassword(emailAdm, senhaAdm)
-                                            .addOnCompleteListener(CadastroUsuarioActivity.this, new OnCompleteListener<AuthResult>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                                    if (!task.isSuccessful()) {
-                                                        Log.e("RELOGIN", "FAILED");
-                                                    } else {
-                                                        Log.e("RELOGIN", "SUCCESS");
-                                                    }
-                                                }
-                                            });
-                                    //Intent intent = new Intent(getApplicationContext(), CadastroVeicuoActivity.class);
-                                    //intent.putExtra(UID, codificarEmail);
-                                    //startActivity(intent);
-                                    //finish();
+                                            String emailAdm = preferencias.recuperaEmail(getApplicationContext()); //userDetails.getString("email", "");
+                                            String senhaAdm = preferencias.recuperaSenha(getApplicationContext()); //userDetails.getString("senha", "");
+                                            autenticacao.signInWithEmailAndPassword(emailAdm, senhaAdm)
+                                                    .addOnCompleteListener(CadastroUsuarioActivity.this, new OnCompleteListener<AuthResult>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                                            if (!task.isSuccessful()) {
+                                                                Log.e("RELOGIN", "FAILED");
+                                                            } else {
+                                                                Log.e("RELOGIN", "SUCCESS");
+                                                            }
+                                                        }
+                                                    });
+                                        }
+                                    }catch(Exception e){
+
+                                        Log.v("E_VALUE", "Erro: "+ e);
+                                    }
+                                    progressDialog.dismiss();
                                 }
-                            }catch(Exception e){
-
-                                Log.v("E_VALUE", "Erro: "+ e);
-                            }
-                            progressDialog.dismiss();
-                        }
-                    });
+                            });
         }else{
             Toast.makeText(getApplicationContext(), "Há campos vazios", Toast.LENGTH_LONG).show();
         }

@@ -131,16 +131,6 @@
                 android:entries="@array/spinnerTipo"
                 />
 
-            <CheckBox
-                android:id="@+id/checkBoxInativar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="@dimen/texxtViewSize"
-                android:text="Possui Necessidade Especial?"
-                android:layout_marginTop="25dp"
-                android:textAllCaps="true"
-                android:layout_gravity="center"/>
-
             <Button
                 android:id="@+id/buttonAtualizarUsuario"
                 android:layout_width="match_parent"

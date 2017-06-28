@@ -34,14 +34,14 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
 
     //inicio declaração de variáveis
     private Toolbar toolbar;
-    private String uid, tipo, placa, emailDono, marca, modelo, cor, descodificaEmail;
+    private String uid, tipo, placa, emailDono, marca, modelo, cor;
     private EditText editTextPlaca, editTextEmailDono, editTextModelo;
     private Spinner spinner,spinnerMarcaVeiculo,spinnerCorVeicullo;
     private Button buttonCadastrarVeiculo;
     private Veiculo veiculo = new Veiculo();
-    private DatabaseReference databaseReferenceUsers, databaseReferenceVeiculo;
-    private String emailCodificado, emailDatabase, placaDatabase;
-    private Boolean emailaValido = false, placaValida = false;
+    private DatabaseReference databaseReferenceUsers;
+    private String emailCodificado, emailDatabase;
+    private Boolean emailaValido = false;
     private ProgressDialog progressDialog;
     //Fim declaração de variáveis
 
@@ -52,7 +52,6 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
         setContentView(R.layout.activity_cadastro_veicuo);
 
         databaseReferenceUsers = FirebaseDatabase.getInstance().getReference("users");
-        databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo");
 
         //inicializando Toolbar
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
@@ -112,13 +111,11 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
                 cor = parent.getItemAtPosition(position).toString();
               //  Toast.makeText(getApplicationContext(),cor,Toast.LENGTH_SHORT).show();
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
-
         //adiciona mascara na placa
         adicionaMascara();
         buttonCadastrarVeiculo.setOnClickListener(new View.OnClickListener() {
@@ -127,18 +124,14 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
                 inserirVeiculo();
             }
         });
-
-
     } //FIM DO ONCREATE
-
 
     //Inicio metodo INserir veiculo
     public void inserirVeiculo(){
-        if (!(CadastroVeicuoActivity.this).isFinishing()) {
-            progressDialog.setCanceledOnTouchOutside(false);
-            progressDialog.setMessage("Cadastrando Veículo...");
-            progressDialog.show();
-        }
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setMessage("Cadastrando Veículo...");
+        progressDialog.show();
+
         placa = editTextPlaca.getText().toString().toUpperCase().trim();
         emailDono = editTextEmailDono.getText().toString().toLowerCase().trim();
         modelo = editTextModelo.getText().toString().toUpperCase().trim();
@@ -169,7 +162,6 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
                                   finish();
                                   break;
                               }
-
                           }
                       }catch (Exception e){
                       }
@@ -187,56 +179,6 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
           });
       }catch (Exception e){
       }
-      /*if(emailaValido == true){
-          //try{
-              //query = null;
-
-              Query query = databaseReferenceVeiculo;
-              query.addValueEventListener(new ValueEventListener() {
-                  @Override
-                  public void onDataChange(DataSnapshot dataSnapshot) {
-                      for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
-                          placaDatabase = postSnapshot.child("placa").getValue(String.class);
-                          try{
-                              if(placaDatabase.equals(placa)){
-                                  if(!TextUtils.isEmpty(emailCodificado) && !TextUtils.isEmpty(cor) && !TextUtils.isEmpty(marca) &&
-                                          !TextUtils.isEmpty(modelo) && !TextUtils.isEmpty(placa) && !TextUtils.isEmpty(tipo) &&
-                                          !TextUtils.isEmpty(emailDono)) {
-                                      veiculo.setUid(emailCodificado);
-                                      veiculo.setCor(cor);
-                                      veiculo.setMarca(marca);
-                                      veiculo.setModelo(modelo);
-                                      veiculo.setPlaca(placa);
-                                      veiculo.setTipo(tipo);
-                                      veiculo.setEmail(emailDono);
-                                      veiculo.create();
-                                      placaValida = true;
-                                      progressDialog.dismiss();
-                                      Toast.makeText(getApplicationContext(), "Veículo inserido com sucesso!", Toast.LENGTH_LONG).show();
-                                      break;
-                                  }
-                              }
-                          }catch (Exception e){
-                          }
-                        if(placaValida == false){
-                            Toast.makeText(getApplicationContext(), "Placa inválida", Toast.LENGTH_LONG).show();
-                            finish();
-                            progressDialog.dismiss();
-                            return;
-                        }
-                      }
-                  }
-
-                  @Override
-                  public void onCancelled(DatabaseError databaseError) {
-
-                  }
-              });
-          //}catch (Exception e){
-          //}
-      }*/
-
-
     }//FIM METODO Inserir Veiculo
 
     //sobrescreve metodo da interface IActivity para ativar os icones no menu
@@ -251,7 +193,6 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
         return true;
     }
 
-
     //invoca os itens no menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -259,7 +200,6 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
         inflater.inflate(R.menu.menu_admin,menu);
         return super.onCreateOptionsMenu(menu);
     }
-
 
     //metodo para adicionar mascara na placa
     public void adicionaMascara(){

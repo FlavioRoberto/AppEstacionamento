@@ -35,6 +35,10 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         private TextView textViewNomeUsuario, textViewCelularUsuario, textViewCpfUsuario, textViewTipoUsuario;
         private Boolean flag = false, emailEncontrado = false;
 
+        //Valores que serão enviados para a activity de Edição de dados
+        public static final String EDITNOME = "nome", EDITTIPO = "tipo", EDITCELULAR = "celular", EDITCPF = "cpf";
+        private String nome, tipo, celular, cpf;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +68,19 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), EditaDadosActivity.class);
-                startActivity(intent);
-                finish();
+                if(flag == true){
+                    flag = false;
+                    Intent intent = new Intent(getApplicationContext(), EditaDadosActivity.class);
+                    intent.putExtra(EDITNOME, nome);
+                    intent.putExtra(EDITTIPO, tipo);
+                    intent.putExtra(EDITCELULAR, celular);
+                    intent.putExtra(EDITCPF, cpf);
+                    startActivity(intent);
+                    finish();
+                }else if(flag == false){
+                    Toast.makeText(getApplicationContext(), "Nenhum usuário pesquisado", Toast.LENGTH_LONG).show();
+                    return;
+                }
             }
         });
 
@@ -91,10 +105,14 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
                     emailDatabase = postSnapshot.child("uid").getValue(String.class);
                     try{
                         if(emailDatabase.equals(codificaEmail)){
-                            textViewNomeUsuario.setText(postSnapshot.child("nome").getValue(String.class));
-                            textViewCelularUsuario.setText(postSnapshot.child("telefone").getValue(String.class));
-                            textViewCpfUsuario.setText(postSnapshot.child("cpf").getValue(String.class));
-                            textViewTipoUsuario.setText(postSnapshot.child("tipo").getValue(String.class));
+                            nome = postSnapshot.child("nome").getValue(String.class);
+                            textViewNomeUsuario.setText(nome);
+                            celular = postSnapshot.child("telefone").getValue(String.class);
+                            textViewCelularUsuario.setText(celular);
+                            cpf = postSnapshot.child("cpf").getValue(String.class);
+                            textViewCpfUsuario.setText(cpf);
+                            tipo = postSnapshot.child("tipo").getValue(String.class);
+                            textViewTipoUsuario.setText(tipo);
                             flag = true;
                             emailEncontrado = true;
                             break;

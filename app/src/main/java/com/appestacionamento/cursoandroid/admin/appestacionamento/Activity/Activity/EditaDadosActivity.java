@@ -26,7 +26,7 @@ public class EditaDadosActivity extends AppCompatActivity {
 
     private EditText editTextNome, editTextTelefone, editTextCpf;
     private Spinner  spinner;
-    private CheckBox checkBoxInativa;
+    //private CheckBox checkBoxInativa;
     private Button buttonAtualizar;
     private String nome, telefone, cpf, tipo, uid, email, senha, nesc, status, itemSelectedSpinner;
     private String novoNome, novoTelefone, novoCpf, novoTipo, novoStatus;
@@ -48,7 +48,7 @@ public class EditaDadosActivity extends AppCompatActivity {
         editTextTelefone = (EditText) findViewById(R.id.editTelefoneid_editadado);
         spinner = (Spinner) findViewById(R.id.editTipo_editadados);
         editTextCpf = (EditText) findViewById(R.id.editTextCpfEditaUsuario);
-        checkBoxInativa = (CheckBox) findViewById(R.id.checkBoxInativar);
+        //checkBoxInativa = (CheckBox) findViewById(R.id.checkBoxInativar);
         buttonAtualizar = (Button) findViewById(R.id.buttonAtualizarUsuario);
 
         Intent intent = getIntent();
@@ -128,12 +128,12 @@ public class EditaDadosActivity extends AppCompatActivity {
                 usuario.setCpf(novoCpf);
             }
 
-            if(checkBoxInativa.isChecked()){
+            /*if(checkBoxInativa.isChecked()){
                 novoStatus = "INATIVO";
                 usuario.setStatus(novoStatus);
             }else{
                 usuario.setStatus(status);
-            }
+            }*/
 
             usuario.setEmail(email);
             usuario.setSenha(senha);
