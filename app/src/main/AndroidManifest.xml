@@ -25,7 +25,8 @@
         <activity android:name=".Activity.Activity.CadastroUsuarioActivity" />
         <activity android:name=".Activity.Activity.EditaDadosActivity" />
         <activity android:name=".Activity.Activity.CadastroVeicuoActivity" />
-        <activity android:name=".Activity.Activity.ConsultarVeiculoActivity"></activity>
+        <activity android:name=".Activity.Activity.ConsultarVeiculoActivity" />
+        <activity android:name=".Activity.Activity.InativaUsuario"></activity>
     </application>
 
 </manifest>

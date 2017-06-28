@@ -8,27 +8,35 @@ import android.widget.Toast;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.LoginActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
+import static android.app.PendingIntent.getActivity;
+import static java.security.AccessController.getContext;
 
 
 public class Usuario {
     private String nome;
-    private String uid;//chave do usuario
+    private String uid,codificaEmail;//chave do usuario
     private String telefone;
-    private String email;
+    private String email,emailDatabase;
     private String tipo;//(USER, ADM, GARAGISTA, SECRETARIA)
     private String senha ;//Possui valor padrao (200200)
     private String status;//(ATIVO, INATIVO) -> Começa ativo como padrao
     private String cpf;//campo unico
-    private String possuiNecessidadeEsp;
+  //  private String possuiNecessidadeEsp;
     private DatabaseReference firebaseReferences;
     private FirebaseAuth autenticacao;
+
 
     public Usuario() {
         firebaseReferences = configuracaoFirebase.getFirebase();
@@ -45,7 +53,7 @@ public class Usuario {
         this.senha = senha;
         this.status = status;
         this.cpf = cpf;
-        this.possuiNecessidadeEsp = possuiNecessidadeEsp;
+      //  this.possuiNecessidadeEsp = possuiNecessidadeEsp;
     }
 
     public boolean excluirUsuario(FirebaseUser user){
@@ -59,6 +67,7 @@ public class Usuario {
        return autenticacao.sendPasswordResetEmail(email).isComplete();
 
     }
+
 
 
     public void Create() {
@@ -88,14 +97,6 @@ public class Usuario {
 
     public void setUid(String uid) {
         this.uid = uid;
-    }
-
-    public String getPossuiNecessidadeEsp() {
-        return possuiNecessidadeEsp;
-    }
-
-    public void setPossuiNecessidadeEsp(String possuiNecessidadeEsp) {
-        this.possuiNecessidadeEsp = possuiNecessidadeEsp;
     }
 
     public String getSenha() {

@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.AdmActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.CadastroUsuarioActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ConsultaUsuarioActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.InativaUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 
 /**
@@ -23,6 +24,7 @@ public class usuarioAdmin extends Fragment {
     private ImageView cadastrarUsuario;
     private ImageView consultaUsuario;
     private ImageView excluirUsuario;
+    private ImageView inativaUsuario;
 
     public usuarioAdmin() {
         // Required empty public constructor
@@ -36,6 +38,7 @@ public class usuarioAdmin extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_usuario_admin, container, false);
         cadastrarUsuario = (ImageView) view.findViewById(R.id.cadastroId);
         consultaUsuario = (ImageView)view.findViewById(R.id.consultaId);
+        inativaUsuario = (ImageView)view.findViewById(R.id.inativaId);
       //  excluirUsuario = (ImageView)view.findViewById(R.id.excluirId);
 
         //ao clicar no botao consulta chama tela de consulta
@@ -59,6 +62,15 @@ public class usuarioAdmin extends Fragment {
         });
 
 
+        //ao clicar no botao chama a tela inativa
+        inativaUsuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), InativaUsuario.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
 
         return view;
     }
