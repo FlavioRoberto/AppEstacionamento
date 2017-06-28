@@ -59,7 +59,7 @@
                 android:id="@+id/btnExcluirVeiculoId"
                 android:layout_width="150dp"
                 android:layout_height="100dp"
-                app:srcCompat="@drawable/ic_remove_circle_outline"
+                app:srcCompat="@drawable/ic_search"
                 android:background="@drawable/ovaltext_busca"
                 />
 
@@ -69,44 +69,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="3dp"
-                android:text="@string/removerVeiculo"
+                android:text="@string/consultaVeiculo"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
 
                 />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="15dp"
-                />
-
-            <ImageView
-                android:id="@+id/btnconsultaVeiculoId"
-                android:layout_width="150dp"
-                android:layout_height="100dp"
-                android:background="@drawable/ovaltext_busca"
-                app:srcCompat="@drawable/ic_search" />
-
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="3dp"
-                android:text="@string/consultaVeiculo"
-                android:textAlignment="center"
-                android:textColor="@color/colorPrimary"
-                android:textStyle="bold" />
-
-            <TableRow
-                android:layout_marginTop="15dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
 
 
         </TableLayout>

@@ -11,9 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.AdmActivity;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.CadastroUsuarioActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.CadastroVeicuoActivity;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ExcluirVeiculoActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ConsultarVeiculoActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 
 /**
@@ -54,7 +53,7 @@ public class veiculoFragment extends Fragment {
         exluirVeiculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ExcluirVeiculoActivity.class);
+                Intent intent = new Intent(getContext(), ConsultarVeiculoActivity.class);
                 startActivity(intent);
                 getActivity().finish();
             }

@@ -11,14 +11,14 @@ import android.view.MenuItem;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Usuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 
-public class ExcluirVeiculoActivity extends AppCompatActivity implements IActivity {
+public class ConsultarVeiculoActivity extends AppCompatActivity implements IActivity {
 
     private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_excluiveiculo);
+        setContentView(R.layout.activity_consultarveiculo);
 
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
         toolbar.setTitle("Excluir veículo");
