@@ -40,7 +40,7 @@
                 android:ems="10"
                 android:gravity="center"
 
-                android:hint="Informe email"
+                android:hint="email do proprietário"
                 android:inputType="textPersonName"
                 android:textColorHint="@color/colorPrimary" />
 
