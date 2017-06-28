@@ -81,7 +81,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
         //Spinner marca veiculo
         adapter = spinnerMarcaVeiculo.getAdapter();
         spinnerMarcaVeiculo.setAdapter(adapter);
-       spinnerMarcaVeiculo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        spinnerMarcaVeiculo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
            @Override
            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                marca = parent.getItemAtPosition(position).toString();
@@ -121,7 +121,8 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
             }
         });
 
-    }
+
+    } //FIM DO ONCREATE
 
 
     public void inserirVeiculo(){
