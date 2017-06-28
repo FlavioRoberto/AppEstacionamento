@@ -137,7 +137,7 @@ public class EditaDadosActivity extends AppCompatActivity {
 
             usuario.setEmail(email);
             usuario.setSenha(senha);
-            usuario.setPossuiNecessidadeEsp(nesc);
+          //  usuario.setPossuiNecessidadeEsp(nesc);
             usuario.setUid(uid);
 
             databaseReference = FirebaseDatabase.getInstance().getReference("users").child(uid);

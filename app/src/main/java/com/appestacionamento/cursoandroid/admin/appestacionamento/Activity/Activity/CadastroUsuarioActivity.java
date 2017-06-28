@@ -154,7 +154,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
                                     usuario.setTelefone(telefone);
                                     usuario.setTipo(tipo);
                                     usuario.setCpf(cpf);
-                                    usuario.setPossuiNecessidadeEsp(possuiNecessidade);
+                                   // usuario.setPossuiNecessidadeEsp(possuiNecessidade);
                                     usuario.setSenha(senha);
                                     usuario.setStatus("ATIVO");
                                     usuario.setUid(codificarEmail);
