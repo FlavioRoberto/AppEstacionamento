@@ -67,6 +67,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
             @Override
             public void onClick(View v) {
                 if(flag == true){
+
                     editaVeiculo();
 
                 }else if(flag == false){

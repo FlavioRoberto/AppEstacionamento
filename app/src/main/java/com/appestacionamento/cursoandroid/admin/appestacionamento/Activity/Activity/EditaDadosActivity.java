@@ -26,9 +26,8 @@ public class EditaDadosActivity extends AppCompatActivity {
 
     private EditText editTextNome, editTextTelefone, editTextCpf;
     private Spinner  spinner;
-    //private CheckBox checkBoxInativa;
     private Button buttonAtualizar;
-    private String nome, telefone, cpf, tipo, uid, email, senha, nesc, status, itemSelectedSpinner;
+    private String nome, telefone, cpf, tipo, uid, email, senha, status, itemSelectedSpinner;
     private String novoNome, novoTelefone, novoCpf, novoTipo, novoStatus;
     private DatabaseReference databaseReference;
     private Usuario usuario = new Usuario();
@@ -48,43 +47,19 @@ public class EditaDadosActivity extends AppCompatActivity {
         editTextTelefone = (EditText) findViewById(R.id.editTelefoneid_editadado);
         spinner = (Spinner) findViewById(R.id.editTipo_editadados);
         editTextCpf = (EditText) findViewById(R.id.editTextCpfEditaUsuario);
-        //checkBoxInativa = (CheckBox) findViewById(R.id.checkBoxInativar);
         buttonAtualizar = (Button) findViewById(R.id.buttonAtualizarUsuario);
 
         Intent intent = getIntent();
-        nome = intent.getStringExtra(AdmActivity.EDITNOME);
-        telefone = intent.getStringExtra(AdmActivity.EDITTELEFONE);
-        cpf = intent.getStringExtra(AdmActivity.EDITCPF);
-        tipo = intent.getStringExtra(AdmActivity.EDITTIPO);
-        uid = intent.getStringExtra(AdmActivity.EDITUID);
-        email = intent.getStringExtra(AdmActivity.EDITEMAIL);
-        senha = intent.getStringExtra(AdmActivity.EDITSENHA);
-        nesc = intent.getStringExtra(AdmActivity.EDITNESC);
-        status = intent.getStringExtra(AdmActivity.EDITSTATUS);
+        nome = intent.getStringExtra(ConsultaUsuarioActivity.EDITNOME);
+        telefone = intent.getStringExtra(ConsultaUsuarioActivity.EDITCELULAR);
+        cpf = intent.getStringExtra(ConsultaUsuarioActivity.EDITCPF);
+        tipo = intent.getStringExtra(ConsultaUsuarioActivity.EDITTIPO);
+        uid = intent.getStringExtra(ConsultaUsuarioActivity.EDITUID);
+        email = intent.getStringExtra(ConsultaUsuarioActivity.EDITEMAIL);
+        senha = intent.getStringExtra(ConsultaUsuarioActivity.EDITSENHA);
+        status = intent.getStringExtra(ConsultaUsuarioActivity.EDITSTATUS);
 
 
-        apresentaDados();
-
-        buttonAtualizar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                atualizaDados();
-            }
-        });
-    }
-
-
-
-
-    private void apresentaDados(){
-
-        editTextNome.setText(nome);
-        editTextTelefone.setText(telefone);
-        editTextCpf.setText(cpf);
-    }
-
-    private void atualizaDados(){
-        //inicializa o spinner
         SpinnerAdapter adapter = spinner.getAdapter();
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -100,7 +75,7 @@ public class EditaDadosActivity extends AppCompatActivity {
                 }else if(itemSelect.equals("Garagista")){
                     tipo = "GARAGISTA";
                 }
-                novoTipo = itemSelect;
+                novoTipo = tipo;
                 //Toast.makeText(getApplicationContext(),itemSelect,Toast.LENGTH_LONG).show();
             }
             @Override
@@ -108,6 +83,28 @@ public class EditaDadosActivity extends AppCompatActivity {
 
             }
         });
+
+        apresentaDados();
+
+        buttonAtualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                atualizaDados();
+            }
+        });
+    }
+
+
+    private void apresentaDados(){
+
+        editTextNome.setText(nome);
+        editTextTelefone.setText(telefone);
+        editTextCpf.setText(cpf);
+    }
+
+    private void atualizaDados(){
+        //inicializa o spinner
+
         //FINALIZA SPINNER
 
         novoNome = editTextNome.getText().toString().toUpperCase().trim();
@@ -128,23 +125,15 @@ public class EditaDadosActivity extends AppCompatActivity {
                 usuario.setCpf(novoCpf);
             }
 
-            /*if(checkBoxInativa.isChecked()){
-                novoStatus = "INATIVO";
-                usuario.setStatus(novoStatus);
-            }else{
-                usuario.setStatus(status);
-            }*/
 
             usuario.setEmail(email);
             usuario.setSenha(senha);
-          //  usuario.setPossuiNecessidadeEsp(nesc);
             usuario.setUid(uid);
+            usuario.setStatus(status);
 
             databaseReference = FirebaseDatabase.getInstance().getReference("users").child(uid);
             databaseReference.setValue(usuario);
-
             Toast.makeText(getApplicationContext(), "Atualização realizada!", Toast.LENGTH_LONG).show();
-
             Intent intent = new Intent(getApplicationContext(), AdmActivity.class);
             startActivity(intent);
         }

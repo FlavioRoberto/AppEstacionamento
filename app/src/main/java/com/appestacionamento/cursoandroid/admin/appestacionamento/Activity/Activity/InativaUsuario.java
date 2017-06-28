@@ -100,8 +100,6 @@ public class InativaUsuario extends AppCompatActivity {
                                     telefone = postSnapshot.child("telefone").getValue(String.class);
                                     tipo = postSnapshot.child("tipo").getValue(String.class);
                                     uid = postSnapshot.child("uid").getValue(String.class);
-
-
                                     nomeText.setText(nome);
                                     cpfText.setText(cpf);
                                     tipoText.setText(tipo);
