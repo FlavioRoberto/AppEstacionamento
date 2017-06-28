@@ -61,7 +61,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
         editTextPlaca = (EditText) findViewById(R.id.placaVeiculoId);
         editTextEmailDono = (EditText) findViewById(R.id.emailDonoId);
         editTextModelo = (EditText) findViewById(R.id.modeloVeiculoId);
-        spinnerMarcaVeiculo = (Spinner)findViewById(R.id.spinnerTipoVeiculo);
+        spinnerMarcaVeiculo = (Spinner)findViewById(R.id.spinnerMarcaVeiculo);
         spinner = (Spinner)findViewById(R.id.spinnerTipoVeiculo);
         spinnerCorVeicullo = (Spinner)findViewById(R.id.spinnerCorVeiculoId);
         buttonCadastrarVeiculo = (Button) findViewById(R.id.button_cadastroVeiculo);

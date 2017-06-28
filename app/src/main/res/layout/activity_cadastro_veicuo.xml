@@ -79,7 +79,7 @@
 
             <Spinner
                 android:layout_marginTop="5dp"
-                android:id="@+id/spinner"
+                android:id="@+id/spinnerMarcaVeiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:entries="@array/marcaVeiculo"
