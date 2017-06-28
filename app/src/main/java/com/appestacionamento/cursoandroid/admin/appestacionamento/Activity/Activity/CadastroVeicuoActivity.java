@@ -56,6 +56,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
         toolbar.setTitle("Cadastro de veículo");
         setSupportActionBar(toolbar);
 
+
         //setando componentes
         editTextPlaca = (EditText) findViewById(R.id.placaVeiculoId);
         editTextEmailDono = (EditText) findViewById(R.id.emailDonoId);
@@ -127,6 +128,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
     } //FIM DO ONCREATE
 
 
+    //Inicio metodo INserir veiculo
     public void inserirVeiculo(){
         emailDono = editTextEmailDono.getText().toString().toLowerCase().trim();
         placa = editTextPlaca.getText().toString().toUpperCase().trim();
@@ -144,7 +146,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
 
 
 
-    }
+    }//FIM METODO Inserir Veiculo
 
     /*public void verificaEmail(){
         emailBusca = editTextEmailDono.getText().toString().toLowerCase().trim();

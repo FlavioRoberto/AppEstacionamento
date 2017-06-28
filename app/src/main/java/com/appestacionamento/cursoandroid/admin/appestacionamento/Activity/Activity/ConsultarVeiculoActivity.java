@@ -21,7 +21,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         setContentView(R.layout.activity_consultarveiculo);
 
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
-        toolbar.setTitle("Excluir veículo");
+        toolbar.setTitle("Consulta veículo");
         setSupportActionBar(toolbar);
 
     }
