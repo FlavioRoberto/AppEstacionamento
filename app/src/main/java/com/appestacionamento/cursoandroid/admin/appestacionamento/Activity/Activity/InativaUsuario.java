@@ -23,7 +23,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class InativaUsuario extends AppCompatActivity {
 
-    private String emailDatabase,codificaEmail;
+    private String emailDatabase,codificaEmail, emailUsuario;
+    private String mudaStatus, cpf, email, nome, senha, telefone, tipo, uid;
     private Usuario usuario ;
     private EditText editTextBuscarEmailUsuario;
     private DatabaseReference databaseReference = configuracaoFirebase.getFirebase();
@@ -42,30 +43,46 @@ public class InativaUsuario extends AppCompatActivity {
         nomeText = (TextView) findViewById(R.id.InativaValorNomeId);
         cpfText = (TextView) findViewById(R.id.InativaValorCpfid);
         tipoText = (TextView) findViewById(R.id.InativaValorTipoid);
-        statuscheck = (CheckBox) findViewById(R.id.checkBoxInativar);
         btnSalvar = (Button) findViewById(R.id.btnSalvar);
         btnPesquisar = (ImageView) findViewById(R.id.inativaBtnbuscar);
         usuario = new Usuario();
+        statuscheck = (CheckBox) findViewById(R.id.InativaCheckBoxStatus);
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
         //INICIO botao pesquisar
         btnPesquisar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                nomeText.setText(null);
+                cpfText.setText(null);
+                tipoText.setText(null);
                 pesquisaUsuario();
                 //  Usuario teste = new Usuario();
 
             }
         });
         //FIM botao pesquisar
+
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(flag == true){
+                    salvarStatus();
+                }else if(flag == false){
+                    Toast.makeText(getApplicationContext(), "Nenhum usuário pesquisado", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                flag = false;
+            }
+        });
     }
 
 
     //INICIO PESQUISA USUARIO
         public void pesquisaUsuario(){
         if(!editTextBuscarEmailUsuario.getText().toString().isEmpty()) {
-
             {
-                final String emailUsuario = editTextBuscarEmailUsuario.getText().toString().toLowerCase().trim();
+                emailUsuario = editTextBuscarEmailUsuario.getText().toString().toLowerCase().trim();
                 codificaEmail = Base64Custom.codificarBase64(emailUsuario);
                 Query query = databaseReference;
                 query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -75,41 +92,71 @@ public class InativaUsuario extends AppCompatActivity {
                             emailDatabase = postSnapshot.child("uid").getValue(String.class);
                             try{
                                 if(emailDatabase.equals(codificaEmail)){
-                                    nomeText.setText(postSnapshot.child("nome").getValue(String.class));
-                                    cpfText.setText(postSnapshot.child("cpf").getValue(String.class));
-                                    tipoText.setText(postSnapshot.child("tipo").getValue(String.class));
-                                    String status = postSnapshot.child("status").getValue(String.class);
+                                    cpf = postSnapshot.child("cpf").getValue(String.class);
+                                    email = postSnapshot.child("email").getValue(String.class);
+                                    nome = postSnapshot.child("nome").getValue(String.class);
+                                    senha = postSnapshot.child("senha").getValue(String.class);
+                                    mudaStatus = postSnapshot.child("status").getValue(String.class);
+                                    telefone = postSnapshot.child("telefone").getValue(String.class);
+                                    tipo = postSnapshot.child("tipo").getValue(String.class);
+                                    uid = postSnapshot.child("uid").getValue(String.class);
 
-                                    if(status == "INATIVADO"){
-                                        statuscheck.isChecked();
-                                    }
 
-                                    flag = true;
+                                    nomeText.setText(nome);
+                                    cpfText.setText(cpf);
+                                    tipoText.setText(tipo);
+
                                     emailEncontrado = true;
+                                    if(mudaStatus.equals("INATIVADO")){
+                                        statuscheck.setChecked(true);
+                                    }else if(mudaStatus.equals("ATIVADO")){
+                                        statuscheck.setChecked(false);
+                                    }
+                                    flag = true;
                                     break;
                                 }
                             }catch (Exception e){
-
                             }
                         }
                         if(emailEncontrado == false){
                             Toast.makeText(getApplicationContext(), "Email nao encontrado", Toast.LENGTH_LONG).show();
                         }
                     }
-
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
 
                     }
                 });
             }
-
-
+        }else{
+            Toast.makeText(getApplicationContext(), "Campo de email vazio!", Toast.LENGTH_LONG).show();
+            return;
         }
-
     }
     //FIM PESQUISA USUARIO
+
+
+
+    public void salvarStatus(){
+        if(statuscheck.isChecked()){
+            mudaStatus = "INATIVADO";
+        }
+        if(!statuscheck.isChecked()){
+            mudaStatus = "ATIVADO";
+        }
+        usuario.setStatus(mudaStatus);
+        usuario.setEmail(email);
+        usuario.setUid(uid);
+        usuario.setSenha(senha);
+        usuario.setCpf(cpf);
+        usuario.setNome(nome);
+        usuario.setTipo(tipo);
+        usuario.setTelefone(telefone);
+        databaseReference = FirebaseDatabase.getInstance().getReference("users").child(uid);
+        databaseReference.setValue(usuario);
+        Toast.makeText(getApplicationContext(), "Atualização realizada!", Toast.LENGTH_LONG).show();
     }
+}
 
 
 

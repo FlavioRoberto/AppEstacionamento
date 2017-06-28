@@ -68,9 +68,8 @@ public class usuarioAdmin extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), InativaUsuario.class);
                 startActivity(intent);
-                getActivity().finish();
-            }
-        });
+    }
+});
 
         return view;
     }
