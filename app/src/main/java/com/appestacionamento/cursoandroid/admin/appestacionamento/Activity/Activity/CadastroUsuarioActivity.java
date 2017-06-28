@@ -46,8 +46,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
     private Usuario usuario = new Usuario();
     private DatabaseReference databaseReference = usuario.getFirebaseReferences();
     private FirebaseAuth autenticacao = usuario.getAutenticacao();
-    private String nome, telefone, email, tipo, cpf, senha = "200200", emailCurrentUser, senhaCurrentUser, itemSelect,
-                    status = "ATIVO", codificarEmail;
+    private String nome, telefone, email, tipo, cpf, senha = "200200", emailCurrentUser, senhaCurrentUser, itemSelect, status = "ATIVO", codificarEmail;
     private String possuiNecessidade;
     private ProgressDialog progressDialog;
     private Toolbar toolbar;
@@ -74,7 +73,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         editTextEmailUsuario = (EditText) findViewById(R.id.editemailid_cadastro);
         spinner = (Spinner)findViewById(R.id.spinnerTipo);
         editTextCpfUsuario = (EditText) findViewById(R.id.editTextCpfEditaUsuario);
-        checkBoxPossuiNecessidade = (CheckBox) findViewById(R.id.checkBox_cadastro);
+        //checkBoxPossuiNecessidade = (CheckBox) findViewById(R.id.checkBox_cadastro);
         buttonInserirUsuario = (Button) findViewById(R.id.button_cadastro);
         progressDialog = new ProgressDialog(this);
 
@@ -116,7 +115,6 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
                 inserirUsuario();
         }
         });
-
 
 
         }

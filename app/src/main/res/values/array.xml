@@ -30,4 +30,19 @@
         <item>Volkswagen</item>
         <item>Yamaha</item>
     </string-array>
+
+
+  <string-array name="arrayCor">
+      <item>Amarelo</item>
+      <item>Azul</item>
+      <item>Branco</item>
+      <item>Cinza</item>
+      <item>Chumbo</item>
+      <item>Dourado</item>
+      <item>Prata</item>
+      <item>Preto</item>
+      <item>Verde</item>
+      <item>Vermelho</item>
+
+  </string-array>
 </resources>

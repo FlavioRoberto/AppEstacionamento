@@ -33,12 +33,11 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
 
     private Toolbar toolbar;
     private String uid, tipo, placa, emailDono, marca, modelo, cor, descodificaEmail;
-    private EditText editTextPlaca, editTextEmailDono, editTextModelo, editTextCor;
-    private Spinner spinner,spinnerMarcaVeiculo;
+    private EditText editTextPlaca, editTextEmailDono, editTextModelo;
+    private Spinner spinner,spinnerMarcaVeiculo,spinnerCorVeicullo;
     private Button buttonCadastrarVeiculo;
     private Veiculo veiculo = new Veiculo();
     private DatabaseReference databaseReference;
-
     private String emailCodificado, emailBusca;
     private Boolean emailaValido = false;
 
@@ -48,20 +47,21 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_veicuo);
 
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+
+        //inicializando Toolbar
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
         toolbar.setTitle("Cadastro de veículo");
-
         setSupportActionBar(toolbar);
 
+        //setando componentes
         editTextPlaca = (EditText) findViewById(R.id.placaVeiculoId);
         editTextEmailDono = (EditText) findViewById(R.id.emailDonoId);
         editTextModelo = (EditText) findViewById(R.id.modeloVeiculoId);
-        editTextCor = (EditText) findViewById(R.id.corVeiculoId);
         spinnerMarcaVeiculo = (Spinner)findViewById(R.id.spinnerTipoVeiculo);
         spinner = (Spinner)findViewById(R.id.spinnerTipoVeiculo);
+        spinnerCorVeicullo = (Spinner)findViewById(R.id.spinnerCorVeiculoId);
         buttonCadastrarVeiculo = (Button) findViewById(R.id.button_cadastroVeiculo);
-
-        databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
         //Spiner Adapter
         SpinnerAdapter adapter = spinner.getAdapter();
@@ -94,6 +94,23 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
             }
         });
 
+        //Spinner Cor do veiculo
+        adapter = spinnerCorVeicullo.getAdapter();
+        spinnerCorVeicullo.setAdapter(adapter);
+        spinnerCorVeicullo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                cor = parent.getItemAtPosition(position).toString();
+                Toast.makeText(getApplicationContext(),cor,Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         //adiciona mascara na placa
         adicionaMascara();
@@ -111,9 +128,6 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
         emailDono = editTextEmailDono.getText().toString().toLowerCase().trim();
         placa = editTextPlaca.getText().toString().toUpperCase().trim();
         modelo = editTextModelo.getText().toString().toUpperCase().trim();
-        cor = editTextCor.getText().toString().toUpperCase().trim();
-
-
 
                 uid = Base64Custom.codificarBase64(emailDono);
                 veiculo.setUid(uid);
