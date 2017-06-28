@@ -31,6 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class CadastroVeicuoActivity extends AppCompatActivity implements IActivity {
 
+    //inicio declaração de variáveis
     private Toolbar toolbar;
     private String uid, tipo, placa, emailDono, marca, modelo, cor, descodificaEmail;
     private EditText editTextPlaca, editTextEmailDono, editTextModelo;
@@ -40,8 +41,9 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
     private DatabaseReference databaseReference;
     private String emailCodificado, emailBusca;
     private Boolean emailaValido = false;
+    //Fim declaração de variáveis
 
-
+    //Inicio Oncreate
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
