@@ -20,9 +20,8 @@
     <string name="Atualizar">Atualizar</string>
     <string name="removerUsuario">REMOVER USUÁRIO</string>
     <string name="consultaUsuario">CONSULTAR USUÁRIO</string>
-    <string name="buscarexcluir" > Digite numero da placa</string>
+    <string name="buscarexcluir"> Digite numero da placa</string>
     <string name="inativaUsuario">INATIVAR USUÁRIO</string>
-
 
 
     <!-- TODO: Remove or change this placeholder text -->

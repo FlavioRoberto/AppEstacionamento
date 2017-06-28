@@ -10,8 +10,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+        <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
 
         <activity android:name=".Activity.Activity.MainActivity">
             <intent-filter>
@@ -25,7 +24,8 @@
         <activity android:name=".Activity.Activity.AdmActivity" />
         <activity android:name=".Activity.Activity.CadastroUsuarioActivity" />
         <activity android:name=".Activity.Activity.EditaDadosActivity" />
-        <activity android:name=".Activity.Activity.CadastroVeicuoActivity"></activity>
+        <activity android:name=".Activity.Activity.CadastroVeicuoActivity" />
+        <activity android:name=".Activity.Activity.ExcluirUsuarioActivity"></activity>
     </application>
 
 </manifest>
