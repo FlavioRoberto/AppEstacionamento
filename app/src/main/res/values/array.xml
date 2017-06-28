@@ -12,4 +12,22 @@
         <item>Motocicleta</item>
         <item>Necessidade Especial</item>
     </string-array>
+
+    <string-array name="marcaVeiculo">
+        <item>Audi</item>
+        <item>BMW</item>
+        <item>Chevrolet</item>
+        <item>Citroen</item>
+        <item>Fiat</item>
+        <item>Ford</item>
+        <item>Honda</item>
+        <item>Hyunday</item>
+        <item>Jeep</item>
+        <item>Peugeot</item>
+        <item>Renault</item>
+        <item>Suzuki</item>
+        <item>Toyota</item>
+        <item>Volkswagen</item>
+        <item>Yamaha</item>
+    </string-array>
 </resources>

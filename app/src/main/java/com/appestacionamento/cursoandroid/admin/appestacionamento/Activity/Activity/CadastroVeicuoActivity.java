@@ -32,9 +32,9 @@ import com.google.firebase.database.ValueEventListener;
 public class CadastroVeicuoActivity extends AppCompatActivity implements IActivity {
 
     private Toolbar toolbar;
-    private String uid, tipo, itemSelect, placa, emailDono, marca, modelo, cor, descodificaEmail;
-    private EditText editTextPlaca, editTextEmailDono, editTextMarca, editTextModelo, editTextCor;
-    private Spinner spinner;
+    private String uid, tipo, placa, emailDono, marca, modelo, cor, descodificaEmail;
+    private EditText editTextPlaca, editTextEmailDono, editTextModelo, editTextCor;
+    private Spinner spinner,spinnerMarcaVeiculo;
     private Button buttonCadastrarVeiculo;
     private Veiculo veiculo = new Veiculo();
     private DatabaseReference databaseReference;
@@ -55,12 +55,9 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
 
         editTextPlaca = (EditText) findViewById(R.id.placaVeiculoId);
         editTextEmailDono = (EditText) findViewById(R.id.emailDonoId);
-        editTextMarca = (EditText) findViewById(R.id.marcaVeiculoId);
         editTextModelo = (EditText) findViewById(R.id.modeloVeiculoId);
         editTextCor = (EditText) findViewById(R.id.corVeiculoId);
-
-
-
+        spinnerMarcaVeiculo = (Spinner)findViewById(R.id.spinnerTipoVeiculo);
         spinner = (Spinner)findViewById(R.id.spinnerTipoVeiculo);
         buttonCadastrarVeiculo = (Button) findViewById(R.id.button_cadastroVeiculo);
 
@@ -73,13 +70,30 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                itemSelect = parent.getItemAtPosition(position).toString();
+                tipo = parent.getItemAtPosition(position).toString();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
+
+        //Spinner marca veiculo
+        adapter = spinnerMarcaVeiculo.getAdapter();
+        spinnerMarcaVeiculo.setAdapter(adapter);
+        spinnerMarcaVeiculo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                marca = parent.getItemAtPosition(position).toString();
+                Toast.makeText(getApplicationContext(),marca,Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
         //adiciona mascara na placa
         adicionaMascara();
@@ -95,10 +109,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
 
     public void inserirVeiculo(){
         emailDono = editTextEmailDono.getText().toString().toLowerCase().trim();
-        //emailCodificado = Base64Custom.codificarBase64(emailBusca);
-
         placa = editTextPlaca.getText().toString().toUpperCase().trim();
-        marca = editTextMarca.getText().toString().toUpperCase().trim();
         modelo = editTextModelo.getText().toString().toUpperCase().trim();
         cor = editTextCor.getText().toString().toUpperCase().trim();
 

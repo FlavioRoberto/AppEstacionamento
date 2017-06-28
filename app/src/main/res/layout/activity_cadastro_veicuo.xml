@@ -77,19 +77,13 @@
                 android:text="@string/marcaVeiculo"
                 android:textSize="@dimen/TextSize" />
 
-            <EditText
-                android:id="@+id/marcaVeiculoId"
+            <Spinner
+                android:layout_marginTop="5dp"
+                android:id="@+id/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/ovaltext"
-                android:ems="10"
-                android:inputType="textEmailAddress"
-                android:padding="@dimen/paddingEditText"
-                android:textAlignment="center"
-                android:textColor="#000000"
-                android:textSize="@dimen/TextSize" />
+                android:entries="@array/marcaVeiculo"
+                />
 
 
             <TextView
@@ -168,5 +162,7 @@
         </LinearLayout>
 
     </ScrollView>
+
+
 
 </LinearLayout>
