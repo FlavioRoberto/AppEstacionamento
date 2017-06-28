@@ -130,21 +130,24 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
 
     //Inicio metodo INserir veiculo
     public void inserirVeiculo(){
-        emailDono = editTextEmailDono.getText().toString().toLowerCase().trim();
-        placa = editTextPlaca.getText().toString().toUpperCase().trim();
-        modelo = editTextModelo.getText().toString().toUpperCase().trim();
+      try {
+          emailDono = editTextEmailDono.getText().toString().toLowerCase().trim();
+          placa = editTextPlaca.getText().toString().toUpperCase().trim();
+          modelo = editTextModelo.getText().toString().toUpperCase().trim();
 
-                uid = Base64Custom.codificarBase64(emailDono);
-                veiculo.setUid(uid);
-                veiculo.setCor(cor);
-                veiculo.setMarca(marca);
-                veiculo.setModelo(modelo);
-                veiculo.setPlaca(placa);
-                veiculo.setTipo(tipo);
-                veiculo.setEmail(emailDono);
-                veiculo.create();
-                Toast.makeText(getApplicationContext(), "Inserido", Toast.LENGTH_LONG).show();
-
+          uid = Base64Custom.codificarBase64(emailDono);
+          veiculo.setUid(uid);
+          veiculo.setCor(cor);
+          veiculo.setMarca(marca);
+          veiculo.setModelo(modelo);
+          veiculo.setPlaca(placa);
+          veiculo.setTipo(tipo);
+          veiculo.setEmail(emailDono);
+          veiculo.create();
+          Toast.makeText(getApplicationContext(), "Veículo inserido com sucesso!", Toast.LENGTH_LONG).show();
+      }catch (Exception e){
+          Toast.makeText(getApplicationContext(), "Proble ao inserir veículo",Toast.LENGTH_LONG).show();
+      }
 
 
     }//FIM METODO Inserir Veiculo
