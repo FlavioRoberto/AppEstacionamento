@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,8 +30,10 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     private EditText editTextEmailDonoVeiculo;
     private ImageView imageViewBuscarVeiculo;
     private TextView textViewPlaca, textViewModeloVeiculo, textViewMarcaVeiculo, textViewCorVeiculo;
+    private Button buttonEditar;
     private DatabaseReference databaseReference;
     private String emailDatabase, codificaEmail;
+    private Boolean flag = false, emailEncontrado = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         textViewModeloVeiculo = (TextView) findViewById(R.id.valormodeloid);
         textViewMarcaVeiculo = (TextView) findViewById(R.id.valormarcaid);
         textViewCorVeiculo = (TextView) findViewById(R.id.valorcorid);
+        buttonEditar = (Button) findViewById(R.id.btnEditar);
 
         //Botao para Buscar veiculo
         imageViewBuscarVeiculo.setOnClickListener(new View.OnClickListener() {
@@ -58,8 +62,22 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
             }
         });
 
+        //Botao Editar (Ativa quando a busca é realizada)
+        buttonEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(flag == true){
+                    editaVeiculo();
+
+                }else if(flag == false){
+                    Toast.makeText(getApplicationContext(), "Nenhum veículo selecionado", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
     }
 
+    //Metodo para Buscar veiculo
     public void buscaVeiculo(){
         String emailVeiculo = editTextEmailDonoVeiculo.getText().toString().toLowerCase().trim();
         codificaEmail = Base64Custom.codificarBase64(emailVeiculo);
@@ -75,10 +93,16 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                             textViewModeloVeiculo.setText(postSnapshot.child("modelo").getValue(String.class));
                             textViewMarcaVeiculo.setText(postSnapshot.child("marca").getValue(String.class));
                             textViewCorVeiculo.setText(postSnapshot.child("cor").getValue(String.class));
+                            emailEncontrado = true;
+                            flag = true;
+                            break;
                         }
                     }catch (Exception e){
 
                     }
+                }
+                if(emailEncontrado == false){
+                    Toast.makeText(getApplicationContext(), "Email nao encontrado", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -87,6 +111,12 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
 
             }
         });
+    }
+    //Fim do metodo buscar veiculo
+
+    //Método Edita veiculo
+    public void editaVeiculo(){
+
     }
 
 

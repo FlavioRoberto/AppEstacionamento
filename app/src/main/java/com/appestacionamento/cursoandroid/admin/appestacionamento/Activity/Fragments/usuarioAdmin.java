@@ -45,7 +45,6 @@ public class usuarioAdmin extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), ConsultaUsuarioActivity.class);
                 startActivity(intent);
-                getActivity().finish();
             }
         });
 
@@ -55,7 +54,6 @@ public class usuarioAdmin extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), CadastroUsuarioActivity.class);
                 startActivity(intent);
-               getActivity().finish();
 
             }
         });

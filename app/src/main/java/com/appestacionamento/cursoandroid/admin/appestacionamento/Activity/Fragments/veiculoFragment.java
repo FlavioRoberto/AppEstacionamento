@@ -45,7 +45,6 @@ public class veiculoFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), CadastroVeicuoActivity.class);
                 startActivity(intent);
-                //getActivity().finish();
             }
         });
 
@@ -55,7 +54,6 @@ public class veiculoFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), ConsultarVeiculoActivity.class);
                 startActivity(intent);
-                getActivity().finish();
             }
         });
 

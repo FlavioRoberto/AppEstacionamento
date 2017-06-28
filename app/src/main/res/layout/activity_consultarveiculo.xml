@@ -166,16 +166,16 @@
             </ScrollView>
 
             <Button
-                android:id="@+id/btnExcluir"
+                android:id="@+id/btnEditar"
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/ovalbutton"
                 android:gravity="center"
                 android:text="Editar" />
 
             <Button
-                android:id="@+id/btnEditar"
+                android:id="@+id/btnExcluir"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
