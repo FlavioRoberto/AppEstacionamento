@@ -1,166 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:padding="40dp"
-    android:weightSum="1">
+   >
 
     <include android:id="@+id/toolbarId"
-        layout="@layout/toolbar"/>
-
-
-    <EditText
-        android:id="@+id/editText3"
-        android:layout_width="wrap_content"
-        android:layout_height="45dp"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:gravity="center"
-        android:background="@drawable/ovaltext"
-        android:inputType="textPersonName"
-        android:hint="Informe email"
-        android:textColorHint="@color/colorPrimary"
-
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/viewbarra"
-        android:layout_toStartOf="@+id/btnbuscar" />
-
-    <ImageView
-        android:id="@+id/btnbuscar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/ovalbutton"
-        app:srcCompat="@drawable/ic_search"
-        android:layout_alignBottom="@+id/editText3"
-        android:layout_alignEnd="@+id/viewbarra" />
-
-
-
-    <TextView
-        android:layout_marginTop="30dp"
-        android:id="@+id/textdados"
-        android:textColor="#ccc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DADOS"
-        android:layout_below="@+id/btnbuscar"
-        android:layout_centerHorizontal="true" />
-
-    <view
-
-        android:layout_marginTop="5dp"
-        android:layout_width="270dp"
-        android:layout_height="1dp"
-        android:background="#ccc"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/textdados"
-        android:id="@+id/viewbarra"
-        android:layout_marginBottom="20dp"/>
+        layout="@layout/toolbar" />
 
     <ScrollView
-        android:padding="7dp"
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/viewbarra"
-        android:layout_alignParentStart="true">
+        android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/linearid"
-        android:layout_width="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1900dp"
+            android:orientation="vertical"
+            >
 
-        android:orientation="vertical">
-
-
-        <TextView
-            android:textSize="@dimen/texxtViewSize"
-            android:id="@+id/textView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:text="@string/placaVeiculo" />
-
-        <TextView
-            android:layout_marginTop="3dp"
-            android:textSize="@dimen/texxtViewSize"
-            android:id="@+id/valorplacaId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:text="" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
 
 
-        <TextView
-            android:id="@+id/textmodeloid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="@string/modeloVeiculo"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/texxtViewSize" />
 
-        <TextView
-            android:layout_marginTop="3dp"
-            android:textSize="@dimen/texxtViewSize"
-            android:id="@+id/valormodeloid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:text="" />
+            <EditText
 
-        <TextView
-            android:layout_marginTop="15dp"
-            android:textSize="@dimen/texxtViewSize"
-            android:id="@+id/textmarcaid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:text="@string/marcaVeiculo" />
+                android:id="@+id/editText3"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/viewbarra"
+                android:layout_marginTop="10dp"
+                android:layout_toStartOf="@+id/btnbuscar"
+                android:background="@drawable/ovaltext"
+                android:ems="10"
+                android:gravity="center"
 
-        <TextView
-            android:layout_marginTop="3dp"
-            android:textSize="@dimen/texxtViewSize"
-            android:id="@+id/valormarcaid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:text="" />
-        <TextView
-            android:layout_marginTop="15dp"
-            android:textSize="@dimen/texxtViewSize"
-            android:id="@+id/textcorid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:text="@string/corVeiculo" />
+                android:hint="Informe email"
+                android:inputType="textPersonName"
+                android:textColorHint="@color/colorPrimary" />
 
-        <TextView
-            android:layout_marginTop="3dp"
-            android:textSize="@dimen/texxtViewSize"
-            android:id="@+id/valorcorid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:text="" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/btnbuscar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/editText3"
+                android:layout_alignEnd="@+id/viewbarra"
+                android:background="@drawable/ovalbutton"
+                app:srcCompat="@drawable/ic_search" />
 
+
+            <TextView
+                android:id="@+id/textdados"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btnbuscar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="DADOS"
+                android:textColor="#ccc" />
+
+            <View
+
+                android:id="@+id/viewbarra"
+                android:layout_width="270dp"
+                android:layout_height="1dp"
+                android:layout_below="@+id/textdados"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="5dp"
+                android:background="#ccc" />
+
+            <ScrollView
+                android:id="@+id/scrollView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/viewbarra"
+                android:padding="7dp">
+
+                <LinearLayout
+                    android:id="@+id/linearid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/placaVeiculo"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
+
+                    <TextView
+                        android:id="@+id/valorplacaId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text=""
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
+
+
+                    <TextView
+                        android:id="@+id/textmodeloid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/modeloVeiculo"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
+
+                    <TextView
+                        android:id="@+id/valormodeloid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text=""
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
+
+                    <TextView
+                        android:id="@+id/textmarcaid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/marcaVeiculo"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
+
+                    <TextView
+                        android:id="@+id/valormarcaid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text=""
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
+
+                    <TextView
+                        android:id="@+id/textcorid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/corVeiculo"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
+
+                    <TextView
+                        android:id="@+id/valorcorid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text=""
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
+                </LinearLayout>
+
+            </ScrollView>
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="290dp"
+                android:layout_marginTop="30dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/scrollView2"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/ovalbutton"
+                android:gravity="center"
+                android:text="Excluir" />
+
+
+        </RelativeLayout>
+        </LinearLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="290dp"
-        android:layout_height="wrap_content"
-        android:text="Excluir"
-        android:background="@drawable/ovalbutton"
-        android:layout_marginBottom="32dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
-
-
-
-</RelativeLayout>
+</LinearLayout>

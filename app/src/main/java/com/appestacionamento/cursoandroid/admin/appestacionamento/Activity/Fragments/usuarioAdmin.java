@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.AdmActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.CadastroUsuarioActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ConsultaUsuarioActivity;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ExcluirUsuarioActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ExcluirVeiculoActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 
 /**
@@ -61,15 +61,7 @@ public class usuarioAdmin extends Fragment {
             }
         });
 
-        //ao clicar no botao adicionar chama tela excluir usuario
-        excluirUsuario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ExcluirUsuarioActivity.class);
-                startActivity(intent);
-                getActivity().finish();
-            }
-        });
+
 
         return view;
     }
