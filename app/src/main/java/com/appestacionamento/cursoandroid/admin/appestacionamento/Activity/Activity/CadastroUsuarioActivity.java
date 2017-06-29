@@ -152,42 +152,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     try{
                                         if(task.isSuccessful()){
-
-
-                                            codificarEmail = Base64Custom.codificarBase64(email);
-                                            usuario.setEmail(email);
-                                            usuario.setNome(nome);
-                                            usuario.setTelefone(telefone);
-                                            usuario.setTipo(tipo);
-                                            usuario.setCpf(cpf);
-                                            //usuario.setPossuiNecessidadeEsp(possuiNecessidade);
-                                            usuario.setSenha(senha);
-                                            usuario.setStatus("ATIVO");
-                                            usuario.setUid(codificarEmail);
-
-
-                                            usuario.Create();
-
-                                            editTextNomeUsuario.setText(null);
-                                            editTextTelefoneUsuario.setText(null);
-                                            editTextEmailUsuario.setText(null);
-                                            editTextCpfUsuario.setText(null);
-
-                                            Toast.makeText(getApplicationContext(), "Novo usuário Registrado com sucesso!", Toast.LENGTH_LONG).show();
-
-                                            String emailAdm = preferencias.recuperaEmail(getApplicationContext()); //userDetails.getString("email", "");
-                                            String senhaAdm = preferencias.recuperaSenha(getApplicationContext()); //userDetails.getString("senha", "");
-                                            autenticacao.signInWithEmailAndPassword(emailAdm, senhaAdm)
-                                                    .addOnCompleteListener(CadastroUsuarioActivity.this, new OnCompleteListener<AuthResult>() {
-                                                        @Override
-                                                        public void onComplete(@NonNull Task<AuthResult> task) {
-                                                            if (!task.isSuccessful()) {
-                                                                Log.e("RELOGIN", "FAILED");
-                                                            } else {
-                                                                Log.e("RELOGIN", "SUCCESS");
-                                                            }
-                                                        }
-                                                    });
+                                            cadastraUsuario(preferencias);
                                         }
                                     }catch(Exception e){
 
@@ -261,5 +226,44 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         finish();
         super.onDestroy();
 
+    }
+
+    public void cadastraUsuario(Preferencias preferencias){
+
+
+        codificarEmail = Base64Custom.codificarBase64(email);
+        usuario.setEmail(email);
+        usuario.setNome(nome);
+        usuario.setTelefone(telefone);
+        usuario.setTipo(tipo);
+        usuario.setCpf(cpf);
+        //usuario.setPossuiNecessidadeEsp(possuiNecessidade);
+        usuario.setSenha(senha);
+        usuario.setStatus("ATIVO");
+        usuario.setUid(codificarEmail);
+
+
+        usuario.Create();
+
+        editTextNomeUsuario.setText(null);
+        editTextTelefoneUsuario.setText(null);
+        editTextEmailUsuario.setText(null);
+        editTextCpfUsuario.setText(null);
+
+        Toast.makeText(getApplicationContext(), "Novo usuário Registrado com sucesso!", Toast.LENGTH_LONG).show();
+
+        String emailAdm = preferencias.recuperaEmail(getApplicationContext()); //userDetails.getString("email", "");
+        String senhaAdm = preferencias.recuperaSenha(getApplicationContext()); //userDetails.getString("senha", "");
+        autenticacao.signInWithEmailAndPassword(emailAdm, senhaAdm)
+                .addOnCompleteListener(CadastroUsuarioActivity.this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (!task.isSuccessful()) {
+                            Log.e("RELOGIN", "FAILED");
+                        } else {
+                            Log.e("RELOGIN", "SUCCESS");
+                        }
+                    }
+                });
     }
 }
