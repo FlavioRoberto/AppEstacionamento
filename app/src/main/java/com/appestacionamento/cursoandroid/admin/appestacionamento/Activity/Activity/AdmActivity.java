@@ -13,21 +13,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Adapter.TabAdapter;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.SlidingTabLayout;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Usuario;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ConsultaUsuarioActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
 public class AdmActivity extends AppCompatActivity {
     private Toolbar toolbar;
@@ -126,7 +119,7 @@ public class AdmActivity extends AppCompatActivity {
 
 
     private void editaUsuario(){
-        Intent intent = new Intent(getApplicationContext(), EditaDadosActivity.class);
+        Intent intent = new Intent(getApplicationContext(), EditaDadosUsuarioActivity.class);
         intent.putExtra(EDITNOME, editNome);
         intent.putExtra(EDITTELEFONE, editTelefone);
         intent.putExtra(EDITTIPO, editTipo);

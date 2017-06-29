@@ -35,6 +35,10 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     private String emailDatabase, codificaEmail;
     private Boolean flag = false, emailEncontrado = false;
 
+    private String cor, email, marca, modelo, placa, tipo, uid;
+    public static final String EDITCOR = "cor", EDITEMAIL = "email", EDITMODELO = "modelo", EDITPLACA = "placa",
+                        EDITTIPO = "tipo", EDITUID = "uid", EDITMARCA = "marca";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,6 +76,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
 
                 }else if(flag == false){
                     Toast.makeText(getApplicationContext(), "Nenhum veículo selecionado", Toast.LENGTH_LONG).show();
+                    return;
                 }
             }
         });
@@ -90,10 +95,19 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                     emailDatabase = postSnapshot.child("uid").getValue(String.class);
                     try{
                         if(emailDatabase.equals(codificaEmail)){
-                            textViewPlaca.setText(postSnapshot.child("placa").getValue(String.class));
-                            textViewModeloVeiculo.setText(postSnapshot.child("modelo").getValue(String.class));
-                            textViewMarcaVeiculo.setText(postSnapshot.child("marca").getValue(String.class));
-                            textViewCorVeiculo.setText(postSnapshot.child("cor").getValue(String.class));
+                            cor = postSnapshot.child("cor").getValue(String.class);
+                            email = postSnapshot.child("email").getValue(String.class);
+                            marca = postSnapshot.child("marca").getValue(String.class);
+                            modelo = postSnapshot.child("modelo").getValue(String.class);
+                            placa = postSnapshot.child("placa").getValue(String.class);
+                            tipo = postSnapshot.child("tipo").getValue(String.class);
+                            uid = postSnapshot.child("uid").getValue(String.class);
+
+
+                            textViewPlaca.setText(placa);
+                            textViewModeloVeiculo.setText(modelo);
+                            textViewMarcaVeiculo.setText(marca);
+                            textViewCorVeiculo.setText(cor);
                             emailEncontrado = true;
                             flag = true;
                             break;
@@ -115,7 +129,15 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
 
     //Método Edita veiculo
     public void editaVeiculo(){
-
+        Intent intent = new Intent(getApplicationContext(), EditaDadosVeiculo.class);
+        intent.putExtra(EDITCOR, cor);
+        intent.putExtra(EDITEMAIL, email);
+        intent.putExtra(EDITMODELO, modelo);
+        intent.putExtra(EDITPLACA, placa);
+        intent.putExtra(EDITTIPO, tipo);
+        intent.putExtra(EDITUID, uid);
+        intent.putExtra(EDITMARCA, marca);
+        startActivity(intent);
     }
 
 

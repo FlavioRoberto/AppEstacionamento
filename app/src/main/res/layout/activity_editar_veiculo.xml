@@ -48,28 +48,6 @@
                 android:textSize="@dimen/TextSize" />
 
             <TextView
-                android:id="@+id/EditartelefoneId_cadastro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:text="@string/emailUsuarioDono"
-                android:textSize="@dimen/TextSize" />
-
-            <EditText
-                android:id="@+id/EditarEmailDonoId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-                android:background="@drawable/ovaltext"
-                android:ems="10"
-                android:inputType="textEmailAddress"
-                android:padding="@dimen/paddingEditText"
-                android:textAlignment="center"
-                android:textColor="#000000"
-                android:textSize="@dimen/TextSize" />
-
-            <TextView
                 android:id="@+id/EditarTextMarcaVeiculo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -71,7 +71,7 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
             public void onClick(View v) {
                 if(flag == true){
                     flag = false;
-                    Intent intent = new Intent(getApplicationContext(), EditaDadosActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), EditaDadosUsuarioActivity.class);
                     intent.putExtra(EDITNOME, nome);
                     intent.putExtra(EDITTIPO, tipo);
                     intent.putExtra(EDITCELULAR, celular);

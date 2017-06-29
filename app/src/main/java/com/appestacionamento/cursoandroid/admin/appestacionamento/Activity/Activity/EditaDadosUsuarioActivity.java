@@ -22,7 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import  com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.AdmActivity;
 
-public class EditaDadosActivity extends AppCompatActivity {
+public class EditaDadosUsuarioActivity extends AppCompatActivity {
 
     private EditText editTextNome, editTextTelefone, editTextCpf;
     private Spinner  spinner;
@@ -136,6 +136,7 @@ public class EditaDadosActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Atualização realizada!", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(getApplicationContext(), AdmActivity.class);
             startActivity(intent);
+            finish();
         }
 
     }
