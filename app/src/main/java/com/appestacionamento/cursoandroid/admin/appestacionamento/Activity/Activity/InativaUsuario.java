@@ -1,7 +1,12 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -21,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class InativaUsuario extends AppCompatActivity {
+public class InativaUsuario extends AppCompatActivity implements IActivity{
 
     private String emailDatabase,codificaEmail, emailUsuario;
     private String mudaStatus, cpf, email, nome, senha, telefone, tipo, uid;
@@ -33,12 +38,15 @@ public class InativaUsuario extends AppCompatActivity {
     private CheckBox statuscheck;
     private Button btnSalvar;
     private ImageView btnPesquisar;
+    private Toolbar toolbar;
 
+    //INICIO OnCreate
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inativa_usuario);
-
+        flag = false;
+        emailEncontrado = false;
         editTextBuscarEmailUsuario = (EditText) findViewById(R.id.inativaEditConsultaId);
         nomeText = (TextView) findViewById(R.id.InativaValorNomeId);
         cpfText = (TextView) findViewById(R.id.InativaValorCpfid);
@@ -49,6 +57,14 @@ public class InativaUsuario extends AppCompatActivity {
         statuscheck = (CheckBox) findViewById(R.id.InativaCheckBoxStatus);
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
+        //TOOLBAR
+        toolbar =(Toolbar)findViewById(R.id.toolbarId);
+        toolbar.setTitle("Inativar usuário");
+        setSupportActionBar(toolbar);
+
+        //FIM TOOLBAR
+
+
         //INICIO botao pesquisar
         btnPesquisar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +72,7 @@ public class InativaUsuario extends AppCompatActivity {
                 nomeText.setText(null);
                 cpfText.setText(null);
                 tipoText.setText(null);
+                statuscheck.setChecked(false);
                 pesquisaUsuario();
                 //  Usuario teste = new Usuario();
 
@@ -63,6 +80,7 @@ public class InativaUsuario extends AppCompatActivity {
         });
         //FIM botao pesquisar
 
+        //INICIO botao salvar
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +94,7 @@ public class InativaUsuario extends AppCompatActivity {
             }
         });
     }
+    //FIM onCreate
 
 
     //INICIO PESQUISA USUARIO
@@ -134,7 +153,6 @@ public class InativaUsuario extends AppCompatActivity {
     //FIM PESQUISA USUARIO
 
 
-
     public void salvarStatus(){
         if(statuscheck.isChecked()){
             mudaStatus = "INATIVADO";
@@ -154,6 +172,47 @@ public class InativaUsuario extends AppCompatActivity {
         databaseReference.setValue(usuario);
         Toast.makeText(getApplicationContext(), "Atualização realizada!", Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_anterior: voltar();break;
+            case R.id.menu_meusdados: break;
+            case R.id.menu_sair: sair();break;
+            default:break;
+        }
+        return true;
+    }
+
+    //invoca os itens no menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_admin,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    //desloga usuario e vai pra tela de login
+    public void sair(){
+        Usuario usuario = new Usuario();
+        usuario.desloga();
+        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void adicionaMascara() {
+
+    }
+
+    //retorna para a página inicial
+    public  void voltar(){
+        Intent intent = new Intent(getApplicationContext(),AdmActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 }
 
 
