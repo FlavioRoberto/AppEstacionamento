@@ -260,8 +260,8 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
             databaseReferenceUsers.removeValue();
             databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo").child(uid);
             databaseReferenceVeiculo.removeValue();
-            Toast.makeText(ConsultaUsuarioActivity.this, email, Toast.LENGTH_LONG).show();
-            Toast.makeText(ConsultaUsuarioActivity.this, senha, Toast.LENGTH_LONG).show();
+         //   Toast.makeText(ConsultaUsuarioActivity.this, email, Toast.LENGTH_LONG).show();
+           // Toast.makeText(ConsultaUsuarioActivity.this, senha, Toast.LENGTH_LONG).show();
 
             //autentication
                 autenticacao.signOut();
