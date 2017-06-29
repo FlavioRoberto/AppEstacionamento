@@ -1,6 +1,8 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -31,9 +33,10 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         private ImageView imageViewBuscarUsuario;
         private EditText editTextBuscarEmailUsuario;
         private String codificaEmail, emailDatabase;
-        private DatabaseReference databaseReference;
+        private DatabaseReference databaseReferenceUsers, databaseReferenceVeiculo;
         private TextView textViewNomeUsuario, textViewCelularUsuario, textViewCpfUsuario, textViewTipoUsuario;
         private Boolean flag = false, emailEncontrado = false;
+        private AlertDialog.Builder builder;
 
         //Valores que serão enviados para a activity de Edição de dados
         public static final String EDITNOME = "nome", EDITTIPO = "tipo", EDITCELULAR = "celular", EDITCPF = "cpf",
@@ -63,7 +66,10 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         textViewCpfUsuario = (TextView) findViewById(R.id.valorCpfid);
         textViewTipoUsuario = (TextView) findViewById(R.id.valorTipoid);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        builder = new AlertDialog.Builder(this);
+
+        databaseReferenceUsers = FirebaseDatabase.getInstance().getReference("users");
+
 
         //ao clicar chama tela editar daddos de usuario
         btnEditar.setOnClickListener(new View.OnClickListener() {
@@ -96,13 +102,48 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
                 pesquisaUsuario();
             }
         });
+
+        //Botao Excluir (Ativa quando a busca é realizada)
+        btnExcluir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(flag == true){
+                    builder.setTitle("Excluir Usuario");
+                    builder.setMessage("Tem certeza que deseja excluir o Usuario?");
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int which) {
+                            databaseReferenceUsers = FirebaseDatabase.getInstance().getReference("users").child(uid);
+                            databaseReferenceUsers.removeValue();
+                            databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo").child(uid);
+                            databaseReferenceVeiculo.removeValue();
+                            Toast.makeText(getApplicationContext(), "Usuario Excluído!", Toast.LENGTH_SHORT).show();
+                            finish();
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+                else if(flag == false){
+                    Toast.makeText(getApplicationContext(), "Nenhum Veículo pesquisado", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+        });
     }
 
     //Método Busca Usuario
     public void pesquisaUsuario(){
         final String emailUsuario = editTextBuscarEmailUsuario.getText().toString().toLowerCase().trim();
         codificaEmail = Base64Custom.codificarBase64(emailUsuario);
-        Query query = databaseReference;
+        Query query = databaseReferenceUsers;
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
