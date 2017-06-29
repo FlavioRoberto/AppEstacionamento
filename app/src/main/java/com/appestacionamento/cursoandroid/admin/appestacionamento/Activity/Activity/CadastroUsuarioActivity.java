@@ -156,7 +156,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
                                         }
                                     }catch(Exception e){
 
-                                        Log.v("E_VALUE", "Erro: "+ e);
+                                        Toast.makeText(CadastroUsuarioActivity.this,"Nao foi possível cadastrar: "+e.getMessage(),Toast.LENGTH_LONG).show();
                                     }
                                     progressDialog.dismiss();
                                 }
