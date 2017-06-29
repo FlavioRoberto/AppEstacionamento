@@ -51,13 +51,12 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
     private Usuario usuario = new Usuario();
     private DatabaseReference databaseReference = usuario.getFirebaseReferences();
     private FirebaseAuth autenticacao = usuario.getAutenticacao();
-    private String nome, telefone, email, tipo, cpf, senha = "200200", emailCurrentUser, senhaCurrentUser, itemSelect, status = "ATIVO", codificarEmail, cpfDatabase;
-    private String possuiNecessidade;
+    private String nome, telefone, email, tipo, cpf, senha = "200200", emailAdm, senhaAdm, itemSelect, status = "ATIVO", codificarEmail;
     private ProgressDialog progressDialog;
     private Toolbar toolbar;
     private Spinner spinner;
-    private ViewPager viewPager;
     private Boolean validaCpf = false;
+    private Preferencias preferencias;
 
 
 
@@ -78,7 +77,6 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         editTextEmailUsuario = (EditText) findViewById(R.id.editemailid_cadastro);
         spinner = (Spinner)findViewById(R.id.spinnerTipo);
         editTextCpfUsuario = (EditText) findViewById(R.id.editTextCpfEditaUsuario);
-        //checkBoxPossuiNecessidade = (CheckBox) findViewById(R.id.checkBox_cadastro);
         buttonInserirUsuario = (Button) findViewById(R.id.button_cadastro);
         progressDialog = new ProgressDialog(this);
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
@@ -108,10 +106,6 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
             }
         });
 
-        Intent intent = getIntent();
-
-        senhaCurrentUser = intent.getStringExtra(AdmActivity.SENHA_ADM);
-
         // metodo para adicionar mascara aos campos
         adicionaMascara();
 
@@ -132,20 +126,13 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         email = editTextEmailUsuario.getText().toString().trim().toLowerCase();
         cpf = editTextCpfUsuario.getText().toString().trim();
 
-        /*if(checkBoxPossuiNecessidade.isChecked()){
-            possuiNecessidade = "SIM";
-        }else{
-            possuiNecessidade = "NAO";
-        }*/
 
         if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(senha) && !TextUtils.isEmpty(nome) && !TextUtils.isEmpty(telefone) &&
         !TextUtils.isEmpty(tipo) && !TextUtils.isEmpty(cpf)){
             progressDialog.setCanceledOnTouchOutside(false);
             progressDialog.setMessage("Inserindo...");
             progressDialog.show();
-            emailCurrentUser = usuario.getEmailCurrentUser();
-            final Preferencias preferencias = new Preferencias(CadastroUsuarioActivity.this);
-           // preferencias.salvarusuarioPreferences(emailCurrentUser, senhaCurrentUser);
+            preferencias = new Preferencias(CadastroUsuarioActivity.this);
                     autenticacao.createUserWithEmailAndPassword(email, senha)
                             .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                                 @Override
@@ -251,8 +238,10 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
 
         Toast.makeText(getApplicationContext(), "Novo usuário Registrado com sucesso!", Toast.LENGTH_LONG).show();
 
-        String emailAdm = preferencias.recuperaEmail(getApplicationContext()); //userDetails.getString("email", "");
-        String senhaAdm = preferencias.recuperaSenha(getApplicationContext()); //userDetails.getString("senha", "");
+        emailAdm = preferencias.recuperaEmail(getApplicationContext()); //userDetails.getString("email", "");
+        senhaAdm = preferencias.recuperaSenha(getApplicationContext()); //userDetails.getString("senha", "");
+
+
         autenticacao.signInWithEmailAndPassword(emailAdm, senhaAdm)
                 .addOnCompleteListener(CadastroUsuarioActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
