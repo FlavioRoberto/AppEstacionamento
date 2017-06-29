@@ -2,6 +2,7 @@ package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Acti
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -66,8 +67,6 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         textViewCpfUsuario = (TextView) findViewById(R.id.valorCpfid);
         textViewTipoUsuario = (TextView) findViewById(R.id.valorTipoid);
 
-        builder = new AlertDialog.Builder(this);
-
         databaseReferenceUsers = FirebaseDatabase.getInstance().getReference("users");
 
 
@@ -108,31 +107,11 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
             @Override
             public void onClick(View v) {
                 if(flag == true){
-                    builder.setTitle("Excluir Usuario");
-                    builder.setMessage("Tem certeza que deseja excluir o Usuario?");
-                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-
-                        public void onClick(DialogInterface dialog, int which) {
-                            databaseReferenceUsers = FirebaseDatabase.getInstance().getReference("users").child(uid);
-                            databaseReferenceUsers.removeValue();
-                            databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo").child(uid);
-                            databaseReferenceVeiculo.removeValue();
-                            Toast.makeText(getApplicationContext(), "Usuario Excluído!", Toast.LENGTH_SHORT).show();
-                            finish();
-                            dialog.dismiss();
-                        }
-                    });
-                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-                    AlertDialog alert = builder.create();
-                    alert.show();
-                }
+                    //metodo que chama a dialog e exclui o usuário
+                        abreConfirmacaoExclusao();
+                   }
                 else if(flag == false){
-                    Toast.makeText(getApplicationContext(), "Nenhum Veículo pesquisado", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Nenhum Usuário pesquisado", Toast.LENGTH_SHORT).show();
                     return;
                 }
             }
@@ -227,5 +206,36 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         Intent intent = new Intent(getApplicationContext(),AdmActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void abreConfirmacaoExclusao(){
+        builder = new AlertDialog.Builder(this);
+        builder.setTitle("Excluir Usuario");
+        builder.setMessage("Tem certeza que deseja excluir o Usuario?");
+        builder.setCancelable(false);
+        builder.setIcon(android.R.drawable.ic_dialog_alert);
+
+        builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                databaseReferenceUsers = FirebaseDatabase.getInstance().getReference("users").child(uid);
+                databaseReferenceUsers.removeValue();
+                databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo").child(uid);
+                databaseReferenceVeiculo.removeValue();
+                Toast.makeText(getApplicationContext(), "Usuario Excluído!", Toast.LENGTH_SHORT).show();
+                finish();
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+
     }
 }
