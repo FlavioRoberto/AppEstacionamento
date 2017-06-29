@@ -242,7 +242,6 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         usuario.setStatus("ATIVO");
         usuario.setUid(codificarEmail);
 
-
         usuario.Create();
 
         editTextNomeUsuario.setText(null);

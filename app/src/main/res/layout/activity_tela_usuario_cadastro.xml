@@ -65,7 +65,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/ovaltext"
             android:ems="10"
-            android:inputType="number"
+            android:inputType="phone"
             android:textColor="#000000"/>
 
         <TextView

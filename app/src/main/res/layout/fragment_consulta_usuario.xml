@@ -37,9 +37,8 @@
                     android:background="@drawable/ovaltext"
                     android:ems="10"
                     android:gravity="center"
-
                     android:hint="Informe email"
-                    android:inputType="textPersonName"
+                    android:inputType="textEmailAddress"
                     android:textColorHint="@color/colorPrimary" />
 
                 <ImageView
