@@ -66,7 +66,6 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         textViewCelularUsuario = (TextView) findViewById(R.id.valorCelularid);
         textViewCpfUsuario = (TextView) findViewById(R.id.valorCpfid);
         textViewTipoUsuario = (TextView) findViewById(R.id.valorTipoid);
-
         databaseReferenceUsers = FirebaseDatabase.getInstance().getReference("users");
 
 
@@ -76,17 +75,8 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
             public void onClick(View v) {
                 if(flag == true){
                     flag = false;
-                    Intent intent = new Intent(getApplicationContext(), EditaDadosUsuarioActivity.class);
-                    intent.putExtra(EDITNOME, nome);
-                    intent.putExtra(EDITTIPO, tipo);
-                    intent.putExtra(EDITCELULAR, celular);
-                    intent.putExtra(EDITCPF, cpf);
-                    intent.putExtra(EDITEMAIL, email);
-                    intent.putExtra(EDITSENHA, senha);
-                    intent.putExtra(EDITSTATUS, status);
-                    intent.putExtra(EDITUID, uid);
-                    startActivity(intent);
-                    finish();
+                    putEtraEditar();
+
                 }else if(flag == false){
                     Toast.makeText(getApplicationContext(), "Nenhum usuário pesquisado", Toast.LENGTH_LONG).show();
                     return;
@@ -176,7 +166,6 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         return true;
     }
 
-
     //invoca os itens no menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -184,8 +173,6 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         inflater.inflate(R.menu.menu_admin,menu);
         return super.onCreateOptionsMenu(menu);
     }
-
-
 
     //desloga usuario e vai pra tela de login
     public void sair(){
@@ -214,17 +201,12 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         builder.setMessage("Tem certeza que deseja excluir o Usuario?");
         builder.setCancelable(false);
         builder.setIcon(android.R.drawable.ic_dialog_alert);
-
         builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
-                databaseReferenceUsers = FirebaseDatabase.getInstance().getReference("users").child(uid);
-                databaseReferenceUsers.removeValue();
-                databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo").child(uid);
-                databaseReferenceVeiculo.removeValue();
-                Toast.makeText(getApplicationContext(), "Usuario Excluído!", Toast.LENGTH_SHORT).show();
-                finish();
+                excluiUsuario();
                 dialog.dismiss();
+                finish();
             }
         });
         builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
@@ -236,6 +218,29 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
 
         AlertDialog alert = builder.create();
         alert.show();
+
+    }
+
+    public void putEtraEditar(){
+        Intent intent = new Intent(getApplicationContext(), EditaDadosUsuarioActivity.class);
+        intent.putExtra(EDITNOME, nome);
+        intent.putExtra(EDITTIPO, tipo);
+        intent.putExtra(EDITCELULAR, celular);
+        intent.putExtra(EDITCPF, cpf);
+        intent.putExtra(EDITEMAIL, email);
+        intent.putExtra(EDITSENHA, senha);
+        intent.putExtra(EDITSTATUS, status);
+        intent.putExtra(EDITUID, uid);
+        startActivity(intent);
+        finish();
+    }
+
+    public void excluiUsuario(){
+        databaseReferenceUsers = FirebaseDatabase.getInstance().getReference("users").child(uid);
+        databaseReferenceUsers.removeValue();
+        databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo").child(uid);
+        databaseReferenceVeiculo.removeValue();
+        Toast.makeText(getApplicationContext(), "Usuario Excluído!", Toast.LENGTH_SHORT).show();
 
     }
 }
