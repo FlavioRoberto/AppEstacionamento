@@ -53,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth autenticacao = user.getAutenticacao();
     private DatabaseReference databaseReference = user.getFirebaseReferences();
     private FirebaseAuth.AuthStateListener mAuthListener;
-
+    private Preferencias preferencias;
     private ProgressDialog progressDialog;
     private String codificaEmail, email, senha;
     private Boolean authFlag = false;
@@ -70,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        preferencias = new Preferencias(getApplicationContext());
         editTextEmail = (EditText) findViewById(R.id.emailId);
         editTextSenha = (EditText) findViewById(R.id.senhaId);
         buttonLogin = (Button) findViewById(R.id.logarId);
@@ -123,6 +124,7 @@ public class LoginActivity extends AppCompatActivity {
     private void logar() {
         email = editTextEmail.getText().toString().trim();
         senha = editTextSenha.getText().toString().trim();
+
         if (TextUtils.isEmpty(email) || TextUtils.isEmpty(senha)) {
             Toast.makeText(LoginActivity.this, "Campos vazios", Toast.LENGTH_LONG).show();
         } else {
@@ -142,6 +144,9 @@ public class LoginActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             //Toast.makeText(LoginActivity.this,e.getMessage(), Toast.LENGTH_LONG).show();
                         }
+                    }else {
+                        preferencias.salvarusuarioPreferences(email,senha);
+                       // Toast.makeText(LoginActivity.this,preferencias.recuperaEmail(LoginActivity.this),Toast.LENGTH_LONG).show();
                     }
                 }
             });
@@ -197,6 +202,7 @@ public class LoginActivity extends AppCompatActivity {
                                 } catch (Exception e) {
                                     //Toast.makeText(getApplicationContext(), "Erro: " + e, Toast.LENGTH_LONG).show();
                                     progressDialog.dismiss();
+
                                 }
                             }
 

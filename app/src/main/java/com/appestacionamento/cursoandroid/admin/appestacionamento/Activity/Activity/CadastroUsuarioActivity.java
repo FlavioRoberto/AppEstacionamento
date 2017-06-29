@@ -145,7 +145,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
             progressDialog.show();
             emailCurrentUser = usuario.getEmailCurrentUser();
             final Preferencias preferencias = new Preferencias(CadastroUsuarioActivity.this);
-            preferencias.salvarusuarioPreferences(emailCurrentUser, senhaCurrentUser);
+           // preferencias.salvarusuarioPreferences(emailCurrentUser, senhaCurrentUser);
                     autenticacao.createUserWithEmailAndPassword(email, senha)
                             .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                                 @Override

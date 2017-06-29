@@ -3,6 +3,7 @@ package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Acti
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,9 +18,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Usuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseNetworkException;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,14 +47,17 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         private EditText editTextBuscarEmailUsuario;
         private String codificaEmail, emailDatabase;
         private DatabaseReference databaseReferenceUsers, databaseReferenceVeiculo;
+
+        private FirebaseAuth autenticacao = configuracaoFirebase.getFirebaseAutenticacao();
         private TextView textViewNomeUsuario, textViewCelularUsuario, textViewCpfUsuario, textViewTipoUsuario;
         private Boolean flag = false, emailEncontrado = false;
         private AlertDialog.Builder builder;
+        private Preferencias preferencias;
 
         //Valores que serão enviados para a activity de Edição de dados
         public static final String EDITNOME = "nome", EDITTIPO = "tipo", EDITCELULAR = "celular", EDITCPF = "cpf",
                             EDITEMAIL = "email", EDITSENHA = "senha", EDITSTATUS = "status", EDITUID = "uid";
-        private String nome, tipo, celular, cpf, email, senha, status, uid;
+        private String nome,senhaPreference,emailPreference, tipo, celular, cpf, email, senha, status, uid;
 
 
     @Override
@@ -57,7 +72,7 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         setSupportActionBar(toolbar);
         // FIM TOOLBAR
 
-
+        preferencias = new Preferencias(getApplicationContext());
         btnExcluir = (Button) findViewById(R.id.btnExcluir);
         btnEditar = (Button) findViewById(R.id.btnEditar);
         imageViewBuscarUsuario = (ImageView) findViewById(R.id.btnbuscar);
@@ -67,6 +82,8 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         textViewCpfUsuario = (TextView) findViewById(R.id.valorCpfid);
         textViewTipoUsuario = (TextView) findViewById(R.id.valorTipoid);
         databaseReferenceUsers = FirebaseDatabase.getInstance().getReference("users");
+        senhaPreference = preferencias.recuperaSenha(ConsultaUsuarioActivity.this);
+        emailPreference = preferencias.recuperaEmail(ConsultaUsuarioActivity.this);
 
 
         //ao clicar chama tela editar daddos de usuario
@@ -204,6 +221,7 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
 
             public void onClick(DialogInterface dialog, int which) {
                 excluiUsuario();
+                logaAdm();
                 dialog.dismiss();
                 finish();
             }
@@ -235,11 +253,60 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
     }
 
     public void excluiUsuario(){
-        databaseReferenceUsers = FirebaseDatabase.getInstance().getReference("users").child(uid);
-        databaseReferenceUsers.removeValue();
-        databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo").child(uid);
-        databaseReferenceVeiculo.removeValue();
-        Toast.makeText(getApplicationContext(), "Usuario Excluído!", Toast.LENGTH_SHORT).show();
+
+        try {
+            //banco
+            databaseReferenceUsers = FirebaseDatabase.getInstance().getReference("users").child(uid);
+            databaseReferenceUsers.removeValue();
+            databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo").child(uid);
+            databaseReferenceVeiculo.removeValue();
+            Toast.makeText(ConsultaUsuarioActivity.this, email, Toast.LENGTH_LONG).show();
+            Toast.makeText(ConsultaUsuarioActivity.this, senha, Toast.LENGTH_LONG).show();
+
+            //autentication
+                autenticacao.signOut();
+
+                autenticacao.signInWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = autenticacao.getCurrentUser();
+                            user.delete().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (!task.isSuccessful()) {
+                                        Toast.makeText(ConsultaUsuarioActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                    }else{
+                                        Toast.makeText(getApplicationContext(), "Usuario Excluído!", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                            autenticacao.signOut();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Não Logou no usuario para excluir", Toast.LENGTH_LONG).show();
+
+                        }
+                    }
+                });
+
+
+
+        }catch (Exception e){
+            Toast.makeText(ConsultaUsuarioActivity.this,"Não foi possível excluir usuário", Toast.LENGTH_LONG).show();
+
+        }
+
+    }
+
+    public void logaAdm(){
+        autenticacao.signInWithEmailAndPassword(emailPreference, senhaPreference).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if(!task.isSuccessful()){
+                    Toast.makeText(ConsultaUsuarioActivity.this,"Não logou no usuario adm",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
     }
 }
