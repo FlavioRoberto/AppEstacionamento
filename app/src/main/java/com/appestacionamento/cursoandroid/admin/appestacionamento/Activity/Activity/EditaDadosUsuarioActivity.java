@@ -54,16 +54,8 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity {
         editTextCpf = (EditText) findViewById(R.id.editTextCpfEditaUsuario);
         buttonAtualizar = (Button) findViewById(R.id.buttonAtualizarUsuario);
 
-        Intent intent = getIntent();
-        nome = intent.getStringExtra(ConsultaUsuarioActivity.EDITNOME);
-        telefone = intent.getStringExtra(ConsultaUsuarioActivity.EDITCELULAR);
-        cpf = intent.getStringExtra(ConsultaUsuarioActivity.EDITCPF);
-        tipo = intent.getStringExtra(ConsultaUsuarioActivity.EDITTIPO);
-        uid = intent.getStringExtra(ConsultaUsuarioActivity.EDITUID);
-        email = intent.getStringExtra(ConsultaUsuarioActivity.EDITEMAIL);
-        senha = intent.getStringExtra(ConsultaUsuarioActivity.EDITSENHA);
-        status = intent.getStringExtra(ConsultaUsuarioActivity.EDITSTATUS);
-
+        //pega os valores passado da viwe consultar
+        pegaExtra();
 
         SpinnerAdapter adapter = spinner.getAdapter();
         spinner.setAdapter(adapter);
@@ -190,7 +182,18 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    public void pegaExtra(){
+        Intent intent = getIntent();
+        nome = intent.getStringExtra(ConsultaUsuarioActivity.EDITNOME);
+        telefone = intent.getStringExtra(ConsultaUsuarioActivity.EDITCELULAR);
+        cpf = intent.getStringExtra(ConsultaUsuarioActivity.EDITCPF);
+        tipo = intent.getStringExtra(ConsultaUsuarioActivity.EDITTIPO);
+        uid = intent.getStringExtra(ConsultaUsuarioActivity.EDITUID);
+        email = intent.getStringExtra(ConsultaUsuarioActivity.EDITEMAIL);
+        senha = intent.getStringExtra(ConsultaUsuarioActivity.EDITSENHA);
+        status = intent.getStringExtra(ConsultaUsuarioActivity.EDITSTATUS);
 
+    }
 
     //desloga usuario e vai pra tela de login
     public void sair(){

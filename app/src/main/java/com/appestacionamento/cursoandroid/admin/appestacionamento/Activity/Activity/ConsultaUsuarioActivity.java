@@ -52,10 +52,10 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         setContentView(R.layout.fragment_consulta_usuario);
 
         //invocacao do toolbar
-
         toolbar = (Toolbar) findViewById(R.id.toolbarId);
         toolbar.setTitle("Consulta de Usuário");
         setSupportActionBar(toolbar);
+        // FIM TOOLBAR
 
 
         btnExcluir = (Button) findViewById(R.id.btnExcluir);
@@ -154,7 +154,6 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
     }
 
     //seleciona o metodo de acordo com o click nas opções do menu
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
