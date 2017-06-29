@@ -1,7 +1,9 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -30,10 +32,11 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     private EditText editTextEmailDonoVeiculo;
     private ImageView imageViewBuscarVeiculo;
     private TextView textViewPlaca, textViewModeloVeiculo, textViewMarcaVeiculo, textViewCorVeiculo;
-    private Button buttonEditar;
+    private Button buttonEditar, buttonExcluir;
     private DatabaseReference databaseReferenceVeiculo;
     private String emailDatabase, codificaEmail;
     private Boolean flag = false, emailEncontrado = false;
+    private AlertDialog.Builder builder;
 
     private String cor, email, marca, modelo, placa, tipo, uid;
     public static final String EDITCOR = "cor", EDITEMAIL = "email", EDITMODELO = "modelo", EDITPLACA = "placa",
@@ -57,6 +60,9 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         textViewMarcaVeiculo = (TextView) findViewById(R.id.valormarcaid);
         textViewCorVeiculo = (TextView) findViewById(R.id.valorcorid);
         buttonEditar = (Button) findViewById(R.id.btnEditar);
+        buttonExcluir = (Button) findViewById(R.id.btnExcluir);
+
+        builder = new AlertDialog.Builder(this);
 
         //Botao para Buscar veiculo
         imageViewBuscarVeiculo.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +87,38 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
             }
         });
 
+        //Botao Excluir (Ativa quando a busca é realizada)
+        buttonExcluir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(flag == true){
+                    builder.setTitle("Excluir Veículo");
+                    builder.setMessage("Tem certeza que deseja excluir o Veículo?");
+                    builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int which) {
+                            databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo").child(uid);
+                            databaseReferenceVeiculo.removeValue();
+                            Toast.makeText(getApplicationContext(), "Veículo Excluído!", Toast.LENGTH_SHORT).show();
+                            finish();
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                }
+                else if(flag == false){
+                    Toast.makeText(getApplicationContext(), "Nenhum Veículo pesquisado", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+        });
     }
 
     //Metodo para Buscar veiculo
