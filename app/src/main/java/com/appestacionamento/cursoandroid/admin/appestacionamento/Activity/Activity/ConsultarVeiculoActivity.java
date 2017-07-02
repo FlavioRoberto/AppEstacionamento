@@ -155,7 +155,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                 }
                 if(emailEncontrado == false){
                     Toast.makeText(getApplicationContext(), "Email nao encontrado", Toast.LENGTH_LONG).show();
-                    finish();
+                    //finish();
                 }
             }
             @Override

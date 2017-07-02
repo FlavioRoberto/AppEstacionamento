@@ -206,7 +206,7 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity {
 
     //retorna para a página inicial
     public  void voltar(){
-        Intent intent = new Intent(getApplicationContext(),AdmActivity.class);
+        Intent intent = new Intent(getApplicationContext(),ConsultaUsuarioActivity.class);
         startActivity(intent);
         finish();
     }

@@ -46,7 +46,7 @@ public class InativaUsuario extends AppCompatActivity implements IActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inativa_usuario);
         flag = false;
-        emailEncontrado = false;
+       // emailEncontrado = false;
         editTextBuscarEmailUsuario = (EditText) findViewById(R.id.inativaEditConsultaId);
         nomeText = (TextView) findViewById(R.id.InativaValorNomeId);
         cpfText = (TextView) findViewById(R.id.InativaValorCpfid);
@@ -110,44 +110,50 @@ public class InativaUsuario extends AppCompatActivity implements IActivity{
                         for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                             emailDatabase = postSnapshot.child("uid").getValue(String.class);
                             try{
-                                if(emailDatabase.equals(codificaEmail)){
-                                    cpf = postSnapshot.child("cpf").getValue(String.class);
-                                    email = postSnapshot.child("email").getValue(String.class);
-                                    nome = postSnapshot.child("nome").getValue(String.class);
-                                    senha = postSnapshot.child("senha").getValue(String.class);
-                                    mudaStatus = postSnapshot.child("status").getValue(String.class);
-                                    telefone = postSnapshot.child("telefone").getValue(String.class);
-                                    tipo = postSnapshot.child("tipo").getValue(String.class);
-                                    uid = postSnapshot.child("uid").getValue(String.class);
-                                    nomeText.setText(nome);
-                                    cpfText.setText(cpf);
-                                    tipoText.setText(tipo);
 
-                                    emailEncontrado = true;
-                                    if(mudaStatus.equals("INATIVADO")){
-                                        statuscheck.setChecked(true);
-                                    }else if(mudaStatus.equals("ATIVADO")){
-                                        statuscheck.setChecked(false);
+
+                                    if (emailDatabase.equals(codificaEmail)) {
+                                        cpf = postSnapshot.child("cpf").getValue(String.class);
+                                        email = postSnapshot.child("email").getValue(String.class);
+                                        nome = postSnapshot.child("nome").getValue(String.class);
+                                        senha = postSnapshot.child("senha").getValue(String.class);
+                                        mudaStatus = postSnapshot.child("status").getValue(String.class);
+                                        telefone = postSnapshot.child("telefone").getValue(String.class);
+                                        tipo = postSnapshot.child("tipo").getValue(String.class);
+                                        uid = postSnapshot.child("uid").getValue(String.class);
+                                        nomeText.setText(nome);
+                                        cpfText.setText(cpf);
+                                        tipoText.setText(tipo);
+                                        flag = true;
+                                        emailEncontrado = true;
+                                        if (mudaStatus.equals("INATIVADO")) {
+                                            statuscheck.setChecked(true);
+                                        } else if (mudaStatus.equals("ATIVADO")) {
+                                            statuscheck.setChecked(false);
+                                        }
+                                        break;
+                                    }else {
+                                        emailEncontrado = false;
                                     }
-                                    flag = true;
-                                    break;
-                                }
                             }catch (Exception e){
-                            }
-                        }
+                              //  Toast.makeText(getApplicationContext(), "Email nao encontrado", Toast.LENGTH_LONG).show();
+                            }//catch
+                        }//for
+
                         if(emailEncontrado == false){
-                            Toast.makeText(getApplicationContext(), "Email nao encontrado", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Email nao encontrado", Toast.LENGTH_LONG).show();
                         }
+
                     }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
-
+                        Toast.makeText(InativaUsuario.this,"Erro de conexão",Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         }else{
             Toast.makeText(getApplicationContext(), "Campo de email vazio!", Toast.LENGTH_LONG).show();
-            return;
+
         }
     }
     //FIM PESQUISA USUARIO
