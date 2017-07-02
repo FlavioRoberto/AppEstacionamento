@@ -123,6 +123,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
 
     //Metodo para Buscar veiculo
     public void buscaVeiculo(){
+
         String emailVeiculo = editTextEmailDonoVeiculo.getText().toString().toLowerCase().trim();
         codificaEmail = Base64Custom.codificarBase64(emailVeiculo);
         Query query = databaseReferenceVeiculo;
@@ -176,6 +177,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         intent.putExtra(EDITUID, uid);
         intent.putExtra(EDITMARCA, marca);
         startActivity(intent);
+        finish();
     }
 
 
