@@ -170,6 +170,8 @@ public class EditaDadosVeiculo extends AppCompatActivity implements IActivity{
         FirebaseAuth auth = configuracaoFirebase.getFirebaseAutenticacao();
         auth.signOut();
         finish();
+        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+        startActivity(intent);
     }
 
     @Override
