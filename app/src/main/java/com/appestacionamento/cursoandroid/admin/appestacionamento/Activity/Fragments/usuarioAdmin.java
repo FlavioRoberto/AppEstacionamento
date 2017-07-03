@@ -14,6 +14,7 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activ
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.CadastroUsuarioActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ConsultaUsuarioActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.InativaUsuario;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 
 /**

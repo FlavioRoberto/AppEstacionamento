@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.AdmActivity;
@@ -19,6 +20,7 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activ
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -40,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText editTextEmail, editTextSenha;
     private Button buttonLogin;
+    private TextView textViewRedefinirSenha;
     private modelUsuario user = new modelUsuario();
     private FirebaseAuth autenticacao = user.getAutenticacao();
     private DatabaseReference databaseReference = user.getFirebaseReferences();
@@ -69,6 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextEmail = (EditText) findViewById(R.id.emailId);
         editTextSenha = (EditText) findViewById(R.id.senhaId);
         buttonLogin = (Button) findViewById(R.id.logarId);
+        textViewRedefinirSenha = (TextView) findViewById(R.id.eSenhaId);
 
         cm = (ConnectivityManager)getApplicationContext().getSystemService(getApplicationContext().CONNECTIVITY_SERVICE);
 
@@ -91,6 +95,20 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Sem conexão", Toast.LENGTH_LONG).show();
                         return;
                     }
+            }
+        });
+
+        textViewRedefinirSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isConnected == true){
+                    Intent intent = new Intent(getApplicationContext(), RedefinirSenhaActivity.class);
+                    startActivity(intent);
+                    finish();
+                }else if(isConnected == false){
+                    Toast.makeText(getApplicationContext(), "Sem conexão", Toast.LENGTH_LONG).show();
+                    return;
+                }
             }
         });
 
@@ -136,8 +154,8 @@ public class LoginActivity extends AppCompatActivity {
                             //Toast.makeText(LoginActivity.this,e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }else {
-
-                       // Toast.makeText(LoginActivity.this,preferencias.recuperaEmail(LoginActivity.this),Toast.LENGTH_LONG).show();
+                        preferencias.salvarusuarioPreferences(email,senha);
+                        Toast.makeText(LoginActivity.this,preferencias.recuperaSenha(LoginActivity.this),Toast.LENGTH_LONG).show();
                     }
                 }
             });
@@ -170,18 +188,17 @@ public class LoginActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 try {
                                     //Primeiro valor: child, Segundo valor: key
-                                    GenericTypeIndicator<Map<String, String>> genericTypeIndicator = new GenericTypeIndicator<Map<String, String>>() {
-                                    };
+                                    GenericTypeIndicator<Map<String, String>> genericTypeIndicator = new GenericTypeIndicator<Map<String, String>>() {};
                                     Map<String, String> map = dataSnapshot.getValue(genericTypeIndicator);
                                     String tipo = map.get("tipo");
-                                    String senha = map.get("senha");
-                                    String email = map.get("email");
-                                    preferencias.salvarusuarioPreferences(email,senha,tipo);
+                                    //String senha = map.get("senha");
+                                    //String email = map.get("email");
+
 
                                     if (tipo.equals("ADM")) {
                                           //Toast.makeText(getApplicationContext(), "Logado como ADM", Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(LoginActivity.this, AdmActivity.class);
-                                        intent.putExtra(SENHA_ADM, senha);
+                                        //intent.putExtra(SENHA_ADM, senha);
                                         startActivity(intent);
                                         progressDialog.dismiss();
                                         finish();

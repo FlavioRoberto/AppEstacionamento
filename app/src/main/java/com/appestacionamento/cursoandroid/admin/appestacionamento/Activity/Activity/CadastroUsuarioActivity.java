@@ -33,8 +33,12 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class CadastroUsuarioActivity extends AppCompatActivity implements IActivity {
 
@@ -44,7 +48,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
     private modelUsuario usuario = new modelUsuario();
     private DatabaseReference databaseReference = usuario.getFirebaseReferences();
     private FirebaseAuth autenticacao = usuario.getAutenticacao();
-    private String nome, telefone, email, tipo, cpf, senha = "200200", emailAdm, senhaAdm, itemSelect, status = "ATIVO", codificarEmail;
+    private String nome, telefone, email, tipo, cpf, senha = "200200", emailAdm, senhaAdm, itemSelect, status = "ATIVO", codificarEmail, emailDatabase;
     private ProgressDialog progressDialog;
     private Toolbar toolbar;
     private Spinner spinner;
@@ -119,7 +123,6 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         email = editTextEmailUsuario.getText().toString().trim().toLowerCase();
         cpf = editTextCpfUsuario.getText().toString().trim();
 
-
         if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(senha) && !TextUtils.isEmpty(nome) && !TextUtils.isEmpty(telefone) &&
         !TextUtils.isEmpty(tipo) && !TextUtils.isEmpty(cpf)){
             progressDialog.setCanceledOnTouchOutside(false);
@@ -133,10 +136,12 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
                                     try{
                                         if(task.isSuccessful()){
                                             cadastraUsuario(preferencias);
+                                        }else if(!task.isSuccessful()){
+                                            Toast.makeText(CadastroUsuarioActivity.this,"Nao foi possível cadastrar",Toast.LENGTH_LONG).show();
                                         }
                                     }catch(Exception e){
 
-                                        Toast.makeText(CadastroUsuarioActivity.this,"Nao foi possível cadastrar: "+e.getMessage(),Toast.LENGTH_LONG).show();
+                                        //Toast.makeText(CadastroUsuarioActivity.this,"Nao foi possível cadastrar: "+e.getMessage(),Toast.LENGTH_LONG).show();
                                     }
                                     progressDialog.dismiss();
                                 }
@@ -213,7 +218,6 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
 
     public void cadastraUsuario(Preferencias preferencias){
 
-
         codificarEmail = Base64Custom.codificarBase64(email);
         usuario.setEmail(email);
         usuario.setNome(nome);
@@ -234,9 +238,10 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
 
         Toast.makeText(getApplicationContext(), "Novo usuário Registrado com sucesso!", Toast.LENGTH_LONG).show();
 
+
         emailAdm = preferencias.recuperaEmail(getApplicationContext()); //userDetails.getString("email", "");
         senhaAdm = preferencias.recuperaSenha(getApplicationContext()); //userDetails.getString("senha", "");
-
+        //Toast.makeText(getApplicationContext(), senhaAdm, Toast.LENGTH_LONG).show();
 
         autenticacao.signInWithEmailAndPassword(emailAdm, senhaAdm)
                 .addOnCompleteListener(CadastroUsuarioActivity.this, new OnCompleteListener<AuthResult>() {
@@ -245,6 +250,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
                         if (!task.isSuccessful()) {
                             Log.e("RELOGIN", "FAILED");
                         } else {
+                            //Toast.makeText(getApplicationContext(), "Logado", Toast.LENGTH_LONG).show();
                             Log.e("RELOGIN", "SUCCESS");
                         }
                     }
