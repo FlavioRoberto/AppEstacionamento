@@ -82,17 +82,19 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         senhaPreference = preferencias.recuperaSenha(ConsultaUsuarioActivity.this);
         emailPreference = preferencias.recuperaEmail(ConsultaUsuarioActivity.this);
 
-
+        if (consultaUsuarioLogado().equals("Secretaria")) {
+            btnExcluir.setVisibility(View.INVISIBLE);
+        }
 
         //ao clicar chama tela editar daddos de usuario
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(flag == true){
+                if (flag == true) {
                     flag = false;
                     putEtraEditar();
 
-                }else if(flag == false){
+                } else if (flag == false) {
                     Toast.makeText(getApplicationContext(), "Nenhum usuário pesquisado", Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -107,20 +109,21 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
             }
         });
 
-        //Botao Excluir (Ativa quando a busca é realizada)
-        btnExcluir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(flag == true){
-                    //metodo que chama a dialog e exclui o usuário
+        if (consultaUsuarioLogado().equals("ADM")) {
+            //Botao Excluir (Ativa quando a busca é realizada)
+            btnExcluir.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (flag == true) {
+                        //metodo que chama a dialog e exclui o usuário
                         abreConfirmacaoExclusao();
-                   }
-                else if(flag == false){
-                    Toast.makeText(getApplicationContext(), "Nenhum Usuário pesquisado", Toast.LENGTH_SHORT).show();
-                    return;
+                    } else if (flag == false) {
+                        Toast.makeText(getApplicationContext(), "Nenhum Usuário pesquisado", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     //Método Busca Usuario
@@ -313,6 +316,13 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
                 }
             }
         });
+
+    }
+
+    public String consultaUsuarioLogado(){
+        preferencias = new Preferencias(getApplicationContext());
+        String usuario = preferencias.recuperaTipo(getApplicationContext());
+        return usuario;
 
     }
 }
