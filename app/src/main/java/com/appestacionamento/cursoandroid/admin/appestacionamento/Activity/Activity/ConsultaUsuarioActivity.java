@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.AdmActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
@@ -81,16 +82,20 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         senhaPreference = preferencias.recuperaSenha(ConsultaUsuarioActivity.this);
         emailPreference = preferencias.recuperaEmail(ConsultaUsuarioActivity.this);
 
+        if (consultaUsuarioLogado().equals("SECRETARIA")) {
+            btnExcluir.setVisibility(View.INVISIBLE);
+            btnEditar.setVisibility(View.INVISIBLE);
+        }
 
         //ao clicar chama tela editar daddos de usuario
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(flag == true){
+                if (flag == true) {
                     flag = false;
                     putEtraEditar();
 
-                }else if(flag == false){
+                } else if (flag == false) {
                     Toast.makeText(getApplicationContext(), "Nenhum usuário pesquisado", Toast.LENGTH_LONG).show();
                     return;
                 }
@@ -105,20 +110,21 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
             }
         });
 
-        //Botao Excluir (Ativa quando a busca é realizada)
-        btnExcluir.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(flag == true){
-                    //metodo que chama a dialog e exclui o usuário
+        if (consultaUsuarioLogado().equals("ADM")) {
+            //Botao Excluir (Ativa quando a busca é realizada)
+            btnExcluir.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (flag == true) {
+                        //metodo que chama a dialog e exclui o usuário
                         abreConfirmacaoExclusao();
-                   }
-                else if(flag == false){
-                    Toast.makeText(getApplicationContext(), "Nenhum Usuário pesquisado", Toast.LENGTH_SHORT).show();
-                    return;
+                    } else if (flag == false) {
+                        Toast.makeText(getApplicationContext(), "Nenhum Usuário pesquisado", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     //Método Busca Usuario
@@ -205,6 +211,11 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
        String usuario = preferencias.recuperaTipo(getApplicationContext());
         if(usuario.equals("ADM")) {
             Intent intent = new Intent(getApplicationContext(), AdmActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        if(usuario.equals("SECRETARIA")){
+            Intent intent = new Intent(getApplicationContext(), SecretariaActivity.class);
             startActivity(intent);
             finish();
         }
@@ -307,5 +318,12 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
             }
         });
 
+    }
+
+    public String consultaUsuarioLogado(){
+        preferencias = new Preferencias(getApplicationContext());
+        String usuario = preferencias.recuperaTipo(getApplicationContext());
+    //    Toast.makeText(getApplicationContext(),usuario,Toast.LENGTH_SHORT).show();
+        return usuario;
     }
 }

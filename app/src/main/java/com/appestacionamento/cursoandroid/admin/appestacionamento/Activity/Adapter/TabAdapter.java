@@ -27,9 +27,22 @@ public class TabAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         Fragment fragment = null;
+        if(!getUsuario().isEmpty()) {
 
-        if(!usuario.isEmpty()) {
-            if (usuario.equals("ADM")) {
+        }
+        if (getUsuario().equals("SECRETARIA")) {
+            switch (position) {
+                case 0:
+                    fragment = new usuarioAdmin();
+                    return fragment;
+
+                case 1:
+                    fragment = new veiculoFragment();
+                    return fragment;
+            }
+        }
+
+            if (getUsuario().equals("ADM")) {
                 switch (position) {
                     case 0:
                         fragment = new usuarioAdmin();
@@ -42,19 +55,10 @@ public class TabAdapter extends FragmentPagerAdapter {
                         return fragment;
                 }
 
-            }else if (usuario.equals("SECRETARIA")) {
-                switch (position) {
-                    case 0:
-                        fragment = new usuarioAdmin();
-                        return fragment;
-                    case 1:
-                        fragment = new vagaFragment();
-                        return fragment;
-                }
             }
-        }
 
-        fragment = new usuarioAdmin();
+
+       // fragment = new usuarioAdmin();
         return fragment ;
     }
 

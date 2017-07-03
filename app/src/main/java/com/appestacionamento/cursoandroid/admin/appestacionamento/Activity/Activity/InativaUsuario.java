@@ -1,4 +1,4 @@
-package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin;
+package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -15,8 +15,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.IActivity;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.LoginActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.AdmActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
@@ -216,9 +217,24 @@ public class InativaUsuario extends AppCompatActivity implements IActivity {
 
     //retorna para a página inicial
     public  void voltar(){
-        Intent intent = new Intent(getApplicationContext(),AdmActivity.class);
-        startActivity(intent);
-        finish();
+
+        if(verificaUsuarioLogado().equals("ADM")) {
+            Intent intent = new Intent(getApplicationContext(), AdmActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        if(verificaUsuarioLogado().equals("SECRETARIA")){
+            Intent intent = new Intent(getApplicationContext(), SecretariaActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+    }
+
+    public String verificaUsuarioLogado(){
+        Preferencias preferencias = new Preferencias(getApplicationContext());
+        String usuario = preferencias.recuperaTipo(getApplicationContext());
+        return usuario;
     }
 
 }

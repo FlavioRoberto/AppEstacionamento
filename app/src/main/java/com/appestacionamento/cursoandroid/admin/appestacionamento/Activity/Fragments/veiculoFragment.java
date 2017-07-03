@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.AdmActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.CadastroVeicuoActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ConsultarVeiculoActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 
 /**
@@ -64,7 +66,12 @@ public class veiculoFragment extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        ((AdmActivity)getActivity()).onFragmentViewCreated(view);
+        Preferencias preferencias = new Preferencias(getContext());
+        if(preferencias.recuperaTipo(getContext()).equals("ADM")) {
+            ((AdmActivity) getActivity()).onFragmentViewCreated(view);
+        }else{
+            ((SecretariaActivity) getActivity()).onFragmentViewCreated(view);
+        }
 
     }
 

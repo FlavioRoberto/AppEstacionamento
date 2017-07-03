@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ConsultaUsuarioActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.IActivity;
@@ -28,14 +29,15 @@ public class SecretariaActivity extends AppCompatActivity implements IActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_secretaria);
-
+        slidingTabLayout = (SlidingTabLayout)findViewById(R.id.stlayout_secretaria);
+        viewPager = (ViewPager)findViewById(R.id.vpLayout_secretaria);
         //TOOLBAR
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
         toolbar.setTitle("Secretaria");
         setSupportActionBar(toolbar);
 
-        slidingTabLayout = (SlidingTabLayout)findViewById(R.id.stl_secretaria);
-        viewPager = (ViewPager)findViewById(R.id.vp_secretaria);
+        //distribui as tabas proporcionalmente na tela
+        slidingTabLayout.setDistributeEvenly(true);
 
 
              //configurando adapter
@@ -44,7 +46,7 @@ public class SecretariaActivity extends AppCompatActivity implements IActivity {
         tabAdapter.setUsuario("SECRETARIA");
         viewPager.setAdapter(tabAdapter);
         slidingTabLayout.setViewPager(viewPager);
-        
+
     }
 
     @Override
@@ -91,6 +93,10 @@ public class SecretariaActivity extends AppCompatActivity implements IActivity {
 
     @Override
     public void adicionaMascara() {
+
+    }
+
+    public void onFragmentViewCreated(View view) {
 
     }
 }

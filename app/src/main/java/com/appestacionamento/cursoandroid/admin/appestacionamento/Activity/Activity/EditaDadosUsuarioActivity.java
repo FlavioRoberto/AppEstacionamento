@@ -53,6 +53,7 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity {
         editTextCpf = (EditText) findViewById(R.id.editTextCpfEditaUsuario);
         buttonAtualizar = (Button) findViewById(R.id.buttonAtualizarUsuario);
 
+
         //pega os valores passado da viwe consultar
         pegaExtra();
 
@@ -102,6 +103,7 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity {
         //inicializa o spinner
 
         //FINALIZA SPINNER
+
 
         novoNome = editTextNome.getText().toString().toUpperCase().trim();
         novoTelefone = editTextTelefone.getText().toString().trim();

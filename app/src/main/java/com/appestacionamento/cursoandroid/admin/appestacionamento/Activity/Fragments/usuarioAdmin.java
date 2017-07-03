@@ -13,8 +13,9 @@ import android.widget.ImageView;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.AdmActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.CadastroUsuarioActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ConsultaUsuarioActivity;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.InativaUsuario;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.InativaUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 
 /**
@@ -41,6 +42,8 @@ public class usuarioAdmin extends Fragment {
         consultaUsuario = (ImageView)view.findViewById(R.id.consultaId);
         inativaUsuario = (ImageView)view.findViewById(R.id.inativaId);
       //  excluirUsuario = (ImageView)view.findViewById(R.id.excluirId);
+
+
 
         //ao clicar no botao consulta chama tela de consulta
         consultaUsuario.setOnClickListener(new View.OnClickListener() {
@@ -77,12 +80,24 @@ public class usuarioAdmin extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        ((AdmActivity)getActivity()).onFragmentViewCreated(view);
+        Preferencias preferencias = new Preferencias(getActivity().getApplicationContext());
+        if((preferencias.recuperaTipo(getContext()).equals("ADM"))){
+            ((AdmActivity) getActivity()).onFragmentViewCreated(view);
+        }else{
+            ((SecretariaActivity)getActivity()).onFragmentViewCreated(view);
+        }
     }
 
     @Override
     public void onDestroy() {
         getActivity().finish();
         super.onDestroy();
+    }
+
+
+    public String verificaUsuarioLogado(){
+        Preferencias preferencias = new Preferencias(getContext());
+        String usuario = preferencias.recuperaTipo(getContext());
+        return usuario;
     }
 }
