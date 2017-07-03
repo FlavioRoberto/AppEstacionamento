@@ -28,7 +28,7 @@ public class TabAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         Fragment fragment = null;
         if(!getUsuario().isEmpty()) {
-            
+
         }
         if (getUsuario().equals("SECRETARIA")) {
             switch (position) {
@@ -41,7 +41,6 @@ public class TabAdapter extends FragmentPagerAdapter {
                     return fragment;
             }
         }
-
 
             if (getUsuario().equals("ADM")) {
                 switch (position) {

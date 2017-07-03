@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ConsultaUsuarioActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.IActivity;
@@ -93,5 +94,8 @@ public class SecretariaActivity extends AppCompatActivity implements IActivity {
     @Override
     public void adicionaMascara() {
 
+    }
+
+    public void onFragmentViewCreated(View view) {
     }
 }
