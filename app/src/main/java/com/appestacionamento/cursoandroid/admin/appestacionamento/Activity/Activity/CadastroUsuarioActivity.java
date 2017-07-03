@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.AdmActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
@@ -196,9 +197,14 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
 
     //retorna para a página inicial
     public  void voltar(){
-        String usuario = preferencias.recuperaTipo(getApplicationContext());
-        if(usuario.equals("ADM")) {
+
+        if(verificaUsuarioLogado().equals("ADM")) {
             Intent intent = new Intent(getApplicationContext(), AdmActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        if(verificaUsuarioLogado().equals("SECRETARIA")){
+            Intent intent = new Intent(getApplicationContext(), SecretariaActivity.class);
             startActivity(intent);
             finish();
         }
