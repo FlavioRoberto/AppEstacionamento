@@ -27,7 +27,7 @@
             tools:ignore="ObsoleteLayoutParam,ScrollViewSize">
 
             <TextView
-                android:id="@+id/numero_cadastro"
+                android:id="@+id/numero_cadastro_vaga"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/numero"
@@ -36,7 +36,7 @@
                 />
 
             <EditText
-                android:id="@+id/editNomeid_editadado"
+                android:id="@+id/numero_da_vaga"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -52,7 +52,7 @@
 
 
             <TextView
-                android:id="@+id/TipoId_cadastro"
+                android:id="@+id/TipoId_cadastro_vaga"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="25dp"
@@ -68,7 +68,7 @@
                 android:entries="@array/spinnerSetor"/>
 
             <Button
-                android:id="@+id/buttonAtualizarUsuario"
+                android:id="@+id/buttonAtualizarCadastroVaga"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
