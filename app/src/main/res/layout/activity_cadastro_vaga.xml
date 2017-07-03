@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/backgroundView"
+    >
+
+    <include android:id="@+id/toolbarId"
+        layout="@layout/toolbar"
+
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            android:padding="25dp"
+            tools:ignore="ObsoleteLayoutParam,ScrollViewSize">
+
+            <TextView
+                android:id="@+id/numero_cadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/numero"
+                android:textSize="@dimen/TextSize"
+
+                />
+
+            <EditText
+                android:id="@+id/editNomeid_editadado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/ovaltext"
+                android:ems="10"
+                android:inputType="number"
+                android:padding="@dimen/paddingEditText"
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="@dimen/TextSize"
+                tools:ignore="LabelFor" />
+
+
+            <TextView
+                android:id="@+id/TipoId_cadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="@string/Setor"
+                android:textSize="@dimen/TextSize" />
+
+
+            <Spinner
+                android:id="@+id/editTipo_setor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:dropDownWidth="match_parent"
+                android:entries="@array/spinnerSetor"/>
+
+            <Button
+                android:id="@+id/buttonAtualizarUsuario"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:background="@drawable/ovalbutton"
+                android:text="@string/cadastrar"
+                android:textSize="@dimen/texxtViewSize" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

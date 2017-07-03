@@ -13,6 +13,12 @@
         <item>Necessidade Especial</item>
     </string-array>
 
+    <string-array name="spinnerSetor">
+        <item> Setor1</item>
+        <item>Setor2</item>
+    </string-array>
+
+
     <string-array name="marcaVeiculo">
         <item>Audi</item>
         <item>BMW</item>

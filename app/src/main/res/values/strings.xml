@@ -2,6 +2,8 @@
     <string name="app_name">AppEstacionamento</string>
     <string name="logar">Logar</string>
     <string name="eSenha">Esqueceu a senha?</string>
+    <string name="numero">Numero </string>
+    <string name="Setor">Setor </string>
     <string name="Email">Email</string>
     <string name="senha">Senha</string>
     <string name="buscarCpf">infrome o cpf ex: 111.111.111.11</string>
