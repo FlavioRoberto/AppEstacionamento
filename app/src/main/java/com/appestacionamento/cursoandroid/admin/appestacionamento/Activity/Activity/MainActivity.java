@@ -15,7 +15,7 @@ import android.view.MenuItem;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Adapter.TabAdapter;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.SlidingTabLayout;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Usuario;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.google.firebase.auth.FirebaseAuth;
 

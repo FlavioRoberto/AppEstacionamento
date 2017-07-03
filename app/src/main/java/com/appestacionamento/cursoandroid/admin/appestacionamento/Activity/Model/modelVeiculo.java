@@ -5,14 +5,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 
 
-public class Veiculo {
+public class modelVeiculo {
 
     private String placa, marca, modelo, cor, tipo, uid, email;
     //private Usuario usuario;
     //private int idVeiculo;
     private static DatabaseReference firebaseReferencia;
 
-    public Veiculo(){
+    public modelVeiculo(){
         firebaseReferencia = configuracaoFirebase.getFirebase();
     }
 

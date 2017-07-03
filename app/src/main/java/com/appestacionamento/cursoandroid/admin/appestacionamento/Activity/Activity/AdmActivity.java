@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Adapter.TabAdapter;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.SlidingTabLayout;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Usuario;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -136,7 +136,7 @@ public class AdmActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_admin,menu);
+        inflater.inflate(R.menu.menu_toolbar,menu);
         return true;
     }
 
@@ -155,7 +155,7 @@ public class AdmActivity extends AppCompatActivity {
     }
 
     private void sair(){
-        Usuario usuario = new Usuario();
+        modelUsuario usuario = new modelUsuario();
         usuario.desloga();
         Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
         startActivity(intent);

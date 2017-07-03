@@ -24,7 +24,7 @@ import android.widget.Toast;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Permissoes;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Usuario;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText editTextEmail, editTextSenha;
     private Button buttonLogin;
-    private Usuario user = new Usuario();
+    private modelUsuario user = new modelUsuario();
     private FirebaseAuth autenticacao = user.getAutenticacao();
     private DatabaseReference databaseReference = user.getFirebaseReferences();
     private FirebaseAuth.AuthStateListener mAuthListener;

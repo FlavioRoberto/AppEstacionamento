@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Usuario;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,7 +30,7 @@ public class InativaUsuario extends AppCompatActivity implements IActivity{
 
     private String emailDatabase,codificaEmail, emailUsuario;
     private String mudaStatus, cpf, email, nome, senha, telefone, tipo, uid;
-    private Usuario usuario ;
+    private modelUsuario usuario ;
     private EditText editTextBuscarEmailUsuario;
     private DatabaseReference databaseReference = configuracaoFirebase.getFirebase();
     private boolean flag,emailEncontrado;
@@ -53,7 +53,7 @@ public class InativaUsuario extends AppCompatActivity implements IActivity{
         tipoText = (TextView) findViewById(R.id.InativaValorTipoid);
         btnSalvar = (Button) findViewById(R.id.btnSalvar);
         btnPesquisar = (ImageView) findViewById(R.id.inativaBtnbuscar);
-        usuario = new Usuario();
+        usuario = new modelUsuario();
         statuscheck = (CheckBox) findViewById(R.id.InativaCheckBoxStatus);
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
@@ -194,13 +194,13 @@ public class InativaUsuario extends AppCompatActivity implements IActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_admin,menu);
+        inflater.inflate(R.menu.menu_toolbar,menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     //desloga usuario e vai pra tela de login
     public void sair(){
-        Usuario usuario = new Usuario();
+        modelUsuario usuario = new modelUsuario();
         usuario.desloga();
         Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
         startActivity(intent);

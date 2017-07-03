@@ -16,10 +16,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
-
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Usuario;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Veiculo;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelVeiculo;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
@@ -38,7 +37,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
     private EditText editTextPlaca, editTextEmailDono, editTextModelo;
     private Spinner spinner,spinnerMarcaVeiculo,spinnerCorVeicullo;
     private Button buttonCadastrarVeiculo;
-    private Veiculo veiculo = new Veiculo();
+    private modelVeiculo veiculo = new modelVeiculo();
     private DatabaseReference databaseReferenceUsers;
     private String emailCodificado, emailDatabase;
     private Boolean emailaValido = false;
@@ -197,7 +196,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_admin,menu);
+        inflater.inflate(R.menu.menu_toolbar,menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -211,7 +210,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
 
     //desloga usuario e vai pra tela de login
     public void sair(){
-        Usuario usuario = new Usuario();
+        modelUsuario usuario = new modelUsuario();
         usuario.desloga();
         Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
         startActivity(intent);

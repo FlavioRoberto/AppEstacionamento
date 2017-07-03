@@ -18,7 +18,7 @@ import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Veiculo;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelVeiculo;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -31,7 +31,7 @@ public class EditaDadosVeiculo extends AppCompatActivity implements IActivity{
     private String cor, email, marca, modelo, placa, tipo, uid;
     private String novaPlaca, novaMarca, novoModelo, novaCor, novoTipo;
     private Button buttonEditarVeiculo;
-    private Veiculo veiculo = new Veiculo();
+    private modelVeiculo veiculo = new modelVeiculo();
     private DatabaseReference databaseReference;
     private Toolbar toolbar;
 
@@ -129,7 +129,7 @@ public class EditaDadosVeiculo extends AppCompatActivity implements IActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_admin,menu);
+        inflater.inflate(R.menu.menu_toolbar,menu);
         return super.onCreateOptionsMenu(menu);
     }
 

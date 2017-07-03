@@ -15,9 +15,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Usuario;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ConsultarVeiculoActivity extends AppCompatActivity implements IActivity {
 
+    //Declaração de variáveis
     private Toolbar toolbar;
     private EditText editTextEmailDonoVeiculo;
     private ImageView imageViewBuscarVeiculo;
@@ -37,11 +37,13 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     private String emailDatabase, codificaEmail;
     private Boolean flag = false, emailEncontrado = false;
     private AlertDialog.Builder builder;
-
     private String cor, email, marca, modelo, placa, tipo, uid;
     public static final String EDITCOR = "cor", EDITEMAIL = "email", EDITMODELO = "modelo", EDITPLACA = "placa",
                         EDITTIPO = "tipo", EDITUID = "uid", EDITMARCA = "marca";
 
+    //FIM declaração de variáveis
+
+    //INiCIO METODO 'principal'
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,7 +80,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
             public void onClick(View v) {
                 if(flag == true){
 
-                    editaVeiculo();
+                    putEditaVeiculo();
 
                 }else if(flag == false){
                     Toast.makeText(getApplicationContext(), "Nenhum veículo selecionado", Toast.LENGTH_LONG).show();
@@ -120,6 +122,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
             }
         });
     }
+    //FIM metodo 'principal'
 
     //Metodo para Buscar veiculo
     public void buscaVeiculo(){
@@ -167,7 +170,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     //Fim do metodo buscar veiculo
 
     //Método Edita veiculo
-    public void editaVeiculo(){
+    public void putEditaVeiculo(){
         Intent intent = new Intent(getApplicationContext(), EditaDadosVeiculo.class);
         intent.putExtra(EDITCOR, cor);
         intent.putExtra(EDITEMAIL, email);
@@ -187,7 +190,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_admin,menu);
+        inflater.inflate(R.menu.menu_toolbar,menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -205,7 +208,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
 
     //desloga usuario e vai pra tela de login
     public void sair(){
-        Usuario usuario = new Usuario();
+        modelUsuario usuario = new modelUsuario();
         usuario.desloga();
         Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
         startActivity(intent);

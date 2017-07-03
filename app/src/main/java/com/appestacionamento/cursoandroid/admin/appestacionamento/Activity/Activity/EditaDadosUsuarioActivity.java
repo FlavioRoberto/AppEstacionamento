@@ -17,7 +17,7 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.Usuario;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -35,7 +35,7 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity {
     private String nome, telefone, cpf, tipo, uid, email, senha, status, itemSelectedSpinner;
     private String novoNome, novoTelefone, novoCpf, novoTipo, novoStatus;
     private DatabaseReference databaseReference;
-    private Usuario usuario = new Usuario();
+    private modelUsuario usuario = new modelUsuario();
     private Toolbar toolbar;
 
     @Override
@@ -178,7 +178,7 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_admin,menu);
+        inflater.inflate(R.menu.menu_toolbar,menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -197,7 +197,7 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity {
 
     //desloga usuario e vai pra tela de login
     public void sair(){
-        Usuario usuario = new Usuario();
+        modelUsuario usuario = new modelUsuario();
         usuario.desloga();
         Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
         startActivity(intent);

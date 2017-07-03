@@ -24,7 +24,7 @@ import static android.app.PendingIntent.getActivity;
 import static java.security.AccessController.getContext;
 
 
-public class Usuario {
+public class modelUsuario {
     private String nome;
     private String uid,codificaEmail;//chave do usuario
     private String telefone;
@@ -38,12 +38,12 @@ public class Usuario {
     private FirebaseAuth autenticacao;
 
 
-    public Usuario() {
+    public modelUsuario() {
         firebaseReferences = configuracaoFirebase.getFirebase();
         autenticacao = configuracaoFirebase.getFirebaseAutenticacao();
     }
 
-    public Usuario(String nome, String uid, String telefone, String email,
+    public modelUsuario(String nome, String uid, String telefone, String email,
                    String tipo, String senha, String status, String cpf, String possuiNecessidadeEsp) {
         this.nome = nome;
         this.uid = uid;
