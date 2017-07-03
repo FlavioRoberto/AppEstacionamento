@@ -82,7 +82,7 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         senhaPreference = preferencias.recuperaSenha(ConsultaUsuarioActivity.this);
         emailPreference = preferencias.recuperaEmail(ConsultaUsuarioActivity.this);
 
-        if (consultaUsuarioLogado().equals("Secretaria")) {
+        if (consultaUsuarioLogado().equals("SECRETARIA")) {
             btnExcluir.setVisibility(View.INVISIBLE);
         }
 
@@ -322,7 +322,7 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
     public String consultaUsuarioLogado(){
         preferencias = new Preferencias(getApplicationContext());
         String usuario = preferencias.recuperaTipo(getApplicationContext());
+    //    Toast.makeText(getApplicationContext(),usuario,Toast.LENGTH_SHORT).show();
         return usuario;
-
     }
 }
