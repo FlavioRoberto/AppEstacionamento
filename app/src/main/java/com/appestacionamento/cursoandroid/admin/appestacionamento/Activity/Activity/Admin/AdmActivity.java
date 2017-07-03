@@ -66,8 +66,8 @@ public class AdmActivity extends AppCompatActivity {
         viewPager.setAdapter(tabAdapter);
         slidingTabLayout.setViewPager(viewPager);
 
-        Intent intent = getIntent();
-        senha = intent.getStringExtra(LoginActivity.SENHA_ADM);
+        //Intent intent = getIntent();
+        //senha = intent.getStringExtra(LoginActivity.SENHA_ADM);
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
     }
 

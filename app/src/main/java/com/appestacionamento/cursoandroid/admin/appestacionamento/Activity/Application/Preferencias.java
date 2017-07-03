@@ -23,11 +23,11 @@ public class Preferencias {
     }
 
 
-    public void salvarusuarioPreferences(String email, String senha, String tipo){
+    public void salvarusuarioPreferences(String email, String senha){ //String tipo){
         editor.clear();
         editor.putString(CHAVE_EMAIL, email);
         editor.putString(CHAVE_SENHA, senha);
-        editor.putString(CHAVE_TIPO,tipo);
+        //editor.putString(CHAVE_TIPO,tipo);
         editor.commit();
     }
 
