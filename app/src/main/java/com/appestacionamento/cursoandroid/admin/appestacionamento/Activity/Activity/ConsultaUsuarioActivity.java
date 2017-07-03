@@ -84,6 +84,7 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
 
         if (consultaUsuarioLogado().equals("SECRETARIA")) {
             btnExcluir.setVisibility(View.INVISIBLE);
+            btnEditar.setVisibility(View.INVISIBLE);
         }
 
         //ao clicar chama tela editar daddos de usuario

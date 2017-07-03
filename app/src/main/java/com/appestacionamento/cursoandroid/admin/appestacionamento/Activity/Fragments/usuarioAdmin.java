@@ -43,6 +43,8 @@ public class usuarioAdmin extends Fragment {
         inativaUsuario = (ImageView)view.findViewById(R.id.inativaId);
       //  excluirUsuario = (ImageView)view.findViewById(R.id.excluirId);
 
+
+
         //ao clicar no botao consulta chama tela de consulta
         consultaUsuario.setOnClickListener(new View.OnClickListener() {
 
@@ -90,5 +92,12 @@ public class usuarioAdmin extends Fragment {
     public void onDestroy() {
         getActivity().finish();
         super.onDestroy();
+    }
+
+
+    public String verificaUsuarioLogado(){
+        Preferencias preferencias = new Preferencias(getContext());
+        String usuario = preferencias.recuperaTipo(getContext());
+        return usuario;
     }
 }

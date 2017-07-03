@@ -104,6 +104,7 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity {
 
         //FINALIZA SPINNER
 
+
         novoNome = editTextNome.getText().toString().toUpperCase().trim();
         novoTelefone = editTextTelefone.getText().toString().trim();
         novoCpf = editTextCpf.getText().toString().trim();
