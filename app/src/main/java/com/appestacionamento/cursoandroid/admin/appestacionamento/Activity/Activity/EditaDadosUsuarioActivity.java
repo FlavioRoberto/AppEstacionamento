@@ -53,6 +53,7 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity {
         editTextCpf = (EditText) findViewById(R.id.editTextCpfEditaUsuario);
         buttonAtualizar = (Button) findViewById(R.id.buttonAtualizarUsuario);
 
+
         //pega os valores passado da viwe consultar
         pegaExtra();
 

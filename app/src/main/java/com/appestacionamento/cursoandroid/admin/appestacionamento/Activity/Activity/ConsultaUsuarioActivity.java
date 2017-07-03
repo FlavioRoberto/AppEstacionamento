@@ -83,6 +83,7 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         emailPreference = preferencias.recuperaEmail(ConsultaUsuarioActivity.this);
 
 
+
         //ao clicar chama tela editar daddos de usuario
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -19,6 +19,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.AdmActivity;
@@ -49,7 +50,9 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
     private Toolbar toolbar;
     private Spinner spinner;
     private Boolean validaCpf = false;
-    private Preferencias preferencias;
+    private Preferencias preferencias ;
+    private TextView textTipo;
+
 
 
 
@@ -74,33 +77,49 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         progressDialog = new ProgressDialog(this);
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
-        //Spiner Adapter
-        SpinnerAdapter adapter = spinner.getAdapter();
-         //inicializa o spinner
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                itemSelect = parent.getItemAtPosition(position).toString();
-                if(itemSelect.equals("Administrador")){
-                    tipo = "ADM";
-                }else if(itemSelect.equals("Usuário")){
-                    tipo = "USER";
-                }else if(itemSelect.equals("Secretaria")){
-                    tipo = "SECRETARIA";
-                }else if(itemSelect.equals("Garagista")){
-                    tipo = "GARAGISTA";
+
+        //se o usuario logado for secretaria
+        if(verificaUsuarioLogado().equals("SECRETARIA"))
+        {
+            textTipo = (TextView)findViewById(R.id.TipoId_cadastro);
+            spinner.setVisibility(View.INVISIBLE);
+            textTipo.setVisibility(View.INVISIBLE);
+            tipo = "USER";
+        }
+
+        //SE usuário for do tipo ADM
+        if(verificaUsuarioLogado().equals("ADM")) {
+            //Spiner Adapter
+            SpinnerAdapter adapter = spinner.getAdapter();
+            //inicializa o spinner
+            spinner.setAdapter(adapter);
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    itemSelect = parent.getItemAtPosition(position).toString();
+                    if (itemSelect.equals("Administrador")) {
+                        tipo = "ADM";
+                    } else if (itemSelect.equals("Usuário")) {
+                        tipo = "USER";
+                    } else if (itemSelect.equals("Secretaria")) {
+                        tipo = "SECRETARIA";
+                    } else if (itemSelect.equals("Garagista")) {
+                        tipo = "GARAGISTA";
+                    }
+                    //Toast.makeText(getApplicationContext(),itemSelect,Toast.LENGTH_LONG).show();
                 }
-                //Toast.makeText(getApplicationContext(),itemSelect,Toast.LENGTH_LONG).show();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
 
-            }
-        });
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
 
-        // metodo para adicionar mascara aos campos
-        adicionaMascara();
+                }
+            });
+        }
+
+
+            // metodo para adicionar mascara aos campos
+            adicionaMascara();
+
 
         buttonInserirUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -209,6 +228,12 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         finish();
         super.onDestroy();
 
+    }
+
+    public String verificaUsuarioLogado(){
+        preferencias = new Preferencias(getApplicationContext());
+        String usuario = preferencias.recuperaTipo(getApplicationContext());
+        return usuario;
     }
 
     public void cadastraUsuario(Preferencias preferencias){

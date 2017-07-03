@@ -97,5 +97,6 @@ public class SecretariaActivity extends AppCompatActivity implements IActivity {
     }
 
     public void onFragmentViewCreated(View view) {
+
     }
 }
