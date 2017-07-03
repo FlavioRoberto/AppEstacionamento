@@ -93,7 +93,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         }
 
         //SE usuário for do tipo ADM
-        if(verificaUsuarioLogado().equals("ADM")) {
+
             //Spiner Adapter
             SpinnerAdapter adapter = spinner.getAdapter();
             //inicializa o spinner
@@ -119,11 +119,11 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
 
                 }
             });
-        }
 
 
-            // metodo para adicionar mascara aos campos
-            adicionaMascara();
+
+        // metodo para adicionar mascara aos campos
+        adicionaMascara();
 
 
         buttonInserirUsuario.setOnClickListener(new View.OnClickListener() {
@@ -157,7 +157,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
                                         if(task.isSuccessful()){
                                             cadastraUsuario(preferencias);
                                         }else if(!task.isSuccessful()){
-                                            Toast.makeText(CadastroUsuarioActivity.this,"Nao foi possível cadastrar",Toast.LENGTH_LONG).show();
+                                            Toast.makeText(CadastroUsuarioActivity.this,"Nao foi possível cadastrar \n"+task.getException().getMessage(),Toast.LENGTH_LONG).show();
                                         }
                                     }catch(Exception e){
 

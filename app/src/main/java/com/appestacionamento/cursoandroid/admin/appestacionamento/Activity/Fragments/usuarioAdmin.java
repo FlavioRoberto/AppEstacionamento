@@ -80,10 +80,12 @@ public class usuarioAdmin extends Fragment {
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        Preferencias preferencias = new Preferencias(getActivity().getApplicationContext());
-        if((preferencias.recuperaTipo(getContext()).equals("ADM"))){
+
+        if((verificaUsuarioLogado().equals("ADM"))){
             ((AdmActivity) getActivity()).onFragmentViewCreated(view);
-        }else{
+        }
+        if(verificaUsuarioLogado().equals("SECRETARIA"))
+        {
             ((SecretariaActivity)getActivity()).onFragmentViewCreated(view);
         }
     }
