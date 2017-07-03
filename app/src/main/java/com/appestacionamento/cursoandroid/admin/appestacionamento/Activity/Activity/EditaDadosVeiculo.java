@@ -18,9 +18,13 @@ import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.AdmActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelVeiculo;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
+import com.github.rtoshiro.util.format.SimpleMaskFormatter;
+import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -163,7 +167,9 @@ public class EditaDadosVeiculo extends AppCompatActivity implements IActivity{
 
     @Override
     public void adicionaMascara() {
-
+        SimpleMaskFormatter smf = new SimpleMaskFormatter("LLL-NNNN");
+        MaskTextWatcher mtw = new MaskTextWatcher(editTextPlacaVeiculo,smf);
+        editTextPlacaVeiculo.addTextChangedListener(mtw);
     }
 
     @Override
@@ -177,9 +183,23 @@ public class EditaDadosVeiculo extends AppCompatActivity implements IActivity{
 
     @Override
     public void voltar() {
-        Intent intent = new Intent(getApplicationContext(),ConsultarVeiculoActivity.class);
-        startActivity(intent);
-        finish();
+        if(verificaUsuarioLogado().equals("ADM")) {
+            Intent intent = new Intent(getApplicationContext(), ConsultarVeiculoActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        if(verificaUsuarioLogado().equals("SECRETARIA")){
+            Intent intent = new Intent(getApplicationContext(), SecretariaActivity.class);
+            startActivity(intent);
+            finish();
+
+        }
+    }
+
+    public String verificaUsuarioLogado(){
+        Preferencias preferencias = new Preferencias(getApplicationContext());
+        String Usuario = preferencias.recuperaTipo(getApplicationContext());
+        return Usuario;
     }
 
     public void getStringExtra(){
