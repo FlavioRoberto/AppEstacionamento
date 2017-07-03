@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.AdmActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.CadastroUsuarioActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ConsultaUsuarioActivity;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.InativaUsuario;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.InativaUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
