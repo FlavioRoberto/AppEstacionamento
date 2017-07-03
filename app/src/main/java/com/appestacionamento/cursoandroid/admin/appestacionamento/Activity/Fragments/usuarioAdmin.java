@@ -10,10 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.AdmActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.AdmActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.CadastroUsuarioActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ConsultaUsuarioActivity;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.InativaUsuario;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.InativaUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 
 /**

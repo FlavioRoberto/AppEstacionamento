@@ -11,8 +11,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.AdmActivity;
-
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 
 /**

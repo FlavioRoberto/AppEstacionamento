@@ -1,4 +1,4 @@
-package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity;
+package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin;
 
 
 import android.content.Intent;
@@ -14,6 +14,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ConsultaUsuarioActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.EditaDadosUsuarioActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.LoginActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Adapter.TabAdapter;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.SlidingTabLayout;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
@@ -39,6 +42,9 @@ public class AdmActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private FirebaseAuth firebaseAuth;
     public  static final String SENHA_ADM = "senhaadm";
+    private String[] abas = new String[]{
+      "USUÁRIOS", "VAGAS","VEÍCULO"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +61,13 @@ public class AdmActivity extends AppCompatActivity {
 
         //configurando Adapter
         TabAdapter tabAdapter = new TabAdapter(getSupportFragmentManager());
+        tabAdapter.setUsuario("ADM");
+        tabAdapter.setAbas(abas);
         viewPager.setAdapter(tabAdapter);
-
         slidingTabLayout.setViewPager(viewPager);
 
         Intent intent = getIntent();
         senha = intent.getStringExtra(LoginActivity.SENHA_ADM);
-
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
     }
 

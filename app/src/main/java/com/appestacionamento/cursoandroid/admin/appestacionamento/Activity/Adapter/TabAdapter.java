@@ -8,6 +8,7 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragm
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments.vagaFragment;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments.consultaUsuarioFragment;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments.veiculoFragment;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
 
 /**
  * Created by admin on 20/06/2017.
@@ -15,8 +16,8 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragm
 
 public class TabAdapter extends FragmentPagerAdapter {
 
-
-    private String[] abas  = {"USUARIO","VAGAS","VEÍCULO"};
+    private  String usuario ;
+    private String[] abas;
 
     public TabAdapter(FragmentManager fm) {
         super(fm);
@@ -25,13 +26,51 @@ public class TabAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         Fragment fragment = null;
-        switch (position){
-            case 0: fragment = new usuarioAdmin();return fragment;
-            case 1:fragment = new vagaFragment();return fragment;
-            case 2:fragment = new veiculoFragment();return fragment;
+        if(usuario != null) {
+           if(usuario.equals("ADM")) {
+               switch (position) {
+                   case 0:
+                       fragment = new usuarioAdmin();
+                       return fragment;
+                   case 1:
+                       fragment = new vagaFragment();
+                       return fragment;
+                   case 2:
+                       fragment = new veiculoFragment();
+                       return fragment;
+               }
+           }else if(usuario.equals("SECRETARIA")){
+               switch (position) {
+                   case 0:
+                       fragment = new usuarioAdmin();
+                       return fragment;
+                   case 1:
+                       fragment = new vagaFragment();
+                       return fragment;
+
+               }
+           }
+
         }
 
         return fragment;
+    }
+
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String[] getAbas() {
+        return abas;
+    }
+
+    public void setAbas(String[] abas) {
+        this.abas = abas;
     }
 
     @Override

@@ -21,14 +21,15 @@
         </activity>
         <activity android:name=".Activity.Activity.LoginActivity" />
         <activity android:name=".Activity.Activity.ConsultaUsuarioActivity" />
-        <activity android:name=".Activity.Activity.AdmActivity" />
+        <activity android:name=".Activity.Activity.Admin.AdmActivity" />
         <activity android:name=".Activity.Activity.CadastroUsuarioActivity" />
         <activity android:name=".Activity.Activity.EditaDadosUsuarioActivity" />
         <activity android:name=".Activity.Activity.CadastroVeicuoActivity" />
         <activity android:name=".Activity.Activity.ConsultarVeiculoActivity" />
         <activity android:name=".Activity.Activity.EditaDadosVeiculo" />
-        <activity android:name=".Activity.Activity.InativaUsuario" />
-        <activity android:name=".Activity.Activity.RedefinirSenhaActivity"></activity>
+        <activity android:name=".Activity.Activity.Admin.InativaUsuario" />
+        <activity android:name=".Activity.Activity.RedefinirSenhaActivity" />
+        <activity android:name=".Activity.Activity.Secretaria.SecretariaActivity"></activity>
     </application>
 
 </manifest>

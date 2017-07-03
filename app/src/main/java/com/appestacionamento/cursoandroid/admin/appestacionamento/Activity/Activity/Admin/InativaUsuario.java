@@ -1,4 +1,4 @@
-package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity;
+package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.IActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.LoginActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
@@ -26,7 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class InativaUsuario extends AppCompatActivity implements IActivity{
+public class InativaUsuario extends AppCompatActivity implements IActivity {
 
     private String emailDatabase,codificaEmail, emailUsuario;
     private String mudaStatus, cpf, email, nome, senha, telefone, tipo, uid;
