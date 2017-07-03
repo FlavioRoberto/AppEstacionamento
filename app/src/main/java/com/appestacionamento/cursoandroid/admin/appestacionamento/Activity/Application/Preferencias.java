@@ -13,7 +13,8 @@ public class Preferencias {
     private final int MODE = 0;
     private SharedPreferences.Editor editor;
     private final String CHAVE_EMAIL="email";
-    private final String CHAVE_SENHA="telefone";
+    private final String CHAVE_TIPO="tipo";
+    private final String CHAVE_SENHA="senha";
 
     public  Preferencias(Context contextoParametro){
         context = contextoParametro;
@@ -22,10 +23,11 @@ public class Preferencias {
     }
 
 
-    public void salvarusuarioPreferences(String email, String senha){
+    public void salvarusuarioPreferences(String email, String senha, String tipo){
         editor.clear();
         editor.putString(CHAVE_EMAIL, email);
         editor.putString(CHAVE_SENHA, senha);
+        editor.putString(CHAVE_TIPO,tipo);
         editor.commit();
     }
 
@@ -39,5 +41,9 @@ public class Preferencias {
         return preferences.getString(CHAVE_SENHA, "");
     }
 
+    public  String recuperaTipo(Context context){
+        preferences = context.getSharedPreferences(NOME_ARQUIVO,MODE);
+        return  preferences.getString(CHAVE_TIPO,"");
+    }
 
 }

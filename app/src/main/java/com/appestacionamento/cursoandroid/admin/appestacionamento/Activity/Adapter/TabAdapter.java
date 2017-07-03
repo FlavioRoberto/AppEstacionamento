@@ -3,6 +3,7 @@ package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Adap
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.widget.Toast;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments.usuarioAdmin;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments.vagaFragment;
@@ -26,34 +27,35 @@ public class TabAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         Fragment fragment = null;
-        if(usuario != null) {
-           if(usuario.equals("ADM")) {
-               switch (position) {
-                   case 0:
-                       fragment = new usuarioAdmin();
-                       return fragment;
-                   case 1:
-                       fragment = new vagaFragment();
-                       return fragment;
-                   case 2:
-                       fragment = new veiculoFragment();
-                       return fragment;
-               }
-           }else if(usuario.equals("SECRETARIA")){
-               switch (position) {
-                   case 0:
-                       fragment = new usuarioAdmin();
-                       return fragment;
-                   case 1:
-                       fragment = new vagaFragment();
-                       return fragment;
 
-               }
-           }
+        if(!usuario.isEmpty()) {
+            if (usuario.equals("ADM")) {
+                switch (position) {
+                    case 0:
+                        fragment = new usuarioAdmin();
+                        return fragment;
+                    case 1:
+                        fragment = new vagaFragment();
+                        return fragment;
+                    case 2:
+                        fragment = new veiculoFragment();
+                        return fragment;
+                }
 
+            }else if (usuario.equals("SECRETARIA")) {
+                switch (position) {
+                    case 0:
+                        fragment = new usuarioAdmin();
+                        return fragment;
+                    case 1:
+                        fragment = new vagaFragment();
+                        return fragment;
+                }
+            }
         }
 
-        return fragment;
+        fragment = new usuarioAdmin();
+        return fragment ;
     }
 
 

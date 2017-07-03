@@ -177,9 +177,12 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
 
     //retorna para a página inicial
     public  void voltar(){
-        Intent intent = new Intent(getApplicationContext(),AdmActivity.class);
-        startActivity(intent);
-        finish();
+        String usuario = preferencias.recuperaTipo(getApplicationContext());
+        if(usuario.equals("ADM")) {
+            Intent intent = new Intent(getApplicationContext(), AdmActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     public void adicionaMascara(){

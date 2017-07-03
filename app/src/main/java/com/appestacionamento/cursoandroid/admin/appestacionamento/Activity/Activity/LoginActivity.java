@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private Preferencias preferencias;
     private ProgressDialog progressDialog;
-    private String codificaEmail, email, senha;
+    private String codificaEmail, email, senha,tipo;
     private Boolean authFlag = false;
     public static final String SENHA_ADM = "senhaadm";
     private String uid;
@@ -136,7 +136,7 @@ public class LoginActivity extends AppCompatActivity {
                             //Toast.makeText(LoginActivity.this,e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }else {
-                        preferencias.salvarusuarioPreferences(email,senha);
+
                        // Toast.makeText(LoginActivity.this,preferencias.recuperaEmail(LoginActivity.this),Toast.LENGTH_LONG).show();
                     }
                 }
@@ -175,8 +175,11 @@ public class LoginActivity extends AppCompatActivity {
                                     Map<String, String> map = dataSnapshot.getValue(genericTypeIndicator);
                                     String tipo = map.get("tipo");
                                     String senha = map.get("senha");
+                                    String email = map.get("email");
+                                    preferencias.salvarusuarioPreferences(email,senha,tipo);
+
                                     if (tipo.equals("ADM")) {
-                                        //Toast.makeText(getApplicationContext(), "Logado como ADM", Toast.LENGTH_LONG).show();
+                                          //Toast.makeText(getApplicationContext(), "Logado como ADM", Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(LoginActivity.this, AdmActivity.class);
                                         intent.putExtra(SENHA_ADM, senha);
                                         startActivity(intent);
@@ -189,13 +192,16 @@ public class LoginActivity extends AppCompatActivity {
                                         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                                         progressDialog.dismiss();
                                         finish();
-                                    }else if (tipo.equals("SECRETARIA")){
+                                    }
+
+                                    else if (tipo.equals("SECRETARIA")){
                                         Intent intent = new Intent(getApplicationContext(), SecretariaActivity.class);
-                                        intent.putExtra(SENHA_ADM,senha);
+                                       // intent.putExtra(SENHA_ADM,senha);
                                         startActivity(intent);
                                         progressDialog.dismiss();
                                         finish();
                                     }
+
                                 } catch (Exception e) {
                                     //Toast.makeText(getApplicationContext(), "Erro: " + e, Toast.LENGTH_LONG).show();
                                     progressDialog.dismiss();
