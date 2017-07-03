@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Permissoes;
@@ -49,6 +50,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText editTextEmail, editTextSenha;
     private Button buttonLogin;
+    private TextView textViewRedefinirSenha;
     private Usuario user = new Usuario();
     private FirebaseAuth autenticacao = user.getAutenticacao();
     private DatabaseReference databaseReference = user.getFirebaseReferences();
@@ -78,6 +80,7 @@ public class LoginActivity extends AppCompatActivity {
         editTextEmail = (EditText) findViewById(R.id.emailId);
         editTextSenha = (EditText) findViewById(R.id.senhaId);
         buttonLogin = (Button) findViewById(R.id.logarId);
+        textViewRedefinirSenha = (TextView) findViewById(R.id.eSenhaId);
 
         cm = (ConnectivityManager)getApplicationContext().getSystemService(getApplicationContext().CONNECTIVITY_SERVICE);
 
@@ -100,6 +103,15 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Sem conexão", Toast.LENGTH_LONG).show();
                         return;
                     }
+            }
+        });
+
+        textViewRedefinirSenha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), RedefinirSenhaActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
@@ -183,15 +195,21 @@ public class LoginActivity extends AppCompatActivity {
                                     };
                                     Map<String, String> map = dataSnapshot.getValue(genericTypeIndicator);
                                     String tipo = map.get("tipo");
-                                    String senha = map.get("senha");
-                                    if (tipo.equals("ADM")) {
+                                    String status = map.get("status");
+                                    //String senha = map.get("senha");
+                                    if (tipo.equals("ADM") && status.equals("ATIVO")) {
                                         //Toast.makeText(getApplicationContext(), "Logado como ADM", Toast.LENGTH_LONG).show();
                                         Intent intent = new Intent(LoginActivity.this, AdmActivity.class);
-                                        intent.putExtra(SENHA_ADM, senha);
+                                        //intent.putExtra(SENHA_ADM, senha);
                                         startActivity(intent);
                                         progressDialog.dismiss();
                                         finish();
-                                    } else if (tipo.equals("USER")) {
+                                    } else if (tipo.equals("ADM") && status.equals("INATIVO")) {
+                                        Toast.makeText(getApplicationContext(), "ADM Inativo", Toast.LENGTH_LONG).show();
+                                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                                        progressDialog.dismiss();
+                                        return;
+                                    }else if (tipo.equals("USER") && status.equals("ATIVO")) {
                                         //Intent intent = new Intent(getApplicationContext(), Usuario.class);
                                         //startActivity(intent);
                                         Toast.makeText(getApplicationContext(), "Logado como USER", Toast.LENGTH_LONG).show();
