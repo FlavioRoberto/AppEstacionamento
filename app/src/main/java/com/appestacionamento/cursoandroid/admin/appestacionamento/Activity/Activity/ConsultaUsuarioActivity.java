@@ -42,7 +42,7 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         private Toolbar toolbar;
         private ImageView imageViewBuscarUsuario;
         private EditText editTextBuscarEmailUsuario;
-        private String codificaEmail, emailDatabase;
+        private String codificaEmail, emailDatabase, emailUsuario;
         private DatabaseReference databaseReferenceUsers, databaseReferenceVeiculo;
 
         private FirebaseAuth autenticacao = configuracaoFirebase.getFirebaseAutenticacao();
@@ -129,7 +129,7 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
 
     //Método Busca Usuario
     public void pesquisaUsuario(){
-        final String emailUsuario = editTextBuscarEmailUsuario.getText().toString().toLowerCase().trim();
+        emailUsuario = editTextBuscarEmailUsuario.getText().toString().toLowerCase().trim();
         codificaEmail = Base64Custom.codificarBase64(emailUsuario);
         Query query = databaseReferenceUsers;
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -294,12 +294,9 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
                             autenticacao.signOut();
                         } else {
                             Toast.makeText(getApplicationContext(), "Não Logou no usuario para excluir", Toast.LENGTH_LONG).show();
-
                         }
                     }
                 });
-
-
 
         }catch (Exception e){
             Toast.makeText(ConsultaUsuarioActivity.this,"Não foi possível excluir usuário", Toast.LENGTH_LONG).show();

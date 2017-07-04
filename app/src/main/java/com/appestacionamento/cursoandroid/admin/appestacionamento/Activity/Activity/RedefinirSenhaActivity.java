@@ -14,8 +14,16 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.PesquisaUsuarios;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.RedefinirSenha;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class RedefinirSenhaActivity extends AppCompatActivity implements IActivity {
 
@@ -25,6 +33,7 @@ public class RedefinirSenhaActivity extends AppCompatActivity implements IActivi
     private Toolbar toolbar;
     private boolean flag = false;
     private RedefinirSenha redefinirSenha = new RedefinirSenha(this);
+    private PesquisaUsuarios pesquisaUsuarios = new PesquisaUsuarios();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +45,6 @@ public class RedefinirSenhaActivity extends AppCompatActivity implements IActivi
         toolbar = (Toolbar)findViewById(R.id.toolbarId) ;
         toolbar.setTitle("Redefinição de senha");
         setSupportActionBar(toolbar);
-
         //fim toolbar
 
         editTextEmail = (EditText) findViewById(R.id.editTextEmailRedefinirSenha);
@@ -45,28 +53,21 @@ public class RedefinirSenhaActivity extends AppCompatActivity implements IActivi
             @Override
             public void onClick(View v) {
                 if(flag == false) {
-                   // flag = true;
                     enviaEmail();
-
-
-
                 }
             }
         });
-
     }
 
     private void enviaEmail(){
-        try {
-            email = editTextEmail.getText().toString().toLowerCase().trim();
+        email = editTextEmail.getText().toString().toLowerCase().trim();
+        if(pesquisaUsuarios.retornaUsuario(email) == true){
             redefinirSenha.redefineSenha(email);
             flag = true;
-        }catch (Exception e){
-            flag = false;
+        }else{
+            Toast.makeText(getApplicationContext(), "Email inválido.", Toast.LENGTH_LONG).show();
         }
-        }
-
-
+    }
 
     @Override
     public void onBackPressed() {

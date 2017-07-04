@@ -36,23 +36,16 @@ public class RedefinirSenha {
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Snackbar snackbar = Snackbar.make(((Activity) context).findViewById(R.id.coordinator_Id), "Email enviado", Snackbar.LENGTH_LONG);
+                                snackbar.show();
 
-                                if (task.isSuccessful()) {
-
-                                    Snackbar snackbar = Snackbar
-                                            .make(((Activity) context).findViewById(R.id.coordinator_Id), "Email enviado", Snackbar.LENGTH_LONG);
-
-                                    snackbar.show();
-
-                                } else {
-                                    Snackbar snackbar = Snackbar
-                                            .make(((Activity) context).findViewById(R.id.coordinator_Id), "Email não enviado", Snackbar.LENGTH_LONG);
-
-                                    snackbar.show();
-                                }
+                            } else {
+                                Snackbar snackbar = Snackbar.make(((Activity) context).findViewById(R.id.coordinator_Id), "Email não enviado", Snackbar.LENGTH_LONG);
+                                snackbar.show();
+                            }
                         }
                     });
         }
     }
-
 }
