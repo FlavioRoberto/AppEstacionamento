@@ -230,9 +230,16 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
     @Override
     public void onBackPressed()
     {
-        Intent intent = new Intent(getApplicationContext(), AdmActivity.class);
-        startActivity(intent);
-        finish();
+        if(verificaUsuarioLogado().equals("ADM")) {
+            Intent intent = new Intent(getApplicationContext(), AdmActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        if(verificaUsuarioLogado().equals("SECRETARIA")){
+            Intent intent = new Intent(getApplicationContext(), SecretariaActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     @Override

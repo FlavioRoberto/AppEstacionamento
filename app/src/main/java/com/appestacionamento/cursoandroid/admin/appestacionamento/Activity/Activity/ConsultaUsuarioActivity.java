@@ -315,6 +315,11 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
     public String consultaUsuarioLogado(){
         preferencias = new Preferencias(getApplicationContext());
         String usuario = preferencias.recuperaTipo(getApplicationContext());

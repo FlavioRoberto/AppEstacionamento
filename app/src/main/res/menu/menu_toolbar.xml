@@ -8,7 +8,7 @@
         android:title="Sair" />
 
     <item android:id="@+id/menu_meusdados"
-        android:orderInCategory="200"
+        android:orderInCategory="150"
         app:showAsAction="never"
         android:title="Meus dados" />
     <item android:id="@+id/menu_anterior"
@@ -17,6 +17,10 @@
         android:icon="@drawable/ic_arrow_back"
         android:title="Voltar"
         />
+    <item android:id="@+id/menu_sobre"
+        android:orderInCategory="200"
+        app:showAsAction="never"
+        android:title="Sobre" />
 
 
 </menu>
