@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.AdmActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.verificaUsuarioLogado;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
 //import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Presenter.modelUsuarioCrud;
@@ -57,6 +58,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
     private Boolean validaCpf = false;
     private Preferencias preferencias ;
     private TextView textTipo;
+    private String usuarioLogado;
 
 
 
@@ -82,9 +84,11 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         progressDialog = new ProgressDialog(this);
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
+        preferencias = new Preferencias(getApplicationContext());
+        usuarioLogado = verificaUsuarioLogado.verificaUsuarioLogado(preferencias,getApplicationContext());
 
         //se o usuario logado for secretaria
-        if(verificaUsuarioLogado().equals("SECRETARIA"))
+        if(usuarioLogado.equals("SECRETARIA"))
         {
             textTipo = (TextView)findViewById(R.id.TipoId_cadastro);
             spinner.setVisibility(View.INVISIBLE);
@@ -203,13 +207,13 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
     //retorna para a página inicial
     public  void voltar(){
 
-        Toast.makeText(getApplicationContext(),verificaUsuarioLogado(),Toast.LENGTH_SHORT).show();
-        if(verificaUsuarioLogado().equals("ADM")) {
+        Toast.makeText(getApplicationContext(),usuarioLogado,Toast.LENGTH_SHORT).show();
+        if(usuarioLogado.equals("ADM")) {
             Intent intent = new Intent(getApplicationContext(), AdmActivity.class);
             startActivity(intent);
             finish();
         }
-        if(verificaUsuarioLogado().equals("SECRETARIA")){
+        if(usuarioLogado.equals("SECRETARIA")){
             Intent intent = new Intent(getApplicationContext(), SecretariaActivity.class);
             startActivity(intent);
             finish();
@@ -230,12 +234,12 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
     @Override
     public void onBackPressed()
     {
-        if(verificaUsuarioLogado().equals("ADM")) {
+        if(usuarioLogado.equals("ADM")) {
             Intent intent = new Intent(getApplicationContext(), AdmActivity.class);
             startActivity(intent);
             finish();
         }
-        if(verificaUsuarioLogado().equals("SECRETARIA")){
+        if(usuarioLogado.equals("SECRETARIA")){
             Intent intent = new Intent(getApplicationContext(), SecretariaActivity.class);
             startActivity(intent);
             finish();
@@ -249,11 +253,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
 
     }
 
-    public String verificaUsuarioLogado(){
-        preferencias = new Preferencias(getApplicationContext());
-        String usuario = preferencias.recuperaTipo(getApplicationContext());
-        return usuario;
-    }
+
 
     public void cadastraUsuario(Preferencias preferencias){
 
