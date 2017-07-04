@@ -51,5 +51,13 @@
     <string name="celular">Celular</string>
     <string name="modeloVeiculo">Modelo do Veiculo:</string>
     <string name="editar">Editar</string>
+    <string name="Horas">6:00 - 22:00</string>
+    <string name="Telefone_contato">3333-3333</string>
+    <string name="email_para_contato">Email para contato:</string>
+    <string name="horario_de_funcionamento">Horário de funcionamento:</string>
+    <string name="email_hotel">Hotel@gmail.com</string>
+    <string name="site_do_hotel">Site do hotel:</string>
+    <string name="telefone_para_contato">Telefone para contato:</string>
+    <string name="site_hotel">www.hotel.com.br</string>
 
 </resources>
