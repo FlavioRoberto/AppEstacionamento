@@ -128,17 +128,21 @@ public class LoginActivity extends AppCompatActivity {
     private void logar() {
         emailLogin = editTextEmail.getText().toString().trim();
         senha = editTextSenha.getText().toString().trim();
-
+/*
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setMessage("Acessando Perfil...");
         progressDialog.show();
-
+*/
         if (TextUtils.isEmpty(emailLogin) || TextUtils.isEmpty(senha)) {
             Toast.makeText(LoginActivity.this, "Campos vazios", Toast.LENGTH_LONG).show();
         } else {
             autenticacao.signInWithEmailAndPassword(emailLogin, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
+
+                   if(task.isSuccessful()){
+                       redirecionarUsuario();
+                   }
                     if (!task.isSuccessful()) {
                         try {
                             throw task.getException();
@@ -155,7 +159,10 @@ public class LoginActivity extends AppCompatActivity {
                             progressDialog.dismiss();
                             //Toast.makeText(LoginActivity.this,e.getMessage(), Toast.LENGTH_LONG).show();
                         }
+
+                        return;
                     }
+
                 }
             });
         }
@@ -177,7 +184,9 @@ public class LoginActivity extends AppCompatActivity {
                             progressDialog.setCanceledOnTouchOutside(false);
                             progressDialog.setMessage("Acessando Perfil...");
                             progressDialog.show();
+
                         }
+
 
                         String email = user.getEmailCurrentUser();
                         codificaEmail = Base64Custom.codificarBase64(email);
@@ -185,7 +194,7 @@ public class LoginActivity extends AppCompatActivity {
                         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                try {
+
                                     //Primeiro valor: child, Segundo valor: key
                                     GenericTypeIndicator<Map<String, String>> genericTypeIndicator = new GenericTypeIndicator<Map<String, String>>() {};
                                     Map<String, String> map = dataSnapshot.getValue(genericTypeIndicator);
@@ -216,22 +225,21 @@ public class LoginActivity extends AppCompatActivity {
                                             progressDialog.dismiss();
                                             finish();
                                         }
-                                    }else if(status.equals("INATIVADO")){
+                                    }else {
                                         progressDialog.dismiss();
                                         Toast.makeText(getApplicationContext(), "Este usuário está Inativado no sistema", Toast.LENGTH_LONG).show();
-                                        return;
                                     }
-                                } catch (Exception e) {
-                                    progressDialog.dismiss();
+
 
                                 }
-                            }
+
 
                             @Override
                             public void onCancelled(DatabaseError databaseError) {
+                               Toast.makeText(getApplicationContext(),"Problema ao conectar com banco\n"+databaseError.getMessage(),Toast.LENGTH_SHORT).show();
                             }
                         });
-                        authFlag = true;
+                        authFlag = false;
                     }
                 }
             }
