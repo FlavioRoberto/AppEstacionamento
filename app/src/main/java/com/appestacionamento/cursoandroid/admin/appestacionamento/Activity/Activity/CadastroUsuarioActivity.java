@@ -203,6 +203,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
     //retorna para a página inicial
     public  void voltar(){
 
+        Toast.makeText(getApplicationContext(),verificaUsuarioLogado(),Toast.LENGTH_SHORT).show();
         if(verificaUsuarioLogado().equals("ADM")) {
             Intent intent = new Intent(getApplicationContext(), AdmActivity.class);
             startActivity(intent);

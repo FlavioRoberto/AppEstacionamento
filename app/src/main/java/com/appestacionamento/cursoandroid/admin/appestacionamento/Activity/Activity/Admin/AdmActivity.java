@@ -77,52 +77,6 @@ public class AdmActivity extends AppCompatActivity {
 
     }
 
-    /**
-    public void onFragmentViewCreated(View view) {
-        // Iniciar os campos buscando no layout do Fragment
-        buttonCadastrar = (Button) view.findViewById(R.id.btnCadastrar);
-        buttonBuscar = (Button) view.findViewById(R.id.btnconsulta);
-        buttonEditar = (Button) view.findViewById(R.id.btnEditar);
-        textViewNome = (TextView) view.findViewById(R.id.nomeId);
-        textViewTelefone = (TextView) view.findViewById(R.id.telefoneId);
-        textViewEmail = (TextView) view.findViewById(R.id.emailId);
-        textViewTipo = (TextView) view.findViewById(R.id.tipoId);
-        textViewSituacao = (TextView) view.findViewById(R.id.statusId);
-        editTextBusca = (EditText) view.findViewById(R.id.consultaId);
-
-        buttonCadastrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), CadastroUsuarioActivity.class);
-                intent.putExtra(SENHA_ADM, senha);
-                startActivity(intent);
-                finish();
-            }
-        });
-
-        buttonEditar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(ativaEdicao == true){
-
-                    textViewNome.setText(null);
-                    textViewTelefone.setText(null);
-                    textViewEmail.setText(null);
-                    textViewTipo.setText(null);
-                    textViewSituacao.setText(null);
-
-                    editaUsuario();
-
-                    ativaEdicao = false;
-                }else if(ativaEdicao == false){
-                    Toast.makeText(getApplicationContext(), "Pesquise um usuário para relizar sua edição!", Toast.LENGTH_LONG).show();
-                    return;
-                }
-            }
-        });
-     }     */
-
-
 
     private void editaUsuario(){
         Intent intent = new Intent(getApplicationContext(), EditaDadosUsuarioActivity.class);
@@ -163,9 +117,10 @@ public class AdmActivity extends AppCompatActivity {
     private void sair(){
         modelUsuario usuario = new modelUsuario();
         usuario.desloga();
+        finish();
         Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
         startActivity(intent);
-        finish();
+
     }
 
     public void chamaConsulta(){

@@ -20,7 +20,6 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activ
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -49,7 +48,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private Preferencias preferencias;
     private ProgressDialog progressDialog;
-    private String codificaEmail, email, senha,tipo;
+    private String codificaEmail, emailLogin, senha,tipo;
     private Boolean authFlag = false;
     public static final String SENHA_ADM = "senhaadm";
     private String uid;
@@ -131,13 +130,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void logar() {
-        email = editTextEmail.getText().toString().trim();
+        emailLogin = editTextEmail.getText().toString().trim();
         senha = editTextSenha.getText().toString().trim();
 
-        if (TextUtils.isEmpty(email) || TextUtils.isEmpty(senha)) {
+        if (TextUtils.isEmpty(emailLogin) || TextUtils.isEmpty(senha)) {
             Toast.makeText(LoginActivity.this, "Campos vazios", Toast.LENGTH_LONG).show();
         } else {
-            autenticacao.signInWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            autenticacao.signInWithEmailAndPassword(emailLogin, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (!task.isSuccessful()) {
@@ -153,9 +152,6 @@ public class LoginActivity extends AppCompatActivity {
                         } catch (Exception e) {
                             //Toast.makeText(LoginActivity.this,e.getMessage(), Toast.LENGTH_LONG).show();
                         }
-                    }else {
-                        preferencias.salvarusuarioPreferences(email,senha);
-                        Toast.makeText(LoginActivity.this,preferencias.recuperaSenha(LoginActivity.this),Toast.LENGTH_LONG).show();
                     }
                 }
             });
@@ -192,8 +188,8 @@ public class LoginActivity extends AppCompatActivity {
                                     Map<String, String> map = dataSnapshot.getValue(genericTypeIndicator);
                                     String tipo = map.get("tipo");
                                     //String senha = map.get("senha");
-                                    //String email = map.get("email");
-
+                                    //String emailLogin = map.get("emailLogin");
+                                    preferencias.salvarusuarioPreferences(emailLogin,senha,tipo);
 
                                     if (tipo.equals("ADM")) {
                                           //Toast.makeText(getApplicationContext(), "Logado como ADM", Toast.LENGTH_LONG).show();

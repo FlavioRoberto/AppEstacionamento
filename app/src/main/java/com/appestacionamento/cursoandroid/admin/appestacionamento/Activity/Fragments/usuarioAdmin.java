@@ -97,6 +97,8 @@ public class usuarioAdmin extends Fragment {
     }
 
 
+
+
     public String verificaUsuarioLogado(){
         Preferencias preferencias = new Preferencias(getContext());
         String usuario = preferencias.recuperaTipo(getContext());

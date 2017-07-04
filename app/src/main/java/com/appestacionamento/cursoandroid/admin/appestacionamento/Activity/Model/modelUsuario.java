@@ -99,6 +99,7 @@ public class modelUsuario {
         this.uid = uid;
     }
 
+    @Exclude
     public String getSenha() {
         return senha;
     }
@@ -134,6 +135,7 @@ public class modelUsuario {
     public DatabaseReference getFirebaseReferences() {
         return firebaseReferences;
     }
+
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
