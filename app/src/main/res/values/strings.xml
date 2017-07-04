@@ -4,7 +4,12 @@
     <string name="eSenha">Esqueceu a senha?</string>
     <string name="numero">Numero </string>
     <string name="Setor">Setor </string>
+    <string name="Numeovaga">Numero da Vaga</string>
     <string name="Email">Email</string>
+<<<<<<< HEAD
+=======
+    <string name="excluirvaga">Excluir Vaga</string>
+>>>>>>> 752ffe35b888b870f49319f26e10223ff957cc69
     <string name="ConsulaVaga">Buscar Vaga </string>
     <string name="Enviar">Enviar</string>
     <string name="senha">Senha</string>
