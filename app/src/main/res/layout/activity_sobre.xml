@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="20dp">
+    android:layout_gravity="center"
+    android:background="@color/colorPrimary"
+    android:weightSum="1">
 
     <include android:id="@+id/toolbarId"
         layout="@layout/toolbar"
@@ -14,34 +16,74 @@
         android:id="@+id/hotelId_sobre"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        app:srcCompat="@drawable/hotel" />
+        app:srcCompat="@drawable/hotel"
+        android:layout_gravity="center"
+        />
 
+
+
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+    <android.support.v7.widget.LinearLayoutCompat
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+
+        <TextView
+            android:id="@+id/textSobre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Entre em contato"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="@dimen/TextSize"
+            android:layout_marginBottom="5dp"
+            />
+
+        <View
+
+            android:background="#8e9ba7"
+            android:id="@+id/linhaId"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginBottom="20dp"
+            />
     <TextView
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/telefone_para_contato"
-        android:layout_marginTop="50sp"
+        android:layout_gravity="left"
+        android:textStyle="bold"
         android:textSize="@dimen/TextSize"/>
 
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/Telefone_contato"
+            android:textSize="@dimen/TextSize"
+            android:layout_marginBottom="10dp"
+            />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/Telefone_contato"
-        android:layout_marginTop="5dp"
-        android:textSize="@dimen/TextSize"
-        android:layout_marginStart="30dp"
-        />
 
-    <TextView
+        <TextView
         android:id="@+id/textView7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/email_para_contato"
         android:textSize="@dimen/TextSize"
-        android:layout_marginTop="10dp"/>
+        android:textStyle="bold"
+        android:layout_gravity="left"
+        />
 
     <TextView
         android:id="@+id/textView13"
@@ -49,14 +91,16 @@
         android:layout_height="wrap_content"
         android:text="@string/email_hotel"
         android:textSize="@dimen/TextSize"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        />
 
     <TextView
         android:id="@+id/textView14"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/site_do_hotel"
+        android:textStyle="bold"
         android:textSize="@dimen/TextSize"
         android:layout_marginTop="10dp"
         />
@@ -67,13 +111,14 @@
         android:layout_height="wrap_content"
         android:text="@string/site_hotel"
         android:textSize="@dimen/TextSize"
-        android:layout_marginStart="30dp"
+        android:layout_marginBottom="10dp"
         />
 
     <TextView
         android:id="@+id/textView16"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:text="@string/horario_de_funcionamento"
         android:textSize="@dimen/TextSize"
         android:layout_marginTop="10dp"/>
@@ -84,6 +129,8 @@
         android:layout_height="wrap_content"
         android:text="@string/Horas"
         android:textSize="@dimen/TextSize"
-        android:layout_marginStart="30dp"
         android:layout_marginTop="5dp"/>
+
+    </android.support.v7.widget.LinearLayoutCompat>
+    </ScrollView>
 </LinearLayout>

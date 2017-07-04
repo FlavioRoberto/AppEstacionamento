@@ -57,6 +57,13 @@ public class TabAdapter extends FragmentPagerAdapter {
 
             }
 
+            if(usuario.equals("USER")){
+                switch (position){
+                    case 0:break;
+                    case 1:break;
+                    case 2:break;
+                }
+            }
 
        // fragment = new usuarioAdmin();
         return fragment ;
