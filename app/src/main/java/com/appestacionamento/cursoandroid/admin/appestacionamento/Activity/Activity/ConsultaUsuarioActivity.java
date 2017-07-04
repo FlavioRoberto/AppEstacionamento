@@ -53,8 +53,8 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
 
         //Valores que serão enviados para a activity de Edição de dados
         public static final String EDITNOME = "nome", EDITTIPO = "tipo", EDITCELULAR = "celular", EDITCPF = "cpf",
-                            EDITEMAIL = "email", EDITSENHA = "senha", EDITSTATUS = "status", EDITUID = "uid";
-        private String nome,senhaPreference,emailPreference, tipo, celular, cpf, email, senha, status, uid;
+                            EDITEMAIL = "email", EDITSTATUS = "status", EDITUID = "uid";
+        private String nome, senhaPreference, emailPreference, tipo, celular, cpf, email, status, uid, senha;
 
 
     @Override
@@ -255,7 +255,7 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         intent.putExtra(EDITCELULAR, celular);
         intent.putExtra(EDITCPF, cpf);
         intent.putExtra(EDITEMAIL, email);
-        intent.putExtra(EDITSENHA, senha);
+        //intent.putExtra(EDITSENHA, senha);
         intent.putExtra(EDITSTATUS, status);
         intent.putExtra(EDITUID, uid);
         startActivity(intent);
@@ -270,8 +270,6 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
             databaseReferenceUsers.removeValue();
             databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo").child(uid);
             databaseReferenceVeiculo.removeValue();
-         //   Toast.makeText(ConsultaUsuarioActivity.this, email, Toast.LENGTH_LONG).show();
-           // Toast.makeText(ConsultaUsuarioActivity.this, senha, Toast.LENGTH_LONG).show();
 
             //autentication
                 autenticacao.signOut();

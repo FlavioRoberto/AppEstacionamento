@@ -48,15 +48,11 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
     private Preferencias preferencias;
     private ProgressDialog progressDialog;
-    private String codificaEmail, emailLogin, senha,tipo;
+    private String codificaEmail, emailLogin, senha;
     private Boolean authFlag = false;
-    public static final String SENHA_ADM = "senhaadm";
-    private String uid;
     private boolean isConnected;
     private ConnectivityManager cm;
     private NetworkInfo activeNetwork;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,12 +144,15 @@ public class LoginActivity extends AppCompatActivity {
                             throw task.getException();
                         } catch (FirebaseAuthInvalidUserException e) {
                             Toast.makeText(LoginActivity.this, "Usuário inválido", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
                         } catch (FirebaseNetworkException e) {
                             Toast.makeText(LoginActivity.this, "Sem conexão", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
                         } catch (FirebaseAuthInvalidCredentialsException e) {
                             Toast.makeText(LoginActivity.this, "Senha Inválido", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
                         } catch (Exception e) {
+                            progressDialog.dismiss();
                             //Toast.makeText(LoginActivity.this,e.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
@@ -191,36 +190,38 @@ public class LoginActivity extends AppCompatActivity {
                                     GenericTypeIndicator<Map<String, String>> genericTypeIndicator = new GenericTypeIndicator<Map<String, String>>() {};
                                     Map<String, String> map = dataSnapshot.getValue(genericTypeIndicator);
                                     String tipo = map.get("tipo");
-                                    //String senha = map.get("senha");
-                                    //String emailLogin = map.get("emailLogin");
+                                    String status = map.get("status");
                                     preferencias.salvarusuarioPreferences(emailLogin,senha,tipo);
 
-                                    if (tipo.equals("ADM")) {
-                                          //Toast.makeText(getApplicationContext(), "Logado como ADM", Toast.LENGTH_LONG).show();
-                                        Intent intent = new Intent(LoginActivity.this, AdmActivity.class);
-                                        //intent.putExtra(SENHA_ADM, senha);
-                                        startActivity(intent);
-                                        progressDialog.dismiss();
-                                        finish();
-                                    } else if (tipo.equals("USER")) {
-                                        //Intent intent = new Intent(getApplicationContext(), Usuario.class);
-                                        //startActivity(intent);
-                                        Toast.makeText(getApplicationContext(), "Logado como USER", Toast.LENGTH_LONG).show();
-                                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                                        progressDialog.dismiss();
-                                        finish();
-                                    }
+                                    //Verifica se o usuario está ativado para poder acessar o sistema
+                                    if(status.equals("ATIVADO")) {
 
-                                    else if (tipo.equals("SECRETARIA")){
-                                        Intent intent = new Intent(getApplicationContext(), SecretariaActivity.class);
-                                       // intent.putExtra(SENHA_ADM,senha);
-                                        startActivity(intent);
+                                        if (tipo.equals("ADM")) {
+                                            //Toast.makeText(getApplicationContext(), "Logado como ADM", Toast.LENGTH_LONG).show();
+                                            Intent intent = new Intent(LoginActivity.this, AdmActivity.class);
+                                            startActivity(intent);
+                                            progressDialog.dismiss();
+                                            finish();
+                                        } else if (tipo.equals("USER")) {
+                                            //Intent intent = new Intent(getApplicationContext(), Usuario.class);
+                                            //startActivity(intent);
+                                            Toast.makeText(getApplicationContext(), "Logado como USER", Toast.LENGTH_LONG).show();
+                                            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                                            progressDialog.dismiss();
+                                            finish();
+                                        } else if (tipo.equals("SECRETARIA")) {
+                                            Intent intent = new Intent(getApplicationContext(), SecretariaActivity.class);
+                                            // intent.putExtra(SENHA_ADM,senha);
+                                            startActivity(intent);
+                                            progressDialog.dismiss();
+                                            finish();
+                                        }
+                                    }else if(status.equals("INATIVADO")){
                                         progressDialog.dismiss();
-                                        finish();
+                                        Toast.makeText(getApplicationContext(), "Este usuário está Inativado no sistema", Toast.LENGTH_LONG).show();
+                                        return;
                                     }
-
                                 } catch (Exception e) {
-                                    //Toast.makeText(getApplicationContext(), "Erro: " + e, Toast.LENGTH_LONG).show();
                                     progressDialog.dismiss();
 
                                 }

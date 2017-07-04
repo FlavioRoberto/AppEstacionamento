@@ -1,5 +1,6 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Appli
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
+import com.github.rtoshiro.util.format.SimpleMaskFormatter;
+import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +44,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     private String emailDatabase, codificaEmail;
     private Boolean flag = false, emailEncontrado = false;
     private AlertDialog.Builder builder;
+    private ProgressDialog progressDialog;
     private String cor, email, marca, modelo, placa, tipo, uid;
     public static final String EDITCOR = "cor", EDITEMAIL = "email", EDITMODELO = "modelo", EDITPLACA = "placa",
                         EDITTIPO = "tipo", EDITUID = "uid", EDITMARCA = "marca";
@@ -53,12 +57,19 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultarveiculo);
 
+        //Iniciando Progress Dialog
+        progressDialog = new ProgressDialog(this);
+
+        //Instacia do Banco de Dados
         databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo");
 
+        //Toolbar
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
         toolbar.setTitle("Consultar veículo");
         setSupportActionBar(toolbar);
 
+
+        //Inicializando componentes da Activity
         imageViewBuscarVeiculo = (ImageView) findViewById(R.id.btnbuscar);
         textViewPlaca = (TextView) findViewById(R.id.valorplacaId);
         editTextEmailDonoVeiculo = (EditText) findViewById(R.id.editConsultaId);
@@ -74,6 +85,9 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         imageViewBuscarVeiculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.setCanceledOnTouchOutside(false);
+                progressDialog.setMessage("Pesquisando Veículo...");
+                progressDialog.show();
                 buscaVeiculo();
             }
         });
@@ -100,7 +114,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                 if(flag == true){
                     builder.setTitle("Excluir Veículo");
                     builder.setMessage("Tem certeza que deseja excluir o Veículo?");
-                    builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
 
                         public void onClick(DialogInterface dialog, int which) {
                             databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo").child(uid);
@@ -110,7 +124,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                             dialog.dismiss();
                         }
                     });
-                    builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.dismiss();
@@ -156,12 +170,15 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                             textViewCorVeiculo.setText(cor);
                             emailEncontrado = true;
                             flag = true;
+                            progressDialog.dismiss();
                             break;
                         }
                     }catch (Exception e){
+                        progressDialog.dismiss();
                     }
                 }
                 if(emailEncontrado == false){
+                    progressDialog.dismiss();
                     Toast.makeText(getApplicationContext(), "Email nao encontrado", Toast.LENGTH_LONG).show();
                     //finish();
                 }

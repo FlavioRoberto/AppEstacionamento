@@ -31,8 +31,8 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity {
     private EditText editTextNome, editTextTelefone, editTextCpf;
     private Spinner  spinner;
     private Button buttonAtualizar;
-    private String nome, telefone, cpf, tipo, uid, email, senha, status, itemSelectedSpinner;
-    private String novoNome, novoTelefone, novoCpf, novoTipo, novoStatus;
+    private String nome, telefone, cpf, tipo, uid, email, status;
+    private String novoNome, novoTelefone, novoCpf, novoTipo;
     private DatabaseReference databaseReference;
     private modelUsuario usuario = new modelUsuario();
     private Toolbar toolbar;
@@ -54,9 +54,10 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity {
         buttonAtualizar = (Button) findViewById(R.id.buttonAtualizarUsuario);
 
 
-        //pega os valores passado da viwe consultar
+        //pega os valores passados da view consultar
         pegaExtra();
 
+        //inicializa o spinner
         SpinnerAdapter adapter = spinner.getAdapter();
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -73,14 +74,15 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity {
                     tipo = "GARAGISTA";
                 }
                 novoTipo = tipo;
-                //Toast.makeText(getApplicationContext(),itemSelect,Toast.LENGTH_LONG).show();
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
+        //FINALIZA SPINNER
 
+        //Mostra os dados do usuário que foi pesquisado
         apresentaDados();
 
         buttonAtualizar.setOnClickListener(new View.OnClickListener() {
@@ -100,10 +102,6 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity {
     }
 
     private void atualizaDados(){
-        //inicializa o spinner
-
-        //FINALIZA SPINNER
-
 
         novoNome = editTextNome.getText().toString().toUpperCase().trim();
         novoTelefone = editTextTelefone.getText().toString().trim();
@@ -125,7 +123,6 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity {
 
 
             usuario.setEmail(email);
-            usuario.setSenha(senha);
             usuario.setUid(uid);
             usuario.setStatus(status);
 
@@ -191,9 +188,7 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity {
         tipo = intent.getStringExtra(ConsultaUsuarioActivity.EDITTIPO);
         uid = intent.getStringExtra(ConsultaUsuarioActivity.EDITUID);
         email = intent.getStringExtra(ConsultaUsuarioActivity.EDITEMAIL);
-        senha = intent.getStringExtra(ConsultaUsuarioActivity.EDITSENHA);
         status = intent.getStringExtra(ConsultaUsuarioActivity.EDITSTATUS);
-
     }
 
     //desloga usuario e vai pra tela de login
