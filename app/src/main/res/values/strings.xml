@@ -4,9 +4,11 @@
     <string name="eSenha">Esqueceu a senha?</string>
     <string name="numero">Numero </string>
     <string name="Setor">Setor </string>
+    <string name="Numeovaga">Numero da Vaga</string>
     <string name="Email">Email</string>
-    <string name= "ConsulaVaga">Buscar Vaga </string>
-    <string name= "Enviar">Enviar</string>
+    <string name="excluirvaga">Excluir Vaga</string>
+    <string name="ConsulaVaga">Buscar Vaga </string>
+    <string name="Enviar">Enviar</string>
     <string name="senha">Senha</string>
     <string name="buscarCpf">infrome o cpf ex: 111.111.111.11</string>
     <string name="nome">Nome</string>
