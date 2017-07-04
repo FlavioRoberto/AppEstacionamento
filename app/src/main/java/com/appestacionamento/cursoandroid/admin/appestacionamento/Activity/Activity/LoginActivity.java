@@ -133,6 +133,10 @@ public class LoginActivity extends AppCompatActivity {
         emailLogin = editTextEmail.getText().toString().trim();
         senha = editTextSenha.getText().toString().trim();
 
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setMessage("Acessando Perfil...");
+        progressDialog.show();
+
         if (TextUtils.isEmpty(emailLogin) || TextUtils.isEmpty(senha)) {
             Toast.makeText(LoginActivity.this, "Campos vazios", Toast.LENGTH_LONG).show();
         } else {
