@@ -24,6 +24,8 @@ import android.widget.Toast;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.AdmActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.EmailCadastro;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.PesquisaUsuarios;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
@@ -48,6 +50,8 @@ import com.google.firebase.database.ValueEventListener;
 public class CadastroUsuarioActivity extends AppCompatActivity implements IActivity {
 
     private EditText editTextNomeUsuario, editTextTelefoneUsuario, editTextEmailUsuario, editTextCpfUsuario;
+    private String emailusuario;
+    private boolean flag = false;
     private CheckBox checkBoxPossuiNecessidade;
     private Button buttonInserirUsuario;
     private modelUsuario usuario = new modelUsuario();
@@ -61,7 +65,8 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
     private Preferencias preferencias ;
     private TextView textTipo;
     private String usuarioLogado;
-
+    private PesquisaUsuarios pesquisaUsuario = new PesquisaUsuarios();
+    private EmailCadastro emailCadastro = new EmailCadastro(this);
 
 
 
@@ -135,6 +140,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         buttonInserirUsuario.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 inserirUsuario();
         }
         });
@@ -262,6 +268,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         usuario.setUid(codificarEmail);
 
         usuario.Create();
+        enviaEmail();
 
         editTextNomeUsuario.setText(null);
         editTextTelefoneUsuario.setText(null);
@@ -287,5 +294,14 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
                         }
                     }
                 });
+    }
+    public void enviaEmail(){
+        emailusuario = editTextEmailUsuario.getText().toString().toLowerCase().trim();
+        if(pesquisaUsuario.retornaUsuario(emailusuario) == false){
+            emailCadastro.Verifica_Email(emailusuario);
+            flag=true;
+        }else{
+            Toast.makeText(getApplicationContext(),"Email ja existe!",Toast.LENGTH_LONG).show();
+        }
     }
 }
