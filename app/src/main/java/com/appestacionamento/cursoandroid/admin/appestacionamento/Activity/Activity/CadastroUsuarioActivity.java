@@ -85,8 +85,8 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         progressDialog = new ProgressDialog(this);
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
-        preferencias = new Preferencias(getApplicationContext());
-        usuarioLogado = verificaUsuarioLogado.verificaUsuarioLogado(preferencias,getApplicationContext());
+
+        usuarioLogado = verificaUsuarioLogado.verificaUsuarioLogado(getApplicationContext());
 
         //se o usuario logado for secretaria
         if(usuarioLogado.equals("SECRETARIA"))
@@ -249,7 +249,6 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         super.onDestroy();
 
     }
-
 
 
     public void cadastraUsuario(Preferencias preferencias){

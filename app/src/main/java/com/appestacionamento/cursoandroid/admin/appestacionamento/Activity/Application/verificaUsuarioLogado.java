@@ -13,7 +13,8 @@ public  class verificaUsuarioLogado {
     public verificaUsuarioLogado() {
     }
 
-    public static String verificaUsuarioLogado(Preferencias preferencias, Context context){
+    public static String verificaUsuarioLogado( Context context){
+       Preferencias preferencias = new Preferencias(context);
         String usuario = preferencias.recuperaTipo(context) ;
         return usuario;
     }

@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.AdmActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelVeiculo;
@@ -214,11 +215,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
 
     //desloga usuario e vai pra tela de login
     public void sair(){
-        modelUsuario usuario = new modelUsuario();
-        usuario.desloga();
-        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
-        startActivity(intent);
-        finish();
+        sairAplicacao.logout(getApplicationContext(),this);
     }
 
     //retorna para a página inicial

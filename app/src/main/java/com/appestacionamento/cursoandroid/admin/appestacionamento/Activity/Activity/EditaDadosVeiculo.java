@@ -21,6 +21,7 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activ
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelVeiculo;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
@@ -174,11 +175,7 @@ public class EditaDadosVeiculo extends AppCompatActivity implements IActivity{
 
     @Override
     public void sair() {
-        FirebaseAuth auth = configuracaoFirebase.getFirebaseAutenticacao();
-        auth.signOut();
-        finish();
-        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
-        startActivity(intent);
+        sairAplicacao.logout(getApplicationContext(),this);
     }
 
     @Override

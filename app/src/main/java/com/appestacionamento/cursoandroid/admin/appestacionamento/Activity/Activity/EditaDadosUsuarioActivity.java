@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -193,11 +194,7 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity {
 
     //desloga usuario e vai pra tela de login
     public void sair(){
-        modelUsuario usuario = new modelUsuario();
-        usuario.desloga();
-        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
-        startActivity(intent);
-        finish();
+        sairAplicacao.logout(getApplicationContext(),this);
     }
 
     //retorna para a página inicial
