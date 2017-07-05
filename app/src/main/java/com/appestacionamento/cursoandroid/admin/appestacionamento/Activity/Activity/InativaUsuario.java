@@ -44,6 +44,7 @@ public class InativaUsuario extends AppCompatActivity implements IActivity {
     private CheckBox statuscheck;
     private Button btnSalvar;
     private ImageView btnPesquisar;
+    private Preferencias preferencias;
     private Toolbar toolbar;
 
     //INICIO OnCreate
@@ -51,6 +52,9 @@ public class InativaUsuario extends AppCompatActivity implements IActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inativa_usuario);
+
+        preferencias = new Preferencias(getApplicationContext());
+
         flag = false;
        // emailEncontrado = false;
         editTextBuscarEmailUsuario = (EditText) findViewById(R.id.inativaEditConsultaId);
@@ -224,17 +228,7 @@ public class InativaUsuario extends AppCompatActivity implements IActivity {
     //retorna para a página inicial
     public  void voltar(){
 
-        if(verificaUsuarioLogado().equals("ADM")) {
-            Intent intent = new Intent(getApplicationContext(), AdmActivity.class);
-            startActivity(intent);
-            finish();
-        }
-        if(verificaUsuarioLogado().equals("SECRETARIA")){
-            Intent intent = new Intent(getApplicationContext(), SecretariaActivity.class);
-            startActivity(intent);
-            finish();
-        }
-
+        invocaActivitys.invocaPrincipal(this,this,preferencias.recuperaTipo(this));
     }
 
     public String verificaUsuarioLogado(){

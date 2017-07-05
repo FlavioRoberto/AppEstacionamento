@@ -38,6 +38,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
 
     //Declaração de variáveis
     private Toolbar toolbar;
+    private Preferencias preferencias;
     private EditText editTextEmailDonoVeiculo;
     private ImageView imageViewBuscarVeiculo;
     private TextView textViewPlaca, textViewModeloVeiculo, textViewMarcaVeiculo, textViewCorVeiculo;
@@ -58,6 +59,8 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultarveiculo);
+
+        preferencias = new Preferencias(getApplicationContext());
 
         //Iniciando Progress Dialog
         progressDialog = new ProgressDialog(this);
@@ -243,20 +246,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     //metodo para voltar a menu principal
     @Override
     public void voltar() {
-
-            Preferencias preferencias = new Preferencias(getApplicationContext());
-            String usuario = preferencias.recuperaTipo(getApplicationContext());
-            if(usuario.equals("ADM")) {
-                Intent intent = new Intent(getApplicationContext(), AdmActivity.class);
-                startActivity(intent);
-                finish();
-            }
-            if(usuario.equals("SECRETARIA")){
-                Intent intent = new Intent(getApplicationContext(), SecretariaActivity.class);
-                startActivity(intent);
-                finish();
-            }
-
+        invocaActivitys.invocaPrincipal(getApplicationContext(),this,preferencias.recuperaTipo(getApplicationContext()));
     }
 
     @Override
