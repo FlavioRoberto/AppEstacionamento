@@ -1,24 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:layout_width="match_parent"
+    android:background="@android:color/white"
     android:layout_height="match_parent"
-    tools:context="com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments.FragmentsUsuario.HomeUsuario">
+    android:padding="25dp"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/textView18"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textAlignment="center"
-            android:textSize="30sp"
-            android:layout_gravity="center"
-            android:text="Home Usuario" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/consulta_vagaId"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/ovaltext_busca"
+                    app:srcCompat="@drawable/ic_search" />
+
+                <TextView
+                    android:id="@+id/textconsultaVagaid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@string/ConsulaVaga"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/texxtViewSize"
+                    android:textStyle="bold" />
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </TableLayout>
+
+
+
+        </ScrollView>
+
+
     </LinearLayout>
+
 </FrameLayout>

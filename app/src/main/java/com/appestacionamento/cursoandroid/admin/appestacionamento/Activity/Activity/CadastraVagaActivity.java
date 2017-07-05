@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
@@ -27,7 +28,9 @@ public class CadastraVagaActivity extends AppCompatActivity implements IActivity
     private EditText editTextInsereNumeroVaga;
     private Spinner spinnerSetor;
     private Button buttonCadastraVaga;
+    private CheckBox checkBoxVagaEspecial;
     private String setor, numero;
+    private Boolean vagaEspecial;
     private CadastraVaga cadastraVaga = new CadastraVaga(this);
 
     @Override
@@ -44,6 +47,7 @@ public class CadastraVagaActivity extends AppCompatActivity implements IActivity
         editTextInsereNumeroVaga = (EditText) findViewById(R.id.numero_da_vaga);
         spinnerSetor = (Spinner) findViewById(R.id.editTipo_setor);
         buttonCadastraVaga = (Button) findViewById(R.id.buttonAtualizarCadastroVaga);
+        checkBoxVagaEspecial = (CheckBox) findViewById(R.id.VagaEspecialCheckBox);
 
         //Iniciando Spinner
         SpinnerAdapter adapter = spinnerSetor.getAdapter();
@@ -59,6 +63,12 @@ public class CadastraVagaActivity extends AppCompatActivity implements IActivity
             }
         });
 
+        if(checkBoxVagaEspecial.isChecked()){
+            vagaEspecial = true;
+        }else{
+            vagaEspecial = false;
+        }
+
         buttonCadastraVaga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +82,7 @@ public class CadastraVagaActivity extends AppCompatActivity implements IActivity
     public void adicionaVaga(){
         numero = editTextInsereNumeroVaga.getText().toString().trim();
         if(!TextUtils.isEmpty(numero) && !TextUtils.isEmpty(setor)){
-            cadastraVaga.insereVaga(numero, setor);
+            cadastraVaga.insereVaga(numero, setor, vagaEspecial);
             editTextInsereNumeroVaga.setText(null);
         }
         else{
@@ -115,7 +125,6 @@ public class CadastraVagaActivity extends AppCompatActivity implements IActivity
         Preferencias preferencias = new Preferencias(CadastraVagaActivity.this);
         invocaActivitys.invocaPrincipal(this,this,preferencias.recuperaTipo(this));
     }
-
 
     @Override
     public void adicionaMascara() {

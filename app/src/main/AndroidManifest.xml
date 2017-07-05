@@ -33,7 +33,8 @@
         <activity android:name=".Activity.Activity.Usuario.ActivityUsuario" />
         <activity android:name=".Activity.Activity.SobreActivity" />
         <activity android:name=".Activity.Activity.CadastraVagaActivity" />
-        <activity android:name=".Activity.Activity.Usuario.ConsultaVaga"></activity>
+        <activity android:name=".Activity.Activity.Usuario.ConsultaVaga" />
+        <activity android:name=".Activity.Activity.Garagista.GaragistaActivity"></activity>
     </application>
 
 </manifest>

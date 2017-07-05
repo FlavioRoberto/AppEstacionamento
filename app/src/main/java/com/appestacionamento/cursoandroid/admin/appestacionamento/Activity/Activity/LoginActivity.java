@@ -16,9 +16,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.AdmActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Garagista.GaragistaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Usuario.ActivityUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
@@ -221,6 +223,11 @@ public class LoginActivity extends AppCompatActivity {
                                         } else if(tipo.equals("USER")){
 
                                             Intent intent = new Intent(getApplicationContext(), ActivityUsuario.class);
+                                            startActivity(intent);
+                                            progressDialog.dismiss();
+                                            finish();
+                                        }else if(tipo.equals("GARAGISTA")){
+                                            Intent intent = new Intent(getApplicationContext(),GaragistaActivity.class);
                                             startActivity(intent);
                                             progressDialog.dismiss();
                                             finish();

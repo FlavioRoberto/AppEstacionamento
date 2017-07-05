@@ -17,15 +17,17 @@ public class CadastraVaga {
     private DatabaseReference databaseReference;
     private Boolean flag = true; //verifica se o numero que sera inserido pra vaga esta disponivel
     private String setorDatabase, numeroVagaDatabase, setorVaga, numeroVaga, chave;
+    private Boolean vagaEspecial;
     private modelVaga modelVaga = new modelVaga();
 
     public CadastraVaga(Context context) {
         this.context = context;
     }
 
-    public void insereVaga(String numero, String setor){
+    public void insereVaga(String numero, String setor, Boolean vagaEsp){
         setorVaga = setor;
         numeroVaga = numero;
+        vagaEspecial = vagaEsp;
         databaseReference = FirebaseDatabase.getInstance().getReference("vaga");
         Query query = databaseReference;
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -42,6 +44,7 @@ public class CadastraVaga {
 
                 if(flag == true){
                     chave = databaseReference.push().getKey();
+                    modelVaga.setVagaEspecial(vagaEspecial);
                     modelVaga.setNumero(numeroVaga);
                     modelVaga.setSetor(setorVaga);
                     modelVaga.setChave(chave);
