@@ -9,9 +9,6 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activ
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.SobreActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Usuario.ActivityUsuario;
 
-/**
- * Created by Admin on 05/07/2017.
- */
 
 public class invocaActivitys {
 
@@ -23,7 +20,6 @@ public class invocaActivitys {
     public static void invocaSobre(Context context, Activity activity) {
         Intent intent = new Intent(context.getApplicationContext(), SobreActivity.class);
         context.startActivity(intent);
-        activity.finish();
     }
 
     public static void invocaPrincipal(Context context, Activity activity, String usuario){

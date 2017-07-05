@@ -69,5 +69,8 @@ public class SobreActivity extends AppCompatActivity implements IActivity {
         invocaActivitys.invocaPrincipal(SobreActivity.this,this,preferencias.recuperaTipo(SobreActivity.this));
     }
 
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }
