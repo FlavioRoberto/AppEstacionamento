@@ -203,12 +203,10 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
     @Override
     public void sobre() {
         invocaActivitys.invocaSobre(this,this);
-
     }
 
     @Override
     public void adicionaMascara() {
-
     }
 
     //retorna para a página inicial
