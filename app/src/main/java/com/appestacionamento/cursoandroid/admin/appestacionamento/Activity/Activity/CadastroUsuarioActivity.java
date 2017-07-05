@@ -295,6 +295,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
                     }
                 });
     }
+
     public void enviaEmail(){
         emailusuario = editTextEmailUsuario.getText().toString().toLowerCase().trim();
         if(pesquisaUsuario.retornaUsuario(emailusuario) == false){

@@ -221,7 +221,6 @@ public class LoginActivity extends AppCompatActivity {
                                             progressDialog.dismiss();
                                             finish();
                                         } else if(tipo.equals("USER")){
-
                                             Intent intent = new Intent(getApplicationContext(), ActivityUsuario.class);
                                             startActivity(intent);
                                             progressDialog.dismiss();

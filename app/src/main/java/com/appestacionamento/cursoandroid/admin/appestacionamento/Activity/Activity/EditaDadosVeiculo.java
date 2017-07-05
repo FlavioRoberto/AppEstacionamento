@@ -64,7 +64,7 @@ public class EditaDadosVeiculo extends AppCompatActivity implements IActivity{
         spinnerTipoVeiculo = (Spinner) findViewById(R.id.EditarSspinnerTipoVeiculo);
         buttonEditarVeiculo = (Button) findViewById(R.id.button_editarVeiculo);
 
-
+        adicionaMascara();
 
         //Spinner Marca do veiculo
         //Spiner Adapter
