@@ -15,9 +15,10 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activ
 public class sairAplicacao {
 
     public static void logout(Context context, Activity activity){
+        activity.finish();
         Intent intent = new Intent(context, LoginActivity.class);
         activity.startActivity(intent);
-        activity.finish();
+
     }
 
 }

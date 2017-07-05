@@ -16,6 +16,7 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activ
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.InativaUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.verificaUsuarioLogado;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 
 /**
@@ -100,8 +101,6 @@ public class usuarioAdmin extends Fragment {
 
 
     public String verificaUsuarioLogado(){
-        Preferencias preferencias = new Preferencias(getContext());
-        String usuario = preferencias.recuperaTipo(getContext());
-        return usuario;
+        return verificaUsuarioLogado.verificaUsuarioLogado(getContext());
     }
 }

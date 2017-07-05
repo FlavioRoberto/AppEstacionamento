@@ -19,6 +19,7 @@ public interface IActivity  {
     public boolean onOptionsItemSelected(MenuItem item) ;
     //desloga usuario e vai pra tela de login
     public void sair();
+    public void sobre();
     //retorna para a página inicial
     public  void voltar();
 

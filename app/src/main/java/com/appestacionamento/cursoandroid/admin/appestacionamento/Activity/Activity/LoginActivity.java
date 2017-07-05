@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.AdmActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Usuario.ActivityUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
@@ -211,16 +212,15 @@ public class LoginActivity extends AppCompatActivity {
                                             startActivity(intent);
                                             progressDialog.dismiss();
                                             finish();
-                                        } else if (tipo.equals("USER")) {
-                                            //Intent intent = new Intent(getApplicationContext(), Usuario.class);
-                                            //startActivity(intent);
-                                            Toast.makeText(getApplicationContext(), "Logado como USER", Toast.LENGTH_LONG).show();
-                                            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                                            progressDialog.dismiss();
-                                            finish();
-                                        } else if (tipo.equals("SECRETARIA")) {
+                                        }  else if (tipo.equals("SECRETARIA")) {
                                             Intent intent = new Intent(getApplicationContext(), SecretariaActivity.class);
                                             // intent.putExtra(SENHA_ADM,senha);
+                                            startActivity(intent);
+                                            progressDialog.dismiss();
+                                            finish();
+                                        } else if(tipo.equals("USER")){
+
+                                            Intent intent = new Intent(getApplicationContext(), ActivityUsuario.class);
                                             startActivity(intent);
                                             progressDialog.dismiss();
                                             finish();

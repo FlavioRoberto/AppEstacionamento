@@ -25,6 +25,7 @@ import android.widget.Toast;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.AdmActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.verificaUsuarioLogado;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
@@ -191,6 +192,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
             case R.id.menu_anterior: voltar();break;
             case R.id.menu_meusdados: break;
             case R.id.menu_sair: sair();break;
+            case R.id.menu_sobre:sobre();break;
             default:break;
         }
         return true;
@@ -199,6 +201,11 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
     //desloga usuario e vai pra tela de login
     public void sair(){
         sairAplicacao.logout(getApplicationContext(),CadastroUsuarioActivity.this);
+    }
+
+    @Override
+    public void sobre() {
+        invocaActivitys.invocaSobre(getApplicationContext(),this);
     }
 
     //retorna para a página inicial

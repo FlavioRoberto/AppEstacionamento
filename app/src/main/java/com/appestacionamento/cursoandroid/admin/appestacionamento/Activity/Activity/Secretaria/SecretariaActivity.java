@@ -14,6 +14,8 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activ
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.IActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.LoginActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Adapter.TabAdapter;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.SlidingTabLayout;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
@@ -52,13 +54,9 @@ public class SecretariaActivity extends AppCompatActivity implements IActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.menu_sair :
-                sair();
-                //finish();
-                break;
-            case R.id.menu_meusdados:
-                chamaConsulta();
-                break;
+            case R.id.menu_sair :sair();break;
+            case R.id.menu_meusdados: chamaConsulta();break;
+            case R.id.menu_sobre: sobre();break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -66,11 +64,13 @@ public class SecretariaActivity extends AppCompatActivity implements IActivity {
 
     @Override
     public void sair() {
-        modelUsuario usuario = new modelUsuario();
-        usuario.desloga();
-        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
-        startActivity(intent);
-        finish();
+        sairAplicacao.logout(getApplicationContext(),this);
+    }
+
+    @Override
+    public void sobre() {
+        invocaActivitys.invocaSobre(getApplicationContext(),this);
+
     }
 
     @Override

@@ -5,6 +5,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.widget.Toast;
 
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments.FragmentsUsuario.HomeUsuario;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments.FragmentsUsuario.VagaUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments.usuarioAdmin;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments.vagaFragment;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments.consultaUsuarioFragment;
@@ -58,11 +60,13 @@ public class TabAdapter extends FragmentPagerAdapter {
             }
 
             if(usuario.equals("USER")){
+
                 switch (position){
-                    case 0:break;
-                    case 1:break;
-                    case 2:break;
+                    case 0:fragment = new HomeUsuario(); return fragment;
+                    case 1:fragment = new VagaUsuario();return fragment;
+
                 }
+
             }
 
        // fragment = new usuarioAdmin();

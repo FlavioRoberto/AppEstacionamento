@@ -19,6 +19,7 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activ
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.verificaUsuarioLogado;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
@@ -190,6 +191,7 @@ public class InativaUsuario extends AppCompatActivity implements IActivity {
             case R.id.menu_anterior: voltar();break;
             case R.id.menu_meusdados: break;
             case R.id.menu_sair: sair();break;
+            case R.id.menu_sobre:sobre();break;
             default:break;
         }
         return true;
@@ -206,6 +208,12 @@ public class InativaUsuario extends AppCompatActivity implements IActivity {
     //desloga usuario e vai pra tela de login
     public void sair(){
         sairAplicacao.logout(getApplicationContext(),this);
+    }
+
+    @Override
+    public void sobre() {
+        invocaActivitys.invocaSobre(getApplicationContext(),this);
+
     }
 
     @Override

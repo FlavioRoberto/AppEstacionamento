@@ -15,6 +15,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.PesquisaUsuarios;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.RedefinirSenha;
@@ -25,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
-public class RedefinirSenhaActivity extends AppCompatActivity implements IActivity {
+public class RedefinirSenhaActivity extends AppCompatActivity  {
 
     private EditText editTextEmail;
     private Button buttonEnviar;
@@ -100,20 +101,11 @@ public class RedefinirSenhaActivity extends AppCompatActivity implements IActivi
         finish();
     }
 
-    @Override
-    public void adicionaMascara() {
 
-    }
-
-    @Override
-    public void sair() {
-
-    }
-
-    @Override
-    public void voltar() {
+    public void voltar(){
         Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
-        finish();
         startActivity(intent);
+        finish();
     }
+
 }

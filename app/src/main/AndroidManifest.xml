@@ -30,7 +30,8 @@
         <activity android:name=".Activity.Activity.InativaUsuario" />
         <activity android:name=".Activity.Activity.RedefinirSenhaActivity" />
         <activity android:name=".Activity.Activity.Secretaria.SecretariaActivity" />
-        <activity android:name=".Activity.Activity.Usuario.ActivityUsuario"></activity>
+        <activity android:name=".Activity.Activity.Usuario.ActivityUsuario" />
+        <activity android:name=".Activity.Activity.SobreActivity"></activity>
     </application>
 
 </manifest>
