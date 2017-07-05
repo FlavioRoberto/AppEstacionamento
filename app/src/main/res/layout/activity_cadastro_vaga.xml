@@ -68,6 +68,14 @@
                 android:dropDownWidth="match_parent"
                 android:entries="@array/spinnerSetor" />
 
+            <CheckBox
+                android:layout_marginTop="25dp"
+                android:id="@+id/InativaCheckBoxStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/vagaespecial"
+                android:textSize="18sp"/>
+
             <Button
                 android:id="@+id/buttonAtualizarCadastroVaga"
                 android:layout_width="match_parent"
@@ -77,6 +85,7 @@
                 android:background="@drawable/ovalbutton"
                 android:text="@string/cadastrar"
                 android:textSize="@dimen/texxtViewSize" />
+
 
         </LinearLayout>
 
