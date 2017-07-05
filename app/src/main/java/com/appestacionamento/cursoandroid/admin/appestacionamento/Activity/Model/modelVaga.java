@@ -31,7 +31,7 @@ public class modelVaga {
         return chave;
     }
 
-    @Exclude
+
     public Boolean getVagaEspecial() {
         return vagaEspecial;
     }
