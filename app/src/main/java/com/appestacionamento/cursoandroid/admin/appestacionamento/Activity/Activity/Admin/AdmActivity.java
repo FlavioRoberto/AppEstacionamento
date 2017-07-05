@@ -16,8 +16,11 @@ import android.widget.TextView;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ConsultaUsuarioActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.EditaDadosUsuarioActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.IActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.LoginActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Adapter.TabAdapter;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.SlidingTabLayout;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
@@ -25,7 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class AdmActivity extends AppCompatActivity {
+public class AdmActivity extends AppCompatActivity implements IActivity {
     private Toolbar toolbar;
     private SlidingTabLayout slidingTabLayout;
     private ViewPager viewPager;
@@ -101,6 +104,11 @@ public class AdmActivity extends AppCompatActivity {
     }
 
     @Override
+    public void adicionaMascara() {
+
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_sair :
@@ -110,16 +118,24 @@ public class AdmActivity extends AppCompatActivity {
             case R.id.menu_meusdados:
                 chamaConsulta();
                 break;
+
+            case R.id.menu_sobre:sobre();break;
         }
         return true;
     }
 
-    private void sair(){
-        modelUsuario usuario = new modelUsuario();
-        usuario.desloga();
-        finish();
-        Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
-        startActivity(intent);
+    public void sair(){
+        sairAplicacao.logout(getApplicationContext(),this);
+    }
+
+    @Override
+    public void sobre() {
+        invocaActivitys.invocaSobre(AdmActivity.this,this);
+
+    }
+
+    @Override
+    public void voltar() {
 
     }
 

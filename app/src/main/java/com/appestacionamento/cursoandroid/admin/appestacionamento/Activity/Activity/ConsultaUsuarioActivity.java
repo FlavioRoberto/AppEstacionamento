@@ -213,17 +213,8 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
 
     //retorna para a página inicial
     public  void voltar(){
-       String usuario = preferencias.recuperaTipo(getApplicationContext());
-        if(usuario.equals("ADM")) {
-            Intent intent = new Intent(getApplicationContext(), AdmActivity.class);
-            startActivity(intent);
-            finish();
-        }
-        if(usuario.equals("SECRETARIA")){
-            Intent intent = new Intent(getApplicationContext(), SecretariaActivity.class);
-            startActivity(intent);
-            finish();
-        }
+      //  preferencias = new Preferencias(this);
+       invocaActivitys.invocaPrincipal(ConsultaUsuarioActivity.this,this,preferencias.recuperaTipo(this));
     }
 
     public void abreConfirmacaoExclusao(){

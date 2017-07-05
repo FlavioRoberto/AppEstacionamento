@@ -76,7 +76,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         setSupportActionBar(toolbar);
 
 
-
+        preferencias = new Preferencias(getApplicationContext());
         editTextNomeUsuario = (EditText) findViewById(R.id.editnomeid_cadastro);
         editTextTelefoneUsuario = (EditText) findViewById(R.id.edittelefoneid_cadastro);
         editTextEmailUsuario = (EditText) findViewById(R.id.editemailid_cadastro);
@@ -205,23 +205,13 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
 
     @Override
     public void sobre() {
-        invocaActivitys.invocaSobre(getApplicationContext(),this);
+        invocaActivitys.invocaSobre(CadastroUsuarioActivity.this,this);
     }
 
     //retorna para a página inicial
     public  void voltar(){
 
-        Toast.makeText(getApplicationContext(),usuarioLogado,Toast.LENGTH_SHORT).show();
-        if(usuarioLogado.equals("ADM")) {
-            Intent intent = new Intent(getApplicationContext(), AdmActivity.class);
-            startActivity(intent);
-            finish();
-        }
-        if(usuarioLogado.equals("SECRETARIA")){
-            Intent intent = new Intent(getApplicationContext(), SecretariaActivity.class);
-            startActivity(intent);
-            finish();
-        }
+        invocaActivitys.invocaPrincipal(this,this,preferencias.recuperaTipo(this));
     }
 
     public void adicionaMascara(){

@@ -237,7 +237,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
 
     @Override
     public void sobre() {
-        invocaActivitys.invocaSobre(getApplicationContext(),this);
+        invocaActivitys.invocaSobre(ConsultarVeiculoActivity.this,this);
     }
 
     //metodo para voltar a menu principal

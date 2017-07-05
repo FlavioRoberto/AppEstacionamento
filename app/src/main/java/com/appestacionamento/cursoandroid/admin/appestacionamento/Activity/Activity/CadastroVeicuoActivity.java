@@ -222,7 +222,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
 
     @Override
     public void sobre() {
-        invocaActivitys.invocaSobre(getApplicationContext(),this);
+        invocaActivitys.invocaSobre(CadastroVeicuoActivity.this,this);
     }
 
     //retorna para a página inicial

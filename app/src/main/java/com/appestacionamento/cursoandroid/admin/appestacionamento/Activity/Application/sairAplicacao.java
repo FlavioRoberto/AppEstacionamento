@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.LoginActivity;
-
+import com.google.firebase.auth.FirebaseAuth;
 
 
 /**
@@ -15,7 +15,9 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activ
 public class sairAplicacao {
 
     public static void logout(Context context, Activity activity){
+        FirebaseAuth auth = configuracaoFirebase.getFirebaseAutenticacao();
         activity.finish();
+        auth.signOut();
         Intent intent = new Intent(context, LoginActivity.class);
         activity.startActivity(intent);
 

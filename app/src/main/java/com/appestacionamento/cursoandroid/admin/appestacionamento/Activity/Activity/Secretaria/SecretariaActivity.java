@@ -69,7 +69,7 @@ public class SecretariaActivity extends AppCompatActivity implements IActivity {
 
     @Override
     public void sobre() {
-        invocaActivitys.invocaSobre(getApplicationContext(),this);
+        invocaActivitys.invocaSobre(this,this);
 
     }
 
