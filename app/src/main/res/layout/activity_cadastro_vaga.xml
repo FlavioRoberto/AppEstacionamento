@@ -9,7 +9,8 @@
     android:background="@color/backgroundView"
     >
 
-    <include android:id="@+id/toolbarId"
+    <include
+        android:id="@+id/toolbarId"
         layout="@layout/toolbar"
 
         />
@@ -65,7 +66,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:dropDownWidth="match_parent"
-                android:entries="@array/spinnerSetor"/>
+                android:entries="@array/spinnerSetor" />
+
+            <CheckBox
+                android:id="@+id/VagaEspecialCheckBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="@string/vagaespecial"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/buttonAtualizarCadastroVaga"
@@ -76,6 +85,7 @@
                 android:background="@drawable/ovalbutton"
                 android:text="@string/cadastrar"
                 android:textSize="@dimen/texxtViewSize" />
+
 
         </LinearLayout>
 
