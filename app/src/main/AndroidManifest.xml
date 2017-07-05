@@ -31,7 +31,8 @@
         <activity android:name=".Activity.Activity.RedefinirSenhaActivity" />
         <activity android:name=".Activity.Activity.Secretaria.SecretariaActivity" />
         <activity android:name=".Activity.Activity.Usuario.ActivityUsuario" />
-        <activity android:name=".Activity.Activity.SobreActivity"></activity>
+        <activity android:name=".Activity.Activity.SobreActivity" />
+        <activity android:name=".Activity.Activity.CadastraVagaActivity"></activity>
     </application>
 
 </manifest>
