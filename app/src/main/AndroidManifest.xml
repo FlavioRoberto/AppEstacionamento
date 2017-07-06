@@ -29,6 +29,7 @@
         <activity android:name=".Activity.Activity.EditaDadosVeiculo" />
         <activity android:name=".Activity.Activity.InativaUsuario" />
         <activity android:name=".Activity.Activity.RedefinirSenhaActivity" />
+        <activity android:name=".Activity.Activity.Admin.ConsultaVagaADMActivity" />
         <activity android:name=".Activity.Activity.Secretaria.SecretariaActivity" />
         <activity android:name=".Activity.Activity.Usuario.ActivityUsuario" />
         <activity android:name=".Activity.Activity.SobreActivity" />

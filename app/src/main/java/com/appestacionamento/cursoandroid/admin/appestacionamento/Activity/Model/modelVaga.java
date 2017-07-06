@@ -2,17 +2,24 @@ package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Mode
 
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments.FragmentsUsuario.VagaUsuario;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
+import com.google.firebase.database.ValueEventListener;
 
 public class modelVaga {
     private String numero, setor, chave;
+
     private Boolean vagaEspecial;
+
     private static DatabaseReference firebaseReferencia;
 
     public modelVaga(){
         firebaseReferencia = configuracaoFirebase.getFirebase();
     }
+
 
     @Exclude
     public void create(){
