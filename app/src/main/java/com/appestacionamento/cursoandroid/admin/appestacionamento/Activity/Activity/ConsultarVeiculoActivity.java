@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.AdmActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.ConsultaVagaADMActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
@@ -246,8 +247,8 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     //metodo para voltar a menu principal
     @Override
     public void voltar() {
-        invocaActivitys.invocaPrincipal(getApplicationContext(),this,preferencias.recuperaTipo(getApplicationContext()));
-    }
+        Preferencias preferencias = new Preferencias(ConsultarVeiculoActivity.this);
+        invocaActivitys.invocaPrincipal(ConsultarVeiculoActivity.this,this,preferencias.recuperaTipo(this));    }
 
     @Override
     public void adicionaMascara() {
