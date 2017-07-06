@@ -15,6 +15,30 @@
       },
       "oauth_client": [
         {
+          "client_id": "497631305741-gcumunhs06r30a9mvc6fa7lrj1ofvles.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.appestacionamento.cursoandroid.admin.appestacionamento",
+            "certificate_hash": "d0b2d8d1be55ddfbb9bb3b2baa40b6fb732f534d"
+          }
+        },
+        {
+          "client_id": "497631305741-7nvjqfi0b7pmsg32lcqa5ksib71291rb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.appestacionamento.cursoandroid.admin.appestacionamento",
+            "certificate_hash": "9b6bf6d0e0f31f7d862fde30ad7ba2fb44caa9db"
+          }
+        },
+        {
+          "client_id": "497631305741-afbhgin17hfs5ie7bemitms08bf0kkm5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.appestacionamento.cursoandroid.admin.appestacionamento",
+            "certificate_hash": "5cf5f17e070c7fc21ba07135fcbf1a80a3c8898c"
+          }
+        },
+        {
           "client_id": "497631305741-va95343eenbqg6i3mt3qlr6bi0g1ntju.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
