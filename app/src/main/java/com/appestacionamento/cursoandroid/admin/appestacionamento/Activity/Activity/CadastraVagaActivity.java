@@ -63,7 +63,11 @@ public class CadastraVagaActivity extends AppCompatActivity implements IActivity
             }
         });
 
-
+        if(checkBoxVagaEspecial.isChecked()){
+            vagaEspecial = true;
+        }else{
+            vagaEspecial = false;
+        }
 
         buttonCadastraVaga.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,11 +81,6 @@ public class CadastraVagaActivity extends AppCompatActivity implements IActivity
 
     public void adicionaVaga(){
         numero = editTextInsereNumeroVaga.getText().toString().trim();
-        if(checkBoxVagaEspecial.isChecked()){
-            vagaEspecial = true;
-        }else if(!checkBoxVagaEspecial.isChecked()){
-            vagaEspecial = false;
-        }
         if(!TextUtils.isEmpty(numero) && !TextUtils.isEmpty(setor)){
             cadastraVaga.insereVaga(numero, setor, vagaEspecial);
             editTextInsereNumeroVaga.setText(null);
