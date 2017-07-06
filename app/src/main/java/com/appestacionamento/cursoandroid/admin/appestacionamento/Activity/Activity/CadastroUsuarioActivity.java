@@ -251,9 +251,8 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         usuario.setTelefone(telefone);
         usuario.setTipo(tipo);
         usuario.setCpf(cpf);
-        //usuario.setPossuiNecessidadeEsp(possuiNecessidade);
         usuario.setSenha(senha);
-        usuario.setStatus("INATIVADO");
+        usuario.setStatus("ATIVADO");
         usuario.setUid(codificarEmail);
             if(enviaEmail() == true) {
                 usuario.Create();
@@ -263,11 +262,9 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
                 editTextEmailUsuario.setText(null);
                 editTextCpfUsuario.setText(null);
 
-                Toast.makeText(getApplicationContext(), "Novo usuário Registrado com sucesso!", Toast.LENGTH_LONG).show();
+                emailAdm = preferencias.recuperaEmail(getApplicationContext());
+                senhaAdm = preferencias.recuperaSenha(getApplicationContext());
 
-                emailAdm = preferencias.recuperaEmail(getApplicationContext()); //userDetails.getString("email", "");
-                senhaAdm = preferencias.recuperaSenha(getApplicationContext()); //userDetails.getString("senha", "");
-                //Toast.makeText(getApplicationContext(), senhaAdm, Toast.LENGTH_LONG).show();
 
                 autenticacao.signInWithEmailAndPassword(emailAdm, senhaAdm)
                         .addOnCompleteListener(CadastroUsuarioActivity.this, new OnCompleteListener<AuthResult>() {
@@ -276,7 +273,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
                                 if (!task.isSuccessful()) {
                                     Log.e("RELOGIN", "FAILED");
                                 } else {
-                                    Toast.makeText(getApplicationContext(), emailAdm+"\n"+senhaAdm, Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), "Logado", Toast.LENGTH_LONG).show();
                                     Log.e("RELOGIN", "SUCCESS");
                                 }
                             }

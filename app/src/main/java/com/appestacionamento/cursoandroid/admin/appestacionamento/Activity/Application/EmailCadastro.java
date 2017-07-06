@@ -28,27 +28,6 @@ public class EmailCadastro {
         this.context = context;
     }
 
-   /* public  void VerificaEmail(String email){
-        if(email.isEmpty()){
-            Snackbar snackbar = Snackbar.make(((Activity)context).findViewById(R.id.coordinator_Id),"Campos vazios",Snackbar.LENGTH_LONG);
-        }else {
-
-            auth.sendPasswordResetEmail(email)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Snackbar snackbar = Snackbar.make(((Activity) context).findViewById(R.id.coordinator_Id), "Email enviado", Snackbar.LENGTH_LONG);
-                                snackbar.show();
-
-                            } else {
-                                Snackbar snackbar = Snackbar.make(((Activity) context).findViewById(R.id.coordinator_Id), "Email não enviado", Snackbar.LENGTH_LONG);
-                                snackbar.show();
-                            }
-                        }
-                    });
-        }
-   */
 
     public void Verifica_Email(String email){
 
@@ -58,7 +37,7 @@ public class EmailCadastro {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(context,"Email Enviado",Toast.LENGTH_LONG).show();
+                            Toast.makeText(context,"Email Enviado para o Usuário",Toast.LENGTH_LONG).show();
                         }else{
                            try {
                                throw task.getException();
