@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:background="@android:color/white"
     android:layout_height="match_parent"
-
+    android:padding="25dp"
     >
 
 
+<<<<<<< HEAD
         <android.widget.RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -43,5 +44,61 @@
         </android.widget.RelativeLayout>
 
 
+=======
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    />
+
+                <ImageView
+                    android:id="@+id/consulta_vagaId"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/ovaltext_busca"
+                    app:srcCompat="@drawable/ic_search" />
+
+                <TextView
+                    android:id="@+id/textconsultaVagaid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@string/ConsulaVaga"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/texxtViewSize"
+                    android:textStyle="bold" />
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </TableLayout>
+
+
+
+        </ScrollView>
+
+
+    </LinearLayout>
+>>>>>>> parent of 0cccfa8... Tela pesquisa vaga do usuario
 
 </LinearLayout>

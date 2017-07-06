@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.CadastraVagaActivity;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ConsultaVagaActivity;
+//import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ConsultaVagaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Usuario.ConsultaVaga;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 
@@ -49,8 +49,8 @@ public class vagaFragment extends Fragment {
         btnConsultaVaga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ConsultaVagaActivity.class);
-                startActivity(intent);
+             //   Intent intent = new Intent(getContext(), ConsultaVagaActivity.class);
+             //   startActivity(intent);
             }
         });
         return view;
