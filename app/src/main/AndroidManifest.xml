@@ -35,6 +35,11 @@
         <activity android:name=".Activity.Activity.CadastraVagaActivity" />
         <activity android:name=".Activity.Activity.Usuario.ConsultaVaga" />
         <activity android:name=".Activity.Activity.Garagista.GaragistaActivity"></activity>
+        <service android:name=".Activity.Application.FIrebaseMessagingServie">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"></action>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>
