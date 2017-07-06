@@ -253,7 +253,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         usuario.setCpf(cpf);
         //usuario.setPossuiNecessidadeEsp(possuiNecessidade);
         usuario.setSenha(senha);
-        usuario.setStatus("ATIVADO");
+        usuario.setStatus("INATIVADO");
         usuario.setUid(codificarEmail);
             if(enviaEmail() == true) {
                 usuario.Create();
@@ -276,7 +276,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
                                 if (!task.isSuccessful()) {
                                     Log.e("RELOGIN", "FAILED");
                                 } else {
-                                    //Toast.makeText(getApplicationContext(), "Logado", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(), emailAdm+"\n"+senhaAdm, Toast.LENGTH_LONG).show();
                                     Log.e("RELOGIN", "SUCCESS");
                                 }
                             }

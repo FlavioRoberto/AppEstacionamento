@@ -124,6 +124,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        //autenticacao.signOut();
         if(isConnected == true)
             autenticacao.addAuthStateListener(mAuthListener);
     }
@@ -201,8 +202,9 @@ public class LoginActivity extends AppCompatActivity {
                                     //Primeiro valor: child, Segundo valor: key
                                     GenericTypeIndicator<Map<String, String>> genericTypeIndicator = new GenericTypeIndicator<Map<String, String>>() {};
                                     Map<String, String> map = dataSnapshot.getValue(genericTypeIndicator);
-                                    String tipo = map.get("tipo");
+
                                     String status = map.get("status");
+                                    String tipo = map.get("tipo");
                                     preferencias.salvarusuarioPreferences(emailLogin,senha,tipo);
 
                                     //Verifica se o usuario está ativado para poder acessar o sistema
