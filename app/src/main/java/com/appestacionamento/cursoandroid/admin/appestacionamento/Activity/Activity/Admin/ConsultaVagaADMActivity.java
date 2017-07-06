@@ -1,7 +1,6 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin;
 
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,7 +9,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -21,13 +19,13 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activ
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.progressDialogApplication;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelVaga;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class ConsultaVagaADMActivity extends AppCompatActivity implements IActivity {
@@ -39,7 +37,8 @@ public class ConsultaVagaADMActivity extends AppCompatActivity implements IActiv
     private EditText editconsultaVaga;
     private TextView necessidadeEspecial,setorText,numeroVagaText;
     private String setorSeek="Setor 1";
-    private com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.ProgressDialog progressDialog;
+    private progressDialogApplication progressDialogApplication;
+    private String numeroVaga, setorVaga;
 
 
 
@@ -49,7 +48,7 @@ public class ConsultaVagaADMActivity extends AppCompatActivity implements IActiv
         setContentView(R.layout.consulta_vaga_admin);
 
         //preparando componentes
-        progressDialog = new com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.ProgressDialog();
+        progressDialogApplication = new progressDialogApplication();
         necessidadeEspecial = (TextView)findViewById(R.id.valorNecessidadeEspecial);
         setorText = (TextView)findViewById(R.id.valorSetorId);
         numeroVagaText = (TextView)findViewById(R.id.valorNumeroId);
@@ -94,11 +93,11 @@ public class ConsultaVagaADMActivity extends AppCompatActivity implements IActiv
                 if(editconsultaVaga.getText().toString().isEmpty()){
                     Toast.makeText(getApplicationContext(),"Campo de busca vazio!",Toast.LENGTH_SHORT).show();
                 }else {
-                    progressDialog.invocaDialog(getApplicationContext(),"Consultando vagas...");
-                    vaga = consultaUnicaVaga(editconsultaVaga.getText().toString(),setorSeek);
-                    if(vaga != null){
+                    progressDialogApplication.invocaDialog(ConsultaVagaADMActivity.this,"Consultando vagas...");
+                    consultaUnicaVaga(editconsultaVaga.getText().toString(),setorSeek);
+                    if(vaga.getVagaEspecial() != null){
 
-                        if(vaga.getVagaEspecial() == true) {
+                        if(vaga.getVagaEspecial()){
                             necessidadeEspecial.setText("Sim");
                         }else{
                             necessidadeEspecial.setText("Não");
@@ -106,10 +105,10 @@ public class ConsultaVagaADMActivity extends AppCompatActivity implements IActiv
 
                         setorText.setText(vaga.getSetor());
                         numeroVagaText.setText(vaga.getNumero());
-                        progressDialog.disableDialog();
+                        progressDialogApplication.disableDialog();
                         return;
                     }else{
-                        progressDialog.disableDialog();
+                        progressDialogApplication.disableDialog();
                         Toast.makeText(getApplicationContext(),"Não foi encontrada nenhuma vaga",Toast.LENGTH_SHORT).show();
                         return;
                     }
@@ -142,22 +141,31 @@ public class ConsultaVagaADMActivity extends AppCompatActivity implements IActiv
 
     //fim metodos da toolbar
 
-    public modelVaga consultaUnicaVaga(final String numero, final String setor){
+    public modelVaga consultaUnicaVaga(String numero, String setor){
+        numeroVaga = numero;
+        setorVaga = setor;
 
         DatabaseReference database = configuracaoFirebase.getFirebase();
         database.child("vagas").addListenerForSingleValueEvent(new ValueEventListener() {
             String setorSnapshot, numeroSnapshot;
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                setorSnapshot = dataSnapshot.getValue(modelVaga.class).getSetor();
-                numeroSnapshot = dataSnapshot.getValue(modelVaga.class).getNumero();
 
-                if(setorSnapshot.equals(setor) && numeroSnapshot.equals(numero)){
-                    vaga = dataSnapshot.getValue(modelVaga.class);
-                }else {
-                    Toast.makeText(getApplicationContext(),"Vaga não encontrada",Toast.LENGTH_SHORT).show();
+
+                for(DataSnapshot snapshot :  dataSnapshot.getChildren()){
+                    setorSnapshot = snapshot.child("setor").getValue(String.class);
+                    numeroSnapshot = snapshot.child("numero").getValue(String.class);
+
+                if(setorSnapshot.equals(setorVaga) && numeroSnapshot.equals(numeroVaga)) {
+                    vaga.setNumero(dataSnapshot.child("numero").getValue(String.class));
+                    vaga.setChave(dataSnapshot.child("chave").getValue(String.class));
+                    vaga.setSetor(dataSnapshot.child("setor").getValue(String.class));
+                    vaga.setVagaEspecial(dataSnapshot.child("vagaEspecial").getValue(boolean.class));
+                    Toast.makeText(getApplicationContext(), vaga.getChave(), Toast.LENGTH_SHORT).show();
+
                 }
-
+                }
 
             }
 

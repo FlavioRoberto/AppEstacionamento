@@ -1,21 +1,22 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 
 /**
  * Created by Admin on 06/07/2017.
  */
 
-public class ProgressDialog {
+public class progressDialogApplication {
 
-    private android.app.ProgressDialog progressDialog;
+    private ProgressDialog progressDialog;
 
-    public ProgressDialog() {
+    public progressDialogApplication() {
     }
 
 
     public void invocaDialog(Context context, String mensagem){
-        progressDialog = new android.app.ProgressDialog(context);
+        progressDialog = new ProgressDialog(context);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setMessage(mensagem);
         progressDialog.setTitle("Aguarde");
