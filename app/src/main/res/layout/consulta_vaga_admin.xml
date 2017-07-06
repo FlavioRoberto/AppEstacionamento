@@ -44,7 +44,6 @@
 
             android:id="@+id/relativeLayout"
             android:layout_width="match_parent"
-
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/btnbuscarVaga"
@@ -52,9 +51,10 @@
 
             <TextView
                 android:id="@+id/setor1"
+                android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="setor 1"
+                android:text="Setor 1"
                 android:textColor="#ccc"
                 android:layout_alignParentTop="true"
                 android:layout_toStartOf="@+id/seekBarSetor" />
@@ -62,7 +62,9 @@
             <SeekBar
                 android:id="@+id/seekBarSetor"
                 style="@style/Widget.AppCompat.SeekBar.Discrete"
-                android:layout_width="70dp"
+                android:layout_width="50dp"
+                android:scrollbarSize="20dp"
+                android:layout_centerVertical="true"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true"
@@ -72,9 +74,10 @@
 
             <TextView
                 android:id="@+id/setor2"
+                android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="setor 2"
+                android:text="Setor 2"
                 android:textColor="#ccc"
                 android:layout_alignParentTop="true"
                 android:layout_toEndOf="@+id/seekBarSetor" />
