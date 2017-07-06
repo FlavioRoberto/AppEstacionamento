@@ -1,50 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@android:color/white"
     android:layout_height="match_parent"
-
+    android:padding="25dp"
     >
 
-<android.support.v7.widget.LinearLayoutCompat
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <android.widget.RelativeLayout
+HEAD
+        <android.widget.RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="25dp"
+            >
+
+            <ImageView
+                android:id="@+id/consulta_vaga"
+                android:layout_width="235dp"
+                android:layout_height="235dp"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/ovalbutton"
+                app:srcCompat="@drawable/ic_search"
+
+                />
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/consulta_vagaId"
+                android:layout_marginTop="23dp"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:text="PESQUISAR VAGA"
+                android:textColor="@color/colorPrimary"
+                android:layout_alignParentStart="true" />
+
+
+        </android.widget.RelativeLayout>
+
+
+=======
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="25dp"
-        >
+        android:layout_height="match_parent">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="15dp"
+                    />
 
                 <ImageView
                     android:id="@+id/consulta_vagaId"
-                    android:layout_width="230dp"
-                    android:layout_height="230dp"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/ovall_button_home_usuario"
-                    app:srcCompat="@drawable/ic_search"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@drawable/ovaltext_busca"
+                    app:srcCompat="@drawable/ic_search" />
 
-                    />
-
-        <TextView
-            android:id="@+id/textView18"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/consulta_vagaId"
-            android:layout_marginTop="23dp"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:text="PESQUISAR VAGA"
-            android:textColor="@color/colorPrimary"
-            android:layout_alignParentStart="true" />
+                <TextView
+                    android:id="@+id/textconsultaVagaid"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="@string/ConsulaVaga"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/texxtViewSize"
+                    android:textStyle="bold" />
 
 
-    </android.widget.RelativeLayout>
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </TableLayout>
 
-</android.support.v7.widget.LinearLayoutCompat>
 
-</FrameLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+>>>>>>> parent of 0cccfa8... Tela pesquisa vaga do usuario
+
+</LinearLayout>

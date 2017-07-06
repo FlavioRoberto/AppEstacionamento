@@ -1,10 +1,12 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -30,11 +32,12 @@ public class RedefinirSenhaActivity extends AppCompatActivity  {
 
     private EditText editTextEmail;
     private Button buttonEnviar;
-    private String email;
+    private String email, emailCodificado, emailDatabase;
     private Toolbar toolbar;
+    private ProgressDialog progressDialog;
     private boolean flag = false;
+    private DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users");
     private RedefinirSenha redefinirSenha = new RedefinirSenha(this);
-    private PesquisaUsuarios pesquisaUsuarios = new PesquisaUsuarios();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,7 @@ public class RedefinirSenhaActivity extends AppCompatActivity  {
         setSupportActionBar(toolbar);
         //fim toolbar
 
+        progressDialog = new ProgressDialog(this);
         editTextEmail = (EditText) findViewById(R.id.editTextEmailRedefinirSenha);
         buttonEnviar = (Button) findViewById(R.id.buttonRedefinirSenha);
         buttonEnviar.setOnClickListener(new View.OnClickListener() {
@@ -61,12 +65,45 @@ public class RedefinirSenhaActivity extends AppCompatActivity  {
     }
 
     private void enviaEmail(){
+
         email = editTextEmail.getText().toString().toLowerCase().trim();
-        if(pesquisaUsuarios.retornaUsuario(email) == true){
-            redefinirSenha.redefineSenha(email);
-            flag = true;
+        if(!TextUtils.isEmpty(email)) {
+            progressDialog.setCanceledOnTouchOutside(false);
+            progressDialog.setMessage("Verificando Email...");
+            progressDialog.show();
+            emailCodificado = Base64Custom.codificarBase64(email);
+            Query query = databaseReference;
+            query.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                        emailDatabase = postSnapshot.child("uid").getValue(String.class);
+                        try {
+                            if (emailDatabase.equals(emailCodificado)) {
+                                redefinirSenha.redefineSenha(email);
+                                flag = true;
+                                progressDialog.dismiss();
+                                break;
+                            }
+                        } catch (Exception e) {
+                            progressDialog.dismiss();
+                        }
+                    }
+                    if (flag == false) {
+                        Toast.makeText(getApplicationContext(), "Email inválido", Toast.LENGTH_LONG).show();
+                        progressDialog.dismiss();
+                        return;
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
         }else{
-            Toast.makeText(getApplicationContext(), "Email inválido.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Campo vazio!", Toast.LENGTH_LONG).show();
+            return;
         }
     }
 

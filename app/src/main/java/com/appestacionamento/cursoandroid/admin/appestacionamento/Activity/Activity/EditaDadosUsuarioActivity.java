@@ -19,6 +19,8 @@ import android.widget.Toast;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
+import com.github.rtoshiro.util.format.SimpleMaskFormatter;
+import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
@@ -27,7 +29,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.AdmActivity;
 
-public class EditaDadosUsuarioActivity extends AppCompatActivity {
+public class EditaDadosUsuarioActivity extends AppCompatActivity implements IActivity {
 
     private EditText editTextNome, editTextTelefone, editTextCpf;
     private Spinner  spinner;
@@ -54,9 +56,11 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity {
         editTextCpf = (EditText) findViewById(R.id.editTextCpfEditaUsuario);
         buttonAtualizar = (Button) findViewById(R.id.buttonAtualizarUsuario);
 
-
         //pega os valores passados da view consultar
         pegaExtra();
+
+        //aplica a mascara nos campos
+        adicionaMascara();
 
         //inicializa o spinner
         SpinnerAdapter adapter = spinner.getAdapter();
@@ -181,6 +185,17 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public void adicionaMascara() {
+        SimpleMaskFormatter smf = new SimpleMaskFormatter("(NN)NNNNN-NNNN");
+        MaskTextWatcher mtw = new MaskTextWatcher(editTextTelefone, smf);
+        editTextTelefone.addTextChangedListener(mtw);
+
+        smf = new SimpleMaskFormatter("NNN.NNN.NNN-NN");
+        mtw = new MaskTextWatcher(editTextCpf, smf);
+        editTextCpf.addTextChangedListener(mtw);
+    }
+
     public void pegaExtra(){
         Intent intent = getIntent();
         nome = intent.getStringExtra(ConsultaUsuarioActivity.EDITNOME);
@@ -195,6 +210,11 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity {
     //desloga usuario e vai pra tela de login
     public void sair(){
         sairAplicacao.logout(getApplicationContext(),this);
+    }
+
+    @Override
+    public void sobre() {
+
     }
 
     //retorna para a página inicial

@@ -9,6 +9,8 @@ import android.widget.Toast;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseNetworkException;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -26,38 +28,24 @@ public class EmailCadastro {
         this.context = context;
     }
 
-   /* public  void VerificaEmail(String email){
-        if(email.isEmpty()){
-            Snackbar snackbar = Snackbar.make(((Activity)context).findViewById(R.id.coordinator_Id),"Campos vazios",Snackbar.LENGTH_LONG);
-        }else {
-
-            auth.sendPasswordResetEmail(email)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()) {
-                                Snackbar snackbar = Snackbar.make(((Activity) context).findViewById(R.id.coordinator_Id), "Email enviado", Snackbar.LENGTH_LONG);
-                                snackbar.show();
-
-                            } else {
-                                Snackbar snackbar = Snackbar.make(((Activity) context).findViewById(R.id.coordinator_Id), "Email não enviado", Snackbar.LENGTH_LONG);
-                                snackbar.show();
-                            }
-                        }
-                    });
-        }
-   */
 
     public void Verifica_Email(String email){
+
         final FirebaseUser user = auth.getCurrentUser();
         user.sendEmailVerification()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(context,"Email Enviado",Toast.LENGTH_LONG).show();
+                            Toast.makeText(context,"Email Enviado para o Usuário",Toast.LENGTH_LONG).show();
                         }else{
-                            Toast.makeText(context,"Email não enviado",Toast.LENGTH_LONG).show();
+                           try {
+                               throw task.getException();
+                           }catch (FirebaseNetworkException e){
+                               Toast.makeText(context,"Erro de conexão",Toast.LENGTH_SHORT).show();
+                           }catch (Exception e){
+                               Toast.makeText(context,"Não foi possível enviar o email"+e.getMessage(),Toast.LENGTH_SHORT).show();
+                           }
                         }
 
                     }

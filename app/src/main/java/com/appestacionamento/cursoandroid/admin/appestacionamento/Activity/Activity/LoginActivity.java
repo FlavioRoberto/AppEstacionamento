@@ -31,6 +31,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -76,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
 
         activeNetwork = cm.getActiveNetworkInfo();
         isConnected =  activeNetwork != null &&
-                activeNetwork.isConnectedOrConnecting();//activeNetwork.isAvailable();
+                activeNetwork.isConnectedOrConnecting();
 
         if(isConnected == true){
             verificarUsuarioLogado();
@@ -124,6 +125,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        //autenticacao.signOut();
         if(isConnected == true)
             autenticacao.addAuthStateListener(mAuthListener);
     }
@@ -173,12 +175,16 @@ public class LoginActivity extends AppCompatActivity {
 
 
     private void redirecionarUsuario() {
+
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
+                final FirebaseUser userEmail = firebaseAuth.getCurrentUser();
 
-                if (firebaseAuth.getCurrentUser() != null) {
+
+                if (firebaseAuth.getCurrentUser() != null && userEmail.isEmailVerified()) {
 
 
                     if (authFlag == false) {
@@ -201,8 +207,9 @@ public class LoginActivity extends AppCompatActivity {
                                     //Primeiro valor: child, Segundo valor: key
                                     GenericTypeIndicator<Map<String, String>> genericTypeIndicator = new GenericTypeIndicator<Map<String, String>>() {};
                                     Map<String, String> map = dataSnapshot.getValue(genericTypeIndicator);
-                                    String tipo = map.get("tipo");
+
                                     String status = map.get("status");
+                                    String tipo = map.get("tipo");
                                     preferencias.salvarusuarioPreferences(emailLogin,senha,tipo);
 
                                     //Verifica se o usuario está ativado para poder acessar o sistema
@@ -221,7 +228,6 @@ public class LoginActivity extends AppCompatActivity {
                                             progressDialog.dismiss();
                                             finish();
                                         } else if(tipo.equals("USER")){
-
                                             Intent intent = new Intent(getApplicationContext(), ActivityUsuario.class);
                                             startActivity(intent);
                                             progressDialog.dismiss();
@@ -248,7 +254,11 @@ public class LoginActivity extends AppCompatActivity {
                         });
                         authFlag = false;
                     }
-                }
+                }//else if(!userEmail.isEmailVerified()){
+                    //Toast.makeText(getApplicationContext(), "Seu email não está ativado", Toast.LENGTH_LONG).show();
+                    //authFlag = false;
+                    //return;
+                //}
             }
 
 
