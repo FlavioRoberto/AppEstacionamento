@@ -10,12 +10,13 @@
     <include android:id="@+id/toolbarId"
         layout="@layout/toolbar"
 
+
         />
 
     <ImageView
         android:id="@+id/hotelId_sobre"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         app:srcCompat="@drawable/hotel"
         android:layout_gravity="center"
         />
