@@ -48,6 +48,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
     private String emailCodificado, emailDatabase;
     private Boolean emailaValido = false;
     private ProgressDialog progressDialog;
+    private Preferencias preferencias;
     //Fim declaração de variáveis
 
     //Inicio Oncreate
@@ -55,13 +56,14 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_veicuo);
-
+        preferencias = new Preferencias(getApplicationContext());
         databaseReferenceUsers = FirebaseDatabase.getInstance().getReference("users");
 
         //inicializando Toolbar
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
         toolbar.setTitle("Cadastro de veículo");
         setSupportActionBar(toolbar);
+
 
 
         //setando componentes
@@ -227,17 +229,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
 
     //retorna para a página inicial
     public  void voltar(){
-        Preferencias preferencias = new Preferencias(getApplicationContext());
-        String usuario = preferencias.recuperaTipo(getApplicationContext());
-        if(usuario.equals("ADM")) {
-            Intent intent = new Intent(getApplicationContext(), AdmActivity.class);
-            startActivity(intent);
-            finish();
-        }
-        if(usuario.equals("SECRETARIA")){
-            Intent intent = new Intent(getApplicationContext(), SecretariaActivity.class);
-            startActivity(intent);
-            finish();
-        }
+
+       invocaActivitys.invocaPrincipal(this,this,preferencias.recuperaTipo(this));
     }
 }
