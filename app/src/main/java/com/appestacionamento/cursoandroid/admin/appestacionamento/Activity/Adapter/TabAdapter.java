@@ -34,6 +34,7 @@ public class TabAdapter extends FragmentPagerAdapter {
         if(!getUsuario().isEmpty()) {
 
         }
+
         if (getUsuario().equals("SECRETARIA")) {
             switch (position) {
                 case 0:
@@ -44,9 +45,7 @@ public class TabAdapter extends FragmentPagerAdapter {
                     fragment = new veiculoFragment();
                     return fragment;
             }
-        }
-
-            if (getUsuario().equals("ADM")) {
+        }else if (getUsuario().equals("ADM")) {
                 switch (position) {
                     case 0:
                         fragment = new usuarioAdmin();
@@ -59,9 +58,7 @@ public class TabAdapter extends FragmentPagerAdapter {
                         return fragment;
                 }
 
-            }
-
-            if(usuario.equals("USER")) {
+            }else if(usuario.equals("USER")) {
 
                 switch (position) {
                     case 0:
@@ -72,10 +69,7 @@ public class TabAdapter extends FragmentPagerAdapter {
                         return fragment;
 
                 }
-            }
-
-
-        if(usuario.equals("GARAGISTA")) {
+            }else if(usuario.equals("GARAGISTA")) {
 
             switch (position) {
                 case 0:

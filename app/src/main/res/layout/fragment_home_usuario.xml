@@ -9,7 +9,7 @@
     >
 
 
-<<<<<<< HEAD
+HEAD
         <android.widget.RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -17,12 +17,12 @@
             >
 
             <ImageView
-                android:id="@+id/consulta_vagaId"
+                android:id="@+id/consulta_vaga"
                 android:layout_width="235dp"
                 android:layout_height="235dp"
                 android:layout_centerVertical="true"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/ovall_button_home_usuario"
+                android:background="@drawable/ovalbutton"
                 app:srcCompat="@drawable/ic_search"
 
                 />

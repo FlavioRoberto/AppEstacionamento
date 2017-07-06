@@ -9,6 +9,8 @@ import android.widget.Toast;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseNetworkException;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -49,6 +51,7 @@ public class EmailCadastro {
    */
 
     public void Verifica_Email(String email){
+
         final FirebaseUser user = auth.getCurrentUser();
         user.sendEmailVerification()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -57,7 +60,13 @@ public class EmailCadastro {
                         if(task.isSuccessful()){
                             Toast.makeText(context,"Email Enviado",Toast.LENGTH_LONG).show();
                         }else{
-                            Toast.makeText(context,"Email não enviado",Toast.LENGTH_LONG).show();
+                           try {
+                               throw task.getException();
+                           }catch (FirebaseNetworkException e){
+                               Toast.makeText(context,"Erro de conexão",Toast.LENGTH_SHORT).show();
+                           }catch (Exception e){
+                               Toast.makeText(context,"Não foi possível enviar o email"+e.getMessage(),Toast.LENGTH_SHORT).show();
+                           }
                         }
 
                     }

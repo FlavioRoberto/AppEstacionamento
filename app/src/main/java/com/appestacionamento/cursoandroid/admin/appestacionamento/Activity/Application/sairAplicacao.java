@@ -15,11 +15,14 @@ import com.google.firebase.auth.FirebaseAuth;
 public class sairAplicacao {
 
     public static void logout(Context context, Activity activity){
+        Preferencias preferencias = new Preferencias(context);
+        preferencias = null;
         FirebaseAuth auth = configuracaoFirebase.getFirebaseAutenticacao();
         activity.finish();
         auth.signOut();
         Intent intent = new Intent(context, LoginActivity.class);
         activity.startActivity(intent);
+
 
     }
 

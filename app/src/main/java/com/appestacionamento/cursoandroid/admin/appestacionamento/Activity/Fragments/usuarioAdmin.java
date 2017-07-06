@@ -1,6 +1,7 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Fragments;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,6 +19,8 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activ
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.verificaUsuarioLogado;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
+
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,7 +41,7 @@ public class usuarioAdmin extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View view = inflater.inflate(R.layout.fragment_usuario_admin, container, false);
+         final View view = inflater.inflate(R.layout.fragment_usuario_admin, container, false);
         cadastrarUsuario = (ImageView) view.findViewById(R.id.cadastroId);
         consultaUsuario = (ImageView)view.findViewById(R.id.consultaId);
         inativaUsuario = (ImageView)view.findViewById(R.id.inativaId);
@@ -53,6 +56,7 @@ public class usuarioAdmin extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), ConsultaUsuarioActivity.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 
@@ -62,7 +66,7 @@ public class usuarioAdmin extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), CadastroUsuarioActivity.class);
                 startActivity(intent);
-
+                getActivity().finish();
             }
         });
 
@@ -73,6 +77,7 @@ public class usuarioAdmin extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), InativaUsuario.class);
                 startActivity(intent);
+                getActivity().finish();
     }
 });
 
