@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    >
+
+    <include android:id="@+id/toolbarId"
+        layout="@layout/toolbar" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+
+        <EditText
+            android:id="@+id/editConsultaVaga"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignStart="@+id/viewbarra"
+            android:layout_toStartOf="@+id/btnbuscarVaga"
+            android:background="@drawable/ovaltext"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Número da vaga"
+            android:inputType="number"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary" />
+
+
+        <ImageView
+            android:id="@+id/btnbuscarVaga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/viewbarra"
+            android:layout_alignTop="@+id/editConsultaId"
+            android:background="@drawable/ovalbutton"
+            app:srcCompat="@drawable/ic_search" />
+
+        <RelativeLayout
+
+            android:id="@+id/relativeLayout"
+            android:layout_width="match_parent"
+
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/btnbuscarVaga"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:id="@+id/setor1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="setor 1"
+                android:textColor="#ccc"
+                android:layout_alignParentTop="true"
+                android:layout_toStartOf="@+id/seekBarSetor" />
+
+            <SeekBar
+                android:id="@+id/seekBarSetor"
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:max="1"
+                android:progress="3" />
+
+
+            <TextView
+                android:id="@+id/setor2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="setor 2"
+                android:textColor="#ccc"
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/seekBarSetor" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/textdados"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/relativeLayout"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="14dp"
+            android:text="DADOS"
+            android:textColor="#ccc" />
+
+
+        <View
+
+            android:id="@+id/viewbarra"
+            android:layout_width="270dp"
+            android:layout_height="1dp"
+            android:layout_below="@+id/textdados"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="5dp"
+            android:background="#ccc" />
+
+        <ScrollView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignTop="@+id/linearid">
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/linearid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/viewbarra"
+            android:layout_marginTop="25dp"
+            android:orientation="vertical"
+            android:padding="25dp">
+
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/numerodavaga"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/texxtViewSize" />
+
+            <TextView
+                android:id="@+id/valorNumeroId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text=""
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/texxtViewSize" />
+
+
+            <TextView
+                android:id="@+id/textoSetor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="@string/Setor"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/texxtViewSize" />
+
+            <TextView
+                android:id="@+id/valorSetorId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text=""
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/texxtViewSize" />
+
+            <TextView
+            android:id="@+id/textoNecessidade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Necessidade Especial ?"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/texxtViewSize" />
+
+            <TextView
+                android:id="@+id/valorNecessidadeEspecial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:text=""
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/texxtViewSize" />
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="25dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/linearid">
+        <Button
+            android:id="@+id/btnEditar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ovalbutton"
+            android:text="@string/editar"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="15dp" />
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

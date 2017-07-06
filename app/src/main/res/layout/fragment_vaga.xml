@@ -54,7 +54,7 @@
                 />
 
             <ImageView
-                android:id="@+id/consultaId"
+                android:id="@+id/btnConsultaId"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:background="@drawable/ovaltext_busca"
