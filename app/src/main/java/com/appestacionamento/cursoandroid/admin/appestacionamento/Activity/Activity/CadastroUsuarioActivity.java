@@ -288,7 +288,8 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
 
     public boolean enviaEmail(){
         emailusuario = editTextEmailUsuario.getText().toString().toLowerCase().trim();
-        if(pesquisaUsuario.retornaUsuario(emailusuario) == false){
+        pesquisaUsuario.retornaUsuario(emailusuario);
+        if(pesquisaUsuario.retornaUsuario(emailusuario) == true){
             emailCadastro.Verifica_Email(emailusuario);
             flag=true;
             return true;
