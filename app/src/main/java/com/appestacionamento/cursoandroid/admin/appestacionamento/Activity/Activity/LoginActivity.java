@@ -77,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
 
         activeNetwork = cm.getActiveNetworkInfo();
         isConnected =  activeNetwork != null &&
-                activeNetwork.isConnectedOrConnecting();//activeNetwork.isAvailable();
+                activeNetwork.isConnectedOrConnecting();
 
         if(isConnected == true){
             verificarUsuarioLogado();
