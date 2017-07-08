@@ -100,6 +100,11 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                    pesquisaPlaca = true;
                    editTextEmailDonoVeiculo.setHint("Digite a placa do veìculo");
                    adicionaMascara();
+               }else{
+                   editTextEmailDonoVeiculo.setText("");
+                   pesquisaPlaca = true;
+                   editTextEmailDonoVeiculo.setHint("Digite o email veìculo");
+
                }
            }
        });
