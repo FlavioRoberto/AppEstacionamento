@@ -9,13 +9,15 @@ import android.content.Context;
 
 public class progressDialogApplication {
 
+    private Context context;
     private ProgressDialog progressDialog;
 
-    public progressDialogApplication() {
+    public progressDialogApplication(Context contextActivty) {
+        context = contextActivty;
     }
 
 
-    public  void  invocaDialog(Context context, String mensagem){
+    public  void  invocaDialog(String mensagem){
         progressDialog = new ProgressDialog(context);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setCancelable(false);

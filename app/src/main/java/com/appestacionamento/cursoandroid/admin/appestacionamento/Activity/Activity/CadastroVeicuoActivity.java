@@ -68,6 +68,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
 
 
         //setando componentes
+        progressDialog = new progressDialogApplication(getApplicationContext());
         editTextPlaca = (EditText) findViewById(R.id.placaVeiculoId);
         editTextEmailDono = (EditText) findViewById(R.id.emailDonoId);
         editTextModelo = (EditText) findViewById(R.id.modeloVeiculoId);
@@ -75,7 +76,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
         spinner = (Spinner)findViewById(R.id.spinnerTipoVeiculo);
         spinnerCorVeicullo = (Spinner)findViewById(R.id.spinnerCorVeiculoId);
         buttonCadastrarVeiculo = (Button) findViewById(R.id.button_cadastroVeiculo);
-        progressDialog = new progressDialogApplication();
+        progressDialog = new progressDialogApplication(getApplicationContext());
 
         //Spiner Adapter
         SpinnerAdapter adapter = spinner.getAdapter();
@@ -136,7 +137,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
 
     //Inicio metodo INserir veiculo
     public void inserirVeiculo(){
-       progressDialog.invocaDialog(CadastroVeicuoActivity.this,"Inserindo veículo...");
+       progressDialog.invocaDialog("Inserindo veículo...");
         placa = editTextPlaca.getText().toString().toUpperCase().trim();
         emailDono = editTextEmailDono.getText().toString().toLowerCase().trim();
         modelo = editTextModelo.getText().toString().toUpperCase().trim();

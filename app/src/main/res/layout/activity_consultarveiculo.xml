@@ -80,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/editConsultaId"
                 android:layout_centerHorizontal="true"
-                android:text="Pesqisar por placa" />
+                android:text="Pesquisar por placa" />
 
         </RelativeLayout>
 
