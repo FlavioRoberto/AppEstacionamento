@@ -41,6 +41,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
 
     //Declaração de variáveis
     private Toolbar toolbar;
+    private String childDatabse, campoInformado;
     private Preferencias preferencias;
     private String placaDatabse="default",placaDigitada="";
     private EditText editTextEmailDonoVeiculo;
@@ -123,11 +124,9 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
             @Override
             public void onClick(View v) {
                 progressDialog.invocaDialog("Pesquisando veículo...");
-                if(pesquisaPlaca == true){
-                  buscaVeiculoPlaca();
-              }else  if(pesquisaPlaca == false){
-                  buscaVeiculoEmail();
-              }
+
+                  buscaVeiculo();
+
             }
             });
 
@@ -178,6 +177,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     }
     //FIM metodo 'principal'
 
+    /*
     //Metodo para Buscar veiculo
     public void buscaVeiculoEmail(){
 
@@ -226,7 +226,20 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     }
     //Fim do metodo buscar veiculo
 
-    public void buscaVeiculoPlaca() {
+*/
+    public void buscaVeiculo() {
+
+        campoInformado = editTextEmailDonoVeiculo.getText().toString().toLowerCase().trim();
+        codificaEmail = campoInformado;
+
+        if(pesquisaPlaca){
+            childDatabse = "placa";
+            campoInformado = editTextEmailDonoVeiculo.getText().toString().toUpperCase().trim();
+            codificaEmail = campoInformado;
+        }else{
+            childDatabse = "uid";
+            codificaEmail = Base64Custom.codificarBase64(campoInformado);
+        }
 
         placaDigitada = editTextEmailDonoVeiculo.getText().toString().toUpperCase();
         Query query = databaseReferenceVeiculo;
@@ -234,9 +247,9 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                   placaDatabse = postSnapshot.child("placa").getValue(String.class);
+                   placaDatabse = postSnapshot.child(childDatabse).getValue(String.class);
 
-                    if(placaDatabse.equals(placaDigitada)){
+                    if(placaDatabse.equals(codificaEmail)){
                         cor = postSnapshot.child("cor").getValue(String.class);
                         email = postSnapshot.child("email").getValue(String.class);
                         marca = postSnapshot.child("marca").getValue(String.class);
@@ -259,8 +272,12 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                 }
                 if(placaEncontrada == false){
                     progressDialog.disableDialog();
-                    Toast.makeText(getApplicationContext(), "Placa nao encontrada", Toast.LENGTH_LONG).show();
-                    //finish();
+                    if(pesquisaPlaca == true) {
+                        Toast.makeText(getApplicationContext(), "Placa nao encontrada", Toast.LENGTH_LONG).show();
+                        //finish();
+                    }else{
+                        Toast.makeText(getApplicationContext(),"Email não encontrado",Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
             @Override
