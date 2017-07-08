@@ -95,8 +95,9 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         buttonExcluir = (Button) findViewById(R.id.btnExcluir);
 
 
-        //verificar usuario logado se nao for adm desabilita botoes de excluir e editar
-        if(!verificaUsuarioLogado.verificaUsuarioLogado(ConsultarVeiculoActivity.this).equals("ADM")){
+        //verificar usuario logado se nao for adm ou secretaria desabilita botoes de excluir e editar
+        if(!(verificaUsuarioLogado.verificaUsuarioLogado(ConsultarVeiculoActivity.this).equals("ADM")
+                || verificaUsuarioLogado.verificaUsuarioLogado(ConsultarVeiculoActivity.this).equals("SECRETARIA"))){
             buttonEditar.setVisibility(View.INVISIBLE);
             buttonExcluir.setVisibility(View.INVISIBLE);
         }
