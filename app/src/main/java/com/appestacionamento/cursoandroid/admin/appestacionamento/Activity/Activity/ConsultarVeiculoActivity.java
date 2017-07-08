@@ -156,11 +156,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                     builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
 
                         public void onClick(DialogInterface dialog, int which) {
-                            databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo").child(uid);
-                            databaseReferenceVeiculo.removeValue();
-                            Toast.makeText(getApplicationContext(), "Veículo Excluído!", Toast.LENGTH_SHORT).show();
-                            finish();
-                            dialog.dismiss();
+                            excluirVeiculo();
                         }
                     });
                     builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
@@ -343,5 +339,19 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         textViewPlaca.setText("");
     }
 
+    public void excluirVeiculo(){
+        if(pesquisaPlaca == false) {
+            databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo").child(uid);
+            databaseReferenceVeiculo.removeValue();
+            Toast.makeText(getApplicationContext(), "Veículo Excluído!", Toast.LENGTH_SHORT).show();
+            finish();
+        }else {
+            databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo").child(placa);
+            databaseReferenceVeiculo.removeValue();
+            Toast.makeText(getApplicationContext(), "Veículo Excluído!", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+        progressDialog.disableDialog();
+    }
 
 }
