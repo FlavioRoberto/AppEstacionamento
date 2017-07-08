@@ -108,7 +108,6 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                    limpaTextViews();
                    pesquisaPlaca = false;
                    editTextEmailDonoVeiculo.setText("");
-                   pesquisaPlaca = true;
                    editTextEmailDonoVeiculo.setHint("Email do dono do veìculo..");
                    editTextEmailDonoVeiculo.removeTextChangedListener(mtw);
 
@@ -227,15 +226,16 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     //Fim do metodo buscar veiculo
 
     public void buscaVeiculoPlaca(){
-        placaDigitada = editTextEmailDonoVeiculo.getText().toString().toUpperCase();
+
+        placaDigitada = editTextEmailDonoVeiculo.getText().toString().toUpperCase().trim();
         Query query = databaseReferenceVeiculo;
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     placaDatabse = postSnapshot.child("placa").getValue(String.class);
-
-                        if(placaDatabse.equals(placaDigitada)){
+                    if(placaDatabse != null) {
+                        if (placaDatabse.equals(placaDigitada)) {
                             cor = postSnapshot.child("cor").getValue(String.class);
                             email = postSnapshot.child("email").getValue(String.class);
                             marca = postSnapshot.child("marca").getValue(String.class);
@@ -254,16 +254,19 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                             progressDialog.disableDialog();
                             break;
                         }
+                    }
 
                 }
                 if(emailEncontrado == false){
                     progressDialog.disableDialog();
-                    Toast.makeText(getApplicationContext(), "Placa nao encontrada", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Placa não encontrada", Toast.LENGTH_LONG).show();
                     //finish();
                 }
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                progressDialog.disableDialog();
+                Toast.makeText(getApplicationContext(),"Erro de conexão",Toast.LENGTH_SHORT).show();
             }
         });
     }
