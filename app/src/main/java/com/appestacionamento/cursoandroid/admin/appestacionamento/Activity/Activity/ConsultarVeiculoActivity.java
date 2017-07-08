@@ -96,6 +96,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
            @Override
            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                if(isChecked == true){
+                   editTextEmailDonoVeiculo.setText("");
                    pesquisaPlaca = true;
                    editTextEmailDonoVeiculo.setHint("Digite a placa do veìculo");
                    adicionaMascara();
