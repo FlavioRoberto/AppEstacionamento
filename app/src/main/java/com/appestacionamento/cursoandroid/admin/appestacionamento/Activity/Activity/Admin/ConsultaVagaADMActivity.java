@@ -1,6 +1,7 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin;
 
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -17,7 +18,6 @@ import android.widget.Toast;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.IActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.ProgressDialogApplication;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
@@ -38,7 +38,7 @@ public class ConsultaVagaADMActivity extends AppCompatActivity implements IActiv
     private EditText editconsultaVaga;
     private TextView necessidadeEspecial,setorText,numeroVagaText;
     private String setorSeek, setorVaga, numeroVaga;
-    private ProgressDialogApplication progressDialogApplication;
+    private ProgressDialog progressDialog;
     private Boolean flag = false;
 
 
@@ -49,7 +49,7 @@ public class ConsultaVagaADMActivity extends AppCompatActivity implements IActiv
         setContentView(R.layout.consulta_vaga_admin);
 
         //preparando componentes
-        progressDialogApplication = new ProgressDialogApplication(this);
+        progressDialog = new ProgressDialog(this);
         necessidadeEspecial = (TextView)findViewById(R.id.valorNecessidadeEspecial);
         setorText = (TextView)findViewById(R.id.valorSetorId);
         numeroVagaText = (TextView)findViewById(R.id.valorNumeroId);
@@ -117,7 +117,6 @@ public class ConsultaVagaADMActivity extends AppCompatActivity implements IActiv
             Boolean vagaEspcialSnapshot;
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                progressDialogApplication.invocaDialog("Consultando vagas...");
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     setorSnapshot = postSnapshot.child("setor").getValue(String.class);
                     numeroSnapshot = postSnapshot.child("numero").getValue(String.class);
@@ -139,12 +138,10 @@ public class ConsultaVagaADMActivity extends AppCompatActivity implements IActiv
                     }
                     setorText.setText(vaga.getSetor());
                     numeroVagaText.setText(vaga.getNumero());
-                    progressDialogApplication.disableDialog();
 
                 }
                 else if(flag == false){
                     Toast.makeText(getApplicationContext(), "Vaga não encontrada", Toast.LENGTH_SHORT).show();
-                    progressDialogApplication.disableDialog();
                     return;
                 }
 
