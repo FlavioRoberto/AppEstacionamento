@@ -97,4 +97,10 @@ public class GaragistaActivity extends AppCompatActivity implements IActivity {
         Preferencias preferencias = new Preferencias(this);
         invocaActivitys.invocaPrincipal(this,this,preferencias.recuperaTipo(this));
     }
+
+    @Override
+    public void onBackPressed() {
+        finishAndRemoveTask();
+
+    }
 }
