@@ -18,6 +18,7 @@ public class progressDialogApplication {
     public void invocaDialog(Context context, String mensagem){
         progressDialog = new ProgressDialog(context);
         progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setCancelable(false);
         progressDialog.setMessage(mensagem);
         progressDialog.setTitle("Aguarde");
         progressDialog.show();

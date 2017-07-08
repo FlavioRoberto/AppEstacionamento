@@ -73,7 +73,10 @@ public class ActivityUsuario extends AppCompatActivity implements IActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    @Override
+    public void onBackPressed() {
+        finishAndRemoveTask();
+    }
 
     //dar funções aos icones da toolbar
     @Override
@@ -107,4 +110,5 @@ public class ActivityUsuario extends AppCompatActivity implements IActivity {
     public void adicionaMascara() {
 
     }
+
 }

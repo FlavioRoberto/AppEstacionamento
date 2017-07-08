@@ -2,6 +2,8 @@ package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Acti
 
 
 import android.content.Intent;
+import android.net.sip.SipAudioCall;
+import android.net.sip.SipSession;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -156,7 +158,8 @@ public class AdmActivity extends AppCompatActivity implements IActivity {
     @Override
     public void onBackPressed()
     {
-        finish();
+        finishAndRemoveTask();
+
     }
 
 }

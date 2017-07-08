@@ -246,7 +246,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     //metodo para voltar a menu principal
     @Override
     public void voltar() {
-        invocaActivitys.invocaPrincipal(getApplicationContext(),this,preferencias.recuperaTipo(getApplicationContext()));
+        invocaActivitys.invocaPrincipal(ConsultarVeiculoActivity.this,this,preferencias.recuperaTipo(getApplicationContext()));
     }
 
     @Override
