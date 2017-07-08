@@ -192,7 +192,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     emailDatabase = postSnapshot.child("uid").getValue(String.class);
-                    try{
+
                         if(emailDatabase.equals(codificaEmail)){
                             cor = postSnapshot.child("cor").getValue(String.class);
                             email = postSnapshot.child("email").getValue(String.class);
@@ -212,9 +212,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                             progressDialog.dismiss();
                             break;
                         }
-                    }catch (Exception e){
-                        progressDialog.dismiss();
-                    }
+
                 }
                 if(emailEncontrado == false){
                     progressDialog.dismiss();
@@ -239,7 +237,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     placaDatabse = postSnapshot.child("placa").getValue(String.class);
-                    try{
+
                         if(placaDatabse.equals(placaDigitada)){
                             cor = postSnapshot.child("cor").getValue(String.class);
                             email = postSnapshot.child("email").getValue(String.class);
@@ -259,9 +257,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                             progressDialog.dismiss();
                             break;
                         }
-                    }catch (Exception e){
-                        progressDialog.dismiss();
-                    }
+
                 }
                 if(emailEncontrado == false){
                     progressDialog.dismiss();
