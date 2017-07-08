@@ -18,6 +18,7 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Appli
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.SlidingTabLayout;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class ActivityUsuario extends AppCompatActivity implements IActivity {
 
@@ -31,6 +32,7 @@ public class ActivityUsuario extends AppCompatActivity implements IActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_usuario);
+
 
         TabAdapter adapter = new TabAdapter(getSupportFragmentManager());
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
