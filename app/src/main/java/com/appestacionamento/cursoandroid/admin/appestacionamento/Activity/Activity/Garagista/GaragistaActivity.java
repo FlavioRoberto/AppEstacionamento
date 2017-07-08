@@ -94,8 +94,7 @@ public class GaragistaActivity extends AppCompatActivity implements IActivity {
 
     @Override
     public void voltar() {
-        Preferencias preferencias = new Preferencias(this);
-        invocaActivitys.invocaPrincipal(this,this,preferencias.recuperaTipo(this));
+
     }
 
     @Override

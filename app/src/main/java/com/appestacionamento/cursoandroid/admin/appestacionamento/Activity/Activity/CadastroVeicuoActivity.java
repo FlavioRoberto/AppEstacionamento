@@ -154,20 +154,25 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
                           if(emailDatabase.equals(emailCodificado)){
                               if(!TextUtils.isEmpty(emailCodificado) && !TextUtils.isEmpty(cor) && !TextUtils.isEmpty(marca) &&
                                       !TextUtils.isEmpty(modelo) && !TextUtils.isEmpty(placa) && !TextUtils.isEmpty(tipo) &&
-                                      !TextUtils.isEmpty(emailDono)) {
-                                  veiculo.setUid(emailCodificado);
-                                  veiculo.setCor(cor);
-                                  veiculo.setMarca(marca);
-                                  veiculo.setModelo(modelo);
-                                  veiculo.setPlaca(placa);
-                                  veiculo.setTipo(tipo);
-                                  veiculo.setEmail(emailDono);
-                                  veiculo.create();
-                                  emailaValido = true;
-                                  progressDialog.dismiss();
-                                  Toast.makeText(getApplicationContext(), "Veículo inserido com sucesso!", Toast.LENGTH_LONG).show();
-                                  finish();
-                                  break;
+                                      !TextUtils.isEmpty(emailDono) ) {
+                                  if(placa.length()<8){
+                                      Toast.makeText(getApplicationContext(),"Placa inválida",Toast.LENGTH_SHORT).show();
+                                      return;
+                                  }else {
+                                      veiculo.setUid(emailCodificado);
+                                      veiculo.setCor(cor);
+                                      veiculo.setMarca(marca);
+                                      veiculo.setModelo(modelo);
+                                      veiculo.setPlaca(placa);
+                                      veiculo.setTipo(tipo);
+                                      veiculo.setEmail(emailDono);
+                                      veiculo.create();
+                                      emailaValido = true;
+                                      progressDialog.dismiss();
+                                      Toast.makeText(getApplicationContext(), "Veículo inserido com sucesso!", Toast.LENGTH_LONG).show();
+                                      finish();
+                                      break;
+                                  }
                               }
                           }
                       }catch (Exception e){
