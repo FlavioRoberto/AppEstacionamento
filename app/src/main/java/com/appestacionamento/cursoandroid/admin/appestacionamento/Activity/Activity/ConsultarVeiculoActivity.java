@@ -42,14 +42,14 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     //Declaração de variáveis
     private Toolbar toolbar;
     private Preferencias preferencias;
-    private String placaDatabse,placaDigitada;
+    private String placaDatabse="default",placaDigitada="";
     private EditText editTextEmailDonoVeiculo;
     private ImageView imageViewBuscarVeiculo;
     private TextView textViewPlaca, textViewModeloVeiculo, textViewMarcaVeiculo, textViewCorVeiculo;
     private Button buttonEditar, buttonExcluir;
     private DatabaseReference databaseReferenceVeiculo;
     private String emailDatabase, codificaEmail;
-    private Boolean flag = false, emailEncontrado = false, pesquisaPlaca =  false;
+    private Boolean flag = false, emailEncontrado = false,placaEncontrada =false, pesquisaPlaca =  false;
     private AlertDialog.Builder builder;
     private progressDialogApplication progressDialog;
     private Switch tipoPesquisa;
@@ -67,10 +67,11 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultarveiculo);
 
+
         preferencias = new Preferencias(getApplicationContext());
 
         //Iniciando Progress Dialog
-        progressDialog = new progressDialogApplication();
+        progressDialog = new progressDialogApplication(ConsultarVeiculoActivity.this);
 
         //Instacia do Banco de Dados
         databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo");
@@ -91,6 +92,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         textViewCorVeiculo = (TextView) findViewById(R.id.valorcorid);
         buttonEditar = (Button) findViewById(R.id.btnEditar);
         buttonExcluir = (Button) findViewById(R.id.btnExcluir);
+
 
         builder = new AlertDialog.Builder(this);
 
@@ -120,9 +122,8 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         imageViewBuscarVeiculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog.invocaDialog(ConsultarVeiculoActivity.this,"Pesquisando veículo...");
-
-              if(pesquisaPlaca == true){
+                progressDialog.invocaDialog("Pesquisando veículo...");
+                if(pesquisaPlaca == true){
                   buscaVeiculoPlaca();
               }else  if(pesquisaPlaca == false){
                   buscaVeiculoEmail();
@@ -225,41 +226,40 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     }
     //Fim do metodo buscar veiculo
 
-    public void buscaVeiculoPlaca(){
+    public void buscaVeiculoPlaca() {
 
-        placaDigitada = editTextEmailDonoVeiculo.getText().toString().toUpperCase().trim();
+        placaDigitada = editTextEmailDonoVeiculo.getText().toString().toUpperCase();
         Query query = databaseReferenceVeiculo;
-        query.addValueEventListener(new ValueEventListener() {
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    placaDatabse = postSnapshot.child("placa").getValue(String.class);
-                    if(placaDatabse != null) {
-                        if (placaDatabse.equals(placaDigitada)) {
-                            cor = postSnapshot.child("cor").getValue(String.class);
-                            email = postSnapshot.child("email").getValue(String.class);
-                            marca = postSnapshot.child("marca").getValue(String.class);
-                            modelo = postSnapshot.child("modelo").getValue(String.class);
-                            placa = postSnapshot.child("placa").getValue(String.class);
-                            tipo = postSnapshot.child("tipo").getValue(String.class);
-                            uid = postSnapshot.child("uid").getValue(String.class);
+                   placaDatabse = postSnapshot.child("placa").getValue(String.class);
+
+                    if(placaDatabse.equals(placaDigitada)){
+                        cor = postSnapshot.child("cor").getValue(String.class);
+                        email = postSnapshot.child("email").getValue(String.class);
+                        marca = postSnapshot.child("marca").getValue(String.class);
+                        modelo = postSnapshot.child("modelo").getValue(String.class);
+                        placa = postSnapshot.child("placa").getValue(String.class);
+                        tipo = postSnapshot.child("tipo").getValue(String.class);
+                        uid = postSnapshot.child("uid").getValue(String.class);
 
 
-                            textViewPlaca.setText(placa);
-                            textViewModeloVeiculo.setText(modelo);
-                            textViewMarcaVeiculo.setText(marca);
-                            textViewCorVeiculo.setText(cor);
-                            emailEncontrado = true;
-                            flag = true;
-                            progressDialog.disableDialog();
-                            break;
-                        }
+                        textViewPlaca.setText(placa);
+                        textViewModeloVeiculo.setText(modelo);
+                        textViewMarcaVeiculo.setText(marca);
+                        textViewCorVeiculo.setText(cor);
+                        placaEncontrada = true;
+                        flag = true;
+                        progressDialog.disableDialog();
+                        break;
                     }
 
                 }
-                if(emailEncontrado == false){
+                if(placaEncontrada == false){
                     progressDialog.disableDialog();
-                    Toast.makeText(getApplicationContext(), "Placa não encontrada", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Placa nao encontrada", Toast.LENGTH_LONG).show();
                     //finish();
                 }
             }
