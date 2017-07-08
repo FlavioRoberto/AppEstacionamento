@@ -169,7 +169,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
                                       emailaValido = true;
                                       progressDialog.disableDialog();
                                       Toast.makeText(getApplicationContext(), "Veículo inserido com sucesso!", Toast.LENGTH_LONG).show();
-                                      finish();
+                                     // finish();
                                       break;
                                   }
                               }
