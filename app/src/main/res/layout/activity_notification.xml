@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include android:id="@+id/toolbarId"
+        layout="@layout/toolbar"
+
+
+        />
+
+    <TextView
+        android:id="@+id/titulo_notificationid"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="20dp"
+        android:text="@string/Titulo"
+        android:textAlignment="center"
+        android:textSize="@dimen/tituloSize" />
+
+    <View
+
+        android:background="#8e9ba7"
+        android:id="@+id/linhaId"
+        android:layout_width="300dp"
+        android:layout_height="3dp"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center"
+        />
+
+    <ScrollView
+        android:id="@+id/Scroll_notificationId"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/corpo_notificationId"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_gravity="center"
+                android:text=""
+                android:textAlignment="center"
+                android:textSize="@dimen/TextSize" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
