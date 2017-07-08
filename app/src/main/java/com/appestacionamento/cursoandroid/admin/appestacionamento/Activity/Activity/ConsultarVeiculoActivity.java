@@ -229,7 +229,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     public void buscaVeiculoPlaca(){
         placaDigitada = editTextEmailDonoVeiculo.getText().toString().toUpperCase();
         Query query = databaseReferenceVeiculo;
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
