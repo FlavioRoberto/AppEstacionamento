@@ -25,6 +25,7 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Appli
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.progressDialogApplication;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.verificaUsuarioLogado;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
@@ -41,22 +42,20 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
 
     //Declaração de variáveis
     private Toolbar toolbar;
-    private String childDatabse, campoInformado;
+    private Switch tipoPesquisa;
     private Preferencias preferencias;
-    private String placaDatabse="default",placaDigitada="";
+    private String childDatabse, campoInformado, placaDatabse="default",placaDigitada="",codificaEmail, cor, email, marca, modelo,
+            placa, tipo, uid;
     private EditText editTextEmailDonoVeiculo;
     private ImageView imageViewBuscarVeiculo;
     private TextView textViewPlaca, textViewModeloVeiculo, textViewMarcaVeiculo, textViewCorVeiculo;
     private Button buttonEditar, buttonExcluir;
     private DatabaseReference databaseReferenceVeiculo;
-    private String emailDatabase, codificaEmail;
-    private Boolean flag = false, emailEncontrado = false,placaEncontrada =false, pesquisaPlaca =  false;
+    private Boolean flag = false, placaEncontrada =false, pesquisaPlaca =  false;
     private AlertDialog.Builder builder;
     private progressDialogApplication progressDialog;
-    private Switch tipoPesquisa;
     private  SimpleMaskFormatter smf;
     private MaskTextWatcher mtw;
-    private String cor, email, marca, modelo, placa, tipo, uid;
     public static final String EDITCOR = "cor", EDITEMAIL = "email", EDITMODELO = "modelo", EDITPLACA = "placa",
                         EDITTIPO = "tipo", EDITUID = "uid", EDITMARCA = "marca";
 
@@ -67,6 +66,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consultarveiculo);
+
 
 
         preferencias = new Preferencias(getApplicationContext());
@@ -95,7 +95,12 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         buttonExcluir = (Button) findViewById(R.id.btnExcluir);
 
 
-        builder = new AlertDialog.Builder(this);
+        //verificar usuario logado se nao for adm desabilita botoes de excluir e editar
+        if(!verificaUsuarioLogado.verificaUsuarioLogado(ConsultarVeiculoActivity.this).equals("ADM")){
+            buttonEditar.setVisibility(View.INVISIBLE);
+            buttonExcluir.setVisibility(View.INVISIBLE);
+        }
+
 
         //verifica stado do switch e set condiçao de pesquisa
        tipoPesquisa.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -177,56 +182,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     }
     //FIM metodo 'principal'
 
-    /*
-    //Metodo para Buscar veiculo
-    public void buscaVeiculoEmail(){
 
-        String emailVeiculo = editTextEmailDonoVeiculo.getText().toString().toLowerCase().trim();
-        codificaEmail = Base64Custom.codificarBase64(emailVeiculo);
-        Query query = databaseReferenceVeiculo;
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    emailDatabase = postSnapshot.child("uid").getValue(String.class);
-
-                        if(emailDatabase.equals(codificaEmail)){
-                            cor = postSnapshot.child("cor").getValue(String.class);
-                            email = postSnapshot.child("email").getValue(String.class);
-                            marca = postSnapshot.child("marca").getValue(String.class);
-                            modelo = postSnapshot.child("modelo").getValue(String.class);
-                            placa = postSnapshot.child("placa").getValue(String.class);
-                            tipo = postSnapshot.child("tipo").getValue(String.class);
-                            uid = postSnapshot.child("uid").getValue(String.class);
-
-
-                            textViewPlaca.setText(placa);
-                            textViewModeloVeiculo.setText(modelo);
-                            textViewMarcaVeiculo.setText(marca);
-                            textViewCorVeiculo.setText(cor);
-                            emailEncontrado = true;
-                            flag = true;
-                            progressDialog.disableDialog();
-                            break;
-                        }
-
-                }
-                if(emailEncontrado == false){
-                    progressDialog.disableDialog();
-                    Toast.makeText(getApplicationContext(), "Email nao encontrado", Toast.LENGTH_LONG).show();
-                    //finish();
-                }
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                progressDialog.disableDialog();
-                Toast.makeText(getApplicationContext(),"Erro de conexão",Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-    //Fim do metodo buscar veiculo
-
-*/
     public void buscaVeiculo() {
 
         campoInformado = editTextEmailDonoVeiculo.getText().toString().toLowerCase().trim();
@@ -273,7 +229,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                 if(placaEncontrada == false){
                     progressDialog.disableDialog();
                     if(pesquisaPlaca == true) {
-                        Toast.makeText(getApplicationContext(), "Placa nao encontrada", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Placa não encontrada", Toast.LENGTH_LONG).show();
                         //finish();
                     }else{
                         Toast.makeText(getApplicationContext(),"Email não encontrado",Toast.LENGTH_SHORT).show();
