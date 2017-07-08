@@ -148,24 +148,28 @@ public class EditaDadosVeiculo extends AppCompatActivity implements IActivity{
         novaCor = cor;
         novoTipo = tipo;
 
-        if(!TextUtils.isEmpty(novaPlaca)){
-            veiculo.setPlaca(novaPlaca);
-        }
-        if(!TextUtils.isEmpty(novoModelo)){
-            veiculo.setModelo(novoModelo);
-        }
-        veiculo.setMarca(marca);
-        veiculo.setCor(cor);
-        veiculo.setTipo(tipo);
-        veiculo.setUid(uid);
-        veiculo.setEmail(email);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("veiculo").child(uid);
-        databaseReference.setValue(veiculo);
-        Toast.makeText(getApplicationContext(), "Atualização realizada!", Toast.LENGTH_LONG).show();
-        Intent intent = new Intent(getApplicationContext(), AdmActivity.class);
-        startActivity(intent);
-        finish();
+        if(!TextUtils.isEmpty(novaPlaca) && !TextUtils.isEmpty(novoModelo)){
+            veiculo.setMarca(marca);
+            veiculo.setCor(cor);
+            veiculo.setTipo(tipo);
+            veiculo.setUid(uid);
+            veiculo.setPlaca(novaPlaca);
+            veiculo.setModelo(novoModelo);
+            veiculo.setEmail(email);
+            databaseReference = FirebaseDatabase.getInstance().getReference("veiculo").child(uid);
+            databaseReference.setValue(veiculo);
+            Toast.makeText(getApplicationContext(), "Atualização realizada!", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(), AdmActivity.class);
+            startActivity(intent);
+            finish();
+        }else{
+            Toast.makeText(getApplicationContext(), "há campos vazios!", Toast.LENGTH_LONG).show();
+            editTextPlacaVeiculo.setText(null);
+            editTextModeloVeiculo.setText(null);
+            return;
+        }
+
     }
 
     @Override

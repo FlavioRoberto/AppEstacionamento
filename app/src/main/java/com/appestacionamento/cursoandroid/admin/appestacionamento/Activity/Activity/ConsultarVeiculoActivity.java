@@ -23,6 +23,7 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activ
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.progressDialogApplication;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
@@ -50,7 +51,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     private String emailDatabase, codificaEmail;
     private Boolean flag = false, emailEncontrado = false, pesquisaPlaca =  false;
     private AlertDialog.Builder builder;
-    private ProgressDialog progressDialog;
+    private progressDialogApplication progressDialog;
     private Switch tipoPesquisa;
     private  SimpleMaskFormatter smf;
     private MaskTextWatcher mtw;
@@ -69,7 +70,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         preferencias = new Preferencias(getApplicationContext());
 
         //Iniciando Progress Dialog
-        progressDialog = new ProgressDialog(this);
+        progressDialog = new progressDialogApplication();
 
         //Instacia do Banco de Dados
         databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo");
@@ -98,11 +99,13 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
            @Override
            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                if(isChecked == true){
+                   limpaTextViews();
                    editTextEmailDonoVeiculo.setText("");
                    pesquisaPlaca = true;
                    editTextEmailDonoVeiculo.setHint("Digite a placa do veìculo..");
                    adicionaMascara();
                }else{
+                   limpaTextViews();
                    pesquisaPlaca = false;
                    editTextEmailDonoVeiculo.setText("");
                    pesquisaPlaca = true;
@@ -118,12 +121,11 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         imageViewBuscarVeiculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog.setCanceledOnTouchOutside(false);
-                progressDialog.setMessage("Pesquisando Veículo...");
-                progressDialog.show();
+                progressDialog.invocaDialog(ConsultarVeiculoActivity.this,"Pesquisando veículo...");
+
               if(pesquisaPlaca == true){
                   buscaVeiculoPlaca();
-              }else {
+              }else  if(pesquisaPlaca == false){
                   buscaVeiculoEmail();
               }
             }
@@ -154,10 +156,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                     builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
 
                         public void onClick(DialogInterface dialog, int which) {
-                            databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo").child(uid);
-                            databaseReferenceVeiculo.removeValue();
-                            Toast.makeText(getApplicationContext(), "Veículo Excluído!", Toast.LENGTH_SHORT).show();
-                            finish();
+                            excluirVeiculo();
                             dialog.dismiss();
                         }
                     });
@@ -190,7 +189,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     emailDatabase = postSnapshot.child("uid").getValue(String.class);
-                    try{
+
                         if(emailDatabase.equals(codificaEmail)){
                             cor = postSnapshot.child("cor").getValue(String.class);
                             email = postSnapshot.child("email").getValue(String.class);
@@ -207,21 +206,21 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                             textViewCorVeiculo.setText(cor);
                             emailEncontrado = true;
                             flag = true;
-                            progressDialog.dismiss();
+                            progressDialog.disableDialog();
                             break;
                         }
-                    }catch (Exception e){
-                        progressDialog.dismiss();
-                    }
+
                 }
                 if(emailEncontrado == false){
-                    progressDialog.dismiss();
+                    progressDialog.disableDialog();
                     Toast.makeText(getApplicationContext(), "Email nao encontrado", Toast.LENGTH_LONG).show();
                     //finish();
                 }
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                progressDialog.disableDialog();
+                Toast.makeText(getApplicationContext(),"Erro de conexão",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -235,7 +234,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     placaDatabse = postSnapshot.child("placa").getValue(String.class);
-                    try{
+
                         if(placaDatabse.equals(placaDigitada)){
                             cor = postSnapshot.child("cor").getValue(String.class);
                             email = postSnapshot.child("email").getValue(String.class);
@@ -252,15 +251,13 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                             textViewCorVeiculo.setText(cor);
                             emailEncontrado = true;
                             flag = true;
-                            progressDialog.dismiss();
+                            progressDialog.disableDialog();
                             break;
                         }
-                    }catch (Exception e){
-                        progressDialog.dismiss();
-                    }
+
                 }
                 if(emailEncontrado == false){
-                    progressDialog.dismiss();
+                    progressDialog.disableDialog();
                     Toast.makeText(getApplicationContext(), "Placa nao encontrada", Toast.LENGTH_LONG).show();
                     //finish();
                 }
@@ -284,8 +281,6 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         startActivity(intent);
         finish();
     }
-
-
 
     //ao clicar nas opções do menu seleciona uma ação
     //invoca os itens no menu toolbar
@@ -338,6 +333,20 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         }
     }
 
+    public void limpaTextViews(){
+        textViewCorVeiculo.setText("");
+        textViewMarcaVeiculo.setText("");
+        textViewModeloVeiculo.setText("");
+        textViewPlaca.setText("");
+    }
 
+    public void excluirVeiculo(){
+
+            databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo").child(uid);
+            databaseReferenceVeiculo.removeValue();
+            Toast.makeText(getApplicationContext(), "Veículo Excluído!", Toast.LENGTH_SHORT).show();
+            limpaTextViews();
+
+    }
 
 }
