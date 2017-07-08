@@ -1,4 +1,4 @@
-package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity;
+package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.IActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;

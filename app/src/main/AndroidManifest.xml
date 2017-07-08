@@ -35,7 +35,7 @@ package="com.appestacionamento.cursoandroid.admin.appestacionamento">
     <activity android:name=".Activity.Activity.Secretaria.SecretariaActivity" />
     <activity android:name=".Activity.Activity.Usuario.ActivityUsuario" />
     <activity android:name=".Activity.Activity.SobreActivity" />
-    <activity android:name=".Activity.Activity.CadastraVagaActivity" />
+    <activity android:name=".Activity.Activity.Admin.CadastraVagaActivity" />
     <activity android:name=".Activity.Activity.Usuario.ConsultaVaga" />
     <activity android:name=".Activity.Activity.Garagista.GaragistaActivity" />
 

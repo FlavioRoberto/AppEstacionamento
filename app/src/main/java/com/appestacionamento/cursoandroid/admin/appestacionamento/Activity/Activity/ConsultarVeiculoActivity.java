@@ -68,7 +68,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         setContentView(R.layout.activity_consultarveiculo);
 
 
-
+        //Variavel para receber valor do sharedPReferences
         preferencias = new Preferencias(getApplicationContext());
 
         //Iniciando Progress Dialog

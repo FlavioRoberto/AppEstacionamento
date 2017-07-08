@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.CadastraVagaActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.CadastraVagaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.ConsultaVagaADMActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 

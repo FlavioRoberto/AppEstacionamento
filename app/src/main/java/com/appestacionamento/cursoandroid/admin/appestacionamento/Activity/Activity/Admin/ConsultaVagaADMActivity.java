@@ -131,7 +131,7 @@ public class ConsultaVagaADMActivity extends AppCompatActivity implements IActiv
 
         DatabaseReference database;
         database = FirebaseDatabase.getInstance().getReference("vaga");
-        database.addListenerForSingleValueEvent(new ValueEventListener() {
+        database.addValueEventListener(new ValueEventListener() {
             String setorSnapshot, numeroSnapshot;
             Boolean vagaEspcialSnapshot;
             @Override
