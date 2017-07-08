@@ -254,34 +254,45 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         usuario.setSenha(senha);
         usuario.setStatus("ATIVADO");
         usuario.setUid(codificarEmail);
-            if(enviaEmail() == true) {
-                usuario.Create();
 
-                editTextNomeUsuario.setText(null);
-                editTextTelefoneUsuario.setText(null);
-                editTextEmailUsuario.setText(null);
-                editTextCpfUsuario.setText(null);
+        if (cpf.length() < 15) {
+            Toast.makeText(getApplicationContext(), "CPF informado inválido", Toast.LENGTH_SHORT).show();
+            return;
+        } else {
+            if (telefone.length() < 15) {
+                Toast.makeText(getApplicationContext(), "Telefone incorreto", Toast.LENGTH_SHORT).show();
+                return;
+            } else {
+                if (enviaEmail() == true) {
+                    usuario.Create();
 
-                emailAdm = preferencias.recuperaEmail(getApplicationContext());
-                senhaAdm = preferencias.recuperaSenha(getApplicationContext());
+                    editTextNomeUsuario.setText(null);
+                    editTextTelefoneUsuario.setText(null);
+                    editTextEmailUsuario.setText(null);
+                    editTextCpfUsuario.setText(null);
+
+                    emailAdm = preferencias.recuperaEmail(getApplicationContext());
+                    senhaAdm = preferencias.recuperaSenha(getApplicationContext());
 
 
-                autenticacao.signInWithEmailAndPassword(emailAdm, senhaAdm)
-                        .addOnCompleteListener(CadastroUsuarioActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (!task.isSuccessful()) {
-                                    Log.e("RELOGIN", "FAILED");
-                                } else {
-                                    Toast.makeText(getApplicationContext(), "Logado", Toast.LENGTH_LONG).show();
-                                    Log.e("RELOGIN", "SUCCESS");
+                    autenticacao.signInWithEmailAndPassword(emailAdm, senhaAdm)
+                            .addOnCompleteListener(CadastroUsuarioActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (!task.isSuccessful()) {
+                                        Log.e("RELOGIN", "FAILED");
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "Logado", Toast.LENGTH_LONG).show();
+                                        Log.e("RELOGIN", "SUCCESS");
+                                    }
                                 }
-                            }
-                        });
-            }else{
-                Toast.makeText(getApplicationContext(),"Não foi possível cadastrar o usuário",Toast.LENGTH_SHORT).show();
+                            });
 
+                } else {
+                    Toast.makeText(getApplicationContext(), "Não foi possível cadastrar o usuário", Toast.LENGTH_SHORT).show();
+                }
             }
+        }
     }
 
 

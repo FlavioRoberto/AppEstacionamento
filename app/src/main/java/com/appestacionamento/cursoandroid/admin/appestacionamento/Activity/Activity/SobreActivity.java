@@ -55,12 +55,18 @@ public class SobreActivity extends AppCompatActivity implements IActivity {
 
     @Override
     public void sair() {
-        sairAplicacao.logout(getApplicationContext(),this);
+        sairAplicacao.logout(SobreActivity.this,this);
     }
 
     @Override
     public void sobre() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        finish();
+        super.onDestroy();
     }
 
     @Override

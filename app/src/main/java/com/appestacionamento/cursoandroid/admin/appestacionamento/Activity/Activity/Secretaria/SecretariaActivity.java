@@ -64,7 +64,7 @@ public class SecretariaActivity extends AppCompatActivity implements IActivity {
 
     @Override
     public void sair() {
-        sairAplicacao.logout(getApplicationContext(),this);
+        sairAplicacao.logout(SecretariaActivity.this,this);
     }
 
     @Override
@@ -94,6 +94,11 @@ public class SecretariaActivity extends AppCompatActivity implements IActivity {
     @Override
     public void adicionaMascara() {
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        finishAndRemoveTask();
     }
 
     public void onFragmentViewCreated(View view) {

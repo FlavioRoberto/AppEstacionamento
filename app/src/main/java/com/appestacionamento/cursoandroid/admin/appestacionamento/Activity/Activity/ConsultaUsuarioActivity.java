@@ -40,7 +40,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ConsultaUsuarioActivity extends AppCompatActivity implements IActivity{
 
-        private Button btnExcluir, btnEditar;
+        private Button  btnEditar;
         private Toolbar toolbar;
         private ImageView imageViewBuscarUsuario;
         private EditText editTextBuscarEmailUsuario;
@@ -72,7 +72,6 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         // FIM TOOLBAR
 
         preferencias = new Preferencias(getApplicationContext());
-        btnExcluir = (Button) findViewById(R.id.btnExcluir);
         btnEditar = (Button) findViewById(R.id.btnEditar);
         imageViewBuscarUsuario = (ImageView) findViewById(R.id.btnbuscar);
         editTextBuscarEmailUsuario = (EditText) findViewById(R.id.editConsultaId);
@@ -85,7 +84,6 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
         emailPreference = preferencias.recuperaEmail(ConsultaUsuarioActivity.this);
 
         if (consultaUsuarioLogado().equals("SECRETARIA")) {
-            btnExcluir.setVisibility(View.INVISIBLE);
             btnEditar.setVisibility(View.INVISIBLE);
         }
 
@@ -112,21 +110,6 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
             }
         });
 
-        if (consultaUsuarioLogado().equals("ADM")) {
-            //Botao Excluir (Ativa quando a busca é realizada)
-            btnExcluir.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (flag == true) {
-                        //metodo que chama a dialog e exclui o usuário
-                        abreConfirmacaoExclusao();
-                    } else if (flag == false) {
-                        Toast.makeText(getApplicationContext(), "Nenhum Usuário pesquisado", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                }
-            });
-        }
     }
 
     //Método Busca Usuario

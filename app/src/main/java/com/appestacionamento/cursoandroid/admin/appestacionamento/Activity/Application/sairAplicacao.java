@@ -18,8 +18,8 @@ public class sairAplicacao {
         Preferencias preferencias = new Preferencias(context);
         preferencias = null;
         FirebaseAuth auth = configuracaoFirebase.getFirebaseAutenticacao();
-        activity.finish();
         auth.signOut();
+        activity.finish();
         Intent intent = new Intent(context, LoginActivity.class);
         activity.startActivity(intent);
 

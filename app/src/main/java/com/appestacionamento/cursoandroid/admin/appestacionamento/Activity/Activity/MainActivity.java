@@ -18,6 +18,7 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helpe
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        FirebaseMessaging.getInstance().subscribeToTopic("Usuarios");
 
         Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         startActivity(intent);
