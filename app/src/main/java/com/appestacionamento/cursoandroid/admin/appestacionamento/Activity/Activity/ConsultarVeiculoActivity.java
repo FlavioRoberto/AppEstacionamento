@@ -341,17 +341,11 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     }
 
     public void excluirVeiculo(){
-        if(pesquisaPlaca == false) {
+
             databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo").child(uid);
             databaseReferenceVeiculo.removeValue();
             Toast.makeText(getApplicationContext(), "Veículo Excluído!", Toast.LENGTH_SHORT).show();
             limpaTextViews();
-        }else {
-            databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo").child(placa);
-            databaseReferenceVeiculo.removeValue();
-            Toast.makeText(getApplicationContext(), "Veículo Excluído!", Toast.LENGTH_SHORT).show();
-            limpaTextViews();
-        }
 
     }
 
