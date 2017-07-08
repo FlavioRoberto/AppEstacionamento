@@ -7,11 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Garagista.GaragistaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Usuario.ActivityUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
+
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,8 +33,16 @@ public class HomeGaragista extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home_garagista, container, false);
-        ListadeVagas = (ListView) view.findViewById(R.id.ListViewId);
+        ListadeVagas = (ListView) view.findViewById(R.id.ListviewId);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                getActivity(),
+                android.R.layout.simple_list_item_1,
+                android.R.id.text1,
+                Vagas
+        );
+        ListadeVagas.setAdapter(adapter);
         return view;
+
     }
 
     @Override
