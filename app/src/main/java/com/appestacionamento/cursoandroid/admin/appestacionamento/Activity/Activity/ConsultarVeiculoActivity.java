@@ -12,8 +12,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,15 +41,19 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     //Declaração de variáveis
     private Toolbar toolbar;
     private Preferencias preferencias;
+    private String placaDatabse,placaDigitada;
     private EditText editTextEmailDonoVeiculo;
     private ImageView imageViewBuscarVeiculo;
     private TextView textViewPlaca, textViewModeloVeiculo, textViewMarcaVeiculo, textViewCorVeiculo;
     private Button buttonEditar, buttonExcluir;
     private DatabaseReference databaseReferenceVeiculo;
     private String emailDatabase, codificaEmail;
-    private Boolean flag = false, emailEncontrado = false;
+    private Boolean flag = false, emailEncontrado = false, pesquisaPlaca =  false;
     private AlertDialog.Builder builder;
     private ProgressDialog progressDialog;
+    private Switch tipoPesquisa;
+    private  SimpleMaskFormatter smf;
+    private MaskTextWatcher mtw;
     private String cor, email, marca, modelo, placa, tipo, uid;
     public static final String EDITCOR = "cor", EDITEMAIL = "email", EDITMODELO = "modelo", EDITPLACA = "placa",
                         EDITTIPO = "tipo", EDITUID = "uid", EDITMARCA = "marca";
@@ -75,6 +81,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
 
 
         //Inicializando componentes da Activity
+        tipoPesquisa = (Switch)findViewById(R.id.tipoPesquisa);
         imageViewBuscarVeiculo = (ImageView) findViewById(R.id.btnbuscar);
         textViewPlaca = (TextView) findViewById(R.id.valorplacaId);
         editTextEmailDonoVeiculo = (EditText) findViewById(R.id.editConsultaId);
@@ -86,6 +93,27 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
 
         builder = new AlertDialog.Builder(this);
 
+        //verifica stado do switch e set condiçao de pesquisa
+       tipoPesquisa.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+           @Override
+           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+               if(isChecked == true){
+                   editTextEmailDonoVeiculo.setText("");
+                   pesquisaPlaca = true;
+                   editTextEmailDonoVeiculo.setHint("Digite a placa do veìculo..");
+                   adicionaMascara();
+               }else{
+                   pesquisaPlaca = false;
+                   editTextEmailDonoVeiculo.setText("");
+                   pesquisaPlaca = true;
+                   editTextEmailDonoVeiculo.setHint("Email do dono do veìculo..");
+                   editTextEmailDonoVeiculo.removeTextChangedListener(mtw);
+
+               }
+           }
+       });
+
+
         //Botao para Buscar veiculo
         imageViewBuscarVeiculo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,9 +121,13 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                 progressDialog.setCanceledOnTouchOutside(false);
                 progressDialog.setMessage("Pesquisando Veículo...");
                 progressDialog.show();
-                buscaVeiculo();
+              if(pesquisaPlaca == true){
+                  buscaVeiculoPlaca();
+              }else {
+                  buscaVeiculoEmail();
+              }
             }
-        });
+            });
 
         //Botao Editar (Ativa quando a busca é realizada)
         buttonEditar.setOnClickListener(new View.OnClickListener() {
@@ -148,7 +180,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     //FIM metodo 'principal'
 
     //Metodo para Buscar veiculo
-    public void buscaVeiculo(){
+    public void buscaVeiculoEmail(){
 
         String emailVeiculo = editTextEmailDonoVeiculo.getText().toString().toLowerCase().trim();
         codificaEmail = Base64Custom.codificarBase64(emailVeiculo);
@@ -194,6 +226,50 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         });
     }
     //Fim do metodo buscar veiculo
+
+    public void buscaVeiculoPlaca(){
+        placaDigitada = editTextEmailDonoVeiculo.getText().toString().toUpperCase();
+        Query query = databaseReferenceVeiculo;
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    placaDatabse = postSnapshot.child("placa").getValue(String.class);
+                    try{
+                        if(placaDatabse.equals(placaDigitada)){
+                            cor = postSnapshot.child("cor").getValue(String.class);
+                            email = postSnapshot.child("email").getValue(String.class);
+                            marca = postSnapshot.child("marca").getValue(String.class);
+                            modelo = postSnapshot.child("modelo").getValue(String.class);
+                            placa = postSnapshot.child("placa").getValue(String.class);
+                            tipo = postSnapshot.child("tipo").getValue(String.class);
+                            uid = postSnapshot.child("uid").getValue(String.class);
+
+
+                            textViewPlaca.setText(placa);
+                            textViewModeloVeiculo.setText(modelo);
+                            textViewMarcaVeiculo.setText(marca);
+                            textViewCorVeiculo.setText(cor);
+                            emailEncontrado = true;
+                            flag = true;
+                            progressDialog.dismiss();
+                            break;
+                        }
+                    }catch (Exception e){
+                        progressDialog.dismiss();
+                    }
+                }
+                if(emailEncontrado == false){
+                    progressDialog.dismiss();
+                    Toast.makeText(getApplicationContext(), "Placa nao encontrada", Toast.LENGTH_LONG).show();
+                    //finish();
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
 
     //Método Edita veiculo
     public void putEditaVeiculo(){
@@ -246,11 +322,22 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     //metodo para voltar a menu principal
     @Override
     public void voltar() {
+        finish();
         invocaActivitys.invocaPrincipal(ConsultarVeiculoActivity.this,this,preferencias.recuperaTipo(getApplicationContext()));
+
     }
 
     @Override
     public void adicionaMascara() {
 
+        if(pesquisaPlaca == true) {
+             smf = new SimpleMaskFormatter("LLL-NNNN");
+             mtw = new MaskTextWatcher(editTextEmailDonoVeiculo,smf);
+             editTextEmailDonoVeiculo.addTextChangedListener(mtw);
+
+        }
     }
+
+
+
 }

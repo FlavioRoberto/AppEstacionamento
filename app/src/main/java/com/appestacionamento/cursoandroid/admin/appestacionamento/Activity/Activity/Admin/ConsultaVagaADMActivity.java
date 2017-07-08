@@ -60,8 +60,27 @@ public class ConsultaVagaADMActivity extends AppCompatActivity implements IActiv
         vaga = new modelVaga();
 
 
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if(progress == 0){
+                    setorSeek = "Setor 1";
+                }else{
+                    setorSeek = "Setor 2";
+                }
+            }
 
-        setorSeek = "Setor 1";
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
 
         //Preparando Toolbar
         toolbar.setTitle("Consulta vaga");

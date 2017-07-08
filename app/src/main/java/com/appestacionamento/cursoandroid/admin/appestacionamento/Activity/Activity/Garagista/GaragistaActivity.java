@@ -85,6 +85,7 @@ public class GaragistaActivity extends AppCompatActivity implements IActivity {
     @Override
     public void sair() {
         sairAplicacao.logout(this,this);
+        finish();
     }
 
     @Override

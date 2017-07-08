@@ -21,6 +21,7 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activ
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.progressDialogApplication;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Helper.Base64Custom;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
@@ -47,7 +48,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
     private DatabaseReference databaseReferenceUsers;
     private String emailCodificado, emailDatabase;
     private Boolean emailaValido = false;
-    private ProgressDialog progressDialog;
+    private progressDialogApplication progressDialog;
     private Preferencias preferencias;
     //Fim declaração de variáveis
 
@@ -74,7 +75,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
         spinner = (Spinner)findViewById(R.id.spinnerTipoVeiculo);
         spinnerCorVeicullo = (Spinner)findViewById(R.id.spinnerCorVeiculoId);
         buttonCadastrarVeiculo = (Button) findViewById(R.id.button_cadastroVeiculo);
-        progressDialog = new ProgressDialog(CadastroVeicuoActivity.this);
+        progressDialog = new progressDialogApplication();
 
         //Spiner Adapter
         SpinnerAdapter adapter = spinner.getAdapter();
@@ -135,10 +136,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
 
     //Inicio metodo INserir veiculo
     public void inserirVeiculo(){
-        progressDialog.setCanceledOnTouchOutside(false);
-        progressDialog.setMessage("Cadastrando Veículo...");
-        progressDialog.show();
-
+       progressDialog.invocaDialog(CadastroVeicuoActivity.this,"Inserindo veículo...");
         placa = editTextPlaca.getText().toString().toUpperCase().trim();
         emailDono = editTextEmailDono.getText().toString().toLowerCase().trim();
         modelo = editTextModelo.getText().toString().toUpperCase().trim();
@@ -150,13 +148,14 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
               public void onDataChange(DataSnapshot dataSnapshot) {
                   for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                       emailDatabase = postSnapshot.child("uid").getValue(String.class);
-                      try{
+
                           if(emailDatabase.equals(emailCodificado)){
                               if(!TextUtils.isEmpty(emailCodificado) && !TextUtils.isEmpty(cor) && !TextUtils.isEmpty(marca) &&
                                       !TextUtils.isEmpty(modelo) && !TextUtils.isEmpty(placa) && !TextUtils.isEmpty(tipo) &&
                                       !TextUtils.isEmpty(emailDono) ) {
                                   if(placa.length()<8){
                                       Toast.makeText(getApplicationContext(),"Placa inválida",Toast.LENGTH_SHORT).show();
+                                      progressDialog.disableDialog();
                                       return;
                                   }else {
                                       veiculo.setUid(emailCodificado);
@@ -168,20 +167,20 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
                                       veiculo.setEmail(emailDono);
                                       veiculo.create();
                                       emailaValido = true;
-                                      progressDialog.dismiss();
+                                      progressDialog.disableDialog();
                                       Toast.makeText(getApplicationContext(), "Veículo inserido com sucesso!", Toast.LENGTH_LONG).show();
                                       finish();
                                       break;
                                   }
                               }
                           }
-                      }catch (Exception e){
-                      }
+
+
                   }
                   if(emailaValido == false){
+                      progressDialog.disableDialog();
                       Toast.makeText(getApplicationContext(), "Email Inválido",Toast.LENGTH_LONG).show();
-                      progressDialog.dismiss();
-                      finish();
+                     // finish();
                       return;
                   }
               }

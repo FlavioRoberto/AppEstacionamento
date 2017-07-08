@@ -111,7 +111,7 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity implements IAct
         novoNome = editTextNome.getText().toString().toUpperCase().trim();
         novoTelefone = editTextTelefone.getText().toString().trim();
         novoCpf = editTextCpf.getText().toString().trim();
-        if(!novoNome.equals(nome) || !novoTelefone.equals(telefone) || !novoTipo.equals(tipo) || !novoCpf.equals(cpf)){
+      //  if(!novoNome.equals(nome) || !novoTelefone.equals(telefone) || !novoTipo.equals(tipo) || !novoCpf.equals(cpf)){
 
             if(!novoNome.equals("")){
                 usuario.setNome(novoNome);
@@ -158,11 +158,11 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity implements IAct
 
             });
 
-
+    /*
         }else{
             Toast.makeText(getApplicationContext(),"Verifique campos vazios",Toast.LENGTH_SHORT).show();
         }
-
+*/
     }
 
     @Override
