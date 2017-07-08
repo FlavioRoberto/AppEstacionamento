@@ -98,11 +98,13 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
            @Override
            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                if(isChecked == true){
+                   limpaTextViews();
                    editTextEmailDonoVeiculo.setText("");
                    pesquisaPlaca = true;
                    editTextEmailDonoVeiculo.setHint("Digite a placa do veìculo..");
                    adicionaMascara();
                }else{
+                   limpaTextViews();
                    pesquisaPlaca = false;
                    editTextEmailDonoVeiculo.setText("");
                    pesquisaPlaca = true;
@@ -123,7 +125,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                 progressDialog.show();
               if(pesquisaPlaca == true){
                   buscaVeiculoPlaca();
-              }else {
+              }else  if(pesquisaPlaca == false){
                   buscaVeiculoEmail();
               }
             }
@@ -222,6 +224,8 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
+                progressDialog.dismiss();
+                Toast.makeText(getApplicationContext(),"Erro de conexão",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -285,8 +289,6 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         finish();
     }
 
-
-
     //ao clicar nas opções do menu seleciona uma ação
     //invoca os itens no menu toolbar
     @Override
@@ -338,6 +340,12 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
         }
     }
 
+    public void limpaTextViews(){
+        textViewCorVeiculo.setText("");
+        textViewMarcaVeiculo.setText("");
+        textViewModeloVeiculo.setText("");
+        textViewPlaca.setText("");
+    }
 
 
 }
