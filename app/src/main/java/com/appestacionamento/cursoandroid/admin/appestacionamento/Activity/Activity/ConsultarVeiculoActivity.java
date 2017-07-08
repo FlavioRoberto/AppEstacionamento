@@ -157,6 +157,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
 
                         public void onClick(DialogInterface dialog, int which) {
                             excluirVeiculo();
+                            dialog.dismiss();
                         }
                     });
                     builder.setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
@@ -344,14 +345,14 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
             databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo").child(uid);
             databaseReferenceVeiculo.removeValue();
             Toast.makeText(getApplicationContext(), "Veículo Excluído!", Toast.LENGTH_SHORT).show();
-            finish();
+            limpaTextViews();
         }else {
             databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo").child(placa);
             databaseReferenceVeiculo.removeValue();
             Toast.makeText(getApplicationContext(), "Veículo Excluído!", Toast.LENGTH_SHORT).show();
-            finish();
+            limpaTextViews();
         }
-        progressDialog.disableDialog();
+
     }
 
 }
