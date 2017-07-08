@@ -52,6 +52,8 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     private AlertDialog.Builder builder;
     private ProgressDialog progressDialog;
     private Switch tipoPesquisa;
+    private  SimpleMaskFormatter smf;
+    private MaskTextWatcher mtw;
     private String cor, email, marca, modelo, placa, tipo, uid;
     public static final String EDITCOR = "cor", EDITEMAIL = "email", EDITMODELO = "modelo", EDITPLACA = "placa",
                         EDITTIPO = "tipo", EDITUID = "uid", EDITMARCA = "marca";
@@ -98,12 +100,14 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
                if(isChecked == true){
                    editTextEmailDonoVeiculo.setText("");
                    pesquisaPlaca = true;
-                   editTextEmailDonoVeiculo.setHint("Digite a placa do veìculo");
+                   editTextEmailDonoVeiculo.setHint("Digite a placa do veìculo..");
                    adicionaMascara();
                }else{
+                   pesquisaPlaca = false;
                    editTextEmailDonoVeiculo.setText("");
                    pesquisaPlaca = true;
-                   editTextEmailDonoVeiculo.setHint("Digite o email veìculo");
+                   editTextEmailDonoVeiculo.setHint("Email do dono do veìculo..");
+                   editTextEmailDonoVeiculo.removeTextChangedListener(mtw);
 
                }
            }
@@ -318,14 +322,22 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     //metodo para voltar a menu principal
     @Override
     public void voltar() {
+        finish();
         invocaActivitys.invocaPrincipal(ConsultarVeiculoActivity.this,this,preferencias.recuperaTipo(getApplicationContext()));
+
     }
 
     @Override
     public void adicionaMascara() {
-        SimpleMaskFormatter smf = new SimpleMaskFormatter("LLL-NNNN");
-        MaskTextWatcher mtw = new MaskTextWatcher(editTextEmailDonoVeiculo,smf);
-        editTextEmailDonoVeiculo.addTextChangedListener(mtw);
 
+        if(pesquisaPlaca == true) {
+             smf = new SimpleMaskFormatter("LLL-NNNN");
+             mtw = new MaskTextWatcher(editTextEmailDonoVeiculo,smf);
+             editTextEmailDonoVeiculo.addTextChangedListener(mtw);
+
+        }
     }
+
+
+
 }
