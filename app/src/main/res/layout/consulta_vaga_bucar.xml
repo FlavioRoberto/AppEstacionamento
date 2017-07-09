@@ -26,7 +26,8 @@
         android:layout_marginTop="20dp"
         android:text=""
         android:textColor="@android:color/white"
-        android:textSize="36sp" />
+        android:textSize="120sp"
+        android:textAlignment="center"/>
 
     <TextView
         android:id="@+id/text_setor_vaga"
@@ -34,17 +35,27 @@
         android:layout_height="wrap_content"
         android:text="@string/Setor"
         android:textSize="@dimen/TextSize"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="10dp"
         android:layout_gravity="center"/>
 
     <TextView
         android:id="@+id/textnumero_setor_vaga"
         android:layout_width="155dp"
-        android:layout_height="142dp"
+        android:layout_height="100dp"
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:text=""
+        android:textAlignment="center"
+        android:textSize="70sp"
         android:textColor="@android:color/white" />
+
+    <Button
+        android:id="@+id/botaoconfirmarid"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="CONFIRMAR"
+        android:layout_gravity="center"
+        android:background="@drawable/ovalbutton"/>
 
 
 </LinearLayout>

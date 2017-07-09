@@ -6,6 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
     private DatabaseReference databaseReferenceVaga = FirebaseDatabase.getInstance().getReference("vaga");
     private String vagaDatabase;
     private Boolean flag = false;
+    private Button botaoConfirmar;
 
 
     @Override
@@ -36,6 +38,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
         setContentView(R.layout.consulta_vaga_bucar);
 
         textViewNumeroVaga = (TextView) findViewById(R.id.textnumero_vaga);
+        botaoConfirmar = (Button) findViewById(R.id.botaoconfirmarid);
 
         //Toolbar
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
