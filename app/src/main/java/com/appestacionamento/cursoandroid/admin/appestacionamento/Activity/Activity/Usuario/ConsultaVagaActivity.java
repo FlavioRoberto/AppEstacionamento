@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 public class ConsultaVagaActivity extends AppCompatActivity implements IActivity {
 
     private Toolbar toolbar;
-    private TextView textViewNumeroVaga;
+    private TextView textViewNumeroVaga, textViewSetorVaga;
     private DatabaseReference databaseReferenceVaga = FirebaseDatabase.getInstance().getReference("vaga");
     private String vagaDatabase;
     private Boolean flag = false;
@@ -36,6 +36,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
         setContentView(R.layout.consulta_vaga_bucar);
 
         textViewNumeroVaga = (TextView) findViewById(R.id.textnumero_vaga);
+        textViewSetorVaga = (TextView) findViewById(R.id.textnumero_setor_vaga);
 
         //Toolbar
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
@@ -57,6 +58,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
                     if (vagaDatabase.equals("LIVRE")) {
                         flag = true;
                         textViewNumeroVaga.setText(postSnapshot.child("numero").getValue(String.class));
+                        textViewSetorVaga.setText(postSnapshot.child("setor").getValue(String.class));
                         break;
                     }
                 }
