@@ -54,8 +54,8 @@
                 android:id="@+id/setorvagaid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/Setor"
                 android:layout_marginTop="5dp"
+                android:text="@string/Setor"
                 android:textSize="@dimen/TextSize"
                 />
 
@@ -71,8 +71,8 @@
                 android:id="@+id/statusvagaid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:text="@string/Status"
+                android:layout_marginTop="5dp"
                 android:textSize="@dimen/TextSize"/>
 
             <TextView

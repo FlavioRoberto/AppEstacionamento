@@ -41,6 +41,7 @@ public class HomeUsuario extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), ConsultaVaga.class);
                 startActivity(intent);
+                getActivity().finish();
 
             }
         });
