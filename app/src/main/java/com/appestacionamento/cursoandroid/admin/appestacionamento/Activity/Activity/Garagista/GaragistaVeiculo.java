@@ -18,7 +18,7 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 public class GaragistaVeiculo extends Fragment {
 
 
-    private TextView Dados,Placaveiculo,Valorplacaveicuo,ModeloVeicuo,Valormodeloveicuo,Marcadoveiculo,Valormarcaveiculo,Cordoveiculo,Valorcorveiculo;
+    private TextView Dados,Placaveiculo,NumeroVaga,Valornumerovaga,Setor,Valorsetor,Nessecidade,ValorNessecidade;
     private EditText Consultaid;
     private ImageView BuscarVaga;
     private View Traco;
@@ -34,13 +34,12 @@ public class GaragistaVeiculo extends Fragment {
         View view = inflater.inflate(R.layout.fragment_garagista_veiculo, container, false);
         BuscarVaga = (ImageView) view.findViewById(R.id.btnbuscar);
         Consultaid = (EditText) view.findViewById(R.id.editConsultaId);
-        Valorcorveiculo = (TextView) view.findViewById(R.id.valorcor_id);
-        Cordoveiculo = (TextView) view.findViewById(R.id.textcor_id);
-        Valormarcaveiculo = (TextView) view.findViewById(R.id.valormarca_id);
-        Marcadoveiculo = (TextView) view.findViewById(R.id.textmarca_id);
-        Valormodeloveicuo = (TextView) view.findViewById(R.id.valormodelo_id);
-        ModeloVeicuo = (TextView) view.findViewById(R.id.textmodelo_id);
-        Valorplacaveicuo = (TextView) view.findViewById(R.id.textovalor_placaId);
+        Setor = (TextView) view.findViewById(R.id.texto_Setor);
+        Nessecidade = (TextView) view.findViewById(R.id.texto_Necessidade);
+        ValorNessecidade = (TextView) view.findViewById(R.id.valorNecessidade_Especial);
+        Valorsetor = (TextView) view.findViewById(R.id.valorSetor_Id);
+        Valornumerovaga = (TextView) view.findViewById(R.id.valorNumero_Id);
+        NumeroVaga = (TextView) view.findViewById(R.id.textView_12);
         Dados = (TextView) view.findViewById(R.id.textdados);
         Placaveiculo = (TextView) view.findViewById(R.id.placaVeiculoId);
         Traco = view.findViewById(R.id.viewbarra);
