@@ -59,6 +59,8 @@
     <string name="site_do_hotel">Site do hotel:</string>
     <string name="telefone_para_contato">Telefone para contato:</string>
     <string name="site_hotel">www.hotel.com.br</string>
+    <string name="setor1">Setor 1</string>
+    <string name="setor2">Setor 2</string>
 
 
 </resources>
