@@ -21,6 +21,14 @@ package="com.appestacionamento.cursoandroid.admin.appestacionamento">
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
     </activity>
+
+    <activity android:name=".Activity.Activity.NotificationActivity">
+        <intent-filter>
+            <action android:name="ACTIVITYNOTIFICATION"></action>
+            <category android:name="android.intent.category.DEFAULT"></category>
+        </intent-filter>
+    </activity>
+
     <activity android:name=".Activity.Activity.LoginActivity" />
     <activity android:name=".Activity.Activity.ConsultaUsuarioActivity" />
     <activity android:name=".Activity.Activity.Admin.AdmActivity" />

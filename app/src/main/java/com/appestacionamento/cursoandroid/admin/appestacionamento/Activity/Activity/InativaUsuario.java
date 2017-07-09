@@ -114,7 +114,7 @@ public class InativaUsuario extends AppCompatActivity implements IActivity {
                 emailUsuario = editTextBuscarEmailUsuario.getText().toString().toLowerCase().trim();
                 codificaEmail = Base64Custom.codificarBase64(emailUsuario);
                 Query query = databaseReference;
-                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                query.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
