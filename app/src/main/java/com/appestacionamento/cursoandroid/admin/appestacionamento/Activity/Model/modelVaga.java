@@ -10,7 +10,7 @@ import com.google.firebase.database.Exclude;
 import com.google.firebase.database.ValueEventListener;
 
 public class modelVaga {
-    private String numero, setor, chave;
+    private String numero, setor, chave, status;
 
     private Boolean vagaEspecial;
 
@@ -38,9 +38,12 @@ public class modelVaga {
         return chave;
     }
 
-
     public Boolean getVagaEspecial() {
         return vagaEspecial;
+    }
+
+    public String getStatus() {//Livre ou OCUPADO
+        return status;
     }
 
     public void setNumero(String numero) {
@@ -57,5 +60,9 @@ public class modelVaga {
 
     public void setVagaEspecial(Boolean vagaEspecial) {
         this.vagaEspecial = vagaEspecial;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

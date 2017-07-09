@@ -180,7 +180,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
                   }
                   if(emailaValido == false){
                       progressDialog.disableDialog();
-                      Toast.makeText(getApplicationContext(), "Email Inválido",Toast.LENGTH_LONG).show();
+                      Toast.makeText(getApplicationContext(), "Email ou Placa Inválido",Toast.LENGTH_LONG).show();
                      // finish();
                       return;
                   }

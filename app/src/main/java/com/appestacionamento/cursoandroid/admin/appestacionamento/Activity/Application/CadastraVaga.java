@@ -48,6 +48,7 @@ public class CadastraVaga {
                     modelVaga.setNumero(numeroVaga);
                     modelVaga.setSetor(setorVaga);
                     modelVaga.setChave(chave);
+                    modelVaga.setStatus("LIVRE");
                     modelVaga.create();
                     Toast.makeText(context, "Vaga cadastrada com sucesso!", Toast.LENGTH_LONG).show();
                 }else if (flag == false){
