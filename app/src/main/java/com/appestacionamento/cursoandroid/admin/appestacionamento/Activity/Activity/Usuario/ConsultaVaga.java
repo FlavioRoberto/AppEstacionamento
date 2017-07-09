@@ -23,7 +23,7 @@ public class ConsultaVaga extends AppCompatActivity implements IActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_consulta_vaga);
+        setContentView(R.layout.consulta_vaga_bucar);
 
         //Toolbar
         toolbar = (Toolbar)findViewById(R.id.toolbarId);

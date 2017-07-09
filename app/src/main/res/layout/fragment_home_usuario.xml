@@ -9,7 +9,6 @@
     >
 
 
-HEAD
         <android.widget.RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -44,7 +43,7 @@ HEAD
         </android.widget.RelativeLayout>
 
 
-=======
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -99,6 +98,5 @@ HEAD
 
 
     </LinearLayout>
->>>>>>> parent of 0cccfa8... Tela pesquisa vaga do usuario
 
 </LinearLayout>
