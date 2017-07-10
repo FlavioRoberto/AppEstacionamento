@@ -304,8 +304,6 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         }
 
 
-
-
     public boolean enviaEmail(){
         emailusuario = editTextEmailUsuario.getText().toString().toLowerCase().trim();
         pesquisaUsuario.retornaUsuario(emailusuario);
