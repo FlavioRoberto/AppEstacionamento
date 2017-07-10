@@ -51,8 +51,10 @@ public class CadastraVaga {
                     modelVaga.setStatus("LIVRE");
                     modelVaga.create();
                     Toast.makeText(context, "Vaga cadastrada com sucesso!", Toast.LENGTH_LONG).show();
-                }else if (flag == false){
+                }else {
                     Toast.makeText(context, "Numero de vaga ja esta em uso", Toast.LENGTH_LONG).show();
+                    flag=true;
+                    return;
                 }
             }
 

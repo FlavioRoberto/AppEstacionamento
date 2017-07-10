@@ -255,11 +255,11 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         usuario.setStatus("ATIVADO");
         usuario.setUid(codificarEmail);
 
-        if (cpf.length() < 15) {
+        if (cpf.length() < 14) {
             Toast.makeText(getApplicationContext(), "CPF informado inválido", Toast.LENGTH_SHORT).show();
             return;
         } else {
-            if (telefone.length() < 15) {
+            if (telefone.length() < 14) {
                 Toast.makeText(getApplicationContext(), "Telefone incorreto", Toast.LENGTH_SHORT).show();
                 return;
             } else {

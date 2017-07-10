@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.AdmActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.BuscarVagaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Usuario.ActivityUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Usuario.ConsultaVagaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
@@ -39,7 +40,7 @@ public class HomeUsuario extends Fragment {
         pesquisar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), ConsultaVagaActivity.class);
+                Intent intent = new Intent(getContext(), BuscarVagaActivity.class);
                 startActivity(intent);
                 getActivity().finish();
 
