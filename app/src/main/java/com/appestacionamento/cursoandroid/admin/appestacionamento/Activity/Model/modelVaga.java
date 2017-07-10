@@ -9,10 +9,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Date;
+
 public class modelVaga {
-    private String numero, setor, chave, status;
+    private String numero, setor, chave, status, placaVeiculo, idVeiculo;
 
     private Boolean vagaEspecial;
+
+    private Date dataOcupacao;
 
     private static DatabaseReference firebaseReferencia;
 
@@ -46,6 +50,18 @@ public class modelVaga {
         return status;
     }
 
+    public String getPlacaVeiculo() {
+        return placaVeiculo;
+    }
+
+    public String getIdVeiculo() {
+        return idVeiculo;
+    }
+
+    public Date getDataOcupacao() {
+        return dataOcupacao;
+    }
+
     public void setNumero(String numero) {
         this.numero = numero;
     }
@@ -64,5 +80,17 @@ public class modelVaga {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public void setPlacaVeiculo(String placaVeiculo) {
+        this.placaVeiculo = placaVeiculo;
+    }
+
+    public void setIdVeiculo(String idVeiculo) {
+        this.idVeiculo = idVeiculo;
+    }
+
+    public void setDataOcupacao(Date dataOcupacao) {
+        this.dataOcupacao = dataOcupacao;
     }
 }
