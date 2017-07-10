@@ -8,11 +8,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.AdmActivity;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.BuscarVagaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Usuario.ActivityUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Usuario.ConsultaVagaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
