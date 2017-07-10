@@ -147,31 +147,39 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         email = editTextEmailUsuario.getText().toString().trim().toLowerCase();
         cpf = editTextCpfUsuario.getText().toString().trim();
 
-        if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(senha) && !TextUtils.isEmpty(nome) && !TextUtils.isEmpty(telefone) &&
-                !TextUtils.isEmpty(tipo) && !TextUtils.isEmpty(cpf)) {
-            progressDialog.setCanceledOnTouchOutside(false);
-            progressDialog.setMessage("Inserindo...");
-            progressDialog.show();
-            preferencias = new Preferencias(CadastroUsuarioActivity.this);
-            autenticacao.createUserWithEmailAndPassword(email, senha)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            try {
-                                if (task.isSuccessful()) {
-                                    cadastraUsuario(preferencias);
-                                } else if (!task.isSuccessful()) {
-                                    Toast.makeText(CadastroUsuarioActivity.this, "Nao foi possível cadastrar \n" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                                }
-                            } catch (Exception e) {
 
-                                //Toast.makeText(CadastroUsuarioActivity.this,"Nao foi possível cadastrar: "+e.getMessage(),Toast.LENGTH_LONG).show();
+
+        if(cpf.length() == 14 && telefone.length() == 14) {
+            if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(senha) && !TextUtils.isEmpty(nome) && !TextUtils.isEmpty(telefone) &&
+                    !TextUtils.isEmpty(tipo) && !TextUtils.isEmpty(cpf)) {
+                progressDialog.setCanceledOnTouchOutside(false);
+                progressDialog.setMessage("Inserindo...");
+                progressDialog.show();
+                preferencias = new Preferencias(CadastroUsuarioActivity.this);
+                autenticacao.createUserWithEmailAndPassword(email, senha)
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                try {
+                                    if (task.isSuccessful()) {
+                                        cadastraUsuario(preferencias);
+                                    } else if (!task.isSuccessful()) {
+                                        Toast.makeText(CadastroUsuarioActivity.this, "Nao foi possível cadastrar \n" + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                } catch (Exception e) {
+
+                                    //Toast.makeText(CadastroUsuarioActivity.this,"Nao foi possível cadastrar: "+e.getMessage(),Toast.LENGTH_LONG).show();
+                                }
+                                progressDialog.dismiss();
                             }
-                            progressDialog.dismiss();
-                        }
-                    });
-        } else {
-            Toast.makeText(getApplicationContext(), "Há campos vazios", Toast.LENGTH_LONG).show();
+                        });
+            } else {
+                Toast.makeText(getApplicationContext(), "Há campos vazios", Toast.LENGTH_LONG).show();
+                return;
+            }
+        }else{
+            Toast.makeText(getApplicationContext(), "Campo de Cpf e/ou email Inválidos", Toast.LENGTH_LONG).show();
+            return;
         }
     }
 
@@ -255,14 +263,15 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         usuario.setStatus("ATIVADO");
         usuario.setUid(codificarEmail);
 
-        if (cpf.length() < 14) {
+        /*if (cpf.length() < 14) {
             Toast.makeText(getApplicationContext(), "CPF informado inválido", Toast.LENGTH_SHORT).show();
             return;
         } else {
             if (telefone.length() < 14) {
                 Toast.makeText(getApplicationContext(), "Telefone incorreto", Toast.LENGTH_SHORT).show();
                 return;
-            } else {
+            } else {*/
+
                 if (enviaEmail() == true) {
                     usuario.Create();
 
@@ -282,7 +291,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
                                     if (!task.isSuccessful()) {
                                         Log.e("RELOGIN", "FAILED");
                                     } else {
-                                        Toast.makeText(getApplicationContext(), "Logado", Toast.LENGTH_LONG).show();
+                                        //Toast.makeText(getApplicationContext(), "Logado", Toast.LENGTH_LONG).show();
                                         Log.e("RELOGIN", "SUCCESS");
                                     }
                                 }
@@ -291,9 +300,9 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
                 } else {
                     Toast.makeText(getApplicationContext(), "Não foi possível cadastrar o usuário", Toast.LENGTH_SHORT).show();
                 }
-            }
+            //}
         }
-    }
+
 
 
 
