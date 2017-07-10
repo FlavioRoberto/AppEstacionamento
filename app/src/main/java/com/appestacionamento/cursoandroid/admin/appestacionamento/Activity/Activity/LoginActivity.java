@@ -263,14 +263,14 @@ public class LoginActivity extends AppCompatActivity {
                                             authFlag = false;
 
                                         }
-                                    }else {
-                                        progressDialog.dismiss();
+                                    }else if(status.equals("INATIVADO")) {
+
                                         authFlag = false;
                                         loginFlag = false;
                                         Toast.makeText(getApplicationContext(), "Este usuário está Inativado no sistema", Toast.LENGTH_LONG).show();
+                                        progressDialog.dismiss();
                                         return;
                                     }
-
 
                                 }
 
@@ -286,6 +286,11 @@ public class LoginActivity extends AppCompatActivity {
                     }else {
                         return;
                     }
+                }else{
+                    //Toast.makeText(LoginActivity.this,"Usuário nao verificado, confira no seu email o link para validação",Toast.LENGTH_SHORT).show();
+                    progressDialog.dismiss();
+                    authFlag = false;
+                    return;
                 }
             }
 

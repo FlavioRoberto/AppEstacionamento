@@ -68,7 +68,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
 
 
         //setando componentes
-        progressDialog = new progressDialogApplication(getApplicationContext());
+        progressDialog = new progressDialogApplication(this);
         editTextPlaca = (EditText) findViewById(R.id.placaVeiculoId);
         editTextEmailDono = (EditText) findViewById(R.id.emailDonoId);
         editTextModelo = (EditText) findViewById(R.id.modeloVeiculoId);
@@ -76,7 +76,6 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
         spinner = (Spinner)findViewById(R.id.spinnerTipoVeiculo);
         spinnerCorVeicullo = (Spinner)findViewById(R.id.spinnerCorVeiculoId);
         buttonCadastrarVeiculo = (Button) findViewById(R.id.button_cadastroVeiculo);
-        progressDialog = new progressDialogApplication(getApplicationContext());
 
         //Spiner Adapter
         SpinnerAdapter adapter = spinner.getAdapter();
@@ -100,7 +99,6 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
            @Override
            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                marca = parent.getItemAtPosition(position).toString();
-            //   Toast.makeText(getApplicationContext(),marca,Toast.LENGTH_LONG).show();
            }
 
            @Override
@@ -137,60 +135,63 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
 
     //Inicio metodo INserir veiculo
     public void inserirVeiculo(){
-       progressDialog.invocaDialog("Inserindo veículo...");
+        progressDialog.invocaDialog("Inserindo veículo...");
         placa = editTextPlaca.getText().toString().toUpperCase().trim();
         emailDono = editTextEmailDono.getText().toString().toLowerCase().trim();
         modelo = editTextModelo.getText().toString().toUpperCase().trim();
         emailCodificado = Base64Custom.codificarBase64(emailDono);
-      try {
-          Query query = databaseReferenceUsers;
-          query.addValueEventListener(new ValueEventListener() {
-              @Override
-              public void onDataChange(DataSnapshot dataSnapshot) {
-                  for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                      emailDatabase = postSnapshot.child("uid").getValue(String.class);
+        if (placa.length() == 8) {
+            if (!TextUtils.isEmpty(emailCodificado) && !TextUtils.isEmpty(cor) && !TextUtils.isEmpty(marca) &&
+                    !TextUtils.isEmpty(modelo) && !TextUtils.isEmpty(placa) && !TextUtils.isEmpty(tipo) &&
+                    !TextUtils.isEmpty(emailDono)) {
+                try {
+                    Query query = databaseReferenceUsers;
+                    query.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                                emailDatabase = postSnapshot.child("uid").getValue(String.class);
 
-                          if(emailDatabase.equals(emailCodificado)){
-                              if(!TextUtils.isEmpty(emailCodificado) && !TextUtils.isEmpty(cor) && !TextUtils.isEmpty(marca) &&
-                                      !TextUtils.isEmpty(modelo) && !TextUtils.isEmpty(placa) && !TextUtils.isEmpty(tipo) &&
-                                      !TextUtils.isEmpty(emailDono) ) {
-                                  if(placa.length()<8){
-                                      Toast.makeText(getApplicationContext(),"Placa inválida",Toast.LENGTH_SHORT).show();
-                                      progressDialog.disableDialog();
-                                      return;
-                                  }else {
-                                      veiculo.setUid(emailCodificado);
-                                      veiculo.setCor(cor);
-                                      veiculo.setMarca(marca);
-                                      veiculo.setModelo(modelo);
-                                      veiculo.setPlaca(placa);
-                                      veiculo.setTipo(tipo);
-                                      veiculo.setEmail(emailDono);
-                                      veiculo.create();
-                                      emailaValido = true;
-                                      progressDialog.disableDialog();
-                                      Toast.makeText(getApplicationContext(), "Veículo inserido com sucesso!", Toast.LENGTH_LONG).show();
-                                      finish();
-                                      break;
-                                  }
-                              }
-                          }
+                                if (emailDatabase.equals(emailCodificado)) {
+                                    veiculo.setUid(emailCodificado);
+                                    veiculo.setCor(cor);
+                                    veiculo.setMarca(marca);
+                                    veiculo.setModelo(modelo);
+                                    veiculo.setPlaca(placa);
+                                    veiculo.setTipo(tipo);
+                                    veiculo.setEmail(emailDono);
+                                    veiculo.create();
+                                    emailaValido = true;
+                                    progressDialog.disableDialog();
+                                    Toast.makeText(getApplicationContext(), "Veículo inserido com sucesso!", Toast.LENGTH_LONG).show();
+                                    break;
+                                }
 
+                            }
+                            if (emailaValido == false) {
+                                progressDialog.disableDialog();
+                                Toast.makeText(getApplicationContext(), "Email ou Placa Inválido", Toast.LENGTH_LONG).show();
+                                // finish();
+                                return;
+                            }
+                        }
 
-                  }
-                  if(emailaValido == false){
-                      progressDialog.disableDialog();
-                      Toast.makeText(getApplicationContext(), "Email ou Placa Inválido",Toast.LENGTH_LONG).show();
-                     // finish();
-                      return;
-                  }
-              }
-              @Override
-              public void onCancelled(DatabaseError databaseError) {
-              }
-          });
-      }catch (Exception e){
-      }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                        }
+                    });
+                } catch (Exception e) {
+                }
+            }else{
+                Toast.makeText(getApplicationContext(), "Há campos vazios", Toast.LENGTH_SHORT).show();
+                progressDialog.disableDialog();
+                return;
+            }
+        }else{
+            Toast.makeText(getApplicationContext(), "Placa inválida", Toast.LENGTH_SHORT).show();
+            progressDialog.disableDialog();
+            return;
+        }
     }//FIM METODO Inserir Veiculo
 
     //sobrescreve metodo da interface IActivity para ativar os icones no menu
