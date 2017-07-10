@@ -2,6 +2,7 @@ package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Acti
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,15 +11,17 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.EditaDadosUsuarioActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.IActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.PreferenciasVaga;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelVaga;
@@ -31,16 +34,17 @@ import com.google.firebase.database.ValueEventListener;
 
 public class ConsultaVagaADMActivity extends AppCompatActivity implements IActivity {
 
-    private  modelVaga vaga;
+    private PreferenciasVaga vagaPreferences;
     private Toolbar toolbar;
     private SeekBar seekBar;
     private ImageView btnBuscarVaga;
     private EditText editconsultaVaga;
     private TextView necessidadeEspecial,setorText,numeroVagaText;
-    private String setorSeek, setorVaga, numeroVaga;
+    private String setorSeek, setorVaga, numeroVaga,chave,status;
     private ProgressDialog progressDialog;
     private Boolean flag = false;
-
+    private Button btnEditar;
+    private modelVaga vaga;
 
 
     @Override
@@ -57,9 +61,9 @@ public class ConsultaVagaADMActivity extends AppCompatActivity implements IActiv
         seekBar = (SeekBar)findViewById(R.id.seekBarSetor);
         btnBuscarVaga = (ImageView)findViewById(R.id.btnbuscarVaga);
         editconsultaVaga = (EditText)findViewById(R.id.editConsultaVaga);
+        btnEditar = (Button)findViewById(R.id.btnEditar);
         vaga = new modelVaga();
-
-
+        vagaPreferences = new PreferenciasVaga(ConsultaVagaADMActivity.this);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -99,6 +103,19 @@ public class ConsultaVagaADMActivity extends AppCompatActivity implements IActiv
             }
         });
 
+        //ao clicar em editar
+        btnEditar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(flag == false){
+                    Toast.makeText(ConsultaVagaADMActivity.this,"Procure uma vaga",Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent intent = new Intent(getApplicationContext(), EditaVagasActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            }
+        });
 
     }
 
@@ -140,12 +157,17 @@ public class ConsultaVagaADMActivity extends AppCompatActivity implements IActiv
                     setorSnapshot = postSnapshot.child("setor").getValue(String.class);
                     numeroSnapshot = postSnapshot.child("numero").getValue(String.class);
                     vagaEspcialSnapshot = postSnapshot.child("vagaEspecial").getValue(Boolean.class);
+                    chave = postSnapshot.child("chave").getValue(String.class);
+                    status = postSnapshot.child("status").getValue(String.class);
 
                     if (setorSnapshot.equals(setorVaga) && numeroSnapshot.equals(numeroVaga)) {
                         vaga.setSetor(setorVaga);
                         vaga.setNumero(numeroVaga);
                         vaga.setVagaEspecial(vagaEspcialSnapshot);
+                        vaga.setChave(chave);
+                        vaga.setStatus(status);
                         flag = true;
+                        vagaPreferences.salvarVagaPreferences(vaga.getNumero(),vaga.getSetor(),vaga.getChave(),vaga.getVagaEspecial(),vaga.getStatus());
                         break;
                     }
                 }
@@ -194,4 +216,8 @@ public class ConsultaVagaADMActivity extends AppCompatActivity implements IActiv
         Preferencias preferencias = new Preferencias(ConsultaVagaADMActivity.this);
         invocaActivitys.invocaPrincipal(ConsultaVagaADMActivity.this,this,preferencias.recuperaTipo(this));
     }
+
+
+
+
 }
