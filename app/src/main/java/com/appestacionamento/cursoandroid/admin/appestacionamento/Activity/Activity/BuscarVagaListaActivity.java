@@ -1,5 +1,6 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,7 +13,12 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Garagista.informacoes_vaga_garagista;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Adapter.vagaAdapter;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.PreferenciasOcupaVaga;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelVaga;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.google.firebase.database.DataSnapshot;
@@ -41,34 +47,47 @@ public class BuscarVagaListaActivity extends AppCompatActivity implements IActiv
     private  ArrayAdapter<modelVaga> adapter;
     private modelVaga vaga;
     private Query query = databaseReferenceVaga;
+    private PreferenciasOcupaVaga preferenciasOcupaVaga;
+    private modelVaga model_vaga;
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buscarvagaLista);
+        setContentView(R.layout.activity_buscarvaga_lista);
 
         toolbar = (Toolbar) findViewById(R.id.toolbarId);
         toolbar.setTitle("Buscar Vaga");
         setSupportActionBar(toolbar);
 
+        preferenciasOcupaVaga = new PreferenciasOcupaVaga(BuscarVagaListaActivity.this);
         Vagas =new ArrayList<>();
         vaga = new modelVaga();
 
         ListadeVagas = (ListView) findViewById(R.id.ListviewId);
 
 
-
+        pesquisaVaga();
         adapter = new vagaAdapter(BuscarVagaListaActivity.this,Vagas);
         ListadeVagas.setAdapter(adapter);
-       ListadeVagas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        ListadeVagas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
            @Override
            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-               parent.getItemAtPosition(position);
+
+               model_vaga = Vagas.get(position);
+               if(model_vaga!=null) {
+                   preferenciasOcupaVaga.salvarOcupaVagaPreferences(model_vaga.getNumero(),
+                           model_vaga.getSetor(), model_vaga.getChave(), model_vaga.getStatus(), model_vaga.getPlacaVeiculo()
+                           , model_vaga.getEmailDono(), model_vaga.getVagaEspecial());
+                   Intent intent = new Intent(BuscarVagaListaActivity.this, informacoes_vaga_garagista.class);
+                   startActivity(intent);
+                   finish();
+               }
            }
+
        });
 
-        pesquisaVaga();
+
 
 
 
@@ -143,16 +162,20 @@ public class BuscarVagaListaActivity extends AppCompatActivity implements IActiv
 
     @Override
     public void sair() {
-
+        finish();
+        sairAplicacao.logout(this,this);
     }
 
     @Override
     public void sobre() {
-
+        finish();
+        invocaActivitys.invocaSobre(this,this);
     }
 
     @Override
     public void voltar() {
-
+        finish();
+        Preferencias preferencias = new Preferencias(this);
+        invocaActivitys.invocaPrincipal(BuscarVagaListaActivity.this,this,preferencias.recuperaTipo(this));
     }
 }

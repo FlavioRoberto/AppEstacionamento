@@ -1,5 +1,6 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Garagista;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -8,9 +9,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.BuscarVagaListaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ConsultarVeiculoActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.IActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.PreferenciasOcupaVaga;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
@@ -18,6 +21,7 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 public class informacoes_vaga_garagista extends AppCompatActivity implements IActivity {
     private Toolbar toolbar;
     private TextView txNumero, txSetor,txStatus,txPlaca,txVagaEspecial,txEmailProprietario;
+    private PreferenciasOcupaVaga preferenciasOcupaVaga;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,14 +36,30 @@ public class informacoes_vaga_garagista extends AppCompatActivity implements IAc
         txPlaca = (TextView)findViewById(R.id.tv_Placa);
         txVagaEspecial = (TextView)findViewById(R.id.tv_vagaEspecial);
         txEmailProprietario = (TextView)findViewById(R.id.tv_email);
+        preferenciasOcupaVaga = new PreferenciasOcupaVaga(informacoes_vaga_garagista.this);
 
         //PREPARANDO TOOLBAR
         toolbar.setTitle("Informações da vaga");
         setSupportActionBar(toolbar);
 
+        setValorVaga();
 
 
     }
+
+    public void setValorVaga(){
+       if(preferenciasOcupaVaga!= null){
+        txNumero.setText(preferenciasOcupaVaga.recuperaNumero(informacoes_vaga_garagista.this));
+        txSetor.setText(preferenciasOcupaVaga.recuperaSetor(informacoes_vaga_garagista.this));
+        txStatus.setText(preferenciasOcupaVaga.recuperaStatus(informacoes_vaga_garagista.this));
+        txPlaca.setText(preferenciasOcupaVaga.recuperaPlaca(informacoes_vaga_garagista.this));txEmailProprietario.setText(preferenciasOcupaVaga.recuperaEmail(informacoes_vaga_garagista.this));
+       if(preferenciasOcupaVaga.recuperaVagaEsp(informacoes_vaga_garagista.this) == true) {
+           txVagaEspecial.setText("SIM");
+       }else {
+           txVagaEspecial.setText("NÃO");
+       }
+
+    }}
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -78,7 +98,7 @@ public class informacoes_vaga_garagista extends AppCompatActivity implements IAc
     @Override
     public void voltar() {
         finish();
-        Preferencias preferencias = new Preferencias(informacoes_vaga_garagista.this);
-        invocaActivitys.invocaPrincipal(this,this,preferencias.recuperaTipo(this));
+        Intent intent = new Intent(informacoes_vaga_garagista.this, BuscarVagaListaActivity.class);
+        startActivity(intent);
     }
 }

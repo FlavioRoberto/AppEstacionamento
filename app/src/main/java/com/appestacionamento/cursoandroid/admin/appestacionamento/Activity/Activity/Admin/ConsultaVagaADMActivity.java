@@ -167,7 +167,7 @@ public class ConsultaVagaADMActivity extends AppCompatActivity implements IActiv
                         vaga.setChave(chave);
                         vaga.setStatus(status);
                         flag = true;
-                        vagaPreferences.salvarVagaPreferences(vaga.getNumero(),vaga.getSetor(),vaga.getChave(),vaga.getVagaEspecial(),vaga.getStatus());
+                        vagaPreferences.salvarVagaPreferences(vaga.getNumero(),vaga.getSetor(),vaga.getChave(),vaga.getVagaEspecial(),vaga.getStatus(),"");
                         break;
                     }
                 }

@@ -16,7 +16,7 @@ public class PreferenciasOcupaVaga {
     private final String STATUS="status";
     private final String PLACA="placa";
     private final String EMAIL="email";
-    private final Boolean VAGAESP = Boolean.valueOf("vaga");
+    private final boolean VAGAESP = Boolean.valueOf("vaga");
 
 
     public  PreferenciasOcupaVaga(Context contextoParametro){
@@ -68,8 +68,9 @@ public class PreferenciasOcupaVaga {
         return  preferences.getString(EMAIL,"");
     }
 
-    public  String recuperaVagaEsp(Context context){
+    public  boolean recuperaVagaEsp(Context context){
         preferences = context.getSharedPreferences(NOME_ARQUIVO,MODE);
-        return  preferences.getString(String.valueOf(VAGAESP),"");
+        return (preferences.getBoolean(String.valueOf(VAGAESP),false));
+
     }
 }

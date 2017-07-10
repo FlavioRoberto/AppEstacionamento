@@ -46,6 +46,8 @@
         <activity android:name=".Activity.Activity.Admin.EditaVagasActivity" />
         <activity android:name=".Activity.Activity.Usuario.ConsultaVagaActivity" />
         <activity android:name=".Activity.Activity.Garagista.GaragistaActivity" />
+        <activity android:name=".Activity.Activity.Garagista.informacoes_vaga_garagista" />
+
         <activity android:name=".Activity.Activity.BuscarVagaListaActivity" />
 
         <service android:name=".Activity.Application.MyFirebaseMessagingService">
