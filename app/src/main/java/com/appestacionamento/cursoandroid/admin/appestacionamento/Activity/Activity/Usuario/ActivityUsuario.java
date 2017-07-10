@@ -93,7 +93,8 @@ public class ActivityUsuario extends AppCompatActivity implements IActivity {
     //metodos para sair logout
     @Override
     public void sair() {
-        sairAplicacao.logout(getApplicationContext(),this);
+        sairAplicacao.logout(ActivityUsuario.this,this);
+
     }
 
     @Override

@@ -195,6 +195,7 @@ public class ConsultaUsuarioActivity extends AppCompatActivity implements IActiv
     //retorna para a página inicial
     public  void voltar(){
       //  preferencias = new Preferencias(this);
+        voltar();
        invocaActivitys.invocaPrincipal(ConsultaUsuarioActivity.this,this,preferencias.recuperaTipo(this));
     }
 

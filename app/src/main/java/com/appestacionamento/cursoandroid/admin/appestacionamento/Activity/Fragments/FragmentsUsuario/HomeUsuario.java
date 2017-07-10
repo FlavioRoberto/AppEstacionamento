@@ -40,7 +40,7 @@ public class HomeUsuario extends Fragment {
         pesquisar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), BuscarVagaActivity.class);
+                Intent intent = new Intent(getContext(), ConsultaVagaActivity.class);
                 startActivity(intent);
                 getActivity().finish();
 
