@@ -8,28 +8,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.SeekBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.BuscarVagaActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.BuscarVagaListaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Garagista.GaragistaActivity;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Usuario.ActivityUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
-
-import java.sql.Array;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,7 +36,7 @@ public class HomeGaragista extends Fragment {
         botaopesquisa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), BuscarVagaActivity.class);
+                Intent intent = new Intent(getContext(), BuscarVagaListaActivity.class);
                 startActivity(intent);
                 getActivity().finish();
             }

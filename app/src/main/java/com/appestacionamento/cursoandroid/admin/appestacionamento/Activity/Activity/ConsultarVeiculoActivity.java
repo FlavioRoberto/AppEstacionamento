@@ -295,7 +295,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     @Override
     public void voltar() {
         finish();
-        invocaActivitys.invocaPrincipal(ConsultarVeiculoActivity.this,this,preferencias.recuperaTipo(getApplicationContext()));
+        invocaActivitys.invocaPrincipal(ConsultarVeiculoActivity.this,this,preferencias.recuperaTipo(this));
 
     }
 

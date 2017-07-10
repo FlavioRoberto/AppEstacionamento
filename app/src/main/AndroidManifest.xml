@@ -1,65 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-package="com.appestacionamento.cursoandroid.admin.appestacionamento">
+    package="com.appestacionamento.cursoandroid.admin.appestacionamento">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
-<application
-    android:allowBackup="true"
-    android:icon="@mipmap/ic_launcher"
-    android:label="@string/app_name"
-    android:largeHeap="true"
-    android:roundIcon="@mipmap/ic_launcher_round"
-    android:supportsRtl="true"
-    android:theme="@style/AppTheme">
-    <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
 
-    <activity android:name=".Activity.Activity.MainActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".Activity.Activity.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity.Activity.NotificationActivity">
+            <intent-filter>
+                <action android:name="ACTIVITYNOTIFICATION" />
 
-    <activity android:name=".Activity.Activity.NotificationActivity">
-        <intent-filter>
-            <action android:name="ACTIVITYNOTIFICATION"></action>
-            <category android:name="android.intent.category.DEFAULT"></category>
-        </intent-filter>
-    </activity>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity.Activity.LoginActivity" />
+        <activity android:name=".Activity.Activity.ConsultaUsuarioActivity" />
+        <activity android:name=".Activity.Activity.Admin.AdmActivity" />
+        <activity android:name=".Activity.Activity.CadastroUsuarioActivity" />
+        <activity android:name=".Activity.Activity.EditaDadosUsuarioActivity" />
+        <activity android:name=".Activity.Activity.CadastroVeicuoActivity" />
+        <activity android:name=".Activity.Activity.ConsultarVeiculoActivity" />
+        <activity android:name=".Activity.Activity.EditaDadosVeiculo" />
+        <activity android:name=".Activity.Activity.InativaUsuario" />
+        <activity android:name=".Activity.Activity.RedefinirSenhaActivity" />
+        <activity android:name=".Activity.Activity.Admin.ConsultaVagaADMActivity" />
+        <activity android:name=".Activity.Activity.Secretaria.SecretariaActivity" />
+        <activity android:name=".Activity.Activity.Usuario.ActivityUsuario" />
+        <activity android:name=".Activity.Activity.SobreActivity" />
+        <activity android:name=".Activity.Activity.Admin.CadastraVagaActivity" />
+        <activity android:name=".Activity.Activity.Admin.EditaVagasActivity" />
+        <activity android:name=".Activity.Activity.Usuario.ConsultaVagaActivity" />
+        <activity android:name=".Activity.Activity.Garagista.GaragistaActivity" />
+        <activity android:name=".Activity.Activity.BuscarVagaListaActivity" />
 
-    <activity android:name=".Activity.Activity.LoginActivity" />
-    <activity android:name=".Activity.Activity.ConsultaUsuarioActivity" />
-    <activity android:name=".Activity.Activity.Admin.AdmActivity" />
-    <activity android:name=".Activity.Activity.CadastroUsuarioActivity" />
-    <activity android:name=".Activity.Activity.EditaDadosUsuarioActivity" />
-    <activity android:name=".Activity.Activity.CadastroVeicuoActivity" />
-    <activity android:name=".Activity.Activity.ConsultarVeiculoActivity" />
-    <activity android:name=".Activity.Activity.EditaDadosVeiculo" />
-    <activity android:name=".Activity.Activity.InativaUsuario" />
-    <activity android:name=".Activity.Activity.RedefinirSenhaActivity" />
-    <activity android:name=".Activity.Activity.Admin.ConsultaVagaADMActivity" />
-    <activity android:name=".Activity.Activity.Secretaria.SecretariaActivity" />
-    <activity android:name=".Activity.Activity.Usuario.ActivityUsuario" />
-    <activity android:name=".Activity.Activity.SobreActivity" />
-    <activity android:name=".Activity.Activity.Admin.CadastraVagaActivity" />
-    <activity android:name=".Activity.Activity.Admin.EditaVagasActivity" />
-    <activity android:name=".Activity.Activity.Usuario.ConsultaVagaActivity" />
-    <activity android:name=".Activity.Activity.Garagista.GaragistaActivity" />
-    <activity android:name=".Activity.Activity.BuscarVagaActivity"/>
+        <service android:name=".Activity.Application.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
-    <service
-        android:name=".Activity.Application.MyFirebaseMessagingService">
-        <intent-filter>
-            <action android:name="com.google.firebase.MESSAGING_EVENT"/>
-        </intent-filter>
-    </service>
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
 
-    <meta-data
-        android:name="com.google.firebase.messaging.default_notification_color"
-        android:resource="@color/colorAccent" />
-
-</application>
+        <activity android:name=".Activity.Activity.Garagista.informacoes_vaga_garagista"></activity>
+    </application>
 
 </manifest>
