@@ -16,6 +16,8 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.Toast;
 
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelUsuario;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
@@ -219,8 +221,8 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity implements IAct
 
     //retorna para a página inicial
     public  void voltar(){
-        Intent intent = new Intent(getApplicationContext(),ConsultaUsuarioActivity.class);
-        startActivity(intent);
+        Preferencias preferencias = new Preferencias(EditaDadosUsuarioActivity.this);
+        invocaActivitys.invocaPrincipal(EditaDadosUsuarioActivity.this,this,preferencias.recuperaTipo(EditaDadosUsuarioActivity.this));
         finish();
     }
 

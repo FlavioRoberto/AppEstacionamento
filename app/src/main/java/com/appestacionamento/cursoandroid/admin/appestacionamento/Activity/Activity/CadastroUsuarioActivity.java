@@ -224,6 +224,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
 
     //retorna para a página inicial
     public void voltar() {
+        finish();
         invocaActivitys.invocaPrincipal(this, this, preferencias.recuperaTipo(this));
     }
 

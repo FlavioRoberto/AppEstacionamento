@@ -234,7 +234,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
 
     //retorna para a página inicial
     public  void voltar(){
-
+        finish();
        invocaActivitys.invocaPrincipal(this,this,preferencias.recuperaTipo(this));
     }
 }
