@@ -49,5 +49,6 @@ public class consultaUsuarioFragment extends Fragment {
         return view;
 
     }
-    
+
+
 }

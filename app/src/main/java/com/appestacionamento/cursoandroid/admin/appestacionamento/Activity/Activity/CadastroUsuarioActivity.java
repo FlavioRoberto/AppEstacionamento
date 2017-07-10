@@ -232,7 +232,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
 
     @Override
     public void onBackPressed() {
-        finish();
+        finishAndRemoveTask();
     }
 
     @Override

@@ -12,7 +12,7 @@ public class PreferenciasVaga {
     private SharedPreferences.Editor editor;
     private final String CHAVE_NUMERO="numero";
     private final String CHAVE_SETOR="setor";
-    private final String CHAVE="chave";
+    private final String CHAVE="chave",CHAVE_STATUS = "status";
     private final Boolean CHAVE_VAGAESPECIAL=false;
 
     public  PreferenciasVaga(Context contextoParametro){
@@ -21,12 +21,13 @@ public class PreferenciasVaga {
         editor = preferences.edit();
     }
 
-    public void salvarVagaPreferences(String numero, String setor, String chave, Boolean vagaEspecial){
+    public void salvarVagaPreferences(String numero, String setor, String chave, Boolean vagaEspecial,String status){
         editor.clear();
         editor.putString(CHAVE_NUMERO, numero);
         editor.putString(CHAVE_SETOR, setor);
         editor.putString(CHAVE, chave);
         editor.putBoolean(String.valueOf(CHAVE_VAGAESPECIAL), vagaEspecial);
+        editor.putString(String.valueOf(CHAVE_STATUS),status);
         editor.commit();
     }
 
@@ -34,6 +35,12 @@ public class PreferenciasVaga {
         preferences = context.getSharedPreferences(NOME_ARQUIVO, MODE);
         return preferences.getString(CHAVE_NUMERO, "");
     }
+
+    public String recuperaStatus(Context context){
+        preferences = context.getSharedPreferences(NOME_ARQUIVO, MODE);
+        return preferences.getString(CHAVE_STATUS, "");
+    }
+
 
     public String recuperaSetor(Context context){
         preferences = context.getSharedPreferences(NOME_ARQUIVO, MODE);
@@ -45,9 +52,9 @@ public class PreferenciasVaga {
         return preferences.getString(CHAVE, "");
     }
 
-    public String recuperaVagaEspecial(Context context){
+    public boolean recuperaVagaEspecial(Context context){
         preferences = context.getSharedPreferences(NOME_ARQUIVO, MODE);
-        return preferences.getString(String.valueOf(CHAVE_VAGAESPECIAL), "");
+        return preferences.getBoolean(String.valueOf(CHAVE_VAGAESPECIAL),false);
     }
 
 
