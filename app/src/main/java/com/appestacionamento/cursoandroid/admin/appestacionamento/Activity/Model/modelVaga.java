@@ -12,11 +12,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Date;
 
 public class modelVaga {
-    private String numero, setor, chave, status, placaVeiculo, idVeiculo;
+    private String numero, setor, chave, status, placaVeiculo, emailDono;
 
     private Boolean vagaEspecial;
 
-    private Date dataOcupacao;
+    private String dataOcupacao;
 
     private static DatabaseReference firebaseReferencia;
 
@@ -54,11 +54,11 @@ public class modelVaga {
         return placaVeiculo;
     }
 
-    public String getIdVeiculo() {
-        return idVeiculo;
+    public String getEmailDono() {
+        return emailDono;
     }
 
-    public Date getDataOcupacao() {
+    public String getDataOcupacao() {
         return dataOcupacao;
     }
 
@@ -86,11 +86,11 @@ public class modelVaga {
         this.placaVeiculo = placaVeiculo;
     }
 
-    public void setIdVeiculo(String idVeiculo) {
-        this.idVeiculo = idVeiculo;
+    public void setEmailDono(String emailDono) {
+        this.emailDono = emailDono;
     }
 
-    public void setDataOcupacao(Date dataOcupacao) {
+    public void setDataOcupacao(String dataOcupacao) {
         this.dataOcupacao = dataOcupacao;
     }
 }
