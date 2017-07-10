@@ -92,7 +92,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
             textTipo = (TextView) findViewById(R.id.TipoId_cadastro);
             spinner.setVisibility(View.INVISIBLE);
             textTipo.setVisibility(View.INVISIBLE);
-            tipo = "USER";
+
         }
 
         //SE usuário for do tipo ADM
@@ -148,8 +148,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         cpf = editTextCpfUsuario.getText().toString().trim();
 
 
-
-        if(cpf.length() == 14 && telefone.length() == 14) {
+        if (cpf.length() == 14 && telefone.length() == 14) {
             if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(senha) && !TextUtils.isEmpty(nome) && !TextUtils.isEmpty(telefone) &&
                     !TextUtils.isEmpty(tipo) && !TextUtils.isEmpty(cpf)) {
                 progressDialog.setCanceledOnTouchOutside(false);
@@ -177,7 +176,7 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
                 Toast.makeText(getApplicationContext(), "Há campos vazios", Toast.LENGTH_LONG).show();
                 return;
             }
-        }else{
+        } else {
             Toast.makeText(getApplicationContext(), "Campo de Cpf e/ou email Inválidos", Toast.LENGTH_LONG).show();
             return;
         }
@@ -253,7 +252,9 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
 
 
     public void cadastraUsuario(Preferencias preferencias) {
-
+        if (usuarioLogado.equals("SECRETARIA")) {
+            tipo = "USER";
+        }
         codificarEmail = Base64Custom.codificarBase64(email);
         usuario.setEmail(email);
         usuario.setNome(nome);
@@ -264,60 +265,52 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
         usuario.setStatus("ATIVADO");
         usuario.setUid(codificarEmail);
 
-        /*if (cpf.length() < 14) {
-            Toast.makeText(getApplicationContext(), "CPF informado inválido", Toast.LENGTH_SHORT).show();
-            return;
+        if (enviaEmail() == true) {
+            usuario.Create();
+
+            editTextNomeUsuario.setText(null);
+            editTextTelefoneUsuario.setText(null);
+            editTextEmailUsuario.setText(null);
+            editTextCpfUsuario.setText(null);
+
+            emailAdm = preferencias.recuperaEmail(getApplicationContext());
+            senhaAdm = preferencias.recuperaSenha(getApplicationContext());
+
+
+            autenticacao.signInWithEmailAndPassword(emailAdm, senhaAdm)
+                    .addOnCompleteListener(CadastroUsuarioActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (!task.isSuccessful()) {
+                                Log.e("RELOGIN", "FAILED");
+                            } else {
+                                Log.e("RELOGIN", "SUCCESS");
+                            }
+                        }
+                    });
+
         } else {
-            if (telefone.length() < 14) {
-                Toast.makeText(getApplicationContext(), "Telefone incorreto", Toast.LENGTH_SHORT).show();
-                return;
-            } else {*/
-
-                if (enviaEmail() == true) {
-                    usuario.Create();
-
-                    editTextNomeUsuario.setText(null);
-                    editTextTelefoneUsuario.setText(null);
-                    editTextEmailUsuario.setText(null);
-                    editTextCpfUsuario.setText(null);
-
-                    emailAdm = preferencias.recuperaEmail(getApplicationContext());
-                    senhaAdm = preferencias.recuperaSenha(getApplicationContext());
-
-
-                    autenticacao.signInWithEmailAndPassword(emailAdm, senhaAdm)
-                            .addOnCompleteListener(CadastroUsuarioActivity.this, new OnCompleteListener<AuthResult>() {
-                                @Override
-                                public void onComplete(@NonNull Task<AuthResult> task) {
-                                    if (!task.isSuccessful()) {
-                                        Log.e("RELOGIN", "FAILED");
-                                    } else {
-                                        //Toast.makeText(getApplicationContext(), "Logado", Toast.LENGTH_LONG).show();
-                                        Log.e("RELOGIN", "SUCCESS");
-                                    }
-                                }
-                            });
-
-                } else {
-                    Toast.makeText(getApplicationContext(), "Não foi possível cadastrar o usuário", Toast.LENGTH_SHORT).show();
-                }
-            //}
+            Toast.makeText(getApplicationContext(), "Não foi possível cadastrar o usuário", Toast.LENGTH_SHORT).show();
         }
+    }
 
 
-    public boolean enviaEmail(){
+
+    public boolean enviaEmail() {
+
         emailusuario = editTextEmailUsuario.getText().toString().toLowerCase().trim();
         pesquisaUsuario.retornaUsuario(emailusuario);
-        if(pesquisaUsuario.retornaUsuario(emailusuario) == false){
+        if (pesquisaUsuario.retornaUsuario(emailusuario) == false) {
             emailCadastro.Verifica_Email(emailusuario);
-            flag=true;
+            flag = true;
             return true;
 
-        }else{
-            Toast.makeText(getApplicationContext(),"Email ja existe!",Toast.LENGTH_LONG).show();
-            return  false;
+        } else {
+            Toast.makeText(getApplicationContext(), "Email ja existe!", Toast.LENGTH_LONG).show();
+            return false;
         }
 
 
     }
 }
+
