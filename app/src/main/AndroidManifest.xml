@@ -47,8 +47,9 @@
         <activity android:name=".Activity.Activity.Usuario.ConsultaVagaActivity" />
         <activity android:name=".Activity.Activity.Garagista.GaragistaActivity" />
         <activity android:name=".Activity.Activity.Garagista.informacoes_vaga_garagista" />
+        <activity android:name=".Activity.Activity.Garagista.BuscarVagaListaActivity" />
+        <activity android:name=".Activity.Activity.Garagista.GaragistaActivityAlteraStatus" />
 
-        <activity android:name=".Activity.Activity.BuscarVagaListaActivity" />
 
         <service android:name=".Activity.Application.MyFirebaseMessagingService">
             <intent-filter>
@@ -60,7 +61,8 @@
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
 
-        <activity android:name=".Activity.Activity.Garagista.informacoes_vaga_garagista"></activity>
+        <activity android:name=".Activity.Activity.Garagista.informacoes_vaga_garagista" />
+        <activity android:name=".Activity.Activity.Garagista.ListaVagas_confirmarActivity"></activity>
     </application>
 
 </manifest>

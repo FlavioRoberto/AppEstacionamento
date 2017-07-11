@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include android:id="@+id/toolbarId"
-        layout="@layout/toolbar" />
+    <include
+        android:id="@+id/toolbarId"
+        layout="@layout/toolbar"
+
+        />
 
     <TextView
         android:id="@+id/textView21"
@@ -14,11 +18,10 @@
         android:text="Dados"
         android:textSize="@dimen/TextSize"
         android:textAlignment="center"/>
-    <view
+    <View
         android:id="@+id/BarraId"
         android:layout_width="300dp"
         android:layout_height="1dp"
-        android:layout_below="@+id/TextView21"
         android:layout_gravity="center"
         android:background="#ccc"
         />
@@ -77,6 +80,23 @@
 
             <TextView
                 android:id="@+id/statuspreencher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="@dimen/TextSize"
+                android:layout_marginTop="5dp"
+                />
+
+            <TextView
+                android:id="@+id/placa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Placa do Veículo"
+                android:layout_marginTop="5dp"
+                android:textSize="@dimen/TextSize"/>
+
+            <TextView
+                android:id="@+id/statusPlaca"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""

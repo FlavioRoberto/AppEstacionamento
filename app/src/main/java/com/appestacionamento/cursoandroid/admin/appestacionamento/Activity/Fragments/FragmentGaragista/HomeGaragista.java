@@ -10,8 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.BuscarVagaListaActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Garagista.BuscarVagaListaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Garagista.GaragistaActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Garagista.ListaVagas_confirmarActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 
 /**
@@ -19,7 +20,7 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
  */
 public class HomeGaragista extends Fragment {
 
-    private ImageView botaopesquisa;
+    private ImageView botaopesquisa,confirmaEstacionamento;
     public HomeGaragista() {
         // Required empty public constructor
     }
@@ -31,6 +32,7 @@ public class HomeGaragista extends Fragment {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_home_garagista, container, false);
         botaopesquisa = (ImageView) view.findViewById(R.id.pesquisaId);
+        confirmaEstacionamento = (ImageView)view.findViewById(R.id.confirmaId) ;
 
 
         botaopesquisa.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +43,16 @@ public class HomeGaragista extends Fragment {
                 getActivity().finish();
             }
         });
+
+        confirmaEstacionamento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ListaVagas_confirmarActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+
         return view;
 
     }

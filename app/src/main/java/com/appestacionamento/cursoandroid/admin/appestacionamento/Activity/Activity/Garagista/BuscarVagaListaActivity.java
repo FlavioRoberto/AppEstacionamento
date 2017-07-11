@@ -1,4 +1,4 @@
-package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity;
+package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Garagista;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Garagista.informacoes_vaga_garagista;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.IActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Adapter.vagaAdapter;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.PreferenciasOcupaVaga;

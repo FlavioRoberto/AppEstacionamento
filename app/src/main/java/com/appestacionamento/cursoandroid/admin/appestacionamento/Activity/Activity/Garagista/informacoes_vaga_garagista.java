@@ -9,12 +9,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.BuscarVagaListaActivity;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.ConsultarVeiculoActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.IActivity;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.PreferenciasOcupaVaga;
-import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 

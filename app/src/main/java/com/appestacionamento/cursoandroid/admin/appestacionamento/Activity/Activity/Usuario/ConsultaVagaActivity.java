@@ -47,7 +47,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
     private modelVaga modelVaga = new modelVaga();
     private modelUsuario modelUsuario = new modelUsuario();
     private modelVeiculo modelVeiculo = new modelVeiculo();
-    private PreferenciasOcupaVaga preferenciasOcupaVaga = new PreferenciasOcupaVaga(ConsultaVagaActivity.this);
+    private PreferenciasOcupaVaga preferenciasOcupaVaga ;
 
 
     @Override
@@ -82,9 +82,10 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
     }
 
     public void ocupaVaga(){
+        preferenciasOcupaVaga = new PreferenciasOcupaVaga(ConsultaVagaActivity.this);
         modelVaga.setEmailDono(modelVeiculo.getEmail());
         modelVaga.setPlacaVeiculo(modelVeiculo.getPlaca());
-        modelVaga.setStatus("ENTRANDO");
+        modelVaga.setStatus("OCUPANDO");
         preferenciasOcupaVaga.salvarOcupaVagaPreferences(modelVaga.getNumero(), modelVaga.getSetor(), modelVaga.getChave(), modelVaga.getStatus(), modelVaga.getPlacaVeiculo(), modelVaga.getEmailDono(), modelVaga.getVagaEspecial());
         databaseReferenceVaga = FirebaseDatabase.getInstance().getReference("vaga").child(modelVaga.getChave());
         databaseReferenceVaga.setValue(modelVaga);
@@ -160,8 +161,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
                 }else{
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                         vagaDatabase = postSnapshot.child("status").getValue(String.class);
-                        vagaTipoDatabase = postSnapshot.child("tipo").getValue(String.class);
-                        if (vagaDatabase.equals("LIVRE") && !vagaTipoDatabase.equals("Necessidade Especial")) {
+                        if (vagaDatabase.equals("LIVRE") && postSnapshot.child("vagaEspecial").getValue(boolean.class).equals(false)) {
                             ativaBotao = true;
                             flag = true;
 

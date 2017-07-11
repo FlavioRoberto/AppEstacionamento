@@ -29,9 +29,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Pesquisar Vagas"
-            android:textSize="@dimen/TextSize"
+            android:textAlignment="center"
             android:textColor="#000"
-            android:textAlignment="center"/>
+            android:textSize="@dimen/TextSize" />
+
+        <ImageView
+            android:id="@+id/confirmaId"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ovaltext_busca"
+            app:srcCompat="@drawable/ic_directions_car" />
+
+        <TextView
+            android:id="@+id/textviewConfirma"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Confirmar Estacionamento"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="@dimen/TextSize" />
     </LinearLayout>
 
 </FrameLayout>
