@@ -1,11 +1,14 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Usuario;
 
+import android.app.Activity;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.SearchEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -134,7 +137,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
 
         recuperaEmail = modelUsuario.getEmailCurrentUser();
         Query query = databaseReferenceVaga;
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
