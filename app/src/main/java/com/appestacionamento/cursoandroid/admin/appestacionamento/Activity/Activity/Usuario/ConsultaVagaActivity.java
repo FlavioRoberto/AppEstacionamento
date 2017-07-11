@@ -1,6 +1,7 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Usuario;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -51,6 +52,13 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
     private modelUsuario modelUsuario = new modelUsuario();
     private modelVeiculo modelVeiculo = new modelVeiculo();
     private PreferenciasOcupaVaga preferenciasOcupaVaga ;
+    private Intent intent;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,8 +73,9 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
         toolbar.setTitle("Consultar Vaga");
         setSupportActionBar(toolbar);
-        verificaVagaUsuarioAtual();
+        intent = new Intent(ConsultaVagaActivity.this,ConsultaVagaActivity.class);
 
+        verificaVagaUsuarioAtual();
 
         buttonBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +114,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
                         databaseReferenceVaga = FirebaseDatabase.getInstance().getReference("vaga").child(modelVaga.getChave());
                         databaseReferenceVaga.setValue(modelVaga);
                         Toast.makeText(ConsultaVagaActivity.this, "O status da vaga foi definido para SAINDO", Toast.LENGTH_LONG).show();
+                        reiniciaTela();
                         break;
                     }
                 }
@@ -127,7 +137,6 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     modelVaga vaga ;
                     emailDataBase = postSnapshot.child("emailDono").getValue(String.class);
@@ -141,7 +150,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
                            textViewSetorVaga.setText(vaga.getSetor());
                            buttonBuscar.setVisibility(View.INVISIBLE);
                            buttonDesocupar.setVisibility(View.VISIBLE);
-                            return;
+                           //reiniciaTela();
                        }
                         if (vaga.getStatus().equals("SAINDO")) {
                             textViewSetorVaga.setTextSize(18);
@@ -150,7 +159,8 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
                             textViewSetorVaga.setText("");
                             buttonDesocupar.setVisibility(View.INVISIBLE);
                             buttonBuscar.setVisibility(View.INVISIBLE);
-                            return;
+                           // reiniciaTela();
+
                         } if (vaga.getStatus().equals("OCUPANDO")) {
                             textViewSetorVaga.setTextSize(18);
                             textViewSetorVaga.setMaxWidth(300);
@@ -159,7 +169,8 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
                             textViewSetorVaga.setText("E aguarde a verificação do garagista...");
                             buttonDesocupar.setVisibility(View.INVISIBLE);
                             buttonBuscar.setVisibility(View.INVISIBLE);
-                            return;
+                          //  reiniciaTela();
+
                         }
                         break;
                     }else {
@@ -170,7 +181,8 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
                            // textViewSetorVaga.setText("Aguarde verificação do garagista");
                             buttonDesocupar.setVisibility(View.INVISIBLE);
                             buttonBuscar.setVisibility(View.VISIBLE);
-                            break;
+                          //  reiniciaTela();
+
                         }
                     }
                 }
@@ -184,6 +196,11 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
         return;
     }
 
+    public void reiniciaTela(){
+        finish();
+        startActivity(intent);
+    }
+
     public void ocupaVaga(){
         preferenciasOcupaVaga = new PreferenciasOcupaVaga(ConsultaVagaActivity.this);
         modelVaga.setEmailDono(modelVeiculo.getEmail());
@@ -193,6 +210,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
         databaseReferenceVaga = FirebaseDatabase.getInstance().getReference("vaga").child(modelVaga.getChave());
         databaseReferenceVaga.setValue(modelVaga);
         Toast.makeText(ConsultaVagaActivity.this, "A vaga com os seus dados foram cadastrados com Sucesso!", Toast.LENGTH_LONG).show();
+        reiniciaTela();
     }
 
     public void recuperaChaveVeiculo(){
