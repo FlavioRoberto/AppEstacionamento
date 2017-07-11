@@ -39,7 +39,8 @@ public class InativaUsuario extends AppCompatActivity implements IActivity {
     private modelUsuario usuario ;
     private EditText editTextBuscarEmailUsuario;
     private DatabaseReference databaseReference = configuracaoFirebase.getFirebase();
-    private boolean flag,emailEncontrado;
+    private DatabaseReference databaseReferenceVaga = configuracaoFirebase.getFirebase();
+    private boolean flag,emailEncontrado, permiteInativar = true;
     private TextView nomeText, cpfText , tipoText;
     private CheckBox statuscheck;
     private Button btnSalvar;
@@ -66,6 +67,7 @@ public class InativaUsuario extends AppCompatActivity implements IActivity {
         usuario = new modelUsuario();
         statuscheck = (CheckBox) findViewById(R.id.InativaCheckBoxStatus);
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        databaseReferenceVaga = FirebaseDatabase.getInstance().getReference("vaga");
 
         //TOOLBAR
         toolbar =(Toolbar)findViewById(R.id.toolbarId);
@@ -94,10 +96,13 @@ public class InativaUsuario extends AppCompatActivity implements IActivity {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(flag == true){
+                if(flag == true && permiteInativar == true){
                     salvarStatus();
                 }else if(flag == false){
                     Toast.makeText(getApplicationContext(), "Nenhum usuário pesquisado", Toast.LENGTH_LONG).show();
+                    return;
+                }else if(permiteInativar == false){
+                    Toast.makeText(getApplicationContext(), "Este esta ocupando uma vaga", Toast.LENGTH_LONG).show();
                     return;
                 }
                 flag = false;
@@ -105,6 +110,32 @@ public class InativaUsuario extends AppCompatActivity implements IActivity {
         });
     }
     //FIM onCreate
+
+    //METODO PARA VERIFICAR SE O USUSARIO QUE SERA INATIVADO ESTA USANDO ALGUMA VAGA
+    public void verificaUsuarioOcupaVaga(){
+        if(emailEncontrado == true){
+            Query query = databaseReferenceVaga;
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                        emailDatabase = postSnapshot.child("emailDono").getValue(String.class);
+                        if(emailUsuario.equals(emailDatabase)){
+                            permiteInativar = false;
+                            break;
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
+
+    }
+    //FIM DO METODO
 
 
     //INICIO PESQUISA USUARIO
@@ -141,6 +172,9 @@ public class InativaUsuario extends AppCompatActivity implements IActivity {
                                         } else if (mudaStatus.equals("ATIVADO")) {
                                             statuscheck.setChecked(false);
                                         }
+
+                                        verificaUsuarioOcupaVaga();
+
                                         break;
                                     }else {
                                         emailEncontrado = false;
