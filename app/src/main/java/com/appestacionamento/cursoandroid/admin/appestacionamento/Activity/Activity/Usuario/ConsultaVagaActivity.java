@@ -73,9 +73,6 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
             buttonBuscar.setVisibility(View.VISIBLE);
         }
 
-
-
-
         verificaVagaUsuarioAtual();
 
         buttonBuscar.setOnClickListener(new View.OnClickListener() {
@@ -122,6 +119,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
                         modelVaga.setVagaEspecial(postSnapshot.child("vagaEspecial").getValue(Boolean.class));
                         databaseReferenceVaga = FirebaseDatabase.getInstance().getReference("vaga").child(modelVaga.getChave());
                         databaseReferenceVaga.setValue(modelVaga);
+                        preferenciasOcupaVaga = null;
                         Toast.makeText(ConsultaVagaActivity.this, "O status da vaga foi definido para SAINDO", Toast.LENGTH_LONG).show();
                     }
                 }
