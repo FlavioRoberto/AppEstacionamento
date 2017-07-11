@@ -134,10 +134,15 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
                 for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
+                    modelVaga vaga;
                     emailDataBase = postSnapshot.child("emailDono").getValue(String.class);
                     if(recuperaEmail.equals(emailDataBase)){
+                        vaga = postSnapshot.getValue(com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelVaga.class);
                         buscaVaga = false;
+                        textViewNumeroVaga.setText(vaga.getNumero());
+                        textViewSetorVaga.setText(vaga.getSetor());
                         buttonBuscar.setVisibility(View.INVISIBLE);
                         buttonDesocupar.setVisibility(View.VISIBLE);
                         break;
@@ -299,6 +304,6 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
 
     @Override
     public void voltar() {
-        finish();
+        finishAndRemoveTask();
     }
 }
