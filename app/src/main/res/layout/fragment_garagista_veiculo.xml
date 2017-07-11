@@ -7,11 +7,6 @@
     android:background="@color/colorPrimary"
     >
 
-
-
-
-
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:padding="15dp"
@@ -75,7 +70,7 @@
                 >
 
                <LinearLayout
-                   android:paddingLeft="20dp"
+                   android:padding="20dp"
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:orientation="vertical"
@@ -181,8 +176,6 @@
                 </LinearLayout>
 
             </ScrollView>
-
-
 
         </LinearLayout>
 

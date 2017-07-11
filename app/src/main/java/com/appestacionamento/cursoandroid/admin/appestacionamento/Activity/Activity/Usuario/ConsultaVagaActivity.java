@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +35,8 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
     private TextView textViewNumeroVaga, textViewSetorVaga;
     private DatabaseReference databaseReferenceVaga = FirebaseDatabase.getInstance().getReference("vaga");
     private DatabaseReference databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo");
-    private Button buttonBuscar, buttonDesocupar;
+    private Button  buttonDesocupar;
+    private ImageView buttonBuscar;
     private String vagaDatabase;
     private String veiculoDatabase;
     private Boolean vagaTipoDatabase;
@@ -48,6 +50,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
     private PreferenciasOcupaVaga preferenciasOcupaVaga ;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,15 +58,26 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
 
         textViewNumeroVaga = (TextView) findViewById(R.id.textnumero_vaga);
         textViewSetorVaga = (TextView) findViewById(R.id.textnumero_setor_vaga);
-        buttonBuscar = (Button) findViewById(R.id.botaoconfirmarid);
+        buttonBuscar = (ImageView) findViewById(R.id.botaoconfirmarid);
         buttonDesocupar = (Button) findViewById(R.id.botaodesocuparid);
 
         //Toolbar
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
         toolbar.setTitle("Consultar Vaga");
         setSupportActionBar(toolbar);
-
         verificaVagaUsuarioAtual();
+
+        if(buscaVaga){
+            buttonBuscar.setVisibility(View.INVISIBLE);
+            buttonDesocupar.setVisibility(View.VISIBLE);
+        }else if(buscaVaga == false) {
+            textViewNumeroVaga.setText("N/A");
+            textViewSetorVaga.setText("N/A");
+            buttonDesocupar.setVisibility(View.INVISIBLE);
+            buttonBuscar.setVisibility(View.VISIBLE);
+        }
+
+
 
         buttonBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +96,8 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
             public void onClick(View v) {
                 if(buscaVaga == false){
                     descocuparVaga();
+                    buttonDesocupar.setVisibility(View.INVISIBLE);
+                    buttonBuscar.setVisibility(View.VISIBLE);
                 }else{
                     Toast.makeText(ConsultaVagaActivity.this, "Você não esta ocupando uma vaga!", Toast.LENGTH_LONG).show();
                     return;
@@ -109,6 +125,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
                         modelVaga.setVagaEspecial(postSnapshot.child("vagaEspecial").getValue(Boolean.class));
                         databaseReferenceVaga = FirebaseDatabase.getInstance().getReference("vaga").child(modelVaga.getChave());
                         databaseReferenceVaga.setValue(modelVaga);
+                        preferenciasOcupaVaga = null;
                         Toast.makeText(ConsultaVagaActivity.this, "O status da vaga foi definido para SAINDO", Toast.LENGTH_LONG).show();
                     }
                 }
@@ -285,7 +302,6 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
 
     @Override
     public void voltar() {
-        Preferencias preferencias = new Preferencias(this);
-        invocaActivitys.invocaPrincipal(this,this,preferencias.recuperaTipo(this));
+        finish();
     }
 }
