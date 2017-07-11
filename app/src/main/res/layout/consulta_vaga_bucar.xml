@@ -53,9 +53,17 @@
         android:id="@+id/botaoconfirmarid"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:text="CONFIRMAR"
         android:layout_gravity="center"
-        android:background="@drawable/ovalbutton"/>
+        android:background="@drawable/ovalbutton"
+        android:text="PESQUISAR" />
+
+    <Button
+        android:id="@+id/botaodesocuparid"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/ovalbutton"
+        android:text="DESOCUPAR" />
 
 
 </LinearLayout>
