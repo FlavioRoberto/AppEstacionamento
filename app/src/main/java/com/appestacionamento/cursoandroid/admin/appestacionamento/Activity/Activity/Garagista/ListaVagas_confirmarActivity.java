@@ -61,7 +61,7 @@ public class ListaVagas_confirmarActivity extends AppCompatActivity {
                 vaga = vagas.get(position);
                 preferenciaOcupaVaga.salvarOcupaVagaPreferences(vaga.getNumero(),vaga.getSetor(),
                         vaga.getChave(),vaga.getStatus(),vaga.getPlacaVeiculo(),vaga.getEmailDono(),vaga.getVagaEspecial());
-                Intent intent = new Intent(ListaVagas_confirmarActivity.this,GaragistaActivityAlteraStatus.class);
+                Intent intent = new Intent(ListaVagas_confirmarActivity.this,listaVagaOcupacaoActivity.class);
                 startActivity(intent);
                 finish();
             }
