@@ -10,6 +10,7 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activ
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.SobreActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Usuario.ActivityUsuario;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Usuario.ConsultaVagaActivity;
 
 
 public class invocaActivitys {
@@ -33,7 +34,7 @@ public class invocaActivitys {
     public static void invocaPrincipal(Context context, Activity activity, String usuario){
          Intent intent;
         switch (usuario){
-            case USER: intent = new Intent(context, ActivityUsuario.class);
+            case USER: intent = new Intent(context, ConsultaVagaActivity.class);
                 context.startActivity(intent);activity.finish();break;
             case ADM: intent = new Intent(context, AdmActivity.class);
                 context.startActivity(intent);activity.finish();break;
