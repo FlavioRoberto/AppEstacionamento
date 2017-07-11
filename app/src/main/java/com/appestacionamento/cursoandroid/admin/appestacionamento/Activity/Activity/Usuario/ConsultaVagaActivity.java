@@ -67,16 +67,6 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
         setSupportActionBar(toolbar);
         verificaVagaUsuarioAtual();
 
-        if(buscaVaga){
-            buttonBuscar.setVisibility(View.INVISIBLE);
-            buttonDesocupar.setVisibility(View.VISIBLE);
-        }else if(buscaVaga == false) {
-            textViewNumeroVaga.setText("N/A");
-            textViewSetorVaga.setText("N/A");
-            buttonDesocupar.setVisibility(View.INVISIBLE);
-            buttonBuscar.setVisibility(View.VISIBLE);
-        }
-
 
 
         buttonBuscar.setOnClickListener(new View.OnClickListener() {
@@ -148,7 +138,14 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
                     emailDataBase = postSnapshot.child("emailDono").getValue(String.class);
                     if(recuperaEmail.equals(emailDataBase)){
                         buscaVaga = false;
+                        buttonBuscar.setVisibility(View.INVISIBLE);
+                        buttonDesocupar.setVisibility(View.VISIBLE);
                         break;
+                    }else {
+                        textViewNumeroVaga.setText("N/A");
+                        textViewSetorVaga.setText("N/A");
+                        buttonDesocupar.setVisibility(View.INVISIBLE);
+                        buttonBuscar.setVisibility(View.VISIBLE);
                     }
                 }
             }
