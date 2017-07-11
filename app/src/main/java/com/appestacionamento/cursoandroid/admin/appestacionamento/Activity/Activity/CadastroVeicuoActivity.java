@@ -45,9 +45,9 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
     private Spinner spinner,spinnerMarcaVeiculo,spinnerCorVeicullo;
     private Button buttonCadastrarVeiculo;
     private modelVeiculo veiculo = new modelVeiculo();
-    private DatabaseReference databaseReferenceUsers;
-    private String emailCodificado, emailDatabase;
-    private Boolean emailaValido = false;
+    private DatabaseReference databaseReferenceUsers, databaseReferenceVeiculo;
+    private String emailCodificado, emailDatabase, placaDatabase;
+    private Boolean emailaValido = false, habilitaInserir = true;
     private progressDialogApplication progressDialog;
     private Preferencias preferencias;
     //Fim declaração de variáveis
@@ -59,6 +59,7 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
         setContentView(R.layout.activity_cadastro_veicuo);
         preferencias = new Preferencias(getApplicationContext());
         databaseReferenceUsers = FirebaseDatabase.getInstance().getReference("users");
+        databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo");
 
         //inicializando Toolbar
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
@@ -128,10 +129,46 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
         buttonCadastrarVeiculo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inserirVeiculo();
+                if(habilitaInserir == true){
+                    inserirVeiculo();
+                }
             }
         });
     } //FIM DO ONCREATE
+
+    private void verificaPlacaVeiculo(){
+        if(emailaValido == true){
+            Query query = databaseReferenceVeiculo;
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
+                        placaDatabase = postSnapshot.child("placa").getValue(String.class);
+                        emailDatabase = postSnapshot.child("email").getValue(String.class);
+                        if(placa.equals(placaDatabase) || emailDatabase.equals(emailDono)){
+                            habilitaInserir = false;
+                            Toast.makeText(CadastroVeicuoActivity.this, "Já existe um veículo cadastrado com essa placa,\n" +
+                                    "Ou um usuário com este endereço de email", Toast.LENGTH_LONG).show();
+                            progressDialog.disableDialog();
+                            break;
+                        }
+                    }if(habilitaInserir == true){
+                        veiculo.create();
+                        progressDialog.disableDialog();
+                        Toast.makeText(getApplicationContext(), "Veículo inserido com sucesso!", Toast.LENGTH_LONG).show();
+                    }
+                    habilitaInserir = true;
+                    emailaValido = false;
+                }
+
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        }
+    }
 
     //Inicio metodo INserir veiculo
     public void inserirVeiculo(){
@@ -160,10 +197,11 @@ public class CadastroVeicuoActivity extends AppCompatActivity implements IActivi
                                     veiculo.setPlaca(placa);
                                     veiculo.setTipo(tipo);
                                     veiculo.setEmail(emailDono);
-                                    veiculo.create();
+                                    //veiculo.create();
                                     emailaValido = true;
-                                    progressDialog.disableDialog();
-                                    Toast.makeText(getApplicationContext(), "Veículo inserido com sucesso!", Toast.LENGTH_LONG).show();
+                                    //progressDialog.disableDialog();
+                                    //Toast.makeText(getApplicationContext(), "Veículo inserido com sucesso!", Toast.LENGTH_LONG).show();
+                                    verificaPlacaVeiculo();
                                     break;
                                 }
 
