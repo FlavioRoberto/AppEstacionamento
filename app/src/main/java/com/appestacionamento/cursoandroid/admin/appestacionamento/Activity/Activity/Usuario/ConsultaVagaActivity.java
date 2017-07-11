@@ -50,6 +50,20 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
     private PreferenciasOcupaVaga preferenciasOcupaVaga ;
 
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        verificaVagaUsuarioAtual();
+    }
+
+    @Override
+    public boolean onSearchRequested() {
+        verificaVagaUsuarioAtual();
+        return super.onSearchRequested();
+
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +74,6 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
         textViewSetorVaga = (TextView) findViewById(R.id.textnumero_setor_vaga);
         buttonBuscar = (ImageView) findViewById(R.id.botaoconfirmarid);
         buttonDesocupar = (Button) findViewById(R.id.botaodesocuparid);
-
         //Toolbar
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
         toolbar.setTitle("Consultar Vaga");
@@ -74,6 +87,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
             public void onClick(View v) {
                 if(buscaVaga == true && ativaBotao == true){
                     recuperaChaveVeiculo();
+
                 }else{
                     Toast.makeText(ConsultaVagaActivity.this, "Você já esta ocupando uma vaga!", Toast.LENGTH_LONG).show();
                     return;
@@ -86,8 +100,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
             public void onClick(View v) {
                 if(buscaVaga == false){
                     descocuparVaga();
-                    buttonDesocupar.setVisibility(View.INVISIBLE);
-                    buttonBuscar.setVisibility(View.VISIBLE);
+                    verificaVagaUsuarioAtual();
                 }else{
                     Toast.makeText(ConsultaVagaActivity.this, "Você não esta ocupando uma vaga!", Toast.LENGTH_LONG).show();
                     return;
@@ -116,6 +129,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
                         databaseReferenceVaga = FirebaseDatabase.getInstance().getReference("vaga").child(modelVaga.getChave());
                         databaseReferenceVaga.setValue(modelVaga);
                         preferenciasOcupaVaga = null;
+                        verificaVagaUsuarioAtual();
                         Toast.makeText(ConsultaVagaActivity.this, "O status da vaga foi definido para SAINDO", Toast.LENGTH_LONG).show();
                     }
                 }
@@ -135,10 +149,10 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     modelVaga vaga = new modelVaga();
                     emailDataBase = postSnapshot.child("emailDono").getValue(String.class);
-                    if(recuperaEmail.equals(emailDataBase)){
+                    if (recuperaEmail.equals(emailDataBase)) {
                         vaga = postSnapshot.getValue(com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelVaga.class);
                         buscaVaga = false;
                         textViewNumeroVaga.setText(vaga.getNumero());
@@ -146,17 +160,17 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
                         buttonBuscar.setVisibility(View.INVISIBLE);
                         buttonDesocupar.setVisibility(View.VISIBLE);
 
-                        if(vaga.getStatus().equals("SAINDO")){
-                            textViewNumeroVaga.setText("Saindo");
+                        if (vaga.getStatus().equals("SAINDO")) {
+                            textViewSetorVaga.setTextSize(18);
+                            textViewNumeroVaga.setTextSize(23);
+                            textViewNumeroVaga.setText("Saindo...");
                             textViewSetorVaga.setText("");
                             buttonDesocupar.setVisibility(View.INVISIBLE);
                             buttonBuscar.setVisibility(View.INVISIBLE);
                             break;
-                        }
-
-                        if(vaga.getStatus().equals("OCUPANDO")){
-                            textViewSetorVaga.setTextSize(20);
-                            textViewNumeroVaga.setTextSize(27);
+                        } else if (vaga.getStatus().equals("OCUPANDO")) {
+                            textViewSetorVaga.setTextSize(18);
+                            textViewNumeroVaga.setTextSize(23);
                             textViewNumeroVaga.setText("Vaga selecionada!");
                             textViewSetorVaga.setText("Aguarde verificação do garagista");
                             buttonDesocupar.setVisibility(View.INVISIBLE);
@@ -165,15 +179,20 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
                         }
                         break;
                     }else {
-                            textViewNumeroVaga.setTextSize(27);
-                            textViewNumeroVaga.setText("Clique em Procurar");
-                            textViewSetorVaga.setText("");
+
+                            textViewSetorVaga.setTextSize(18);
+                            textViewNumeroVaga.setTextSize(23);
+                            textViewNumeroVaga.setText("Clique em procurar!");
+                           // textViewSetorVaga.setText("Aguarde verificação do garagista");
                             buttonDesocupar.setVisibility(View.INVISIBLE);
                             buttonBuscar.setVisibility(View.VISIBLE);
+                            break;
                         }
-                        }
-
+                    }
                 }
+
+
+
 
 
             @Override
@@ -192,7 +211,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
         databaseReferenceVaga = FirebaseDatabase.getInstance().getReference("vaga").child(modelVaga.getChave());
         databaseReferenceVaga.setValue(modelVaga);
         Toast.makeText(ConsultaVagaActivity.this, "A vaga com os seus dados foram cadastrados com Sucesso!", Toast.LENGTH_LONG).show();
-
+        verificaVagaUsuarioAtual();
     }
 
     public void recuperaChaveVeiculo(){
