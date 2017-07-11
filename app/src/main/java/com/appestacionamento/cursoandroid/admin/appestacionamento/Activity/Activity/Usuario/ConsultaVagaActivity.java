@@ -197,7 +197,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
     }
 
     public void reiniciaTela(){
-        finish();
+        finishAndRemoveTask();
         startActivity(intent);
     }
 
@@ -308,7 +308,6 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
         });
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -341,6 +340,12 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
     @Override
     public void sobre() {
         invocaActivitys.invocaSobre(this,this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAndRemoveTask();
     }
 
     @Override
