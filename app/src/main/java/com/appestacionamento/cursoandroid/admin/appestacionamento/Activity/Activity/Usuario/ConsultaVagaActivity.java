@@ -49,22 +49,6 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
     private modelVeiculo modelVeiculo = new modelVeiculo();
     private PreferenciasOcupaVaga preferenciasOcupaVaga ;
 
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        verificaVagaUsuarioAtual();
-    }
-
-    @Override
-    public boolean onSearchRequested() {
-        verificaVagaUsuarioAtual();
-        return super.onSearchRequested();
-
-    }
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,12 +65,12 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
         verificaVagaUsuarioAtual();
 
 
-
         buttonBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(buscaVaga == true && ativaBotao == true){
                     recuperaChaveVeiculo();
+                    return;
 
                 }else{
                     Toast.makeText(ConsultaVagaActivity.this, "Você já esta ocupando uma vaga!", Toast.LENGTH_LONG).show();
@@ -100,7 +84,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
             public void onClick(View v) {
                 if(buscaVaga == false){
                     descocuparVaga();
-                    verificaVagaUsuarioAtual();
+
                 }else{
                     Toast.makeText(ConsultaVagaActivity.this, "Você não esta ocupando uma vaga!", Toast.LENGTH_LONG).show();
                     return;
@@ -129,8 +113,9 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
                         databaseReferenceVaga = FirebaseDatabase.getInstance().getReference("vaga").child(modelVaga.getChave());
                         databaseReferenceVaga.setValue(modelVaga);
                         preferenciasOcupaVaga = null;
-                        verificaVagaUsuarioAtual();
                         Toast.makeText(ConsultaVagaActivity.this, "O status da vaga foi definido para SAINDO", Toast.LENGTH_LONG).show();
+                        verificaVagaUsuarioAtual();
+                        break;
                     }
                 }
             }
@@ -140,9 +125,13 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
 
             }
         });
+
+
+        return;
     }
 
     public void verificaVagaUsuarioAtual(){
+
         recuperaEmail = modelUsuario.getEmailCurrentUser();
         Query query = databaseReferenceVaga;
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -155,11 +144,15 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
                     if (recuperaEmail.equals(emailDataBase)) {
                         vaga = postSnapshot.getValue(com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelVaga.class);
                         buscaVaga = false;
-                        textViewNumeroVaga.setText(vaga.getNumero());
-                        textViewSetorVaga.setText(vaga.getSetor());
-                        buttonBuscar.setVisibility(View.INVISIBLE);
-                        buttonDesocupar.setVisibility(View.VISIBLE);
-
+                       if(vaga.getStatus().equals("OCUPADO")) {
+                           textViewNumeroVaga.setTextSize(120);
+                           textViewSetorVaga.setTextSize(40);
+                           textViewNumeroVaga.setText(vaga.getNumero());
+                           textViewSetorVaga.setText(vaga.getSetor());
+                           buttonBuscar.setVisibility(View.INVISIBLE);
+                           buttonDesocupar.setVisibility(View.VISIBLE);
+                            return;
+                       }
                         if (vaga.getStatus().equals("SAINDO")) {
                             textViewSetorVaga.setTextSize(18);
                             textViewNumeroVaga.setTextSize(23);
@@ -167,15 +160,16 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
                             textViewSetorVaga.setText("");
                             buttonDesocupar.setVisibility(View.INVISIBLE);
                             buttonBuscar.setVisibility(View.INVISIBLE);
-                            break;
-                        } else if (vaga.getStatus().equals("OCUPANDO")) {
+                            return;
+                        } if (vaga.getStatus().equals("OCUPANDO")) {
                             textViewSetorVaga.setTextSize(18);
+                            textViewSetorVaga.setMaxWidth(300);
                             textViewNumeroVaga.setTextSize(23);
-                            textViewNumeroVaga.setText("Vaga selecionada!");
-                            textViewSetorVaga.setText("Aguarde verificação do garagista");
+                            textViewNumeroVaga.setText(vaga.getNumero()+"\nEstacione!");
+                            textViewSetorVaga.setText("E aguarde a verificação do garagista...");
                             buttonDesocupar.setVisibility(View.INVISIBLE);
                             buttonBuscar.setVisibility(View.INVISIBLE);
-                            break;
+                            return;
                         }
                         break;
                     }else {
@@ -191,15 +185,13 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
                     }
                 }
 
-
-
-
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                return;
             }
+
         });
+        return;
     }
 
     public void ocupaVaga(){
@@ -309,10 +301,11 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
         });
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_toolbar,menu);
+        inflater.inflate(R.menu.menu_toolbar_usuario,menu);
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -322,6 +315,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
            case R.id.menu_anterior:voltar();break;
            case R.id.menu_sair:sair();break;
            case R.id.menu_sobre: sobre();break;
+           case R.id.menu_atualiza:verificaVagaUsuarioAtual();break;
        }
 
         return super.onOptionsItemSelected(item);

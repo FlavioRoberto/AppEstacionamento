@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/menu_sair"
+        android:orderInCategory="300"
+        app:showAsAction="never"
+        android:title="Sair" />
+
+    <item android:id="@+id/menu_meusdados"
+        android:orderInCategory="150"
+        app:showAsAction="never"
+        android:title="Meus dados" />
+    <item android:id="@+id/menu_anterior"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_arrow_back"
+        android:title="Voltar"
+        />
+    <item android:id="@+id/menu_sobre"
+        android:orderInCategory="200"
+        app:showAsAction="never"
+        android:title="Sobre" />
+    <item android:id="@+id/menu_atualiza"
+        android:orderInCategory="10"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_refresh"
+        android:title="Sobre" />
+
+
+</menu>
