@@ -100,6 +100,8 @@ public class CadastraVagaActivity extends AppCompatActivity implements IActivity
             case R.id.menu_anterior:voltar();break;
             case R.id.menu_sair:sair();break;
             case R.id.menu_sobre: sobre();break;
+            case R.id.menu_meusdados:invocaActivitys.TelaMeusDados(this);break;
+
         }
         return super.onOptionsItemSelected(item);
     }

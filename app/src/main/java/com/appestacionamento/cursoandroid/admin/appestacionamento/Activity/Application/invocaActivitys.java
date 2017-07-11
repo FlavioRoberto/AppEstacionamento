@@ -6,6 +6,7 @@ import android.content.Intent;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Admin.AdmActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Garagista.GaragistaActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.MeusDadosActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.SobreActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Usuario.ActivityUsuario;
@@ -21,6 +22,12 @@ public class invocaActivitys {
     public static void invocaSobre(Context context, Activity activity) {
         Intent intent = new Intent(context.getApplicationContext(), SobreActivity.class);
         context.startActivity(intent);
+    }
+
+    public static void TelaMeusDados(Context context){
+        Intent intent = new Intent(context.getApplicationContext(),MeusDadosActivity.class);
+        context.startActivity(intent);
+
     }
 
     public static void invocaPrincipal(Context context, Activity activity, String usuario){

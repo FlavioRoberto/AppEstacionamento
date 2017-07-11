@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
@@ -16,6 +17,7 @@ public class SobreActivity extends AppCompatActivity implements IActivity {
 
     private Toolbar toolbar;
     private Preferencias preferencias;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

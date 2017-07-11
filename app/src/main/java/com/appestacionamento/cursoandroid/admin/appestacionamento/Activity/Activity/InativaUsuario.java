@@ -227,9 +227,10 @@ public class InativaUsuario extends AppCompatActivity implements IActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_anterior: voltar();break;
-            case R.id.menu_meusdados: break;
             case R.id.menu_sair: sair();break;
             case R.id.menu_sobre:sobre();break;
+            case R.id.menu_meusdados:invocaActivitys.TelaMeusDados(this);break;
+
             default:break;
         }
         return true;

@@ -55,7 +55,7 @@ public class SecretariaActivity extends AppCompatActivity implements IActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_sair :sair();break;
-            case R.id.menu_meusdados: chamaConsulta();break;
+            case R.id.menu_meusdados:invocaActivitys.TelaMeusDados(this);break;
             case R.id.menu_sobre: sobre();break;
         }
 

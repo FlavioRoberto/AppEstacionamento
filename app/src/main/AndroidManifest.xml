@@ -9,7 +9,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
@@ -48,6 +48,7 @@
         <activity android:name=".Activity.Activity.Garagista.GaragistaActivity" />
         <activity android:name=".Activity.Activity.Garagista.informacoes_vaga_garagista" />
         <activity android:name=".Activity.Activity.Garagista.BuscarVagaListaActivity" />
+        <activity android:name=".Activity.Activity.MeusDadosActivity"/>
 
         <service android:name=".Activity.Application.MyFirebaseMessagingService">
             <intent-filter>

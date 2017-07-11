@@ -273,7 +273,7 @@ public class ConsultarVeiculoActivity extends AppCompatActivity implements IActi
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_anterior: voltar();break;
-            case R.id.menu_meusdados: break;
+            case R.id.menu_meusdados:invocaActivitys.TelaMeusDados(this);break;
             case R.id.menu_sair: sair();break;
             case R.id.menu_sobre:sobre();break;
             default:break;
