@@ -104,6 +104,23 @@
                 android:layout_marginTop="5dp"
                 />
 
+            <TextView
+                android:id="@+id/necessidadeEspecial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Necessidade Especial"
+                android:layout_marginTop="5dp"
+                android:textSize="@dimen/TextSize"/>
+
+            <TextView
+                android:id="@+id/statusNecessidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="@dimen/TextSize"
+                android:layout_marginTop="5dp"
+                />
+
             <CheckBox
                 android:id="@+id/checkBox"
                 android:layout_width="match_parent"

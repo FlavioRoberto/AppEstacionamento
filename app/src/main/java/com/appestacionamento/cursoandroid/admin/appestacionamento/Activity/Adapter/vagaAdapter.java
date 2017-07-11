@@ -40,10 +40,12 @@ public class vagaAdapter extends ArrayAdapter<modelVaga>{
             view = inflater.inflate(R.layout.lista_vagas_ocupadas,parent,false);
             TextView vagaNumero = (TextView) view.findViewById(R.id.tv_numero);
             TextView vagaPlaca = (TextView) view.findViewById(R.id.tv_Placa);
+            TextView vagaStatus = (TextView)view.findViewById(R.id.tv_status);
             modelVaga vaga = vagas.get(position);
 
             vagaNumero.setText("Número: "+vaga.getNumero());
             vagaPlaca.setText("Placa: "+vaga.getPlacaVeiculo());
+            vagaStatus.setText("Status: "+vaga.getStatus());
         }
 
         return view;

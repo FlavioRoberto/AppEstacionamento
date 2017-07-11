@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,8 +14,12 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.IActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Adapter.vagaAdapter;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.PreferenciasOcupaVaga;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.sairAplicacao;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelVaga;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.R;
 import com.google.firebase.database.DataSnapshot;
@@ -26,7 +33,7 @@ import java.util.ArrayList;
 
 import static com.appestacionamento.cursoandroid.admin.appestacionamento.R.string.vaga;
 
-public class ListaVagas_confirmarActivity extends AppCompatActivity {
+public class ListaVagas_confirmarActivity extends AppCompatActivity implements IActivity {
 
     private Toolbar toolbar;
     private ListView listaVagas;;
@@ -50,6 +57,10 @@ public class ListaVagas_confirmarActivity extends AppCompatActivity {
         listaVagas = (ListView)findViewById(R.id.ListaVagas);
         preferenciaOcupaVaga = new PreferenciasOcupaVaga(getApplicationContext());
         vagas = new ArrayList<>();
+
+        //preparando Toolbar
+        toolbar.setTitle("Vagas à confirmar");
+        setSupportActionBar(toolbar);
 
         pesquisaVaga();
         adapter = new vagaAdapter(ListaVagas_confirmarActivity.this,vagas);
@@ -82,7 +93,7 @@ public class ListaVagas_confirmarActivity extends AppCompatActivity {
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                     vagaBanco = postSnapshot.child("status").getValue(String.class);
 
-                    if (vagaBanco.equals("OCUPANDO")) {
+                    if (vagaBanco.equals("OCUPANDO") || vagaBanco.equals("SAINDO")) {
                         flag = true;
                         vaga = postSnapshot.getValue(modelVaga.class);
                         vagas.add(vaga);
@@ -104,6 +115,47 @@ public class ListaVagas_confirmarActivity extends AppCompatActivity {
         };
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_toolbar,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_anterior:voltar();break;
+            case R.id.menu_sair:sair();break;
+            case R.id.menu_sobre: sobre();break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //desloga usuario e vai pra tela de login
+    public void sair(){
+        sairAplicacao.logout(getApplicationContext(),this);
+    }
+
+    @Override
+    public void sobre() {
+        invocaActivitys.invocaSobre(this,this);
+
+    }
+
+    @Override
+    public void adicionaMascara() {
+
+    }
+
+    //retorna para a página inicial
+    public  void voltar(){
+
+        Preferencias preferencias = new Preferencias(this);
+        invocaActivitys.invocaPrincipal(this,this,preferencias.recuperaTipo(this));
+    }
+
 
     @Override
     protected void onStart() {
