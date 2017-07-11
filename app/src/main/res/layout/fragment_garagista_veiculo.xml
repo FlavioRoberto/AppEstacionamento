@@ -9,158 +9,180 @@
 
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
 
 
-        <EditText
-            android:id="@+id/editConsult_aVaga"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_alignStart="@+id/viewbarra"
-            android:layout_toStartOf="@+id/btnbuscarVaga"
-            android:background="@drawable/ovaltext"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="Número da placa"
-            android:inputType="text"
-            android:textColor="@color/colorPrimary"
-            android:textColorHint="@color/colorPrimary" />
 
-
-        <ImageView
-            android:id="@+id/btnbuscarVaga"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/viewbarra"
-            android:layout_alignTop="@+id/editConsultaId"
-            android:background="@drawable/ovalbutton"
-            app:srcCompat="@drawable/ic_search" />
-
-        <RelativeLayout
-
-            android:id="@+id/relativeLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/btnbuscarVaga"
-            android:layout_marginTop="12dp">
-
-
-        </RelativeLayout>
-
-        <TextView
-            android:id="@+id/textdados"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/relativeLayout"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="14dp"
-            android:text="DADOS"
-            android:textColor="#ccc" />
-
-
-        <View
-
-            android:id="@+id/viewbarra"
-            android:layout_width="270dp"
-            android:layout_height="1dp"
-            android:layout_below="@+id/textdados"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="5dp"
-            android:background="#ccc" />
-
-        <ScrollView
-
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignTop="@+id/linearid">
-
-        </ScrollView>
-
-        <LinearLayout
-            android:id="@+id/linearid"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/viewbarra"
-            android:layout_marginTop="25dp"
-            android:orientation="vertical"
-            android:padding="25dp">
-
-
-            <TextView
-                android:id="@+id/textView_12"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:padding="15dp"
                 android:layout_height="wrap_content"
-                android:text="@string/numerodavaga"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/texxtViewSize" />
-
-            <TextView
-                android:id="@+id/valorNumero_Id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:text=""
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/texxtViewSize" />
+                >
 
 
-            <TextView
-                android:id="@+id/texto_Setor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="@string/Setor"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/texxtViewSize" />
+                <EditText
+                    android:id="@+id/editConsultaId"
+                    android:textAllCaps="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_alignStart="@+id/viewbarra"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_toStartOf="@+id/btnbuscar"
+                    android:background="@drawable/ovaltext"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Placa do Veículo"
+                    android:inputType="textPersonName"
+                    android:textColorHint="@color/colorPrimary" />
 
-            <TextView
-                android:id="@+id/valorSetor_Id"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:text=""
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/texxtViewSize" />
+                <ImageView
+                    android:id="@+id/btnbuscar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ovalbutton"
+                    app:srcCompat="@drawable/ic_search"
+                    android:layout_alignTop="@+id/editConsultaId"
+                    android:layout_alignEnd="@+id/viewbarra" />
 
-            <TextView
-                android:id="@+id/texto_Necessidade"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="Necessidade Especial ?"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/texxtViewSize" />
 
-            <TextView
-                android:id="@+id/valorNecessidade_Especial"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:text=""
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/texxtViewSize" />
+                <TextView
+                    android:id="@+id/textdados"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/btnbuscar"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp"
+                    android:text="DADOS"
+                    android:textColor="#ccc" />
+
+                <View
+
+                    android:id="@+id/viewbarra"
+                    android:layout_width="270dp"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/textdados"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="5dp"
+                    android:background="#ccc" />
+
+            </RelativeLayout>
+
+            <ScrollView
+                android:id="@+id/scrollView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                >
+
+               <LinearLayout
+                   android:paddingLeft="20dp"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:orientation="vertical"
+                   >
+
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:id="@+id/textView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Celular do Dono"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
+
+                    <TextView
+                        android:id="@+id/valorCelularDonoId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text=""
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:id="@+id/textView13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email do Dono"
+                        android:layout_marginTop="15dp"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
+
+                    <TextView
+                        android:id="@+id/valorEmailDonoId"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text=""
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
+
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:id="@+id/textmodeloid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/modeloVeiculo"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
+
+                    <TextView
+                        android:id="@+id/valormodeloid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text=""
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:id="@+id/textmarcaid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/marcaVeiculo"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
+
+                    <TextView
+                        android:id="@+id/valormarcaid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text=""
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
+
+                    <TextView
+                        android:textStyle="bold"
+                        android:id="@+id/textcorid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="@string/corVeiculo"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
+
+                    <TextView
+                        android:id="@+id/valorcorid"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="3dp"
+                        android:text=""
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/texxtViewSize" />
+
+
+                </LinearLayout>
+
+            </ScrollView>
+
 
 
         </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="25dp"
-            android:layout_alignParentEnd="true"
-            android:layout_below="@+id/linearid">
-
-        </RelativeLayout>
-
-
-    </RelativeLayout>
-
-
-</LinearLayout>
