@@ -19,6 +19,7 @@ import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activ
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Garagista.GaragistaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Secretaria.SecretariaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Usuario.ActivityUsuario;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Usuario.ConsultaVagaActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.configuracaoFirebase;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
@@ -250,7 +251,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                         } else if(tipo.equals("USER")){
                                             finish();
-                                            Intent intent = new Intent(getApplicationContext(), ActivityUsuario.class);
+                                            Intent intent = new Intent(getApplicationContext(), ConsultaVagaActivity.class);
                                             startActivity(intent);
                                             progressDialog.dismiss();
                                             authFlag = false;

@@ -70,7 +70,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
         if(buscaVaga){
             buttonBuscar.setVisibility(View.INVISIBLE);
             buttonDesocupar.setVisibility(View.VISIBLE);
-        }else {
+        }else if(buscaVaga == false) {
             buttonDesocupar.setVisibility(View.INVISIBLE);
             buttonBuscar.setVisibility(View.VISIBLE);
         }
@@ -94,6 +94,8 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
             public void onClick(View v) {
                 if(buscaVaga == false){
                     descocuparVaga();
+                    buttonDesocupar.setVisibility(View.INVISIBLE);
+                    buttonBuscar.setVisibility(View.VISIBLE);
                 }else{
                     Toast.makeText(ConsultaVagaActivity.this, "Você não esta ocupando uma vaga!", Toast.LENGTH_LONG).show();
                     return;
