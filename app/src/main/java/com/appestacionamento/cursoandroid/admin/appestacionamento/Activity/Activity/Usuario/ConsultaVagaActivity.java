@@ -50,6 +50,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
     private PreferenciasOcupaVaga preferenciasOcupaVaga ;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,8 +65,9 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
         toolbar.setTitle("Consultar Vaga");
         setSupportActionBar(toolbar);
+        verificaVagaUsuarioAtual();
 
-        if(preferenciasOcupaVaga != null){
+        if(buscaVaga){
             buttonBuscar.setVisibility(View.INVISIBLE);
             buttonDesocupar.setVisibility(View.VISIBLE);
         }else {
@@ -73,7 +75,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
             buttonBuscar.setVisibility(View.VISIBLE);
         }
 
-        verificaVagaUsuarioAtual();
+
 
         buttonBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
