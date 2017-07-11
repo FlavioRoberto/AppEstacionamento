@@ -136,7 +136,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for(DataSnapshot postSnapshot: dataSnapshot.getChildren()){
-                    modelVaga vaga;
+                    modelVaga vaga = new modelVaga();
                     emailDataBase = postSnapshot.child("emailDono").getValue(String.class);
                     if(recuperaEmail.equals(emailDataBase)){
                         vaga = postSnapshot.getValue(com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelVaga.class);
@@ -145,15 +145,36 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
                         textViewSetorVaga.setText(vaga.getSetor());
                         buttonBuscar.setVisibility(View.INVISIBLE);
                         buttonDesocupar.setVisibility(View.VISIBLE);
+
+                        if(vaga.getStatus().equals("SAINDO")){
+                            textViewNumeroVaga.setText("Saindo");
+                            textViewSetorVaga.setText("");
+                            buttonDesocupar.setVisibility(View.INVISIBLE);
+                            buttonBuscar.setVisibility(View.INVISIBLE);
+                            break;
+                        }
+
+                        if(vaga.getStatus().equals("OCUPANDO")){
+                            textViewSetorVaga.setTextSize(20);
+                            textViewNumeroVaga.setTextSize(27);
+                            textViewNumeroVaga.setText("Vaga selecionada!");
+                            textViewSetorVaga.setText("Aguarde verificação do garagista");
+                            buttonDesocupar.setVisibility(View.INVISIBLE);
+                            buttonBuscar.setVisibility(View.INVISIBLE);
+                            break;
+                        }
                         break;
                     }else {
-                        textViewNumeroVaga.setText("N/A");
-                        textViewSetorVaga.setText("N/A");
-                        buttonDesocupar.setVisibility(View.INVISIBLE);
-                        buttonBuscar.setVisibility(View.VISIBLE);
-                    }
+                            textViewNumeroVaga.setTextSize(27);
+                            textViewNumeroVaga.setText("Clique em Procurar");
+                            textViewSetorVaga.setText("");
+                            buttonDesocupar.setVisibility(View.INVISIBLE);
+                            buttonBuscar.setVisibility(View.VISIBLE);
+                        }
+                        }
+
                 }
-            }
+
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
