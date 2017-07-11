@@ -155,22 +155,24 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
                         }
 
                         if(vaga.getStatus().equals("OCUPANDO")){
-                            textViewSetorVaga.setTextSize(20);
-                            textViewNumeroVaga.setTextSize(27);
+                            textViewSetorVaga.setTextSize(18);
+                            textViewNumeroVaga.setTextSize(23);
                             textViewNumeroVaga.setText("Vaga selecionada!");
                             textViewSetorVaga.setText("Aguarde verificação do garagista");
                             buttonDesocupar.setVisibility(View.INVISIBLE);
                             buttonBuscar.setVisibility(View.INVISIBLE);
                             break;
                         }
-                        break;
-                    }else {
-                            textViewNumeroVaga.setTextSize(27);
+                        if(vaga.getStatus().equals("LIVRE")) {
+                            textViewNumeroVaga.setTextSize(23);
                             textViewNumeroVaga.setText("Clique em Procurar");
                             textViewSetorVaga.setText("");
                             buttonDesocupar.setVisibility(View.INVISIBLE);
                             buttonBuscar.setVisibility(View.VISIBLE);
+                            break;
                         }
+                        break;
+                    }
                         }
 
                 }
