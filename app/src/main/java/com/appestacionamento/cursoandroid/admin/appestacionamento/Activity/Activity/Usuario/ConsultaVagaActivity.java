@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,7 +35,8 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
     private TextView textViewNumeroVaga, textViewSetorVaga;
     private DatabaseReference databaseReferenceVaga = FirebaseDatabase.getInstance().getReference("vaga");
     private DatabaseReference databaseReferenceVeiculo = FirebaseDatabase.getInstance().getReference("veiculo");
-    private Button buttonBuscar, buttonDesocupar;
+    private Button  buttonDesocupar;
+    private ImageView buttonBuscar;
     private String vagaDatabase;
     private String veiculoDatabase;
     private Boolean vagaTipoDatabase;
@@ -55,13 +57,24 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
 
         textViewNumeroVaga = (TextView) findViewById(R.id.textnumero_vaga);
         textViewSetorVaga = (TextView) findViewById(R.id.textnumero_setor_vaga);
-        buttonBuscar = (Button) findViewById(R.id.botaoconfirmarid);
+        buttonBuscar = (ImageView) findViewById(R.id.botaoconfirmarid);
         buttonDesocupar = (Button) findViewById(R.id.botaodesocuparid);
 
         //Toolbar
         toolbar = (Toolbar)findViewById(R.id.toolbarId);
         toolbar.setTitle("Consultar Vaga");
         setSupportActionBar(toolbar);
+
+        if(preferenciasOcupaVaga != null){
+            buttonBuscar.setVisibility(View.INVISIBLE);
+            buttonDesocupar.setVisibility(View.VISIBLE);
+        }else {
+            buttonDesocupar.setVisibility(View.INVISIBLE);
+            buttonBuscar.setVisibility(View.VISIBLE);
+        }
+
+
+
 
         verificaVagaUsuarioAtual();
 

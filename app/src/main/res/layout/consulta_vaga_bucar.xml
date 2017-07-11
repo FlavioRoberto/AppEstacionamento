@@ -1,11 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <include android:id="@+id/toolbarId"
         layout="@layout/toolbar"/>
 
+
+
+    <ImageView
+        android:id="@+id/botaoconfirmarid"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/ovalbutton"
+        app:srcCompat="@drawable/ic_search"
+        />
 
     <TextView
         android:id="@+id/textnumero_da_vaga"
@@ -50,16 +62,8 @@
         android:textColor="@android:color/white" />
 
     <Button
-        android:id="@+id/botaoconfirmarid"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:background="@drawable/ovalbutton"
-        android:text="PESQUISAR" />
-
-    <Button
         android:id="@+id/botaodesocuparid"
-        android:layout_width="250dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="@drawable/ovalbutton"
