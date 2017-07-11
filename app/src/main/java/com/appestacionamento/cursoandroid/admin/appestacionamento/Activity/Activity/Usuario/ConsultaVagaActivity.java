@@ -71,27 +71,16 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
         buttonBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(buscaVaga == true && ativaBotao == true){
-                    recuperaChaveVeiculo();
-                    return;
-
-                }else{
-                    Toast.makeText(ConsultaVagaActivity.this, "Você já esta ocupando uma vaga!", Toast.LENGTH_LONG).show();
-                    return;
-                }
+            recuperaChaveVeiculo();
+            return;
             }
         });
 
         buttonDesocupar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(buscaVaga == false){
-                    descocuparVaga();
+                descocuparVaga();
 
-                }else{
-                    Toast.makeText(ConsultaVagaActivity.this, "Você não esta ocupando uma vaga!", Toast.LENGTH_LONG).show();
-                    return;
-                }
             }
         });
 
@@ -115,9 +104,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
                         modelVaga.setVagaEspecial(postSnapshot.child("vagaEspecial").getValue(Boolean.class));
                         databaseReferenceVaga = FirebaseDatabase.getInstance().getReference("vaga").child(modelVaga.getChave());
                         databaseReferenceVaga.setValue(modelVaga);
-                        preferenciasOcupaVaga = null;
                         Toast.makeText(ConsultaVagaActivity.this, "O status da vaga foi definido para SAINDO", Toast.LENGTH_LONG).show();
-                        verificaVagaUsuarioAtual();
                         break;
                     }
                 }
@@ -142,7 +129,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    modelVaga vaga = new modelVaga();
+                    modelVaga vaga ;
                     emailDataBase = postSnapshot.child("emailDono").getValue(String.class);
                     if (recuperaEmail.equals(emailDataBase)) {
                         vaga = postSnapshot.getValue(com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Model.modelVaga.class);
@@ -206,7 +193,6 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
         databaseReferenceVaga = FirebaseDatabase.getInstance().getReference("vaga").child(modelVaga.getChave());
         databaseReferenceVaga.setValue(modelVaga);
         Toast.makeText(ConsultaVagaActivity.this, "A vaga com os seus dados foram cadastrados com Sucesso!", Toast.LENGTH_LONG).show();
-        verificaVagaUsuarioAtual();
     }
 
     public void recuperaChaveVeiculo(){
@@ -276,7 +262,7 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
                 }else{
                     for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
                         vagaDatabase = postSnapshot.child("status").getValue(String.class);
-                        if (vagaDatabase.equals("LIVRE") && postSnapshot.child("vagaEspecial").getValue(boolean.class).equals(false)) {
+                        if (vagaDatabase.equals("LIVRE") && !postSnapshot.child("vagaEspecial").getValue(boolean.class)) {
                             ativaBotao = false;
                             flag = true;
 
