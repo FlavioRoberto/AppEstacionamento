@@ -71,6 +71,8 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
             buttonBuscar.setVisibility(View.INVISIBLE);
             buttonDesocupar.setVisibility(View.VISIBLE);
         }else if(buscaVaga == false) {
+            textViewNumeroVaga.setText("N/A");
+            textViewSetorVaga.setText("N/A");
             buttonDesocupar.setVisibility(View.INVISIBLE);
             buttonBuscar.setVisibility(View.VISIBLE);
         }
@@ -300,7 +302,6 @@ public class ConsultaVagaActivity extends AppCompatActivity implements IActivity
 
     @Override
     public void voltar() {
-        Preferencias preferencias = new Preferencias(this);
-        invocaActivitys.invocaPrincipal(this,this,preferencias.recuperaTipo(this));
+        finish();
     }
 }
