@@ -197,8 +197,8 @@ public class CadastroUsuarioActivity extends AppCompatActivity implements IActiv
             case R.id.menu_anterior:
                 voltar();
                 break;
-            case R.id.menu_meusdados:
-                break;
+            case R.id.menu_meusdados:invocaActivitys.TelaMeusDados(this);break;
+
             case R.id.menu_sair:
                 sair();
                 break;

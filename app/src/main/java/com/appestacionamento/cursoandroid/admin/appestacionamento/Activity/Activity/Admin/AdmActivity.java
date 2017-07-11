@@ -117,9 +117,9 @@ public class AdmActivity extends AppCompatActivity implements IActivity {
                 sair();
                 //finish();
                 break;
-            case R.id.menu_meusdados:
-                chamaConsulta();
-                break;
+            case R.id.menu_meusdados:invocaActivitys.TelaMeusDados(this);break;
+
+
 
             case R.id.menu_sobre:sobre();break;
         }

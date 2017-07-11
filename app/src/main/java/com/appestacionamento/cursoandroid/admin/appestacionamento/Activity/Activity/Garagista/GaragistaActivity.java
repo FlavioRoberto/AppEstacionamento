@@ -1,5 +1,7 @@
 package com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.Garagista;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.IActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.MeusDadosActivity;
+import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Activity.SobreActivity;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Adapter.TabAdapter;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.Preferencias;
 import com.appestacionamento.cursoandroid.admin.appestacionamento.Activity.Application.invocaActivitys;
@@ -24,6 +28,9 @@ public class GaragistaActivity extends AppCompatActivity implements IActivity {
     private ViewPager viewPager;
     private static final String[] ABAS = new String[]{"VAGAS","VEICULO"};
     private static final String USUARIO = "GARAGISTA";
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +69,8 @@ public class GaragistaActivity extends AppCompatActivity implements IActivity {
             case R.id.menu_anterior: voltar();break;
             case R.id.menu_sair:sair();break;
             case R.id.menu_sobre:sobre();break;
+            case R.id.menu_meusdados:invocaActivitys.TelaMeusDados(this);break;
+
 
         }
         return super.onOptionsItemSelected(item);
@@ -96,6 +105,7 @@ public class GaragistaActivity extends AppCompatActivity implements IActivity {
     @Override
     public void voltar() {
 
+
     }
 
     @Override
@@ -103,4 +113,7 @@ public class GaragistaActivity extends AppCompatActivity implements IActivity {
         finishAndRemoveTask();
 
     }
+
+
+
 }

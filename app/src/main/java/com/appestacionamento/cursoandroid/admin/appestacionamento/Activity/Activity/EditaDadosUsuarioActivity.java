@@ -171,7 +171,7 @@ public class EditaDadosUsuarioActivity extends AppCompatActivity implements IAct
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_anterior: voltar();break;
-            case R.id.menu_meusdados: break;
+            case R.id.menu_meusdados:invocaActivitys.TelaMeusDados(this);break;
             case R.id.menu_sair: sair();break;
             default:break;
         }
